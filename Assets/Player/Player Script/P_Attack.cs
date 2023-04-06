@@ -12,16 +12,12 @@ using UnityEngine;
 
 public class P_Attack : MonoBehaviour
 {
-
     //마우스 및 플레이어 위치 변수
     private Vector3 Mouse_Position;
     private Vector3 P_Position;
 
-    //플레이어 오브젝트 저장
-    private GameObject Player;
-
     //플레이어 무기 방향 오브젝트 저장
-    private GameObject Weapon;
+    private GameObject Point;
 
     //플레이어 좌우 반전 변수
     private bool Rev_Flag = false;
@@ -31,7 +27,7 @@ public class P_Attack : MonoBehaviour
     {
         //마우스 위치와 플레이어 위치 입력
         Mouse_Position = Input.mousePosition;
-        P_Position = Player.transform.position;
+        P_Position = this.transform.position;
 
         //마우스의 z값을 카메라 앞으로 위치
         Mouse_Position.z = P_Position.z - Camera.main.transform.position.z;
@@ -45,7 +41,7 @@ public class P_Attack : MonoBehaviour
 
         float rotateDegree = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
 
-        Weapon.transform.rotation = Quaternion.Euler(0f, 0f, rotateDegree);
+        Point.transform.rotation = Quaternion.Euler(0f, 0f, rotateDegree);
 
         //마우스위치에 따라 좌우 반전
         if(dx< 0)
@@ -56,16 +52,17 @@ public class P_Attack : MonoBehaviour
         {
             Rev_Flag= false;
         }
-        Player.GetComponent<SpriteRenderer>().flipX = Rev_Flag;
+        this.GetComponent<SpriteRenderer>().flipX = Rev_Flag;
 
     }
-    
+
+    //-------------------------------------------------------------------------------------------
+
     //시작시 초기화
     private void Start()
     {
-        //플레이어와 무기 찾기
-        Player = GameObject.FindWithTag("Player");
-        Weapon = GameObject.FindWithTag("Weapon");
+        //무기 위치 찾기
+        Point = GameObject.FindWithTag("Weapon");
     }
 
     //프레임마다

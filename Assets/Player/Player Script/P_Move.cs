@@ -11,9 +11,6 @@ using UnityEngine;
 
 public class P_Move : MonoBehaviour
 {
-    //플레이어 검색용 변수
-    public GameObject Player;
-
     // 플레이어 이동속도 변수
     [SerializeField] private float P_Speed = 5;
 
@@ -50,12 +47,9 @@ public class P_Move : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        //플레이어 검색
-        Player = GameObject.FindWithTag("Player");
-
         //플레이어 중력 및 축 회전 제외
-        Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-        Player.GetComponent<Rigidbody2D>().gravityScale = 0;
+        this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        this.GetComponent<Rigidbody2D>().gravityScale = 0;
     }
 
     // Update is called once per frame
@@ -93,6 +87,6 @@ public class P_Move : MonoBehaviour
     private void FixedUpdate()
     {
         //플레이어 움직임 변경
-        Player.transform.Translate(P_XSpeed * Time.deltaTime, P_YSpeed * Time.deltaTime, 0);
+        this.transform.Translate(P_XSpeed * Time.deltaTime, P_YSpeed * Time.deltaTime, 0);
     }
 }
