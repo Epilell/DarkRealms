@@ -31,21 +31,5 @@ public class FadeOut : MonoBehaviour
         }
 
         SceneManager.LoadScene(scene);
-
-        /*time = 0f;
-
-        yield return new WaitForSeconds(1f);
-
-        // 페이드 인
-        while (alpha.a > 0f)
-        {
-            time += Time.deltaTime / F_time;
-            alpha.a = Mathf.Lerp(1f, 0f, time);
-            Panel.color = alpha;
-            yield return null;
-        }
-        Panel.gameObject.SetActive(false);
-
-        yield return null;*/
     }
 }
