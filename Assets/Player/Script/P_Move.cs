@@ -14,6 +14,8 @@ public class P_Move : MonoBehaviour
     // 플레이어 이동속도 변수
     [SerializeField] private float P_Speed = 5;
 
+    private Animator P_Ani;
+
     // 플레이어 이동속도 제한 변수
     private float Max_P_Speed = 10;
     private float Min_P_Speed = 2;
@@ -44,12 +46,31 @@ public class P_Move : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    private void Start()
+    private void IsMove()
     {
+        if(P_XSpeed != 0f || P_YSpeed != 0f)
+        {
+            P_Ani.SetBool("IsMove", true);
+        }
+        else
+        {
+            P_Ani.SetBool("IsMove", false);
+        }
+    }
+
+    private void Awake()
+    {
+        P_Ani = GetComponent<Animator>();
+
         //플레이어 중력 및 축 회전 제외
         this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         this.GetComponent<Rigidbody2D>().gravityScale = 0;
+    }
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+        
     }
 
     // Update is called once per frame
@@ -82,6 +103,8 @@ public class P_Move : MonoBehaviour
         {
             P_XSpeed = 0;
         }
+
+        IsMove();
     }
 
     private void FixedUpdate()
