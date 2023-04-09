@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Player/Player Script/P_Attack.cs.meta
 guid: a2d9b485487ce834ab760d5118ce951b
+=======
+guid: eee74af88fae9c44d9c612ba2a5637a6
+>>>>>>> Stashed changes:Assets/YS/Script/FadeOut.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

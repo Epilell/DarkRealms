@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Mob/Scripts/MobMove.cs.meta
 guid: cee567df3c25cc24c88cad67ca038e4f
+========
+guid: 1462b502c9d50b84bba728ac9accf4ee
+>>>>>>>> Stashed changes:Assets/YS/Script/MainUI.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

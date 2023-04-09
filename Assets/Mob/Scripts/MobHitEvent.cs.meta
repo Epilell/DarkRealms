@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Mob/Scripts/MobHitEvent.cs.meta
 guid: 9bbf8e86d3c6b9544b84fc9a9160825f
+=======
+guid: 108291bc0e21dff469e6c1d8c9079b39
+>>>>>>> Stashed changes:Assets/YS/Script/OnClickBack.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
