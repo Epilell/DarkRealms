@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
+    path: Assets/YS/Scene/Menu.unity
     guid: 012173596a5d3b946bc33f329fcdfd46
   - enabled: 1
-    path: Assets/Scenes/Loading_In.unity
+    path: Assets/YS/Scene/Loading_In.unity
     guid: f99b7b4351c4bd049a6b42d58609b839
   - enabled: 1
-    path: Assets/Scenes/Play.unity
+    path: Assets/YS/Scene/Play.unity
     guid: 6c438827e7eb10940bfc646be2440c4d
   - enabled: 1
-    path: Assets/Scenes/Loading_Out.unity
+    path: Assets/YS/Scene/Loading_Out.unity
     guid: 2ba0b527896c870419aff18682a6e932
   m_configObjects: {}
