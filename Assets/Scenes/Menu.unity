@@ -805,7 +805,7 @@ RectTransform:
   m_Children:
   - {fileID: 2027864616}
   m_Father: {fileID: 1993998156}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -824,11 +824,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73a65a9680a8df4d993d65dc93917da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentType: 3
+  currentType: 4
   btnScale: {fileID: 138361741}
   mainGroup: {fileID: 1162508962}
   optionGroup: {fileID: 1993998157}
   soundGroup: {fileID: 0}
+  displayGroup: {fileID: 0}
 --- !u!114 &138361743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2223,6 +2224,7 @@ MonoBehaviour:
   mainGroup: {fileID: 1162508962}
   optionGroup: {fileID: 1993998157}
   soundGroup: {fileID: 0}
+  displayGroup: {fileID: 0}
 --- !u!114 &705192143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3010,6 +3012,7 @@ MonoBehaviour:
   mainGroup: {fileID: 0}
   optionGroup: {fileID: 0}
   soundGroup: {fileID: 0}
+  displayGroup: {fileID: 0}
 --- !u!1 &944601092
 GameObject:
   m_ObjectHideFlags: 0
@@ -3368,7 +3371,7 @@ RectTransform:
   m_Children:
   - {fileID: 1015002304}
   m_Father: {fileID: 1993998156}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3387,11 +3390,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73a65a9680a8df4d993d65dc93917da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentType: 2
+  currentType: 3
   btnScale: {fileID: 1140179668}
   mainGroup: {fileID: 0}
   optionGroup: {fileID: 1993998157}
   soundGroup: {fileID: 1937512682}
+  displayGroup: {fileID: 2056509349}
 --- !u!114 &1140179670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5811,6 +5815,7 @@ MonoBehaviour:
   mainGroup: {fileID: 0}
   optionGroup: {fileID: 0}
   soundGroup: {fileID: 0}
+  displayGroup: {fileID: 0}
 --- !u!114 &1785549716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6163,8 +6168,8 @@ RectTransform:
   m_Children:
   - {fileID: 50936831}
   - {fileID: 2023282054}
-  - {fileID: 138361741}
   - {fileID: 1140179668}
+  - {fileID: 138361741}
   m_Father: {fileID: 62474731}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6454,6 +6459,7 @@ MonoBehaviour:
   mainGroup: {fileID: 0}
   optionGroup: {fileID: 1993998157}
   soundGroup: {fileID: 1937512682}
+  displayGroup: {fileID: 0}
 --- !u!114 &2023282056
 MonoBehaviour:
   m_ObjectHideFlags: 0

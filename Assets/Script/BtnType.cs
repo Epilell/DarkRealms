@@ -9,7 +9,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public BTNType currentType;
     public Transform btnScale;
-    public CanvasGroup mainGroup, optionGroup, soundGroup;
+    public CanvasGroup mainGroup, optionGroup, soundGroup, displayGroup;
     Vector3 defaultScale;
 
     public void Start()
@@ -31,6 +31,10 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             case BTNType.Sound:
                 CanvasGroupOn(soundGroup);
                 CanvasGroupOff(optionGroup);
+                break;
+            case BTNType.Display:
+                CanvasGroupOn(displayGroup);
+                CanvasGroupOff(soundGroup);
                 break;
             case BTNType.Back:
                 CanvasGroupOn(mainGroup);
