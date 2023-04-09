@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Asset store/Excluded/Screenshot.cs.meta
 guid: c2cabac2a9a98e84495b26f6eed9c6cf
+========
+guid: b433cbc0a09049f458764babcaf502a4
+>>>>>>>> 7a7e0f6597a8ead48e3a371385eadceb598ea341:Assets/Asset store/Excluded/IconUpdater.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

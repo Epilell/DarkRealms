@@ -805,7 +805,11 @@ RectTransform:
   m_Children:
   - {fileID: 2027864616}
   m_Father: {fileID: 1993998156}
+<<<<<<< HEAD
   m_RootOrder: 2
+=======
+  m_RootOrder: 3
+>>>>>>> 7a7e0f6597a8ead48e3a371385eadceb598ea341
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -824,11 +828,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73a65a9680a8df4d993d65dc93917da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   currentType: 3
+=======
+  currentType: 4
+>>>>>>> 7a7e0f6597a8ead48e3a371385eadceb598ea341
   btnScale: {fileID: 138361741}
   mainGroup: {fileID: 1162508962}
   optionGroup: {fileID: 1993998157}
   soundGroup: {fileID: 0}
+<<<<<<< HEAD
+=======
+  displayGroup: {fileID: 0}
+>>>>>>> 7a7e0f6597a8ead48e3a371385eadceb598ea341
 --- !u!114 &138361743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2223,6 +2235,10 @@ MonoBehaviour:
   mainGroup: {fileID: 1162508962}
   optionGroup: {fileID: 1993998157}
   soundGroup: {fileID: 0}
+<<<<<<< HEAD
+=======
+  displayGroup: {fileID: 0}
+>>>>>>> 7a7e0f6597a8ead48e3a371385eadceb598ea341
 --- !u!114 &705192143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3010,6 +3026,10 @@ MonoBehaviour:
   mainGroup: {fileID: 0}
   optionGroup: {fileID: 0}
   soundGroup: {fileID: 0}
+<<<<<<< HEAD
+=======
+  displayGroup: {fileID: 0}
+>>>>>>> 7a7e0f6597a8ead48e3a371385eadceb598ea341
 --- !u!1 &944601092
 GameObject:
   m_ObjectHideFlags: 0
@@ -3368,7 +3388,11 @@ RectTransform:
   m_Children:
   - {fileID: 1015002304}
   m_Father: {fileID: 1993998156}
+<<<<<<< HEAD
   m_RootOrder: 3
+=======
+  m_RootOrder: 2
+>>>>>>> 7a7e0f6597a8ead48e3a371385eadceb598ea341
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3387,11 +3411,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73a65a9680a8df4d993d65dc93917da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   currentType: 2
+=======
+  currentType: 3
+>>>>>>> 7a7e0f6597a8ead48e3a371385eadceb598ea341
   btnScale: {fileID: 1140179668}
   mainGroup: {fileID: 0}
   optionGroup: {fileID: 1993998157}
   soundGroup: {fileID: 1937512682}
+<<<<<<< HEAD
+=======
+  displayGroup: {fileID: 2056509349}
+>>>>>>> 7a7e0f6597a8ead48e3a371385eadceb598ea341
 --- !u!114 &1140179670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3682,7 +3714,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: 6fbae487df1d13640b9ca2d8e58a8659, type: 3}
+=======
+  m_Sprite: {fileID: 21300000, guid: e9e8819e42971c94e9d8686e10e52be2, type: 3}
+>>>>>>> 7a7e0f6597a8ead48e3a371385eadceb598ea341
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5811,6 +5847,10 @@ MonoBehaviour:
   mainGroup: {fileID: 0}
   optionGroup: {fileID: 0}
   soundGroup: {fileID: 0}
+<<<<<<< HEAD
+=======
+  displayGroup: {fileID: 0}
+>>>>>>> 7a7e0f6597a8ead48e3a371385eadceb598ea341
 --- !u!114 &1785549716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6163,8 +6203,13 @@ RectTransform:
   m_Children:
   - {fileID: 50936831}
   - {fileID: 2023282054}
+<<<<<<< HEAD
   - {fileID: 138361741}
   - {fileID: 1140179668}
+=======
+  - {fileID: 1140179668}
+  - {fileID: 138361741}
+>>>>>>> 7a7e0f6597a8ead48e3a371385eadceb598ea341
   m_Father: {fileID: 62474731}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6454,6 +6499,10 @@ MonoBehaviour:
   mainGroup: {fileID: 0}
   optionGroup: {fileID: 1993998157}
   soundGroup: {fileID: 1937512682}
+<<<<<<< HEAD
+=======
+  displayGroup: {fileID: 0}
+>>>>>>> 7a7e0f6597a8ead48e3a371385eadceb598ea341
 --- !u!114 &2023282056
 MonoBehaviour:
   m_ObjectHideFlags: 0
