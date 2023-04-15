@@ -18,6 +18,7 @@ public class InventoryUI : MonoBehaviour
         inventory = Inventory.instance;
         slots = slotHolder.GetComponentsInChildren<Slot>();
         inventory.onSlotCountChange += SlotChange;
+        inventory.onChangeItem += RedrawSlotUI;
         inventoryPanel.SetActive(activeInventory);
     }
 
@@ -25,6 +26,8 @@ public class InventoryUI : MonoBehaviour
     {
         for (int i = 0; i < slots.Length; i++)
         {
+            slots[i].slotNum = i;
+
             if (i < inventory.SlotCount)
                 slots[i].GetComponent<Button>().interactable = true;  // 슬롯 활성화
             else
@@ -51,13 +54,19 @@ public class InventoryUI : MonoBehaviour
         }
         // 용량 초과하는지 체크
         else Debug.Log("인벤토리 포화!");
+    }
 
-        // 테스트 버튼을 눌러서 슬롯이 확장되는지 테스트
-        /*
-        if (inventory.SlotCount < 15)
+    void RedrawSlotUI()
+    {
+        for (int i = 0; i < slots.Length; i++)
         {
-            inventory.SlotCount += 5;
+            slots[i].RemoveSlot();
         }
-        */
+
+        for (int i = 0; i < inventory.items.Count; i++)
+        {
+            slots[i].item = inventory.items[i];
+            slots[i].UpdateSlotUI();
+        }
     }
 }

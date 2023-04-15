@@ -15,9 +15,17 @@ public class Item
     public ItemType itemType;
     public string itemName;
     public Sprite itemImage;
+    public List<ItemEffect> effects;
 
     public bool Use()
     {
-        return false;
+        bool isUsed = false;
+
+        foreach(ItemEffect effect in effects)
+        {
+            isUsed = effect.ExecuteRole();
+        }
+
+        return isUsed;
     }
 }

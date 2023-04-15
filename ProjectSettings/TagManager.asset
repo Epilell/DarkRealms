@@ -8,6 +8,8 @@ TagManager:
   - Center
   - Fire Position
   - Mob
+  - AddSlotItem
+  - FieldItem
   layers:
   - Default
   - TransparentFX

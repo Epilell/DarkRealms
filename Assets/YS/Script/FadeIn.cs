@@ -1,35 +1,35 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class FadeOut : MonoBehaviour
+public class FadeIn : MonoBehaviour
 {
     public Image panel;
     float time = 0f;
     float fadeTime = 1f;
-    public string scene;
 
-    public void Fade()
+    private void Start()
     {
-        StartCoroutine(FadeFlow());
+        StartCoroutine(FadeInCoroutine());
     }
-    public IEnumerator FadeFlow()
+
+    public IEnumerator FadeInCoroutine()
     {
         panel.gameObject.SetActive(true);
-        // time = 0f;
         Color alpha = panel.color;
 
-        // 페이드 아웃
-        while(alpha.a < fadeTime)
+        // 페이드 인
+        while (alpha.a > 0f)
         {
             time += Time.deltaTime / fadeTime;
-            alpha.a = Mathf.Lerp(0f, 1f, time);
+            alpha.a = Mathf.Lerp(1f, 0f, time);
             panel.color = alpha;
             yield return null;
         }
 
-        SceneManager.LoadScene(scene);
+        panel.gameObject.SetActive(false);
+
+        yield return null;
     }
 }

@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3808c2473f82a204bb06f627e3b7aec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel: {fileID: 2002834436}
+  panel: {fileID: 2002834436}
   scene: Loading_In
 --- !u!1 &101525543
 GameObject:
