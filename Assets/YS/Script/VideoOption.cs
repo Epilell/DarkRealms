@@ -20,16 +20,17 @@ public class VideoOption : MonoBehaviour
     {
         for (int i = 0; i < Screen.resolutions.Length; i++)
         {
-            if (Screen.resolutions[i].refreshRate == 60)
+            if (Screen.resolutions[i].refreshRate == 144)
             {
                 resolutions.Add(Screen.resolutions[i]);
             }
         }
 
+        // resolutions.AddRange(Screen.resolutions);
         resolutionDropdown.options.Clear();
 
-        int optionNum = 0;
-
+        int optionNum = 0;     
+        
         foreach (Resolution item in resolutions)
         {
             Dropdown.OptionData option = new Dropdown.OptionData();
@@ -42,7 +43,6 @@ public class VideoOption : MonoBehaviour
             }
             optionNum++;
         }
-
         resolutionDropdown.RefreshShownValue();
 
         fullscreenBtn.isOn = Screen.fullScreenMode.Equals(FullScreenMode.FullScreenWindow) ? true : false;
@@ -56,12 +56,12 @@ public class VideoOption : MonoBehaviour
     public void FullScrennBtn(bool isFull)
     {
         screenMode = isFull ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
+        Debug.Log(screenMode);
     }
 
     public void OkBtnClick()
     {
-        Screen.SetResolution(resolutions[resolutionNum].width,
-            resolutions[resolutionNum].height, 
-            screenMode);
+        Debug.Log("화면 전환");
+        Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
     }
 }

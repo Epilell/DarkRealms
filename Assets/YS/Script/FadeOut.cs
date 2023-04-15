@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FadeOut : MonoBehaviour
 {
     public Image Panel;
-    public string scene;
     float time = 0f;
     float F_time = 1f;
+    public string scene;
 
     public void Fade()
     {

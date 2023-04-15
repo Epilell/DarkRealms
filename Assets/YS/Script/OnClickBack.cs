@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class OnClickBack : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Transform btnScale;
-    public CanvasGroup optionGroup, soundGroup;
+    public CanvasGroup onGroup, offGroup;
     Vector3 defaultScale;
 
     public void Start()
@@ -16,8 +16,8 @@ public class OnClickBack : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnClick()
     {
-        CanvasGroupOn(optionGroup);
-        CanvasGroupOff(soundGroup);
+        CanvasGroupOn(onGroup);
+        CanvasGroupOff(offGroup);
     }
 
     public void CanvasGroupOn(CanvasGroup canvasGroup)
