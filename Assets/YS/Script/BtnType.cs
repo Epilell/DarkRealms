@@ -11,7 +11,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Transform btnScale;
     public CanvasGroup mainGroup, optionGroup, soundGroup;
     Vector3 defaultScale;
-
+    // 415 Test
     public void Start()
     {
         defaultScale = btnScale.localScale;
@@ -37,7 +37,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 CanvasGroupOff(optionGroup);
                 break;
             case BTNType.Quit:
-                Debug.Log("Á¾·á");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½");
                 Application.Quit();
                 break;
         }
@@ -57,7 +57,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         canvasGroup.blocksRaycasts = false;
     }
 
-    // ¸¶¿ì½º°¡ ¿Ã¶ó°¡¸é È£Ãâ
+    // ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½Ã¶ó°¡¸ï¿½ È£ï¿½ï¿½
     public void OnPointerEnter(PointerEventData eventData)
     {
         btnScale.localScale = defaultScale * 1.2f;
@@ -68,7 +68,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }*/
     }
 
-    // ¸¶¿ì½º°¡ ¹þ¾î³ª¸é È£Ãâ
+    // ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½î³ªï¿½ï¿½ È£ï¿½ï¿½
     public void OnPointerExit(PointerEventData eventData)
     {
         btnScale.localScale = defaultScale;
