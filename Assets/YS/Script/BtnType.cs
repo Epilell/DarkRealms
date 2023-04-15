@@ -11,7 +11,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Transform btnScale;
     public CanvasGroup mainGroup, optionGroup, soundGroup;
     Vector3 defaultScale;
-    // 415 Test
+    
     public void Start()
     {
         defaultScale = btnScale.localScale;
