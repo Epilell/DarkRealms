@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 2002834436}
-  scene: SampleScene
+  scene: Loading_In
 --- !u!1 &101525543
 GameObject:
   m_ObjectHideFlags: 0

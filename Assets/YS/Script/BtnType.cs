@@ -38,6 +38,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 CanvasGroupOff(optionGroup);
                 break;
             case BTNType.Quit:
+                Debug.Log("quit");
                 Application.Quit();
                 break;
         }

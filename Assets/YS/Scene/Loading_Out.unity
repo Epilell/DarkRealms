@@ -499,7 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressbar: {fileID: 2056536105}
   loadText: {fileID: 499289310}
-  scene: Menu
+  scene: MainMenu
 --- !u!4 &1594124626
 Transform:
   m_ObjectHideFlags: 0
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 1997387855}
   - component: {fileID: 1997387854}
   m_Layer: 0
-  m_Name: 00035-2881448262
+  m_Name: Bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
