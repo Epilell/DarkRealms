@@ -1,11 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField][Range(0.5f,5f)]
-    private float Speed = 2f;
+    private float Speed;
+    private float Damage;
+    private float Distance;
+
+    //능력치 가져오기
+    public void SetStats(float speed, float damage, float distance)
+    {
+        this.Speed = speed;
+        this.Damage = damage;
+        this.Distance = distance;
+    }
+
+    private void Attack()
+    {
+
+    }
+
+    //------------------------------<공격>
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Mob"))
+        {
+
+        }
+        DestroyBullet();
+    }
 
     //총알 삭제
     private void DestroyBullet()
@@ -15,8 +40,6 @@ public class Bullet : MonoBehaviour
 
     private void Awake()
     {
-        //생성시 5초후 삭제
-        Invoke("DestroyBullet", 5);
     }
 
     // Start is called before the first frame update
@@ -33,6 +56,6 @@ public class Bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Translate(Vector3.up * Speed * Time.deltaTime);
+        transform.Translate(Vector3.up * Speed * Time.deltaTime) ;
     }
 }

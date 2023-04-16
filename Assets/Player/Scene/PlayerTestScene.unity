@@ -136,8 +136,7 @@ GameObject:
   - component: {fileID: 95342466}
   - component: {fileID: 95342472}
   - component: {fileID: 95342471}
-  - component: {fileID: 95342474}
-  - component: {fileID: 95342473}
+  - component: {fileID: 95342475}
   m_Layer: 0
   m_Name: Test Player
   m_TagString: Player
@@ -155,7 +154,7 @@ Animator:
   m_GameObject: {fileID: 95342465}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 45cff1a8e4de7ff4b8c20b9c6b2d951d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2dfedecbf3ab3ff4a9787148bade1a88, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -282,7 +281,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &95342473
+--- !u!114 &95342475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -291,27 +290,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 95342465}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ebe922b0ed62054c9d729f31aa6157a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6539a37ec7721ff4b95af0e9c811f697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  P_Speed: 5
-  P_Ani: {fileID: 0}
-  Max_P_Speed: 10
-  Min_P_Speed: 2
-  P_XSpeed: 0
-  P_YSpeed: 0
---- !u!114 &95342474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 95342465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2958bd1ffda58ed4e8942c1694eb584d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: a2bb928d471f28248a74bb123abe8eda, type: 2}
 --- !u!1 &1078106451
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +320,7 @@ Transform:
   m_GameObject: {fileID: 1078106451}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1402022741}
@@ -422,7 +404,7 @@ Transform:
   m_GameObject: {fileID: 1095918940}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2304012136849271732}

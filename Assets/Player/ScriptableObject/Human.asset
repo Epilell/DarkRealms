@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4b26f3de991ac4cbb4b2182d34e33a, type: 3}
+  m_Name: Human
+  m_EditorClassIdentifier: 
+  P_Name: Human
+  P_MaxHp: 100
+  P_CurrentHp: 0
+  P_Speed: 5
+  P_Armor: 0
+  Strength_Level: 0
+  Agility_Level: 0
+  Intelligent_Level: 0
+  Str_Exp: 0
+  Agi_Exp: 0
+  Int_Exp: 0

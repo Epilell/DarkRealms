@@ -2,8 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P_RangeAttack : MonoBehaviour
+/*추가 사항 ---------------------------
+
+
+
+----------------------------------------*/
+
+public class W_Rifle : MonoBehaviour
 {
+    //무기 기본 데이터 저장
+    public W_Data Data;
+
+    //-----------------------------------<무기 기능>--------------------------------------------------
+
+    //발사위치 저장
+    private GameObject Fire_Position;
+    private float CurTime = 0;
+
+    private void Attack()
+    {
+        if (CurTime <= 0f)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                //총알 생성
+                GameObject Bullet;
+                Bullet = Instantiate(Data.Bullet, Fire_Position.transform.position, Quaternion.Euler(0f, 0f, rotateDegree - 90f));
+
+                //총알 데이터 입력
+                Bullet.GetComponent<Bullet>().SetStats(Data.W_Speed,Data.W_Damage,Data.W_Distance);
+
+                //발사시간 초기화
+                CurTime = Data.W_AttackSpeed;
+            }
+        }
+        else
+        {
+            CurTime -= Time.deltaTime;
+        }
+    }
+
+    //-----------------------------------<애니메이션>--------------------------------------------------
+
+    //회전각도 저장
     private float rotateDegree;
 
     //마우스 및 플레이어 위치 변수
@@ -38,7 +79,6 @@ public class P_RangeAttack : MonoBehaviour
         if (dx < 0f)
         {
             Hand.transform.localScale = new Vector3(-1, -1, 1);
-
         }
         else
         {
@@ -46,36 +86,13 @@ public class P_RangeAttack : MonoBehaviour
         }
     }
 
-    //----------------------------------------------------------------------
+    //-----------------------------------<초기화>--------------------------------------------------
 
-    //총알 저장
-    public GameObject Bullet;
-    private GameObject Fire_Position;
 
-    [Range(0.5f,5f)]
-    public float Attack_Speed = 2f;
-    private float CurTime;
-
-    private void Attack()
-    {
-        if(CurTime < 0f)
-        {
-            if(Input.GetMouseButtonDown(0))
-            {
-                Instantiate(Bullet, Fire_Position.transform.position, Quaternion.Euler(0f, 0f, rotateDegree - 90f));
-                CurTime = Attack_Speed;
-            }
-        }
-        else
-        {
-            CurTime -= Time.deltaTime;
-        }
-    }
     private void Awake()
     {
         Hand = GameObject.FindWithTag("Hand");
         Fire_Position = GameObject.FindWithTag("Fire Position");
-        CurTime = Attack_Speed;
     }
 
     // Start is called before the first frame update
