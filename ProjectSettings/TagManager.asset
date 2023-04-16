@@ -9,6 +9,10 @@ TagManager:
   - Fire Position
   - Mob
   - AddSlotItem
+  - Bullet
+  - FieldItem
+  - FieldItem
+  - FieldItem
   - FieldItem
   layers:
   - Default

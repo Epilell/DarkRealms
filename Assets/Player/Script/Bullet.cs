@@ -19,17 +19,12 @@ public class Bullet : MonoBehaviour
         this.Distance = distance;
     }
 
-    private void Attack()
-    {
-        mob.TakeDamage(Damage);
-    }
-
     //------------------------------<АјАн>-------------------------------------
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Mob"))
         {
-            Attack();
+            collision.gameObject.GetComponent<MobHP>().TakeDamage(Damage);
             DestroyBullet();
         }
     }

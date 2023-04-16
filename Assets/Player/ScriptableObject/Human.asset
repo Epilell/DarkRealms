@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P_Name: Human
   P_MaxHp: 100
-  P_CurrentHp: 0
+  P_CurrentHp: 100
   P_Speed: 5
   P_Armor: 0
   Strength_Level: 0
