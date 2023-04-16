@@ -9,6 +9,7 @@ public class InventoryUI : MonoBehaviour
     Inventory inventory;
     public GameObject inventoryPanel;
     bool activeInventory = false;
+    HealthBar hp;
 
     public Slot[] slots;
     public Transform slotHolder;
@@ -50,6 +51,7 @@ public class InventoryUI : MonoBehaviour
         // ½½·Ô È®Àå ¾ÆÀÌÅÛÀ» ¸ÔÀ¸¸é ½½·Ô 5Ä­ È®Àå
         if (inventory.SlotCount < 15)
         {
+            // hp.IncreaseHp(30);
             inventory.SlotCount += 5;
         }
         // ¿ë·® ÃÊ°úÇÏ´ÂÁö Ã¼Å©

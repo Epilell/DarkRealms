@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField]
     public Slider hpbar;
     private float maxHp = 100;
-    private float currentHp = 10;
+    private float currentHp = 70;
     public Text textObj;
 
     private void Start()
