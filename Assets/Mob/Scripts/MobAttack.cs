@@ -5,8 +5,8 @@ using UnityEngine;
 public class MobAttack : MonoBehaviour
 {
     public Animator animator;
-
-    public void Attack()
+    MobAI mobAI;
+    public void Attack(bool isAttack)
     {
         // "MobAttack" 애니메이션으로 전환합니다.
         animator.SetTrigger("MobAttack");

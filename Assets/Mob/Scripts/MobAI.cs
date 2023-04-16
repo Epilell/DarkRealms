@@ -9,7 +9,6 @@ public class MobAI : MonoBehaviour
     public float detectionRange = 10f;
     public float mobAttackRange = 1f;
     public float moveSpeed = 1f;
-    //public MobMove mobMove;
     public Animator animator;
     SpriteRenderer spriteRenderer;
     private bool isPlayerInRange = false;
@@ -17,6 +16,10 @@ public class MobAI : MonoBehaviour
     public int xSpeed = 0;
     public int ySpeed = 0;
     public int MaxSpeed = 1;
+    public bool IsAttack = false;
+    private MobAttack mobAttack;
+
+    public string mobProperty = "melee";
 
     void Awake()
     {
@@ -28,7 +31,7 @@ public class MobAI : MonoBehaviour
     {
         // player를 찾아서 설정합니다.
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        StartCoroutine(mobIdleMove());
+        StartCoroutine(MobIdleMove());
     }
 
     private void FixedUpdate()
@@ -48,13 +51,15 @@ public class MobAI : MonoBehaviour
         // player가 일정 거리 안에 있고 MobAttackRange 범위 안에 있으면 MobAttack스크립트를 호출합니다.
         if (isPlayerInRange && distanceToPlayer < mobAttackRange)
         {
-            CancelInvoke("Think()");
+            IsAttack = true;
             animator.SetTrigger("Attack");
+
+            //mobAttack.Attack();
         }
         else if (isPlayerInRange)
         {
-            CancelInvoke("Think()");
             animator.SetInteger("WalkSpeed", 1);
+            IsAttack = false;
             // 플레이어를 따라가기 위해 이동
             transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
             if (player.position.x < rigid.position.x)
@@ -62,8 +67,28 @@ public class MobAI : MonoBehaviour
                 spriteRenderer.flipX = true;
             }
         }
+        else
+        {
+            IsAttack = false;
+        }
     }
-    private IEnumerator mobIdleMove()
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //근접몹이면
+        if (mobProperty == "melee")
+        {
+            if (IsAttack == true && collision.gameObject.CompareTag("player"))
+            {
+                //플레이어의 HP를 몬스터의 공격력만큼 깎음
+                //player.HP-= monsterStat.MobDamage;
+            }
+        }
+        else
+        {
+
+        }
+    }
+    private IEnumerator MobIdleMove()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         while (distanceToPlayer > detectionRange)
