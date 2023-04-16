@@ -28,6 +28,7 @@ public class MobAI : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        mobStat = GetComponent<MobStat>();
     }
     private void Start()
     {
@@ -80,7 +81,7 @@ public class MobAI : MonoBehaviour
             IsAttack = false;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D (Collision2D collision)
     {
         //근접몹이면
         if (mobProperty == "melee")
@@ -88,11 +89,8 @@ public class MobAI : MonoBehaviour
             if (IsAttack == true && collision.gameObject.CompareTag("Player"))
             {
                 //플레이어의 HP를 몬스터의 공격력만큼 깎음
-                collision.gameObject.GetComponent < Player>().P_TakeDamage(mobStat.mobDamage);
+                collision.gameObject.GetComponent <Player>().P_TakeDamage(mobStat.mobDamage);
             }
-        }
-        else
-        {
         }
     }
     private IEnumerator MobIdleMove()
