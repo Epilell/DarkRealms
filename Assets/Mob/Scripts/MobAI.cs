@@ -17,9 +17,11 @@ public class MobAI : MonoBehaviour
     public int ySpeed = 0;
     public int MaxSpeed = 1;
     public bool IsAttack = false;
-    private MobAttack mobAttack;
+    private MobStat mobStat;
+    bool flipFlag = false;
 
     public string mobProperty = "melee";
+    private Player playerHP;
 
     void Awake()
     {
@@ -62,9 +64,15 @@ public class MobAI : MonoBehaviour
             IsAttack = false;
             // 플레이어를 따라가기 위해 이동
             transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
-            if (player.position.x < rigid.position.x)
+            
+            if (flipFlag ==false &&player.position.x < rigid.position.x)
             {
                 spriteRenderer.flipX = true;
+                flipFlag = true;
+            }else if (flipFlag == true && player.position.x > rigid.position.x)
+            {
+                spriteRenderer.flipX = true;
+                flipFlag = false;
             }
         }
         else
@@ -80,7 +88,7 @@ public class MobAI : MonoBehaviour
             if (IsAttack == true && collision.gameObject.CompareTag("player"))
             {
                 //플레이어의 HP를 몬스터의 공격력만큼 깎음
-                //player.HP-= monsterStat.MobDamage;
+                playerHP.P_TakeDamage(mobStat.mobDamage);
             }
         }
         else

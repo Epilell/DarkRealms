@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MobStat : MonoBehaviour
 {
-    public float mobDamage = 0f;
+    public float mobDamage = 5f;
     public float mobSpeed = 1f;
     public string mobProperty = "melee";
     // Start is called before the first frame update
