@@ -9,6 +9,7 @@ public class SceneLoad : MonoBehaviour
     public Slider progressbar;
     public Text loadText;
     public string scene;
+    public FadeOut fadeOut;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class SceneLoad : MonoBehaviour
         while (!operation.isDone)
         {
             yield return null;
+
             if (progressbar.value < 0.9f)
             {
                 progressbar.value = Mathf.MoveTowards(progressbar.value, 0.9f, Time.deltaTime);
@@ -40,6 +42,8 @@ public class SceneLoad : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) && progressbar.value >= 1f && operation.progress >= 0.9f)
             {
+                loadText.text = "";
+                yield return StartCoroutine(fadeOut.FadeFlow());
                 operation.allowSceneActivation = true;
             }
         }

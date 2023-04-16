@@ -9,9 +9,9 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public BTNType currentType;
     public Transform btnScale;
-    public CanvasGroup mainGroup, optionGroup, soundGroup;
+    public CanvasGroup mainGroup, optionGroup, soundGroup, displayGroup;
     Vector3 defaultScale;
-    
+
     public void Start()
     {
         defaultScale = btnScale.localScale;
@@ -21,9 +21,6 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         switch (currentType)
         {
-            /*case BTNType.Start:
-                SceneManager.LoadScene("Loading");
-                break;*/
             case BTNType.Option:
                 CanvasGroupOn(optionGroup);
                 CanvasGroupOff(mainGroup);
@@ -32,12 +29,16 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 CanvasGroupOn(soundGroup);
                 CanvasGroupOff(optionGroup);
                 break;
+            case BTNType.Display:
+                CanvasGroupOn(displayGroup);
+                CanvasGroupOff(optionGroup);
+                break;
             case BTNType.Back:
                 CanvasGroupOn(mainGroup);
                 CanvasGroupOff(optionGroup);
                 break;
             case BTNType.Quit:
-                Debug.Log("ï¿½ï¿½ï¿½ï¿½");
+                Debug.Log("quit");
                 Application.Quit();
                 break;
         }
@@ -57,7 +58,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         canvasGroup.blocksRaycasts = false;
     }
 
-    // ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½Ã¶ó°¡¸ï¿½ È£ï¿½ï¿½
+    // ¸¶¿ì½º°¡ ¿Ã¶ó°¡¸é È£Ãâ
     public void OnPointerEnter(PointerEventData eventData)
     {
         btnScale.localScale = defaultScale * 1.2f;
@@ -68,7 +69,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }*/
     }
 
-    // ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½î³ªï¿½ï¿½ È£ï¿½ï¿½
+    // ¸¶¿ì½º°¡ ¹þ¾î³ª¸é È£Ãâ
     public void OnPointerExit(PointerEventData eventData)
     {
         btnScale.localScale = defaultScale;
