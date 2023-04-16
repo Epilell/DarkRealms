@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
     private float Damage;
     private float Distance;
 
+    private MobHP mob;
+
     //능력치 가져오기
     public void SetStats(float speed, float damage, float distance)
     {
@@ -19,17 +21,17 @@ public class Bullet : MonoBehaviour
 
     private void Attack()
     {
-
+        mob.TakeDamage(Damage);
     }
 
-    //------------------------------<공격>
+    //------------------------------<공격>-------------------------------------
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Mob"))
         {
-
+            Attack();
+            DestroyBullet();
         }
-        DestroyBullet();
     }
 
     //총알 삭제

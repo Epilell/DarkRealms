@@ -51,6 +51,11 @@ public class Player : MonoBehaviour
 
     private void UpdateSpeed() => Speed = Data.P_Speed + (Data.Agility_Level * 0.1f);
 
+    private void UpSpeed()
+    {
+        Data.P_Speed += 1;
+    }
+
     private void InputSpeed()
     {
         //이동속도 입력
@@ -182,6 +187,11 @@ public class Player : MonoBehaviour
 
         //<능력치 관련>
         UpdateStats();
+
+        if (Input.GetKey(KeyCode.V))
+        {
+            UpSpeed();
+        }
     }
 
     private void FixedUpdate()
