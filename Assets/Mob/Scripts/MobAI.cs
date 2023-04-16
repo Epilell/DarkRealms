@@ -85,15 +85,14 @@ public class MobAI : MonoBehaviour
         //근접몹이면
         if (mobProperty == "melee")
         {
-            if (IsAttack == true && collision.gameObject.CompareTag("player"))
+            if (IsAttack == true && collision.gameObject.CompareTag("Player"))
             {
                 //플레이어의 HP를 몬스터의 공격력만큼 깎음
-                playerHP.P_TakeDamage(mobStat.mobDamage);
+                collision.gameObject.GetComponent < Player>().P_TakeDamage(mobStat.mobDamage);
             }
         }
         else
         {
-
         }
     }
     private IEnumerator MobIdleMove()
