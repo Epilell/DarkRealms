@@ -17,7 +17,7 @@ public class ItemDB : MonoBehaviour
     private void Start()
     {
         // 아이템 5개
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 3; i++)
         {
             GameObject gameObject = Instantiate(fieldItemPrefab, pos[i], Quaternion.identity);
             gameObject.GetComponent<FieldItem>().SetItem(itemDB[Random.Range(0, 3)]);
