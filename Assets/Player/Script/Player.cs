@@ -21,15 +21,24 @@ public class Player : MonoBehaviour
     private float MaxHp, CurrentHp;
 
     //게임 시작시 데이터 불러오는 용도
-    private void UpdateMaxHp() => MaxHp = Data.P_MaxHp + (Data.Strength_Level * 10f);
-
-    /*게임 종료시 현재 체력 업데이트 
-     (한 게임 끝나고 체력 풀로 체워주면 필요없음)*/
-    public void UpdateCurrentHp() 
+    private void StartSetting()
     {
+        MaxHp = Data.P_MaxHp + (Data.Strength_Level * 10f);
         CurrentHp = Data.P_CurrentHp;
-        Data.P_CurrentHp = CurrentHp; 
     }
+
+    //게임종료시 또는 사망시 사용
+    private void UpdateDB()
+    {
+        Data.P_MaxHp = MaxHp;
+        Data.P_CurrentHp = CurrentHp;
+    }
+
+    //레벨업시 능력치 반영시
+    private void UpdateMaxHp() { MaxHp = Data.P_MaxHp + (Data.Strength_Level * 10f); }
+
+    //데미지 입을시 반영
+    private void UpdateCurrentHp() { Data.P_CurrentHp = CurrentHp; }
 
     public void P_TakeDamage(float damage)
     {
@@ -159,9 +168,7 @@ public class Player : MonoBehaviour
         //애니메이터 지정
         P_Ani = GetComponent<Animator>();
 
-        //체력초기화
-        UpdateMaxHp();
-        UpdateCurrentHp();
+        StartSetting();
 
         //플레이어 중력 및 축 회전 제외
         this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;

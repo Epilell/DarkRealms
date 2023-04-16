@@ -9,8 +9,6 @@ public class Bullet : MonoBehaviour
     private float Damage;
     private float Distance;
 
-    private MobHP mob;
-
     //능력치 가져오기
     public void SetStats(float speed, float damage, float distance)
     {
@@ -20,7 +18,7 @@ public class Bullet : MonoBehaviour
     }
 
     //------------------------------<공격>-------------------------------------
-    public void OnCollisionStay2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Mob"))
         {
