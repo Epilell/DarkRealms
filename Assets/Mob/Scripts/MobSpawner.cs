@@ -28,7 +28,7 @@ public class MobSpawner : MonoBehaviour
     private void Awake()
     {
         //적 리스트 메모리 할당
-        //mobList = new List<MobAI>();
+        //mobList = new List<GameObject>();
         //적 생성 코루틴 함수 호출 -> 코루틴 : 시간의 경과에 따른 명령을 주고싶을 때 사용 
         StartCoroutine("SpawnMob");
     }

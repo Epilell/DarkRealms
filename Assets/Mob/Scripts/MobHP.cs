@@ -10,6 +10,7 @@ public class MobHP : MonoBehaviour
     private bool isDie = false; //적의 사망 유무
     private MobAI mob;
     private SpriteRenderer spriteRenderer;
+    public Animator animator;
 
 
     //적의 체력 정보를 외부 클래스에서 확인할 수 있도록 프로퍼티 생성
@@ -20,6 +21,7 @@ public class MobHP : MonoBehaviour
     {
         currentHP = maxHP; // 현재 체력을 최대 채력으로 
         mob = GetComponent<MobAI>();
+        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -40,16 +42,20 @@ public class MobHP : MonoBehaviour
         {
             isDie = true;
             //적 사망
-            Die();
+            StartCoroutine("Die");
         }
     }
-    private void Die()
+    private IEnumerator Die()
     {
         // 몬스터가 죽을 때의 처리
+        animator.SetTrigger("Die");
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
+        
     }
     private IEnumerator HitAlphaAnimation()
     {
+        animator.SetTrigger("Hit");
         //현재 적의 색상을 color변수에 저장
         Color color = spriteRenderer.color;
 

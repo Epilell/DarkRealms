@@ -5,23 +5,23 @@ using UnityEngine;
 public class MobAI : MonoBehaviour
 {
     Rigidbody2D rigid;
-    public Transform player;
-    public float detectionRange = 10f;
-    public float mobAttackRange = 1f;
-    public float moveSpeed = 1f;
     public Animator animator;
     SpriteRenderer spriteRenderer;
-    private bool isPlayerInRange = false;
+    public Transform player;
 
-    public int xSpeed = 0;
-    public int ySpeed = 0;
-    public int MaxSpeed = 1;
+    public float detectionRange;
+    public float mobAttackRange;
+    public float moveSpeed;
+
+    private bool isPlayerInRange = false;
+    public int idleSpeed = 1;
+    private int xSpeed = 0;
+    private int ySpeed = 0;
+    bool flipFlag = false;
     public bool IsAttack = false;
     private MobStat mobStat;
-    bool flipFlag = false;
-
-    public string mobProperty = "melee";
-    private Player playerHP;
+    string mobProperty;
+    private bool attack1or2;
 
     void Awake()
     {
@@ -29,6 +29,12 @@ public class MobAI : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         mobStat = GetComponent<MobStat>();
+        //몹의 스텟을 가져옴
+        mobProperty = mobStat.MobProperty();
+        detectionRange = mobStat.DetectingRange();
+        mobAttackRange = mobStat.MobAttackRange();
+        moveSpeed = mobStat.MoveSpeed();
+        attack1or2 = false;
     }
     private void Start()
     {
@@ -54,10 +60,19 @@ public class MobAI : MonoBehaviour
         // player가 일정 거리 안에 있고 MobAttackRange 범위 안에 있으면 MobAttack스크립트를 호출합니다.
         if (isPlayerInRange && distanceToPlayer < mobAttackRange)
         {
-            IsAttack = true;
-            animator.SetTrigger("Attack");
-
-            //mobAttack.Attack();
+            //attack1 한번 attack2 한번 번갈아가면서 공격
+            if (attack1or2 == false)
+            {
+                attack1or2 = true;
+                IsAttack = true;
+                animator.SetTrigger("Attack2");
+            }
+            else
+            {
+                attack1or2 = false;
+                IsAttack = true;
+                animator.SetTrigger("Attack1");
+            }
         }
         else if (isPlayerInRange)
         {
@@ -65,15 +80,16 @@ public class MobAI : MonoBehaviour
             IsAttack = false;
             // 플레이어를 따라가기 위해 이동
             transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
-            
-            if (flipFlag ==false &&player.position.x < rigid.position.x)
+
+            if (flipFlag == false && player.position.x < rigid.position.x)
             {
-                spriteRenderer.flipX = true;
                 flipFlag = true;
-            }else if (flipFlag == true && player.position.x > rigid.position.x)
-            {
                 spriteRenderer.flipX = true;
+            }
+            else if (flipFlag == true && player.position.x > rigid.position.x)
+            {
                 flipFlag = false;
+                spriteRenderer.flipX = false;
             }
         }
         else
@@ -81,7 +97,7 @@ public class MobAI : MonoBehaviour
             IsAttack = false;
         }
     }
-    private void OnCollisionEnter2D (Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         //근접몹이면
         if (mobProperty == "melee")
@@ -89,7 +105,7 @@ public class MobAI : MonoBehaviour
             if (IsAttack == true && collision.gameObject.CompareTag("Player"))
             {
                 //플레이어의 HP를 몬스터의 공격력만큼 깎음
-                collision.gameObject.GetComponent <Player>().P_TakeDamage(mobStat.mobDamage);
+                collision.gameObject.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
             }
         }
     }
@@ -98,25 +114,29 @@ public class MobAI : MonoBehaviour
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         while (distanceToPlayer > detectionRange)
         {
-            rigid.velocity = new Vector2(xSpeed, ySpeed);
             Think();
+            //뒤집기
+            if (xSpeed > 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if (xSpeed < 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+            rigid.velocity = new Vector2(xSpeed, ySpeed);
             yield return new WaitForSeconds(3f);
         }
     }
-    void Think()
+    private void Think()
     {
-        xSpeed = Random.Range(-MaxSpeed, MaxSpeed + 1);
-        ySpeed = Random.Range(-MaxSpeed, MaxSpeed + 1);
+        xSpeed = Random.Range(-idleSpeed, idleSpeed + 1);
+        ySpeed = Random.Range(-idleSpeed, idleSpeed + 1);
         int speed = 1;
         if (ySpeed == 0 && xSpeed == 0)
         {
             speed = 0;
         }
         animator.SetInteger("WalkSpeed", speed);
-        //뒤집기
-        if (speed != 0 && xSpeed > 0)
-        {
-            spriteRenderer.flipX = true;
-        }
     }
 }
