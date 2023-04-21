@@ -5,31 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class FadeIn : MonoBehaviour
 {
-    public Image panel;
-    float time = 0f;
-    float fadeTime = 1f;
+  public Image panel;  // 페이드 인에 사용할 이미지 컴포넌트
+  float time = 0f;  // 페이드 인 실행 시간
+  float fadeTime = 1f;
 
-    private void Start()
+  private void Start()
+  {
+    StartCoroutine(FadeInCoroutine()); // 코루틴 시작
+  }
+
+  public IEnumerator FadeInCoroutine()
+  {
+    panel.gameObject.SetActive(true); // 이미지 컴포넌트 활성화
+    Color alpha = panel.color; // 이미지의 색상 정보를 가져옴
+
+    // 페이드 인
+    while (alpha.a > 0f) // 이미지의 알파값이 0보다 크면 반복
     {
-        StartCoroutine(FadeInCoroutine());
+      time += Time.deltaTime / fadeTime; // 시간 증가
+      alpha.a = Mathf.Lerp(1f, 0f, time); // 알파값을 서서히 감소시킴(서서히 투명해짐)
+      panel.color = alpha; // 이미지의 색상 정보를 변경
+      yield return null; // 한 프레임 대기
     }
 
-    public IEnumerator FadeInCoroutine()
-    {
-        panel.gameObject.SetActive(true);
-        Color alpha = panel.color;
+    panel.gameObject.SetActive(false); // 이미지 비활성화
 
-        // 페이드 인
-        while (alpha.a > 0f)
-        {
-            time += Time.deltaTime / fadeTime;
-            alpha.a = Mathf.Lerp(1f, 0f, time);
-            panel.color = alpha;
-            yield return null;
-        }
-
-        panel.gameObject.SetActive(false);
-
-        yield return null;
-    }
+    yield return null; // 코루틴 종료
+  }
 }
