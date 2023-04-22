@@ -55,19 +55,20 @@ public class MobHP : MonoBehaviour
     }
     private IEnumerator HitAlphaAnimation()
     {
-        animator.SetTrigger("Hit");
         //현재 적의 색상을 color변수에 저장
         Color color = spriteRenderer.color;
 
         //적 투명도 4할
-        color.a = 0.4f;
-        spriteRenderer.color = color;
-
+        //color.a = 0.4f;
+        //spriteRenderer.color = color;
         //0.05ch eorl
-        yield return new WaitForSeconds(0.05f);
+        //yield return new WaitForSeconds(0.05f);
 
         //적의 투명도 10할
-        color.a = 1.0f;
-        spriteRenderer.color = color;
+        //color.a = 1.0f;
+        //spriteRenderer.color = color;
+
+        animator.SetTrigger("Hit");
+        yield return new WaitForSeconds(0.05f);
     }
 }
