@@ -8,6 +8,8 @@ public class MobAI : MonoBehaviour
     public Animator animator;
     SpriteRenderer spriteRenderer;
     public Transform player;
+    private MobAttack mobAttack;
+    private MobStat mobStat;
 
     public float detectionRange;
     public float mobAttackRange;
@@ -19,9 +21,8 @@ public class MobAI : MonoBehaviour
     private int ySpeed = 0;
     bool flipFlag = false;
     public bool IsAttack = false;
-    private MobStat mobStat;
     string mobProperty;
-    private bool attack1or2;
+    bool attackChanger = false;
 
     void Awake()
     {
@@ -34,7 +35,6 @@ public class MobAI : MonoBehaviour
         detectionRange = mobStat.DetectingRange();
         mobAttackRange = mobStat.MobAttackRange();
         moveSpeed = mobStat.MoveSpeed();
-        attack1or2 = false;
     }
     private void Start()
     {
@@ -58,38 +58,45 @@ public class MobAI : MonoBehaviour
         }
 
         // player가 일정 거리 안에 있고 MobAttackRange 범위 안에 있으면 MobAttack스크립트를 호출합니다.
-        if (isPlayerInRange && distanceToPlayer < mobAttackRange)
+        if (isPlayerInRange)
         {
-            //attack1 한번 attack2 한번 번갈아가면서 공격
-            if (attack1or2 == false)
+            if (distanceToPlayer < mobAttackRange)
             {
-                attack1or2 = true;
                 IsAttack = true;
                 animator.SetTrigger("Attack2");
+                attackChanger = false;
+                //attack1 한번 attack2 한번 번갈아가면서 공격
+                /*if (attackChanger)
+                {
+                    IsAttack = true;
+                    animator.SetTrigger("Attack2");
+                    attackChanger = false;
+                }
+                else
+                {
+                    IsAttack = true;
+                    animator.SetTrigger("Attack1");
+                    attackChanger = true;
+                }*/
             }
             else
             {
-                attack1or2 = false;
-                IsAttack = true;
-                animator.SetTrigger("Attack1");
-            }
-        }
-        else if (isPlayerInRange)
-        {
-            animator.SetInteger("WalkSpeed", 1);
-            IsAttack = false;
-            // 플레이어를 따라가기 위해 이동
-            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+                //mobAttack.Attack(mobProperty);
+                animator.SetInteger("WalkSpeed", 1);
+                IsAttack = false;
+                // 플레이어를 따라가기 위해 이동
+                transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
 
-            if (flipFlag == false && player.position.x < rigid.position.x)
-            {
-                flipFlag = true;
-                spriteRenderer.flipX = true;
-            }
-            else if (flipFlag == true && player.position.x > rigid.position.x)
-            {
-                flipFlag = false;
-                spriteRenderer.flipX = false;
+                if (flipFlag == false && player.position.x < rigid.position.x)
+                {
+                    flipFlag = true;
+                    spriteRenderer.flipX = true;
+                }
+                else if (flipFlag == true && player.position.x > rigid.position.x)
+                {
+                    flipFlag = false;
+                    spriteRenderer.flipX = false;
+                }
             }
         }
         else
@@ -97,6 +104,7 @@ public class MobAI : MonoBehaviour
             IsAttack = false;
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //근접몹이면
@@ -109,6 +117,17 @@ public class MobAI : MonoBehaviour
             }
         }
     }
+    /*
+    // 애니메이션 이벤트에서 호출되는 함수
+    public void Attack()
+    {
+        // 플레이어에게 데미지를 입힘
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, mobAttackRange, LayerMask.GetMask("Player"));
+        foreach (Collider2D hit in hits)
+        {
+            hit.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
+        }
+    }*/
     private IEnumerator MobIdleMove()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);

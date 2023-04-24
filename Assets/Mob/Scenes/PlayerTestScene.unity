@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 95342472}
   - component: {fileID: 95342471}
   - component: {fileID: 95342475}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Test Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -429,7 +429,7 @@ MonoBehaviour:
   - {fileID: 2146397965}
   spawnPoint:
   - {fileID: 1030740657}
-  spawnDelay: 2
+  spawnDelay: 100
 --- !u!4 &246665019
 Transform:
   m_ObjectHideFlags: 0
