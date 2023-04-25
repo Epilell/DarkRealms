@@ -62,22 +62,25 @@ public class MobAI : MonoBehaviour
         {
             if (distanceToPlayer < mobAttackRange)
             {
-                IsAttack = true;
-                animator.SetTrigger("Attack2");
-                attackChanger = false;
-                //attack1 한번 attack2 한번 번갈아가면서 공격
-                /*if (attackChanger)
+                if (mobProperty == "melee")//근접몹 공격
                 {
-                    IsAttack = true;
-                    animator.SetTrigger("Attack2");
-                    attackChanger = false;
+                    //attack1 한번 attack2 한번 번갈아가면서 공격
+                    if (attackChanger)
+                    {
+                        IsAttack = true;
+                        animator.SetTrigger("Attack2");
+                        attackChanger = false;
+                    }
+                    else
+                    {
+                        IsAttack = true;
+                        animator.SetTrigger("Attack1");
+                        attackChanger = true;
+                    }
+                }else if (mobProperty == "range")
+                {
+
                 }
-                else
-                {
-                    IsAttack = true;
-                    animator.SetTrigger("Attack1");
-                    attackChanger = true;
-                }*/
             }
             else
             {

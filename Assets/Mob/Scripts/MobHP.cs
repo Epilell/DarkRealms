@@ -8,6 +8,7 @@ public class MobHP : MonoBehaviour
     private float maxHP; //최대 체력
     private float currentHP; //현재 체력
     private bool isDie = false; //적의 사망 유무
+    private MobDropItem dropItem;
     private MobAI mob;
     private SpriteRenderer spriteRenderer;
     public Animator animator;
@@ -48,7 +49,8 @@ public class MobHP : MonoBehaviour
     private IEnumerator Die()
     {
         // 몬스터가 죽을 때의 처리
-        animator.SetTrigger("Die");
+        animator.SetBool("IsDead",true);
+        dropItem.ItemDrop();//아이템 드롭
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
         
