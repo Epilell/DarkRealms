@@ -8,6 +8,7 @@ public class MobHP : MonoBehaviour
     private float maxHP; //최대 체력
     private float currentHP; //현재 체력
     private bool isDie = false; //적의 사망 유무
+    private MobDropItem dropItem;
     private MobAI mob;
     private SpriteRenderer spriteRenderer;
     public Animator animator;
@@ -48,26 +49,28 @@ public class MobHP : MonoBehaviour
     private IEnumerator Die()
     {
         // 몬스터가 죽을 때의 처리
-        animator.SetTrigger("Die");
+        animator.SetBool("IsDead",true);
+        dropItem.ItemDrop();//아이템 드롭
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
         
     }
     private IEnumerator HitAlphaAnimation()
     {
-        animator.SetTrigger("Hit");
         //현재 적의 색상을 color변수에 저장
         Color color = spriteRenderer.color;
 
         //적 투명도 4할
-        color.a = 0.4f;
-        spriteRenderer.color = color;
-
+        //color.a = 0.4f;
+        //spriteRenderer.color = color;
         //0.05ch eorl
-        yield return new WaitForSeconds(0.05f);
+        //yield return new WaitForSeconds(0.05f);
 
         //적의 투명도 10할
-        color.a = 1.0f;
-        spriteRenderer.color = color;
+        //color.a = 1.0f;
+        //spriteRenderer.color = color;
+
+        animator.SetTrigger("Hit");
+        yield return new WaitForSeconds(0.05f);
     }
 }

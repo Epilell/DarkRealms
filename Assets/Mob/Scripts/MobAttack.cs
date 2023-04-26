@@ -6,9 +6,16 @@ public class MobAttack : MonoBehaviour
 {
     public Animator animator;
     MobAI mobAI;
-    public void Attack(bool isAttack)
+    public void Attack(string mobProperty)
     {
         // "MobAttack" 애니메이션으로 전환합니다.
-        animator.SetTrigger("MobAttack");
+        if (mobProperty == "melee")
+        {
+            animator.SetTrigger("Attack1");
+        }
+        else if(mobProperty == "range")
+        {
+
+        }
     }
 }
