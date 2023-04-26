@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class FieldItem : MonoBehaviour
 {
-    public Item item;
-    public SpriteRenderer image;
+    public Item item; // 아이템의 정보
+    public SpriteRenderer image; // 아이템의 이미지
 
-    // 전달받은 아이템으로 현재 클래스의 아이템 초기화
+    // _item을 받아서 item 변수를 초기화하고, 해당 아이템의 이미지를 image에 표시
     public void SetItem(Item _item)
     {
         item.itemName = _item.itemName;

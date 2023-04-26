@@ -4,32 +4,33 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+// 마우스 클릭 이벤트를 처리하기 위해 IPointerUpHandler 인터페이스 구현
 public class Slot : MonoBehaviour, IPointerUpHandler
 {
-    public int slotNum;
+    public int slotNum;  // 슬롯 번호
     public Item item;
-    public Image itemIcon;
+    public Image itemIcon;  // 아이콘
 
     public void UpdateSlotUI()
     {
-        itemIcon.sprite = item.itemImage;
-        itemIcon.enabled = true;  //
-        itemIcon.gameObject.SetActive(true);
+        itemIcon.sprite = item.itemImage;  // 아이템 이미지 설정
+        itemIcon.enabled = true;  // 아이콘 활성화
+        itemIcon.gameObject.SetActive(true);  // 아이템 오브젝트 활성화
     }
 
     public void RemoveSlot()
     {
-        item = null;
-        itemIcon.gameObject.SetActive(false);
+        item = null;  // 슬롯 안 아이템 제거
+        itemIcon.gameObject.SetActive(false);  // 아이템 오브젝트 비활성화
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        bool isUse = item.Use();
+        bool isUse = item.Use();  // 아이템 제거
         // 사용했으면
         if (isUse)
         {
-            Inventory.instance.RemoveItem(slotNum);
+            Inventory.instance.RemoveItem(slotNum);  // 인벤토리에서 제거
         }
     }
 }

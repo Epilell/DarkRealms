@@ -24,7 +24,7 @@ public class FadeIn : MonoBehaviour
     {
       time += Time.deltaTime / fadeTime; // 시간 증가
       alpha.a = Mathf.Lerp(1f, 0f, time); // 알파값을 서서히 감소시킴(서서히 투명해짐)
-      panel.color = alpha; // 이미지의 색상 정보를 변경
+      panel.color = alpha; // 이미지의 색상 정보변경
       yield return null; // 한 프레임 대기
     }
 

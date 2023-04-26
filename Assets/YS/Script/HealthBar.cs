@@ -13,13 +13,13 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
+        // hpbar? value ?? ?? ?? ?? ?? ?? ?? ??? ??
         hpbar.value = (float)currentHp / (float)maxHp;
     }
 
     private void Update()
     {
-        // Å×½ºÆ®
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)) // ?? ?? ???
         {
             if (currentHp > 0)
             {
