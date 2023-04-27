@@ -2549,7 +2549,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 34.5259, y: 34.5258}
+  m_SizeDelta: {x: 35, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1022345740
 MonoBehaviour:
@@ -2701,11 +2701,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1143920063}
   - component: {fileID: 1143920062}
+  - component: {fileID: 1143920064}
   - component: {fileID: 1143920061}
   - component: {fileID: 1143920060}
   - component: {fileID: 1143920058}
   - component: {fileID: 1143920057}
-  - component: {fileID: 1143920064}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2751,14 +2751,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.05, y: 1.55}
-    newSize: {x: 2.21, y: 2.94}
+    oldSize: {x: 1.19, y: 2.08}
+    newSize: {x: 1.19, y: 2.08}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.56, y: 2.56}
+  m_Size: {x: 1.16, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &1143920060
 MonoBehaviour:
@@ -2833,7 +2833,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.21, y: 2.94}
+  m_Size: {x: 1.19, y: 2.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2847,7 +2847,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143920056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2867,7 +2867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 2084025244}
-  scene: Loading_Out
+  scene: LoadingOut
 --- !u!1 &1171200163
 GameObject:
   m_ObjectHideFlags: 0
@@ -4057,7 +4057,8 @@ MonoBehaviour:
   - itemType: 0
     itemName: sword
     itemImage: {fileID: 21300000, guid: f58abb3061543a542a91551c4dbf9593, type: 3}
-    effects: []
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
   fieldItemPrefab: {fileID: 3836436861504695149, guid: 7a4beb69ed8e41946b6b5f4cac45b5cd, type: 3}
   pos:
   - {x: 3, y: 2, z: 0}

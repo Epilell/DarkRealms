@@ -19,10 +19,8 @@ public class InventoryUI : MonoBehaviour
     {
         inventory = Inventory.instance;
         slots = slotHolder.GetComponentsInChildren<Slot>();  // 슬롯 초기화
-        slots2 = slotHolder2.GetComponentsInChildren<Slot>();  // 슬롯 초기화//
         inventory.onSlotCountChange += SlotChange;  // 슬롯 개수가 변경될 때마다 SlotChange() 함수 호출
         inventory.onChangeItem += RedrawSlotUI;  // 아이템이 추가되거나 제거될 때마다 RedrawSlotUI() 함수 호출
-        inventory.onChangeItem2 += RedrawSlotUI2;  // 장비 아이템이 추가되거나 제거될 때마다 RedrawSlotUI2() 함수 호출//
         inventoryPanel.SetActive(activeInventory);  // 인벤토리 비활성화
     }
 
@@ -60,20 +58,6 @@ public class InventoryUI : MonoBehaviour
         {
             slots[i].item = inventory.items[i];  // 슬롯에 아이템 추가
             slots[i].UpdateSlotUI();  // 슬롯 UI 업데이트
-        }
-    }
-
-    void RedrawSlotUI2()//
-    {
-        for (int i = 0; i < slots2.Length; i++)
-        {
-            slots2[i].RemoveSlot();  // 슬롯 초기화
-        }
-
-        for (int i = 0; i < inventory.items.Count; i++)
-        {
-            slots2[i].item = inventory.items[i];  // 슬롯에 아이템 추가
-            slots2[i].UpdateSlotUI();  // 슬롯 UI 업데이트
         }
     }
 }
