@@ -16,8 +16,8 @@ public class ItemDB : MonoBehaviour
 
     private void Start()
     {
-        // 아이템 3개 무작위 위치로 생성
-        for (int i = 0; i < 3; i++)
+        // 아이템 5개 무작위 위치로 생성
+        for (int i = 0; i < 5; i++)
         {
             // 아이템 오브젝트 생성
             GameObject gameObject = Instantiate(fieldItemPrefab, pos[i], Quaternion.identity);

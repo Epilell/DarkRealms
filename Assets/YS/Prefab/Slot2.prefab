@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6706491555305767021}
   - component: {fileID: 1832565759726393841}
   m_Layer: 5
-  m_Name: Item
+  m_Name: ItemImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 6340725969019920092}
   - component: {fileID: 4995343548749791377}
   - component: {fileID: 1972370880818317652}
+  - component: {fileID: 8349931607186379506}
   m_Layer: 5
   m_Name: Slot2
   m_TagString: Untagged
@@ -275,3 +276,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8349931607186379506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8407440971807556133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5f3582f4d23dc43898b1bc6d32fbd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotNum: 0
+  item:
+    itemType: 1
+    itemName: 
+    itemImage: {fileID: 0}
+    effects: []
+  itemIcon: {fileID: 1832565759726393841}

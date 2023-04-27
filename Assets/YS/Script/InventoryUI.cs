@@ -6,20 +6,23 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    HealthBar hp;
     Inventory inventory;  // Inventory 클래스의 인스턴를 저장하는 변수
     public GameObject inventoryPanel;  // 인벤토리 UI 패널 변수
     bool activeInventory = false;  // 인벤토리 UI 패널이 열려있는지?
 
     public Slot[] slots;  // 인벤토리의 슬롯들을 저장하는 배열 생성
+    public Slot[] slots2;  // 인벤토리의 슬롯들을 저장하는 배열 생성//
     public Transform slotHolder;  // 슬롯들을 담고 있는 부모 오브젝트 생성
+    public Transform slotHolder2;  // 슬롯들을 담고 있는 부모 오브젝트 생성//
 
     private void Start()
     {
         inventory = Inventory.instance;
         slots = slotHolder.GetComponentsInChildren<Slot>();  // 슬롯 초기화
+        slots2 = slotHolder2.GetComponentsInChildren<Slot>();  // 슬롯 초기화//
         inventory.onSlotCountChange += SlotChange;  // 슬롯 개수가 변경될 때마다 SlotChange() 함수 호출
         inventory.onChangeItem += RedrawSlotUI;  // 아이템이 추가되거나 제거될 때마다 RedrawSlotUI() 함수 호출
+        inventory.onChangeItem2 += RedrawSlotUI2;  // 장비 아이템이 추가되거나 제거될 때마다 RedrawSlotUI2() 함수 호출//
         inventoryPanel.SetActive(activeInventory);  // 인벤토리 비활성화
     }
 
@@ -46,18 +49,6 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    public void AddSlot()
-    {
-        // 슬롯 확장 아이템을 먹으면 슬롯 5칸 확장
-        if (inventory.SlotCount < 15)
-        {
-            hp.IncreaseHp(30f);
-            inventory.SlotCount += 5;
-        }
-        // 용량 초과하는지 체크
-        // else Debug.Log("인벤토리 포화!");
-    }
-
     void RedrawSlotUI()
     {
         for (int i = 0; i < slots.Length; i++)
@@ -69,6 +60,20 @@ public class InventoryUI : MonoBehaviour
         {
             slots[i].item = inventory.items[i];  // 슬롯에 아이템 추가
             slots[i].UpdateSlotUI();  // 슬롯 UI 업데이트
+        }
+    }
+
+    void RedrawSlotUI2()//
+    {
+        for (int i = 0; i < slots2.Length; i++)
+        {
+            slots2[i].RemoveSlot();  // 슬롯 초기화
+        }
+
+        for (int i = 0; i < inventory.items.Count; i++)
+        {
+            slots2[i].item = inventory.items[i];  // 슬롯에 아이템 추가
+            slots2[i].UpdateSlotUI();  // 슬롯 UI 업데이트
         }
     }
 }
