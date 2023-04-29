@@ -37,12 +37,18 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             else
             {
                 Debug.Log("장비템");
-                Inventory.instance.RemoveItem(slotNum);
                 Slot targetSlot = Inventory.instance.FindEmptySlot();
+                Debug.Log(targetSlot);
                 if (targetSlot != null)
                 {
                     Debug.Log("제거");
                     // 대상 슬롯에 아이템 추가
+                    Inventory.instance.AddItems(item);
+                    Inventory.instance.RemoveItem(slotNum);
+                }
+                else
+                {
+                    Debug.Log("장비 추가"); 
                     Inventory.instance.AddItems(item);
                 }
             }

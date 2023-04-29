@@ -86,20 +86,20 @@ public class Inventory : MonoBehaviour
         if (collision.CompareTag("FieldItem") && Input.GetKeyDown(KeyCode.F))  // 충돌한 오브젝트의 태그가 "FieldItem"일때 F를 누르면
         {
             FieldItem fieldItem = collision.GetComponent<FieldItem>();  // 필드 아이템 컴포넌트 가져오기
-            if (fieldItem.item.itemType != ItemType.Equipment)
-            {
+            //if (fieldItem.item.itemType != ItemType.Equipment)
+            //{
                 if (AddItem(fieldItem.GetItem()))  // AddItem()이 true이면(인벤토리에 아이템을 추가하면)
                 {
                     fieldItem.DestroyItem();  // 필드에서 삭제
                 }
-            }
-            else
+            //}
+            /*else
             {
                 if (AddItem2(fieldItem.GetItem()))  // AddItem()이 true이면(인벤토리에 아이템을 추가하면)
                 {
                     fieldItem.DestroyItem();  // 필드에서 삭제
                 }
-            }
+            }*/
         }
     }
 
