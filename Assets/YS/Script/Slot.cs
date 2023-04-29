@@ -26,11 +26,26 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        bool isUse = item.Use();  // 아이템 제거
+        bool isUse = item.Use();  // 아이템 사용
         // 사용했으면
         if (isUse)
         {
-            Inventory.instance.RemoveItem(slotNum);  // 인벤토리에서 제거
+            if (item.itemType != ItemType.Equipment)
+            {
+                Inventory.instance.RemoveItem(slotNum);  // 인벤토리에서 제거
+            }
+            else
+            {
+                Debug.Log("장비템");
+                Inventory.instance.RemoveItem(slotNum);
+                Slot targetSlot = Inventory.instance.FindEmptySlot();
+                if (targetSlot != null)
+                {
+                    Debug.Log("제거");
+                    // 대상 슬롯에 아이템 추가
+                    Inventory.instance.AddItems(item);
+                }
+            }
         }
     }
 }

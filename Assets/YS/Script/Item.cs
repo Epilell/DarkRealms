@@ -26,6 +26,6 @@ public class Item
             isUsed = effect.ExecuteRole();  // 효과 중 하나라도 성공하면 true를 반환
         }
 
-        return isUsed;
+        return isUsed; // true 반환 -> Slot의 OnPointerUp의 isUse가 참이됨
     }
 }

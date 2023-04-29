@@ -5,26 +5,26 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource musicSource, efSource;  // ì˜¤ë””ì˜¤ ì†ŒìŠ¤
+    public AudioSource musicSource, efSource;  // ¿Àµğ¿À ¼Ò½º
     public Image image1, image2;
     public Sprite music_off, music_on, effect_off, effect_on;
 
     public void SetMusicVolume(float volume)
     {
-        musicSource.volume = volume;  // ë°°ê²½ìŒì•… ë³¼ë¥¨ ì¡°ì ˆ
+        musicSource.volume = volume;  // ¹è°æÀ½¾Ç º¼·ı Á¶Àı
         if (musicSource.volume <= 0)
         {
-            image1.sprite = music_off;  // ë°°ê²½ìŒì•… ë³¼ë¥¨ì´ 0ì´ë©´ OFFë¡œ ì´ë¯¸ì§€ ë³€ê²½
+            image1.sprite = music_off;  // ¹è°æÀ½¾Ç º¼·ıÀÌ 0ÀÌ¸é OFF·Î ÀÌ¹ÌÁö º¯°æ
         }
         else
         {
-            image1.sprite = music_on;  // 0ì´ ì•„ë‹ˆë©´ ONìœ¼ë¡œ ì´ë¯¸ì§€ ë³€ê²½
+            image1.sprite = music_on;  // 0ÀÌ ¾Æ´Ï¸é ONÀ¸·Î ÀÌ¹ÌÁö º¯°æ
         }
     }
 
     public void SetEffectVolume(float volume)
     {
-        efSource.volume = volume;  // íš¨ê³¼ìŒ ë³¼ë¥¨ ì¡°ì ˆ
+        efSource.volume = volume;  // È¿°úÀ½ º¼·ı Á¶Àı
         if (efSource.volume <= 0)
         {
             image2.sprite = effect_off;
@@ -35,9 +35,8 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void OnSfx()
+    public void OnSfx() // È¿°úÀ½ Àç»ı ÇÔ¼ö
     {
-        // íš¨ê³¼ìŒ ì¬ìƒ í…ŒìŠ¤íŠ¸
         efSource.Play();
     }
 }

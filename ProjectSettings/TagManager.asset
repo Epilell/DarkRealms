@@ -12,9 +12,11 @@ TagManager:
   - Bullet
   - FieldItem
   - FieldItem
-  - FieldItem
-  - FieldItem
   - Escape
+  - DeadMob
+  - FieldItem
+  - FieldItem
+  - Undefined
   layers:
   - Default
   - TransparentFX
