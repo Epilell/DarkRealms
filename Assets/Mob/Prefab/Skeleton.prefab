@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
-  corpsePrefab: {fileID: 0}
+  DeadMob: {fileID: 965568549241441883, guid: ca1dd13575f099f498e0f39ffb20fac0, type: 3}
 --- !u!114 &2053941310852753379
 MonoBehaviour:
   m_ObjectHideFlags: 0
