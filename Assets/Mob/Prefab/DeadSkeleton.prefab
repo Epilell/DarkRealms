@@ -102,6 +102,10 @@ MonoBehaviour:
   mobItemUI: {fileID: 0}
   itemDrops:
   - itemPrefab: {fileID: 8071592843748401581, guid: 9094f8bda04c04040931efbdecfe630f, type: 3}
+    dropChance: 0.5
+  - itemPrefab: {fileID: 8071592843748401581, guid: 9094f8bda04c04040931efbdecfe630f, type: 3}
+    dropChance: 1
+  - itemPrefab: {fileID: 8071592843748401581, guid: 9094f8bda04c04040931efbdecfe630f, type: 3}
     dropChance: 1
 --- !u!114 &965568549241441880
 MonoBehaviour:
