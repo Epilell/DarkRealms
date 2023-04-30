@@ -13,7 +13,7 @@ public class MobHP : MonoBehaviour
     private MobAI mob;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
-    public GameObject corpsePrefab;
+    public GameObject DeadMob;
 
 
     //적의 체력 정보를 외부 클래스에서 확인할 수 있도록 프로퍼티 생성
@@ -56,7 +56,7 @@ public class MobHP : MonoBehaviour
         animator.SetBool("IsDead",true);
         yield return new WaitForSeconds(0.8f);
         Destroy(gameObject);
-        Instantiate(corpsePrefab, transform.position, Quaternion.identity); // 시체 생성
+        Instantiate(DeadMob, transform.position, Quaternion.identity); // 시체 생성
         //dropItem.ItemDrop();//아이템 드롭
 
     }
