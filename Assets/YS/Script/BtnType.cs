@@ -42,7 +42,6 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 CanvasGroupOff(optionGroup); // 옵션 화면을 끈다
                 break;
             case BTNType.Quit: // 종료 버튼을 눌렀을 때
-                               // Debug.Log("quit"); // 테스트용 로그 출력
                 Application.Quit(); // 어플리케이션을 종료
                 break;
         }
@@ -66,7 +65,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         btnScale.localScale = defaultScale * 1.2f; // 버튼의 크기를 1.2배 확장
-        // buttonText.color = Color.red; // 버튼의 텍스트 색상을 빨간색으로 변경
+        // buttonText.color = Color.red; // 버튼의 텍스트 색상 변경
     }
 
     // 마우스가 버튼에서 벗어났을 때

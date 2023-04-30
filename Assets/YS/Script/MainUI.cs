@@ -12,6 +12,4 @@ public enum BTNType
     Quit
 }
 
-public class MainUI : MonoBehaviour
-{
-}
+public class MainUI : MonoBehaviour { }

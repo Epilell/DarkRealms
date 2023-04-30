@@ -6,7 +6,7 @@ public enum ItemType  // 열거형으로 아이템 종류 구분
 {
     Equipment,  // 장비 아이템
     Consumables,  // 소모 아이템
-    Etc  // 기타(조합 재료, 퀘스트용? 등)
+    Etc  // 기타(조합 재료 등)
 }
 
 [System.Serializable]
@@ -21,7 +21,7 @@ public class Item
     {
         bool isUsed = false;
 
-        foreach(ItemEffect effect in effects)  // effects 목록의 각 효과를 순회하면서 실행
+        foreach (ItemEffect effect in effects)  // effects 목록의 각 효과를 순회하면서 실행
         {
             isUsed = effect.ExecuteRole();  // 효과 중 하나라도 성공하면 true를 반환
         }

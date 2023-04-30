@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,11 +16,8 @@ public class Inventory : MonoBehaviour
     public delegate void OnChangeItem();  // 아이템 변경 대리자
     public OnChangeItem onChangeItem;  // 아이템 변경 인스턴스
 
-    public delegate void OnChangeItem2();  // 아이템 변경 대리자 //p
-    public OnChangeItem onChangeItem2;  // 아이템 변경 인스턴스//p
-
-    // public List<Slot> slots = new List<Slot>(); //gpt
-    public Slot slot;// gpt : p
+    public Slot slot, slot2, slot3, slot4;
+    // public List<Slot> slots = new List<Slot>();
 
     private int slotCount;
 
@@ -61,19 +59,6 @@ public class Inventory : MonoBehaviour
         return false;  // 아이템 추가하지 않음
     }
 
-    public bool AddItem2(Item _item) //p
-    {
-        Debug.Log("장비일때 AddItem");
-        if (items.Count < SlotCount)  // 인벤토리에 보유한 아이템 수가 슬롯 수보다 작으면
-        {
-            items.Add(_item);  // 아이템 리스트에 아이템 추가
-            if (onChangeItem2 != null)  // 아이템 변경 이벤트가 등록되어 있으면
-                onChangeItem2.Invoke();  // 아이템 변경 이벤트 호출
-            return true;  // 아이템 추가
-        }
-        return false;  // 아이템 추가하지 않음
-    }
-
     // 아이템 제거 함수
     public void RemoveItem(int _index)
     {
@@ -86,46 +71,51 @@ public class Inventory : MonoBehaviour
         if (collision.CompareTag("FieldItem") && Input.GetKeyDown(KeyCode.F))  // 충돌한 오브젝트의 태그가 "FieldItem"일때 F를 누르면
         {
             FieldItem fieldItem = collision.GetComponent<FieldItem>();  // 필드 아이템 컴포넌트 가져오기
-            //if (fieldItem.item.itemType != ItemType.Equipment)
-            //{
-                if (AddItem(fieldItem.GetItem()))  // AddItem()이 true이면(인벤토리에 아이템을 추가하면)
-                {
-                    fieldItem.DestroyItem();  // 필드에서 삭제
-                }
-            //}
-            /*else
+
+            if (AddItem(fieldItem.GetItem()))  // AddItem()이 true이면(인벤토리에 아이템을 추가하면)
             {
-                if (AddItem2(fieldItem.GetItem()))  // AddItem()이 true이면(인벤토리에 아이템을 추가하면)
-                {
-                    fieldItem.DestroyItem();  // 필드에서 삭제
-                }
-            }*/
+                fieldItem.DestroyItem();  // 필드에서 삭제
+            }
         }
     }
 
-    public Slot FindEmptySlot()  // 빈 슬롯 찾기 gpt
+    public Slot FindEmptySlot(String itemName)  // 빈 슬롯 찾기
     {
-        /*foreach (Slot slot in slots)
+        /*
+        foreach (Slot slot in slots)
         {
             if (slot.item == null)
             {
                 return slot;
             }
         }
-        return null;*/
-        return slot;
+        return null;
+        */
+        if (itemName == "helmet")
+        {
+            return slot;
+        }
+        else if (itemName == "armor")
+        {
+            HealthBar healthBar = GameObject.FindObjectOfType<HealthBar>();
+            healthBar.maxHp = 200;
+            healthBar.currentHp = 120;
+            return slot2;
+        }
+        else if (itemName == "sword")
+        {
+            return slot3;
+        }
+        else return slot4;
     }
 
-    // 아이템 추가gpt
-    public void AddItems(Item item)
+    // 아이템 추가
+    public void AddItems(Item item, Slot targetSlot)  // 빈 슬롯에 넣음
     {
-        Slot emptySlot = FindEmptySlot();
-
-        if (emptySlot != null)
+        if (targetSlot != null)
         {
-            Debug.Log("Test");
-            emptySlot.item = item;
-            emptySlot.UpdateSlotUI();
+            targetSlot.item = item;
+            targetSlot.UpdateSlotUI();
         }
     }
 }

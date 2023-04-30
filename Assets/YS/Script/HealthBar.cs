@@ -6,20 +6,21 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField]
-    public Slider hpbar;
-    private float maxHp = 100;
-    private float currentHp = 70;
-    public Text textObj;
+    public Slider hpbar; // 체력바
+    public float maxHp = 100;
+    public float currentHp = 50;
+    public Text textObj; // 체력 텍스트
 
     private void Start()
     {
-        // hpbar? value ?? ?? ?? ?? ?? ?? ?? ??? ??
+        // 체력바 초기화
         hpbar.value = (float)currentHp / (float)maxHp;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) // ?? ?? ???
+        // 테스트용: 스페이스바 누르면 체력 10씩 감소
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (currentHp > 0)
             {
@@ -35,27 +36,27 @@ public class HealthBar : MonoBehaviour
 
     public void ChangeHP()
     {
-        textObj.text = currentHp.ToString() + "/" + maxHp.ToString();
-        // hpbar.value = (float)currentHp / (float)maxHp;
-        hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 10);
+        textObj.text = currentHp.ToString() + "/" + maxHp.ToString(); // 체력 텍스트 갱신
+        hpbar.value = (float)currentHp / (float)maxHp; // 체력 갱신
+        // hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);
     }
 
-    public void DecreaseHp(float amount)
+    public void IncreaseHp(float amount) // 체력 증가 함수
     {
-        currentHp -= amount;
-        if (currentHp < 0)
+        currentHp += amount;
+        if (currentHp >= maxHp)
         {
-            currentHp = 0;
+            currentHp = maxHp;
         }
         hpbar.value = currentHp;
     }
 
-    public void IncreaseHp(float amount)
+    public void DecreaseHp(float amount) // 체력 감소 함수
     {
-        currentHp += amount;
-        if (currentHp > maxHp)
+        currentHp -= amount;
+        if (currentHp <= 0)
         {
-            currentHp = maxHp;
+            currentHp = 0;
         }
         hpbar.value = currentHp;
     }
