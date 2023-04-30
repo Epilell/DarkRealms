@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c2374b2cf0d3e42a35f0b78a133b8c, type: 3}
   m_Name: Rifle
   m_EditorClassIdentifier: 
+  W_Prefab: {fileID: 3469706018811520813, guid: 9fa5d11d0c6221a409e044f7735cb6a2, type: 3}
   W_Damage: 10
   W_AttackSpeed: 1
   W_Distance: 0

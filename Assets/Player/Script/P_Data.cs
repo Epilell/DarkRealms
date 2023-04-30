@@ -15,7 +15,11 @@ public class P_Data : ScriptableObject
     public float P_Speed = 2f;
 
     [Range(0, 100)]
-    public int P_Armor = 0;
+    public float P_HelmetArmor = 0;
+    [Range(0, 100)]
+    public float P_BodyArmor = 0;
+    [Range(0, 100)]
+    public float P_LegArmor = 0;
 
     //플레이어 능력치 레벨
     public int Strength_Level = 0;

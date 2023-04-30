@@ -17,14 +17,20 @@ public class Player : MonoBehaviour
     //플레이어블 캐릭터 기본 데이터
     public P_Data Data;
 
+    private Player P;
+    private GameObject WeaponCase;
+
     //--------------------------------------<체력>---------------------------------------------------
-    private float MaxHp, CurrentHp;
+    private float MaxHp, CurrentHp, HelmetArmor, BodyArmor, LegArmor;
 
     //게임 시작시 데이터 불러오는 용도
     private void StartSetting()
     {
         MaxHp = Data.P_MaxHp + (Data.Strength_Level * 10f);
         CurrentHp = Data.P_CurrentHp;
+        HelmetArmor = Data.P_HelmetArmor;
+        BodyArmor = Data.P_BodyArmor;
+        LegArmor = Data.P_LegArmor;
     }
 
     //게임종료시 또는 사망시 사용
@@ -32,6 +38,9 @@ public class Player : MonoBehaviour
     {
         Data.P_MaxHp = MaxHp;
         Data.P_CurrentHp = CurrentHp;
+        Data.P_HelmetArmor = HelmetArmor;
+        Data.P_BodyArmor = BodyArmor;
+        Data.P_LegArmor = LegArmor;
     }
 
     //레벨업시 능력치 반영시
@@ -40,10 +49,22 @@ public class Player : MonoBehaviour
     //데미지 입을시 반영
     private void UpdateCurrentHp() { Data.P_CurrentHp = CurrentHp; }
 
+    //--------------------------------------<방어력>-------------------------------------------------
+    private void UpdateArmor() 
+    {
+        Data.P_HelmetArmor = HelmetArmor;
+        Data.P_BodyArmor = BodyArmor;
+        Data.P_LegArmor = LegArmor;
+    }
+
+    private float TotalArmor() { return HelmetArmor + BodyArmor + LegArmor; }
+
+    //--------------------------------------<체력 변경>-------------------------------------------------
     public void P_TakeDamage(float damage)
     {
-        CurrentHp -= damage;
-        if(CurrentHp <=0) { CurrentHp = 0; }
+        if(damage - TotalArmor() <= 1 ) { CurrentHp -= 1; }
+        else { CurrentHp -= (damage - TotalArmor()); }
+        if(CurrentHp <=0) { CurrentHp = 0; IsDead(); UpdateDB(); }
         UpdateCurrentHp();
     }
 
@@ -58,8 +79,8 @@ public class Player : MonoBehaviour
     // 플레이어 이동시 대입할 변수
     private float Speed, P_XSpeed, P_YSpeed;
 
-    private void UpdateSpeed() => Speed = Data.P_Speed + (Data.Agility_Level * 0.1f);
 
+    // 임시로 스탯 조정기능 추가
     private void UpSpeed()
     {
         Data.P_Speed += 1;
@@ -108,12 +129,14 @@ public class Player : MonoBehaviour
     //능력치 레벨업 기능
     private void UpdateStats()
     {
-        if(Data.Str_Exp >= 100) { UpdateStrLevel(); Data.Str_Exp = 0; }
-        UpdateMaxHp();
-        if(Data.Agi_Exp >= 100) { UpdateAgiLevel(); Data.Agi_Exp = 0; }
-        UpdateSpeed();
+        if(Data.Str_Exp >= 100) { UpdateStrLevel(); Data.Str_Exp = 0; UpdateMaxHp(); }
+        
+        if(Data.Agi_Exp >= 100) { UpdateAgiLevel(); Data.Agi_Exp = 0; UpdateSpeed(); }
+        
         if(Data.Int_Exp >= 100) { UpdateIntLevel(); Data.Int_Exp = 0; }
     }
+
+    private void UpdateSpeed() => Speed = Data.P_Speed + (Data.Agility_Level * 0.1f);
 
     //--------------------------------------<애니메이션>---------------------------------------------
     //플레이어 애니메이터
@@ -162,11 +185,27 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void IsDead() 
+    {
+        if (CurrentHp <= 0) 
+        {
+            P_Ani.SetBool("IsDead", true);
+            P.enabled = false;
+            WeaponCase.SetActive(false);
+        }
+    }
+
+
     //------------------------------------------<초기화>-------------------------------------------
     private void Awake()
     {
         //애니메이터 지정
         P_Ani = GetComponent<Animator>();
+        P = GetComponent<Player>();
+        WeaponCase = GameObject.FindWithTag("Weapon Case");
+
+        P.enabled = true;
+       WeaponCase.SetActive(true);
 
         StartSetting();
 
@@ -195,7 +234,7 @@ public class Player : MonoBehaviour
         //<능력치 관련>
         UpdateStats();
 
-        if (Input.GetKey(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             UpSpeed();
         }

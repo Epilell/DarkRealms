@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "Weapon Stats", menuName = "ScriptableObject/Weapon Stats")]
 public class W_Data : ScriptableObject
 {
+    public GameObject W_Prefab;
+
     //무기 기본정보
     public float W_Damage;
     [Range(0.1f,5f)]

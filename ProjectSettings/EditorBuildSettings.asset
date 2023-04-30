@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/YS/Scene/LoadingOut.unity
     guid: 2ba0b527896c870419aff18682a6e932
   - enabled: 1
-    path: Assets/YS/Scene/InGameUi.unity
+    path: Assets/YS/Scene/InGameUI.unity
     guid: 8eb6e3c8d6388864a8d95a1ce38e55f1
   m_configObjects: {}

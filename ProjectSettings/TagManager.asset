@@ -17,6 +17,8 @@ TagManager:
   - FieldItem
   - FieldItem
   - Undefined
+  - Weapon Case
+  - Weapon
   layers:
   - Default
   - TransparentFX

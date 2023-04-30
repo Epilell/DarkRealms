@@ -2,13 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*추가 사항 ---------------------------
-
-
-
-----------------------------------------*/
-
-public class W_Rifle : MonoBehaviour
+public class W_Shotgun : MonoBehaviour
 {
     //무기 기본 데이터 저장
     public W_Data Data;
@@ -30,7 +24,7 @@ public class W_Rifle : MonoBehaviour
                 Bullet = Instantiate(Data.Bullet, Fire_Position.transform.position, Quaternion.Euler(0f, 0f, rotateDegree - 90f));
 
                 //총알 데이터 입력
-                Bullet.GetComponent<Bullet>().SetStats(Data.W_Speed,Data.W_Damage,Data.W_Distance);
+                Bullet.GetComponent<Bullet>().SetStats(Data.W_Speed, Data.W_Damage, Data.W_Distance);
 
                 //발사시간 초기화
                 CurTime = Data.W_AttackSpeed;
@@ -98,7 +92,7 @@ public class W_Rifle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
