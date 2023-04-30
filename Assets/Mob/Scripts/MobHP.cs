@@ -8,22 +8,26 @@ public class MobHP : MonoBehaviour
     private float maxHP; //최대 체력
     private float currentHP; //현재 체력
     private bool isDie = false; //적의 사망 유무
-    private MobDropItem dropItem;
+    private bool isHit = false;
+    //private MobDropItem dropItem;
     private MobAI mob;
     private SpriteRenderer spriteRenderer;
-    public Animator animator;
+    private Animator animator;
+    public GameObject corpsePrefab;
 
 
     //적의 체력 정보를 외부 클래스에서 확인할 수 있도록 프로퍼티 생성
     public float MaxHP => maxHP;
     public float CurrentHP => currentHP;
-
+    public bool IsDie => isDie;
+    public bool IsHit => isHit;
     private void Awake()
     {
         currentHP = maxHP; // 현재 체력을 최대 채력으로 
         mob = GetComponent<MobAI>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        //dropItem = GetComponent<MobDropItem>();
     }
 
     public void TakeDamage(float damage)
@@ -50,27 +54,31 @@ public class MobHP : MonoBehaviour
     {
         // 몬스터가 죽을 때의 처리
         animator.SetBool("IsDead",true);
-        dropItem.ItemDrop();//아이템 드롭
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
         Destroy(gameObject);
-        
+        Instantiate(corpsePrefab, transform.position, Quaternion.identity); // 시체 생성
+        //dropItem.ItemDrop();//아이템 드롭
+
     }
     private IEnumerator HitAlphaAnimation()
     {
+        /*
         //현재 적의 색상을 color변수에 저장
         Color color = spriteRenderer.color;
 
         //적 투명도 4할
-        //color.a = 0.4f;
-        //spriteRenderer.color = color;
+        color.a = 0.4f;
+        spriteRenderer.color = color;
         //0.05ch eorl
-        //yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.05f);
 
         //적의 투명도 10할
-        //color.a = 1.0f;
-        //spriteRenderer.color = color;
-
+        color.a = 1.0f;
+        spriteRenderer.color = color;
+        */
+        isHit = true;
         animator.SetTrigger("Hit");
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.6f);
+        isHit = false;
     }
 }
