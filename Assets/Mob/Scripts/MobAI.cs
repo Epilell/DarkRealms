@@ -5,15 +5,16 @@ using UnityEngine;
 public class MobAI : MonoBehaviour
 {
     Rigidbody2D rigid;
-    public Animator animator;
+    private Animator animator;
     SpriteRenderer spriteRenderer;
-    public Transform player;
+    private Transform player;
     private MobAttack mobAttack;
     private MobStat mobStat;
+    private MobHP mobHP;
 
-    public float detectionRange;
-    public float mobAttackRange;
-    public float moveSpeed;
+    public float detectionRange=10;
+    public float mobAttackRange=2;
+    public float moveSpeed=1;
 
     private bool isPlayerInRange = false;
     public int idleSpeed = 1;
@@ -30,6 +31,7 @@ public class MobAI : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         mobStat = GetComponent<MobStat>();
+        mobHP = GetComponent<MobHP>();
         //몹의 스텟을 가져옴
         mobProperty = mobStat.MobProperty();
         detectionRange = mobStat.DetectingRange();
@@ -56,56 +58,7 @@ public class MobAI : MonoBehaviour
         {
             isPlayerInRange = false; // 감지 범위 밖에 있다면 isPlayerInRange 변수를 false로 설정
         }
-
-        // player가 일정 거리 안에 있고 MobAttackRange 범위 안에 있으면 MobAttack스크립트를 호출합니다.
-        if (isPlayerInRange)
-        {
-            if (distanceToPlayer < mobAttackRange)
-            {
-                if (mobProperty == "melee")//근접몹 공격
-                {
-                    //attack1 한번 attack2 한번 번갈아가면서 공격
-                    if (attackChanger)
-                    {
-                        IsAttack = true;
-                        animator.SetTrigger("Attack2");
-                        attackChanger = false;
-                    }
-                    else
-                    {
-                        IsAttack = true;
-                        animator.SetTrigger("Attack1");
-                        attackChanger = true;
-                    }
-                }else if (mobProperty == "range")
-                {
-
-                }
-            }
-            else
-            {
-                //mobAttack.Attack(mobProperty);
-                animator.SetInteger("WalkSpeed", 1);
-                IsAttack = false;
-                // 플레이어를 따라가기 위해 이동
-                transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
-
-                if (flipFlag == false && player.position.x < rigid.position.x)
-                {
-                    flipFlag = true;
-                    spriteRenderer.flipX = true;
-                }
-                else if (flipFlag == true && player.position.x > rigid.position.x)
-                {
-                    flipFlag = false;
-                    spriteRenderer.flipX = false;
-                }
-            }
-        }
-        else
-        {
-            IsAttack = false;
-        }
+        AI(distanceToPlayer);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -160,5 +113,62 @@ public class MobAI : MonoBehaviour
             speed = 0;
         }
         animator.SetInteger("WalkSpeed", speed);
+    }
+    private void AI(float distanceToPlayer)
+    {
+        if (mobHP.IsDie == true || mobHP.IsHit == true)
+        {
+            return;//사망시 or Hit시 실행X
+        }
+        // player가 일정 거리 안에 있고 MobAttackRange 범위 안에 있으면 MobAttack스크립트를 호출합니다.
+        if (isPlayerInRange)
+        {
+            if (distanceToPlayer < mobAttackRange)
+            {
+                if (mobProperty == "melee")//근접몹 공격
+                {
+                    //attack1 한번 attack2 한번 번갈아가면서 공격
+                    if (attackChanger)
+                    {
+                        IsAttack = true;
+                        animator.SetTrigger("Attack2");
+                        attackChanger = false;
+                    }
+                    else
+                    {
+                        IsAttack = true;
+                        animator.SetTrigger("Attack1");
+                        attackChanger = true;
+                    }
+                }
+                else if (mobProperty == "range")
+                {
+
+                }
+            }
+            else
+            {
+                //mobAttack.Attack(mobProperty);
+                animator.SetInteger("WalkSpeed", 1);
+                IsAttack = false;
+                // 플레이어를 따라가기 위해 이동
+                transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+
+                if (flipFlag == false && player.position.x < rigid.position.x)
+                {
+                    flipFlag = true;
+                    spriteRenderer.flipX = true;
+                }
+                else if (flipFlag == true && player.position.x > rigid.position.x)
+                {
+                    flipFlag = false;
+                    spriteRenderer.flipX = false;
+                }
+            }
+        }
+        else
+        {
+            IsAttack = false;
+        }
     }
 }
