@@ -24,9 +24,9 @@ public class Slot : MonoBehaviour, IPointerUpHandler
         itemIcon.gameObject.SetActive(false);  // 아이템 오브젝트 비활성화
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public virtual void OnPointerUp(PointerEventData eventData)
     {
-        bool isUse = item.Use();  // 아이템 사용
+        /*bool isUse = item.Use();  // 아이템 사용
         // 사용했으면
         if (isUse)
         {
@@ -36,19 +36,8 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             }
             else
             {
-                Slot targetSlot = Inventory.instance.FindEmptySlot(item.itemName);
-                // Debug.Log(targetSlot); // 대상 슬롯 출력
-                // Debug.Log(item.itemName); // 아이템 이름
-                if (targetSlot != null)
-                {
-                    Inventory.instance.AddItems(item, targetSlot); // 대상 슬롯에 아이템 추가
-                    Inventory.instance.RemoveItem(slotNum); // 현재 슬롯에서 아이템 제거
-                }
-                else
-                {
-                    Inventory.instance.AddItems(item, targetSlot);
-                }
+                Debug.Log("상속 후 오버라이드로 구현");
             }
-        }
+        }*/
     }
 }

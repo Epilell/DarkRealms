@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 6340725969019920092}
   - component: {fileID: 4995343548749791377}
   - component: {fileID: 1972370880818317652}
-  - component: {fileID: 8349931607186379506}
+  - component: {fileID: 427879934884885715}
   m_Layer: 5
   m_Name: Slot2
   m_TagString: Untagged
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8349931607186379506
+--- !u!114 &427879934884885715
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNum: 0
   item:
-    itemType: 1
+    itemType: 0
     itemName: 
     itemImage: {fileID: 0}
     effects: []

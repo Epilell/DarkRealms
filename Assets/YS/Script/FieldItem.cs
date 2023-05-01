@@ -14,6 +14,7 @@ public class FieldItem : MonoBehaviour
         item.itemImage = _item.itemImage;
         item.itemType = _item.itemType;
         item.effects = _item.effects;
+        item.effectPoint = _item.effectPoint;
 
         image.sprite = item.itemImage;  // 이미지 변경
     }

@@ -1726,9 +1726,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ff07cce223c96a4e88e164f2c8f09db, type: 3}
---- !u!114 &600790149 stripped
+--- !u!114 &600790153 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8349931607186379506, guid: 7c05b107642aac048b564c867884a233, type: 3}
+  m_CorrespondingSourceObject: {fileID: 427879934884885715, guid: 7c05b107642aac048b564c867884a233, type: 3}
   m_PrefabInstance: {fileID: 1179560359}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -3090,6 +3090,7 @@ GameObject:
   - component: {fileID: 1143920063}
   - component: {fileID: 1143920062}
   - component: {fileID: 1143920061}
+  - component: {fileID: 1143920065}
   - component: {fileID: 1143920060}
   - component: {fileID: 1143920064}
   - component: {fileID: 1143920058}
@@ -3175,10 +3176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 2
   items: []
-  slot: {fileID: 2089702927}
-  slot2: {fileID: 600790149}
-  slot3: {fileID: 1448772415}
-  slot4: {fileID: 1407625569}
 --- !u!212 &1143920062
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3260,6 +3257,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 2084025244}
   scene: LoadingOut
+--- !u!114 &1143920065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143920056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4689d1c7a7c0c0940b5052d7fead854e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slot: {fileID: 2089702931}
+  slot2: {fileID: 600790153}
+  slot3: {fileID: 1448772419}
+  slot4: {fileID: 1607599857}
 --- !u!1 &1171200163
 GameObject:
   m_ObjectHideFlags: 0
@@ -4060,17 +4073,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 494087897907376097, guid: 7c05b107642aac048b564c867884a233, type: 3}
   m_PrefabInstance: {fileID: 374754785}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1407625569 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8349931607186379506, guid: 7c05b107642aac048b564c867884a233, type: 3}
-  m_PrefabInstance: {fileID: 374754785}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e5f3582f4d23dc43898b1bc6d32fbd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1439107518 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7913157973315311810, guid: 0ff07cce223c96a4e88e164f2c8f09db, type: 3}
@@ -4081,9 +4083,9 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 494087897907376097, guid: 7c05b107642aac048b564c867884a233, type: 3}
   m_PrefabInstance: {fileID: 810416791}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1448772415 stripped
+--- !u!114 &1448772419 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8349931607186379506, guid: 7c05b107642aac048b564c867884a233, type: 3}
+  m_CorrespondingSourceObject: {fileID: 427879934884885715, guid: 7c05b107642aac048b564c867884a233, type: 3}
   m_PrefabInstance: {fileID: 810416791}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -4482,31 +4484,43 @@ MonoBehaviour:
   - itemType: 1
     itemName: apple
     itemImage: {fileID: 21300000, guid: aa6951ded2ecbe642aed998df2d7aea7, type: 3}
+    effectPoint: 0
     effects:
     - {fileID: 11400000, guid: 7f9da4dbe411a2c448f5533b57cdc310, type: 2}
   - itemType: 1
     itemName: cherry
     itemImage: {fileID: 21300000, guid: 17ced0bb21329ef4397556157ed23351, type: 3}
+    effectPoint: 0
     effects:
     - {fileID: 11400000, guid: 367cf8448c951e4488fce31509e3ba22, type: 2}
   - itemType: 0
     itemName: helmet
     itemImage: {fileID: 21300000, guid: 1f2175c841e0b0e4a9bc229e7961964f, type: 3}
+    effectPoint: 0
     effects:
     - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
   - itemType: 0
     itemName: armor
     itemImage: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
+    effectPoint: 150
     effects:
     - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
   - itemType: 0
     itemName: sword
     itemImage: {fileID: 21300000, guid: f58abb3061543a542a91551c4dbf9593, type: 3}
+    effectPoint: 0
     effects:
     - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
   - itemType: 0
     itemName: shoes
     itemImage: {fileID: 21300000, guid: adafb0641d4a51742b0716a5a36640a9, type: 3}
+    effectPoint: 0
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
+  - itemType: 0
+    itemName: armor2
+    itemImage: {fileID: 21300000, guid: 5105fe1d825990746b9a92407ea447ca, type: 3}
+    effectPoint: 80
     effects:
     - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
   fieldItemPrefab: {fileID: 3836436861504695149, guid: 7a4beb69ed8e41946b6b5f4cac45b5cd, type: 3}
@@ -4531,6 +4545,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1607599857 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 427879934884885715, guid: 7c05b107642aac048b564c867884a233, type: 3}
+  m_PrefabInstance: {fileID: 374754785}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5f3582f4d23dc43898b1bc6d32fbd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1614400667
 GameObject:
   m_ObjectHideFlags: 0
@@ -5371,9 +5396,9 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 494087897907376097, guid: 7c05b107642aac048b564c867884a233, type: 3}
   m_PrefabInstance: {fileID: 34520174991850634}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2089702927 stripped
+--- !u!114 &2089702931 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8349931607186379506, guid: 7c05b107642aac048b564c867884a233, type: 3}
+  m_CorrespondingSourceObject: {fileID: 427879934884885715, guid: 7c05b107642aac048b564c867884a233, type: 3}
   m_PrefabInstance: {fileID: 34520174991850634}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

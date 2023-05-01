@@ -8,16 +8,15 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;  // 인벤토리 인스턴스
 
     public ItemType itemType;  // 아이템 타입
-    public List<Item> items = new List<Item>();  // 인벤토리에 있는 아이템 리스트
+
+    // public List<Item> items = new List<Item>();
+    public List<Item> items = new();  // 인벤토리에 있는 아이템 리스트
 
     public delegate void OnSlotCountChange(int val);  // 슬롯 개수 변경 시 호출할 대리자
     public OnSlotCountChange onSlotCountChange;  // 슬롯 개수 변경 시 이벤트
 
     public delegate void OnChangeItem();  // 아이템 변경 대리자
     public OnChangeItem onChangeItem;  // 아이템 변경 인스턴스
-
-    public Slot slot, slot2, slot3, slot4;
-    // public List<Slot> slots = new List<Slot>();
 
     private int slotCount;
 
@@ -76,46 +75,6 @@ public class Inventory : MonoBehaviour
             {
                 fieldItem.DestroyItem();  // 필드에서 삭제
             }
-        }
-    }
-
-    public Slot FindEmptySlot(String itemName)  // 빈 슬롯 찾기
-    {
-        /*
-        foreach (Slot slot in slots)
-        {
-            if (slot.item == null)
-            {
-                return slot;
-            }
-        }
-        return null;
-        */
-        if (itemName == "helmet")
-        {
-            return slot;
-        }
-        else if (itemName == "armor")
-        {
-            HealthBar healthBar = GameObject.FindObjectOfType<HealthBar>();
-            healthBar.maxHp = 200;
-            healthBar.currentHp = 120;
-            return slot2;
-        }
-        else if (itemName == "sword")
-        {
-            return slot3;
-        }
-        else return slot4;
-    }
-
-    // 아이템 추가
-    public void AddItems(Item item, Slot targetSlot)  // 빈 슬롯에 넣음
-    {
-        if (targetSlot != null)
-        {
-            targetSlot.item = item;
-            targetSlot.UpdateSlotUI();
         }
     }
 }

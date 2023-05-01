@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     Inventory inventory;  // Inventory 클래스의 인스턴를 저장하는 변수
+
     public GameObject inventoryPanel;  // 인벤토리 UI 패널 변수
     bool activeInventory = false;  // 인벤토리 UI 패널이 열려있는지?
 

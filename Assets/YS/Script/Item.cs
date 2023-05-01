@@ -15,6 +15,7 @@ public class Item
     public ItemType itemType;  // 위에서 만든 아이템 종류
     public string itemName;
     public Sprite itemImage;
+    public float effectPoint; // 버프 수치
     public List<ItemEffect> effects;  // 아이템 효과
 
     public bool Use()  // 아이템 사용시 호출
