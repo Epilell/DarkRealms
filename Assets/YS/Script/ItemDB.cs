@@ -5,13 +5,21 @@ using UnityEngine;
 public class ItemDB : MonoBehaviour
 {
     public static ItemDB instance;  // ItemDB 클래스의 싱글톤 인스턴스
-    public List<Item> itemDB = new List<Item>();  // 아이템 리스트
+    // public List<Item> itemDB = new List<Item>();
+    public List<Item> itemDB = new();  // 아이템 리스트
     public GameObject fieldItemPrefab;  // 아이템 오브젝트 프리팹
-    public Vector3[] pos;  // 생성되는 위치의 배열
+    Vector3[] pos;  // 생성되는 위치의 배열
+    public int posNum; // pos 값의 수(== 드랍할 아이템의 수)
 
     private void Awake()
     {
         instance = this;  // 싱글톤 인스턴스를 이 객체로 설정
+        pos = new Vector3[posNum];  // pos 초기화
+
+        for (int i = 0; i < posNum; i++)  // pos에 posNum개의 랜덤한 벡터 값을 입력
+        {
+            pos[i] = new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-5.0f, 5.0f), 0.0f);
+        }
     }
 
     private void Start()

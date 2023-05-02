@@ -55,7 +55,11 @@ public class Inventory : MonoBehaviour
                 onChangeItem.Invoke();  // 아이템 변경 이벤트 호출
             return true;  // 아이템 추가
         }
-        return false;  // 아이템 추가하지 않음
+        else
+        {
+            Debug.Log("인벤토리 포화!");
+            return false;  // 아이템 추가하지 않음
+        }
     }
 
     // 아이템 제거 함수
@@ -65,9 +69,9 @@ public class Inventory : MonoBehaviour
         onChangeItem.Invoke();  // 아이템 변경 이벤트 호출
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("FieldItem") && Input.GetKeyDown(KeyCode.F))  // 충돌한 오브젝트의 태그가 "FieldItem"일때 F를 누르면
+        if (collision.CompareTag("FieldItem")/* && Input.GetKeyDown(KeyCode.F)*/)  // 충돌한 오브젝트의 태그가 "FieldItem"일때 F를 누르면
         {
             FieldItem fieldItem = collision.GetComponent<FieldItem>();  // 필드 아이템 컴포넌트 가져오기
 
