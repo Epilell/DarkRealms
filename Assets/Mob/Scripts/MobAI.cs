@@ -12,21 +12,23 @@ public class MobAI : MonoBehaviour
     private MobStat mobStat;
     private MobHP mobHP;
 
-    public float detectionRange=10;
-    public float mobAttackRange=2;
-    public float moveSpeed=1;
+    private float detectionRange = 10;
+    private float mobAttackRange = 2;
+    private float moveSpeed = 1;
 
     private bool isPlayerInRange = false;
     public int idleSpeed = 1;
     private int xSpeed = 0;
     private int ySpeed = 0;
     bool flipFlag = false;
-    public bool IsAttack = false;
-    string mobProperty;
-    bool attackChanger = false;
+    private bool IsAttack = false;
+    private string mobProperty;
+    private float mobAttackSpeed;
+    private float currentCoolDown = 0f;
 
     void Awake()
     {
+        mobAttack = GetComponent<MobAttack>();
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -37,6 +39,9 @@ public class MobAI : MonoBehaviour
         detectionRange = mobStat.DetectingRange();
         mobAttackRange = mobStat.MobAttackRange();
         moveSpeed = mobStat.MoveSpeed();
+        mobAttackSpeed = mobStat.MobAttackSpeed();
+        this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        this.GetComponent<Rigidbody2D>().gravityScale = 0;
     }
     private void Start()
     {
@@ -61,7 +66,7 @@ public class MobAI : MonoBehaviour
         AI(distanceToPlayer);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)//근접공격
     {
         //근접몹이면
         if (mobProperty == "melee")
@@ -73,18 +78,7 @@ public class MobAI : MonoBehaviour
             }
         }
     }
-    /*
-    // 애니메이션 이벤트에서 호출되는 함수
-    public void Attack()
-    {
-        // 플레이어에게 데미지를 입힘
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, mobAttackRange, LayerMask.GetMask("Player"));
-        foreach (Collider2D hit in hits)
-        {
-            hit.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
-        }
-    }*/
-    private IEnumerator MobIdleMove()
+    private IEnumerator MobIdleMove()//적 감지 X시 움직임
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         while (distanceToPlayer > detectionRange)
@@ -114,41 +108,30 @@ public class MobAI : MonoBehaviour
         }
         animator.SetInteger("WalkSpeed", speed);
     }
+
     private void AI(float distanceToPlayer)
     {
         if (mobHP.IsDie == true || mobHP.IsHit == true)
         {
             return;//사망시 or Hit시 실행X
         }
-        // player가 일정 거리 안에 있고 MobAttackRange 범위 안에 있으면 MobAttack스크립트를 호출합니다.
+        // player가 일정 거리 안에 있고 
         if (isPlayerInRange)
         {
-            if (distanceToPlayer < mobAttackRange)
+            if (distanceToPlayer < mobAttackRange)//공격범위안에 있으면
             {
-                if (mobProperty == "melee")//근접몹 공격
+                if (currentCoolDown > 0.0f)//공격속도 설정
                 {
-                    //attack1 한번 attack2 한번 번갈아가면서 공격
-                    if (attackChanger)
-                    {
-                        IsAttack = true;
-                        animator.SetTrigger("Attack2");
-                        attackChanger = false;
-                    }
-                    else
-                    {
-                        IsAttack = true;
-                        animator.SetTrigger("Attack1");
-                        attackChanger = true;
-                    }
+                    currentCoolDown -= Time.deltaTime;
                 }
-                else if (mobProperty == "range")
+                else
                 {
-
+                    currentCoolDown = mobAttackSpeed;
+                    mobAttack.Attacking(mobStat, player);//공격하기
                 }
             }
             else
             {
-                //mobAttack.Attack(mobProperty);
                 animator.SetInteger("WalkSpeed", 1);
                 IsAttack = false;
                 // 플레이어를 따라가기 위해 이동
@@ -171,4 +154,48 @@ public class MobAI : MonoBehaviour
             IsAttack = false;
         }
     }
+    /*
+    private void Attacking()//공격
+    {
+        if (mobProperty == "melee")//근접몹 공격
+        {
+            //attack1 한번 attack2 한번 번갈아가면서 공격
+            if (attackChanger)
+            {
+                IsAttack = true;
+                animator.SetTrigger("Attack2");
+                attackChanger = false;
+            }
+            else
+            {
+                IsAttack = true;
+                animator.SetTrigger("Attack1");
+                attackChanger = true;
+            }
+        }
+        else if (mobProperty == "range")//원거리몹 공격
+        {
+            if (attackChanger)
+            {
+                animator.SetTrigger("Attack2");
+                //발사하는코드
+                attackChanger = false;
+            }
+            else
+            {
+                animator.SetTrigger("Attack1");
+                //발사하는코드
+                attackChanger = true;
+            }
+        }
+    }
+    private void RangeAttack1()
+    {
+        GameObject bullet = Instantiate(mobStat.bullet, firePoint.position, Quaternion.identity);
+    }
+    private void RangeAttack2()
+    {
+
+    }
+    */
 }

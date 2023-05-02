@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 20
-  corpsePrefab: {fileID: 0}
+  DeadMob: {fileID: 5092047170252660347, guid: 9891fa268b31463418b8e1057b5aebe7, type: 3}
 --- !u!114 &834271027276496985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,11 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140c9ba1aa67cc04490e2c6fd77d9feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 10
-  mobAttackRange: 3
-  moveSpeed: 5
   idleSpeed: 1
-  IsAttack: 0
 --- !u!61 &834271027276496988
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -177,7 +173,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

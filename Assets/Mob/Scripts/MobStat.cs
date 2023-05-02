@@ -10,6 +10,10 @@ public class MobStat : MonoBehaviour
     public float detectionRange = 10f;
     public float mobAttackRange = 1f;
     public float moveSpeed = 1f;
+    public float mobAttackSpeed = 1f;
+    public GameObject bullet;
+    public GameObject firePoint;
+    public float bulletSpeed;
     // Start is called before the first frame update
     public float MobDamage()
     {
@@ -34,6 +38,14 @@ public class MobStat : MonoBehaviour
     public float MoveSpeed()
     {
         return moveSpeed;
+    }
+    public float MobAttackSpeed()
+    {
+        return mobAttackSpeed;
+    }
+    public GameObject Bullet()
+    {
+        return bullet;
     }
     // Update is called once per frame
     void Update()

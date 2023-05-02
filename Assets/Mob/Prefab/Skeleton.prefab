@@ -134,7 +134,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -176,11 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140c9ba1aa67cc04490e2c6fd77d9feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 5
-  mobAttackRange: 1
-  moveSpeed: 1
   idleSpeed: 1
-  IsAttack: 0
 --- !u!222 &7253027290683981753
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -201,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4968458598ac39841b0a74efb3c009c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
+  maxHP: 50
   DeadMob: {fileID: 965568549241441883, guid: ca1dd13575f099f498e0f39ffb20fac0, type: 3}
 --- !u!114 &2053941310852753379
 MonoBehaviour:
