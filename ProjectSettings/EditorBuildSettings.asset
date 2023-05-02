@@ -17,4 +17,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/YS/Scene/InGameUI.unity
     guid: 8eb6e3c8d6388864a8d95a1ce38e55f1
+  - enabled: 1
+    path: Assets/Merge/InGame.unity
+    guid: e770657210d2ca7478d6a90c4543bdcb
+  - enabled: 1
+    path: Assets/Merge/LoadingIn.unity
+    guid: 900b123cf2b93ce4881e55ed0718a4e0
+  - enabled: 1
+    path: Assets/Merge/LoadingOut.unity
+    guid: 63184fb1cf936ec49bbb3a341d7e0300
+  - enabled: 1
+    path: Assets/Merge/MainMenu.unity
+    guid: 28fba96e96d2fe94ba8a65c913649dc9
   m_configObjects: {}

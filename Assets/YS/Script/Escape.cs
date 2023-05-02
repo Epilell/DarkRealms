@@ -12,9 +12,16 @@ public class Escape : MonoBehaviour
     public string scene;
 
     // 탈출구에서 F 키를 누르면 페이드 아웃 후 다음 씬 로드
-    void OnTriggerStay2D(Collider2D other)
+    /*void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Escape") && Input.GetKeyDown(KeyCode.F))
+        {
+            StartCoroutine(FadeOut());
+        }
+    }*/
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(FadeOut());
         }
