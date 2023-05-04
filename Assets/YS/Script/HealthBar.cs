@@ -6,15 +6,16 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField]
-    public Slider hpbar; // 체력바
+    public Slider hpbar, hpbar2; // 체력바
     public float maxHp = 100;
     public float currentHp = 50;
-    public Text textObj; // 체력 텍스트
+    public Text textObj, textObj2; // 체력 텍스트
 
     private void Start()
     {
         // 체력바 초기화
         hpbar.value = (float)currentHp / (float)maxHp;
+        hpbar2.value = (float)currentHp / (float)maxHp;
     }
 
     private void Update()
@@ -38,6 +39,8 @@ public class HealthBar : MonoBehaviour
     {
         textObj.text = currentHp.ToString() + "/" + maxHp.ToString(); // 체력 텍스트 갱신
         hpbar.value = (float)currentHp / (float)maxHp; // 체력 갱신
+        textObj2.text = currentHp.ToString() + "/" + maxHp.ToString(); // 체력 텍스트 갱신
+        hpbar2.value = (float)currentHp / (float)maxHp; // 체력 갱신
         // hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);
     }
 
@@ -49,6 +52,7 @@ public class HealthBar : MonoBehaviour
             currentHp = maxHp;
         }
         hpbar.value = currentHp;
+        hpbar2.value = currentHp;
     }
 
     public void DecreaseHp(float amount) // 체력 감소 함수
@@ -59,5 +63,6 @@ public class HealthBar : MonoBehaviour
             currentHp = 0;
         }
         hpbar.value = currentHp;
+        hpbar2.value = currentHp;
     }
 }
