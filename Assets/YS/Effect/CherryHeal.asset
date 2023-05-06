@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c14adffddc4e934da330e7280183fce, type: 3}
   m_Name: CherryHeal
   m_EditorClassIdentifier: 
-  healingPoint: 30
+  item:
+    itemType: 0
+    itemName: 
+    itemImage: {fileID: 0}
+    effectPoint: 30
+    coin: 0
+    effects: []
