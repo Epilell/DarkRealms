@@ -8,9 +8,9 @@ public class HealthBar : MonoBehaviour
     [SerializeField]
     public Slider hpbar, hpbar2; // 체력바
     public float maxHp = 100;
-    public float currentHp = 50;
+    public float currentHp;
     public Text textObj, textObj2; // 체력 텍스트
-
+    public P_Data playerData;
     private void Start()
     {
         // 체력바 초기화
@@ -20,18 +20,8 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        // 테스트용: 스페이스바 누르면 체력 10씩 감소
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (currentHp > 0)
-            {
-                currentHp -= 10;
-            }
-            else
-            {
-                currentHp = 0;
-            }
-        }
+
+        currentHp = playerData.P_CurrentHp;
         ChangeHP();
     }
 
@@ -43,7 +33,7 @@ public class HealthBar : MonoBehaviour
         hpbar2.value = (float)currentHp / (float)maxHp; // 체력 갱신
         // hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);
     }
-
+    
     public void IncreaseHp(float amount) // 체력 증가 함수
     {
         currentHp += amount;
@@ -65,4 +55,5 @@ public class HealthBar : MonoBehaviour
         hpbar.value = currentHp;
         hpbar2.value = currentHp;
     }
+    
 }
