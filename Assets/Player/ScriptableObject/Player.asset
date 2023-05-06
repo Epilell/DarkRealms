@@ -15,7 +15,7 @@ MonoBehaviour:
   P_Name: 
   P_MaxHp: 100
   P_CurrentHp: 100
-  P_Speed: 2
+  P_Speed: 4.04
   P_HelmetArmor: 0
   P_BodyArmor: 0
   P_LegArmor: 0
