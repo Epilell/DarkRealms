@@ -19,6 +19,7 @@ TagManager:
   - Undefined
   - Weapon Case
   - Weapon
+  - Map
   layers:
   - Default
   - TransparentFX

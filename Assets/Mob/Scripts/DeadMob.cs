@@ -10,6 +10,8 @@ public class DeadMob : MonoBehaviour
     void Awake()
     {
         dropItem = GetComponent<MobDropItem>();
+        dropItem.ItemDrop();//임시아이템드롭
+
     }
     private void OnMouseDown()
     {

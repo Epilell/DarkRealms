@@ -11,6 +11,7 @@ public class ItemDrop
 }
 public class MobDropItem : MonoBehaviour
 {
+    public GameObject DropItem;
     public GameObject mobItemUI;//열리는UI
     public ItemDrop[] itemDropList; // 몬스터가 드롭하는 아이템 정보
 
@@ -22,8 +23,8 @@ public class MobDropItem : MonoBehaviour
             // 드롭 확률을 계산하여 아이템을 드롭할지 결정
             if (Random.value < itemDrop.dropChance)
             {
-                mobItemUI.SetActive(true);
-
+                //mobItemUI.SetActive(true);
+                Instantiate(DropItem, transform.position, Quaternion.identity);//임시아이템드롭
             }
         }
     }
