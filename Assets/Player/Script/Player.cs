@@ -102,14 +102,14 @@ public class Player : MonoBehaviour
             if(dx >= 0)
             { P_XSpeed = (Speed) * (1 - SpeedReduction); }
             else
-            { P_XSpeed = (float)(Speed * 0.3) * (1 - SpeedReduction); }
+            { P_XSpeed = (float)(Speed * 0.9) * (1 - SpeedReduction); }
         }
         else if (Input.GetKey(KeyCode.A) && P_XSpeed <= 0)
         {
             if(dx < 0)
             { P_XSpeed = -Speed * (1 - SpeedReduction); }
             else
-            { P_XSpeed = -(float)(Speed * 0.3) * (1 - SpeedReduction); }
+            { P_XSpeed = -(float)(Speed * 0.9) * (1 - SpeedReduction); }
         }
         else
         { P_XSpeed = 0; }
@@ -120,14 +120,14 @@ public class Player : MonoBehaviour
             if(dy >= 0)
             { P_YSpeed = Speed * (1 - SpeedReduction); }
             else
-            { P_YSpeed = (float)(Speed * 0.3) * (1 - SpeedReduction); }
+            { P_YSpeed = (float)(Speed * 0.9) * (1 - SpeedReduction); }
         }
         else if (Input.GetKey(KeyCode.S) && P_YSpeed <= 0)
         {
             if(dy < 0)
             { P_YSpeed = -Speed * (1 - SpeedReduction); }
             else
-            { P_YSpeed = -(float)(Speed * 0.3) * (1 - SpeedReduction); }
+            { P_YSpeed = -(float)(Speed * 0.9) * (1 - SpeedReduction); }
         }
         else
         { P_YSpeed = 0; }
