@@ -10,16 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c4b26f3de991ac4cbb4b2182d34e33a, type: 3}
-  m_Name: Human
+  m_Name: Player
   m_EditorClassIdentifier: 
-  P_Name: Human
+  P_Name: 
   P_MaxHp: 100
   P_CurrentHp: 100
-<<<<<<< Updated upstream
-  P_Speed: 5
-=======
-  P_Speed: 3
->>>>>>> Stashed changes
+  P_Speed: 2
   P_HelmetArmor: 0
   P_BodyArmor: 0
   P_LegArmor: 0

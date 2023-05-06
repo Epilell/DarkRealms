@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6539a37ec7721ff4b95af0e9c811f697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: a2bb928d471f28248a74bb123abe8eda, type: 2}
+  Data: {fileID: 11400000, guid: a14c936c6adc0d34794da2330d8ae96d, type: 2}
 --- !u!114 &95342476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,6 +896,10 @@ MonoBehaviour:
   detectionRange: 10
   mobAttackRange: 1
   moveSpeed: 1
+  mobAttackSpeed: 1
+  bullet: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletSpeed: 0
 --- !u!114 &2146397967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -930,11 +934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140c9ba1aa67cc04490e2c6fd77d9feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 5
-  mobAttackRange: 1
-  moveSpeed: 1
   idleSpeed: 1
-  IsAttack: 0
 --- !u!50 &2146397970
 Rigidbody2D:
   serializedVersion: 4
@@ -973,7 +973,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
