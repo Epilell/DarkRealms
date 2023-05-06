@@ -21,6 +21,7 @@ public class W_Rifle : MonoBehaviour
 
     private void Attack()
     {
+        Fire_Position = GameObject.FindWithTag("Fire Position");
         if (CurTime <= 0f)
         {
             if (Input.GetMouseButtonDown(0))
@@ -78,10 +79,12 @@ public class W_Rifle : MonoBehaviour
         //마우스위치에 따라 좌우 반전
         if (dx < 0f)
         {
-            WeaponCase.transform.localScale = new Vector3(-1, -1, 1);
+            this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = -1;
+            WeaponCase.transform.localScale = new Vector3(1, -1, 1);
         }
         else
         {
+            this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
             WeaponCase.transform.localScale = new Vector3(1, 1, 1);
         }
     }

@@ -15,6 +15,7 @@ public class W_Shotgun : MonoBehaviour
 
     private void Attack()
     {
+        Fire_Position = GameObject.FindWithTag("Fire Position");
         if (CurTime <= 0f)
         {
             if (Input.GetMouseButtonDown(0))
@@ -72,10 +73,12 @@ public class W_Shotgun : MonoBehaviour
         //마우스위치에 따라 좌우 반전
         if (dx < 0f)
         {
+            this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = -1;
             WeaponCase.transform.localScale = new Vector3(-1, -1, 1);
         }
         else
         {
+            this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 11;
             WeaponCase.transform.localScale = new Vector3(1, 1, 1);
         }
     }

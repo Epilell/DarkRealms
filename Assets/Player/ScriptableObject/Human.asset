@@ -15,7 +15,11 @@ MonoBehaviour:
   P_Name: Human
   P_MaxHp: 100
   P_CurrentHp: 100
+<<<<<<< Updated upstream
   P_Speed: 5
+=======
+  P_Speed: 3
+>>>>>>> Stashed changes
   P_HelmetArmor: 0
   P_BodyArmor: 0
   P_LegArmor: 0

@@ -18,19 +18,18 @@ public class Player : MonoBehaviour
     public P_Data Data;
 
     private Player P;
-    private GameObject WeaponCase;
+    private GameObject weaponCase;
 
     //--------------------------------------<체력>---------------------------------------------------
-    private float MaxHp, CurrentHp, HelmetArmor, BodyArmor, LegArmor;
+    private float MaxHp, CurrentHp, Helmet, Armor;
 
     //게임 시작시 데이터 불러오는 용도
     private void StartSetting()
     {
         MaxHp = Data.P_MaxHp + (Data.Strength_Level * 10f);
         CurrentHp = Data.P_CurrentHp;
-        HelmetArmor = Data.P_HelmetArmor;
-        BodyArmor = Data.P_BodyArmor;
-        LegArmor = Data.P_LegArmor;
+        Helmet = Data.P_HelmetArmor;
+        Armor = Data.P_BodyArmor;
     }
 
     //게임종료시 또는 사망시 사용
@@ -38,9 +37,8 @@ public class Player : MonoBehaviour
     {
         Data.P_MaxHp = MaxHp;
         Data.P_CurrentHp = CurrentHp;
-        Data.P_HelmetArmor = HelmetArmor;
-        Data.P_BodyArmor = BodyArmor;
-        Data.P_LegArmor = LegArmor;
+        Data.P_HelmetArmor = Helmet;
+        Data.P_BodyArmor = Armor;
     }
 
     //레벨업시 능력치 반영시
@@ -49,21 +47,28 @@ public class Player : MonoBehaviour
     //데미지 입을시 반영
     private void UpdateCurrentHp() { Data.P_CurrentHp = CurrentHp; }
 
-    //--------------------------------------<방어력>-------------------------------------------------
+    //--------------------------------------<장비 능력치>-------------------------------------------------
     private void UpdateArmor() 
     {
-        Data.P_HelmetArmor = HelmetArmor;
-        Data.P_BodyArmor = BodyArmor;
-        Data.P_LegArmor = LegArmor;
+        Data.P_HelmetArmor = Helmet;
+        Data.P_BodyArmor = Armor;
     }
 
-    private float TotalArmor() { return HelmetArmor + BodyArmor + LegArmor; }
+    private float TotalArmor() { return Helmet + Armor; }
 
     //--------------------------------------<체력 변경>-------------------------------------------------
+    [Range(0f,1f)]
+    private float ArmorReduction;
+
+    public void ChangeArmorReduction(float amount)
+    {
+        ArmorReduction = amount;
+    }
+
     public void P_TakeDamage(float damage)
     {
-        if(damage - TotalArmor() <= 1 ) { CurrentHp -= 1; }
-        else { CurrentHp -= (damage - TotalArmor()); }
+        if((damage - TotalArmor()) * (1 - ArmorReduction) <= 1 ) { CurrentHp -= 1; }
+        else { CurrentHp -= (damage - TotalArmor()) * (1 - ArmorReduction); }
         if(CurrentHp <=0) { CurrentHp = 0; IsDead(); UpdateDB(); }
         UpdateCurrentHp();
     }
@@ -78,12 +83,12 @@ public class Player : MonoBehaviour
     //--------------------------------------<이동속도>-------------------------------------------------
     // 플레이어 이동시 대입할 변수
     private float Speed, P_XSpeed, P_YSpeed;
+    [Range(0f,1f)]
+    private float SpeedReduction;
 
-
-    // 임시로 스탯 조정기능 추가
-    private void UpSpeed()
+    public void ChangeSpeedReduction(float amount)
     {
-        Data.P_Speed += 1;
+        SpeedReduction = amount;
     }
 
     private void InputSpeed()
@@ -91,33 +96,41 @@ public class Player : MonoBehaviour
         //이동속도 입력
         UpdateSpeed();
 
-        //상하 움직임 속도 대입
-        if (Input.GetKey(KeyCode.W) && P_YSpeed >= 0)
-        {
-            P_YSpeed = Speed;
-        }
-        else if (Input.GetKey(KeyCode.S) && P_YSpeed <= 0)
-        {
-            P_YSpeed = -Speed;
-        }
-        else
-        {
-            P_YSpeed = 0;
-        }
-
         //좌우 움직임 속도 대입
         if (Input.GetKey(KeyCode.D) && P_XSpeed >= 0)
         {
-            P_XSpeed = Speed;
+            if(dx >= 0)
+            { P_XSpeed = (Speed) * (1 - SpeedReduction); }
+            else
+            { P_XSpeed = (float)(Speed * 0.3) * (1 - SpeedReduction); }
         }
         else if (Input.GetKey(KeyCode.A) && P_XSpeed <= 0)
         {
-            P_XSpeed = -Speed;
+            if(dx < 0)
+            { P_XSpeed = -Speed * (1 - SpeedReduction); }
+            else
+            { P_XSpeed = -(float)(Speed * 0.3) * (1 - SpeedReduction); }
         }
         else
+        { P_XSpeed = 0; }
+
+        //상하 움직임 속도 대입
+        if (Input.GetKey(KeyCode.W) && P_YSpeed >= 0)
         {
-            P_XSpeed = 0;
+            if(dy >= 0)
+            { P_YSpeed = Speed * (1 - SpeedReduction); }
+            else
+            { P_YSpeed = (float)(Speed * 0.3) * (1 - SpeedReduction); }
         }
+        else if (Input.GetKey(KeyCode.S) && P_YSpeed <= 0)
+        {
+            if(dy < 0)
+            { P_YSpeed = -Speed * (1 - SpeedReduction); }
+            else
+            { P_YSpeed = -(float)(Speed * 0.3) * (1 - SpeedReduction); }
+        }
+        else
+        { P_YSpeed = 0; }
     }
 
     //--------------------------------------<능력치 레벨>--------------------------------------------
@@ -144,6 +157,7 @@ public class Player : MonoBehaviour
 
     //마우스 및 플레이어 위치 변수
     private Vector3 Mouse_Position, P_Position;
+    private float dx, dy;
 
     //방향벡터 계산 함수
     private void CalcVec()
@@ -159,16 +173,19 @@ public class Player : MonoBehaviour
         Vector3 target = Camera.main.ScreenToWorldPoint(Mouse_Position);
 
         //마우스 방향 계산
-        float dx = target.x - P_Position.x;
+        dx = target.x - P_Position.x;
+        dy = target.y - P_Position.y;
 
         //마우스위치에 따라 좌우 반전
         if (dx < 0f)
-        {
-            this.transform.localScale = new Vector3(-1, 1, 1);
+        { 
+            //this.transform.localScale = new Vector3(-1, 1, 1);
+            this.GetComponent<SpriteRenderer>().flipX = true;
         }
         else
-        {
-            this.transform.localScale = new Vector3(1, 1, 1);
+        { 
+            //this.transform.localScale = new Vector3(1, 1, 1);
+            this.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 
@@ -176,13 +193,9 @@ public class Player : MonoBehaviour
     private void IsMove()
     {
         if (P_XSpeed != 0f || P_YSpeed != 0f)
-        {
-            P_Ani.SetBool("IsMove", true);
-        }
+        { P_Ani.SetBool("IsMove", true); }
         else
-        {
-            P_Ani.SetBool("IsMove", false);
-        }
+        { P_Ani.SetBool("IsMove", false); }
     }
 
     private void IsDead() 
@@ -191,7 +204,7 @@ public class Player : MonoBehaviour
         {
             P_Ani.SetBool("IsDead", true);
             P.enabled = false;
-            WeaponCase.SetActive(false);
+            weaponCase.SetActive(false);
         }
     }
 
@@ -202,10 +215,10 @@ public class Player : MonoBehaviour
         //애니메이터 지정
         P_Ani = GetComponent<Animator>();
         P = GetComponent<Player>();
-        WeaponCase = GameObject.FindWithTag("Weapon Case");
+        weaponCase = GameObject.FindWithTag("Weapon Case");
 
         P.enabled = true;
-       WeaponCase.SetActive(true);
+        weaponCase.SetActive(true);
 
         StartSetting();
 
@@ -233,11 +246,6 @@ public class Player : MonoBehaviour
 
         //<능력치 관련>
         UpdateStats();
-
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            UpSpeed();
-        }
     }
 
     private void FixedUpdate()
