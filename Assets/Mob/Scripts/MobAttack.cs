@@ -6,14 +6,15 @@ public class MobAttack : MonoBehaviour
 {
     public Animator animator;
     MobAI mobAI;
-    MobStat mobStat;
+    MobStat MobStat;
     private bool attackChanger = false;
     private bool IsAttack = false;
     private Transform PlayerDirection;
     public bool Attacking(MobStat mobStat, Transform P_direction)//공격
     {
         PlayerDirection = P_direction;
-        if (mobStat.mobProperty == "melee")//근접몹 공격
+        MobStat = mobStat;
+        if (MobStat.mobProperty == "melee")//근접몹 공격
         {
             //attack1 한번 attack2 한번 번갈아가면서 공격
             if (attackChanger)
@@ -31,7 +32,7 @@ public class MobAttack : MonoBehaviour
                 return IsAttack;
             }
         }
-        else if (mobStat.mobProperty == "range")//원거리몹 공격
+        else if (MobStat.mobProperty == "range")//원거리몹 공격
         {
             if (attackChanger)
             {
@@ -39,6 +40,7 @@ public class MobAttack : MonoBehaviour
                 //발사하는코드
                 attackChanger = false;
                 IsAttack = false;
+                RangeAttack2();
                 return IsAttack;
             }
             else
@@ -57,15 +59,15 @@ public class MobAttack : MonoBehaviour
     }
     private void RangeAttack1()
     {
-        GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position, Quaternion.identity);
-        MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, PlayerDirection, 0);
+        GameObject MobBullet = Instantiate(MobStat.bullet, MobStat.firePoint.transform.position, Quaternion.identity);
+        MobBullet.GetComponent<MobRangeBullet>().SetStats(MobStat.bulletSpeed, MobStat.mobDamage, PlayerDirection, 0);
     }
     private void RangeAttack2()
     {
         for (int i = 1; i < 5; i++)
         {
-            GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position, Quaternion.identity);
-            MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, null, i);
+            GameObject MobBullet = Instantiate(MobStat.bullet, MobStat.firePoint.transform.position, Quaternion.identity);
+            MobBullet.GetComponent<MobRangeBullet>().SetStats(MobStat.bulletSpeed, MobStat.mobDamage, null, i);
         }
     }
 }

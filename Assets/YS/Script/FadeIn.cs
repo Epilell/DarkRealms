@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class FadeIn : MonoBehaviour
 {
+    public Text text;
     public Image panel;  // 페이드 인에 사용할 이미지 컴포넌트
     float time = 0f;  // 페이드 인 실행 시간
     float fadeTime = 1f;
@@ -12,6 +13,13 @@ public class FadeIn : MonoBehaviour
     private void Start()
     {
         StartCoroutine(FadeInCoroutine()); // 코루틴 시작
+
+        if (SceneManager.GetActiveScene().name == "LoadingOut")  // 테스트용 출력_230506
+        {
+            Coin coin = new Coin();
+            // Debug.Log(coin.GetCoin());
+            text.text = "Coin: " + coin.GetCoin().ToString();
+        }
     }
 
     public IEnumerator FadeInCoroutine()

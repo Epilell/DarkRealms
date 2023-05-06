@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7253027290683981753}
   - component: {fileID: 5722186894600703350}
   - component: {fileID: 2053941310852753379}
+  - component: {fileID: 5117305462692921335}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Mob
@@ -217,3 +218,20 @@ MonoBehaviour:
   detectionRange: 10
   mobAttackRange: 1
   moveSpeed: 1
+  mobAttackSpeed: 1
+  bullet: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletSpeed: 0
+--- !u!114 &5117305462692921335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2655877666149952692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec7f7ccbbba3f0469462ff43cefa94a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2160769326977327268}

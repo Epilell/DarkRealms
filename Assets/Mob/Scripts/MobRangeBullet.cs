@@ -9,6 +9,7 @@ public class MobRangeBullet : MonoBehaviour
     //private float Distance;
     Transform PlayerDirection;
     int BulletNum;
+    float DestoryTime = 250f;
 
     //능력치 가져오기
     public void SetStats(float bulletSpeed, float damage, Transform P_direction, int bulletNum)
@@ -38,6 +39,11 @@ public class MobRangeBullet : MonoBehaviour
 
     private void FixedUpdate()
     {
+        DestoryTime -= 1;
+        if (DestoryTime < 0)
+        {
+            DestroyBullet();
+        }
         //transform.Translate(direction * BulletSpeed * Time.deltaTime);
         if (PlayerDirection == null)
         {
