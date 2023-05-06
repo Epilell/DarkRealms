@@ -42,6 +42,11 @@ public class Escape : MonoBehaviour
             yield return null; // 한 프레임 대기
         }
 
+
+
+        Coin coin = new Coin();
+        coin.SetCoin(100);
+
         SceneManager.LoadScene(scene); // 씬 전환
     }
 }
