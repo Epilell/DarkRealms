@@ -7,10 +7,11 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField]
     public Slider hpbar, hpbar2; // 체력바
-    public float maxHp = 100;
+    public float maxHp;
     public float currentHp;
     public Text textObj, textObj2; // 체력 텍스트
     public P_Data playerData;
+
     private void Start()
     {
         // 체력바 초기화
@@ -20,8 +21,8 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-
         currentHp = playerData.P_CurrentHp;
+        maxHp = playerData.P_MaxHp;
         ChangeHP();
     }
 
@@ -34,7 +35,7 @@ public class HealthBar : MonoBehaviour
         // hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);
     }
     
-    public void IncreaseHp(float amount) // 체력 증가 함수
+    /*public void IncreaseHp(float amount) // 체력 증가 함수
     {
         currentHp += amount;
         if (currentHp >= maxHp)
@@ -54,6 +55,5 @@ public class HealthBar : MonoBehaviour
         }
         hpbar.value = currentHp;
         hpbar2.value = currentHp;
-    }
-    
+    }*/
 }

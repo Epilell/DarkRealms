@@ -14,12 +14,11 @@ public class FadeIn : MonoBehaviour
     {
         StartCoroutine(FadeInCoroutine()); // 코루틴 시작
 
-        if (SceneManager.GetActiveScene().name == "LoadingOut")  // 테스트용 출력_230506
+        /*if (SceneManager.GetActiveScene().name == "LoadingOut")  // 테스트용 출력_230506
         {
             Coin coin = new Coin();
-            // Debug.Log(coin.GetCoin());
             text.text = "Coin: " + coin.GetCoin().ToString();
-        }
+        }*/
     }
 
     public IEnumerator FadeInCoroutine()

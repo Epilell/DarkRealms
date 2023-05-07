@@ -3743,6 +3743,7 @@ MonoBehaviour:
   slot2: {fileID: 600790153}
   slot3: {fileID: 1448772419}
   slot4: {fileID: 1607599857}
+  playerData: {fileID: 11400000, guid: a14c936c6adc0d34794da2330d8ae96d, type: 2}
 --- !u!1 &1171200163
 GameObject:
   m_ObjectHideFlags: 0
@@ -4913,6 +4914,7 @@ MonoBehaviour:
   currentHp: 50
   textObj: {fileID: 1530864007}
   textObj2: {fileID: 1383088567}
+  playerData: {fileID: 11400000, guid: a14c936c6adc0d34794da2330d8ae96d, type: 2}
 --- !u!114 &1483824638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5198,58 +5200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad02daff2861c03419962e12b7f81113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDB:
-  - itemType: 1
-    itemName: apple
-    itemImage: {fileID: 21300000, guid: aa6951ded2ecbe642aed998df2d7aea7, type: 3}
-    effectPoint: 0
-    coin: 50
-    effects:
-    - {fileID: 11400000, guid: 7f9da4dbe411a2c448f5533b57cdc310, type: 2}
-  - itemType: 1
-    itemName: cherry
-    itemImage: {fileID: 21300000, guid: 17ced0bb21329ef4397556157ed23351, type: 3}
-    effectPoint: 0
-    coin: 30
-    effects:
-    - {fileID: 11400000, guid: 367cf8448c951e4488fce31509e3ba22, type: 2}
-  - itemType: 0
-    itemName: helmet
-    itemImage: {fileID: 21300000, guid: 1f2175c841e0b0e4a9bc229e7961964f, type: 3}
-    effectPoint: 0
-    coin: 45
-    effects:
-    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
-  - itemType: 0
-    itemName: armor
-    itemImage: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
-    effectPoint: 150
-    coin: 70
-    effects:
-    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
-  - itemType: 0
-    itemName: sword
-    itemImage: {fileID: 21300000, guid: f58abb3061543a542a91551c4dbf9593, type: 3}
-    effectPoint: 0
-    coin: 100
-    effects:
-    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
-  - itemType: 0
-    itemName: shoes
-    itemImage: {fileID: 21300000, guid: adafb0641d4a51742b0716a5a36640a9, type: 3}
-    effectPoint: 0
-    coin: 45
-    effects:
-    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
-  - itemType: 0
-    itemName: armor2
-    itemImage: {fileID: 21300000, guid: 5105fe1d825990746b9a92407ea447ca, type: 3}
-    effectPoint: 80
-    coin: 60
-    effects:
-    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
-  fieldItemPrefab: {fileID: 3836436861504695149, guid: 7a4beb69ed8e41946b6b5f4cac45b5cd, type: 3}
-  posNum: 15
+  itemDB: []
+  fieldItemPrefab: {fileID: 3836436861504695149, guid: 4b4b037d9919b7946813240443496279, type: 3}
+  posNum: 5
 --- !u!4 &1580883844
 Transform:
   m_ObjectHideFlags: 0
