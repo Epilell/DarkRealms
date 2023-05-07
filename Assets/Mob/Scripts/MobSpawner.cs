@@ -24,6 +24,8 @@ public class MobSpawner : MonoBehaviour
     public List<GameObject> MobList => mobList;
     public List<Transform> spawnPoint;
     public float spawnDelay = 0.5f;
+    public int MaxSpawn = 3;
+    private int CurrentSpawn = 1;
 
     private void Awake()
     {
@@ -37,11 +39,16 @@ public class MobSpawner : MonoBehaviour
     {
         while (true)
         {
+            CurrentSpawn++;
+            if (CurrentSpawn > MaxSpawn)
+            {
+                yield break;
+            }
             for (int i = 0; i < mobList.Count; i++)
             {
                 // i번째 몬스터를 i번째 spawnPoint에 생성
                 //Instantiate(mobList[i], spawnPoint[i].position, Quaternion.identity);
-                GameObject clone = Instantiate(mobList[i],spawnPoint[i].position, Quaternion.identity) as GameObject;
+                GameObject clone = Instantiate(mobList[i], spawnPoint[i].position, Quaternion.identity) as GameObject;
                 SpawnEnemyHPSlider(clone);
                 yield return new WaitForSeconds(spawnDelay);
             }
@@ -65,5 +72,4 @@ public class MobSpawner : MonoBehaviour
         //Slider UI에 자신의 체력 정보를 표시하도록 설정
         sliderClone.GetComponent<MobHPViewer>().Setup(enemy.GetComponent<MobHP>());
     }
-
 }

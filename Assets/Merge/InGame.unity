@@ -3975,7 +3975,8 @@ MonoBehaviour:
   spawnPoint:
   - {fileID: 2108719454}
   - {fileID: 2108719454}
-  spawnDelay: 5
+  spawnDelay: 1
+  MaxSpawn: 3
 --- !u!4 &345074327
 Transform:
   m_ObjectHideFlags: 0
