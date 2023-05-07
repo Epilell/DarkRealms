@@ -8547,8 +8547,8 @@ MonoBehaviour:
     coin: 0
     effects:
     - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
-  fieldItemPrefab: {fileID: 3836436861504695149, guid: 7a4beb69ed8e41946b6b5f4cac45b5cd, type: 3}
-  posNum: 3
+  fieldItemPrefab: {fileID: 3836436861504695149, guid: 4b4b037d9919b7946813240443496279, type: 3}
+  posNum: 5
 --- !u!4 &763745030
 Transform:
   m_ObjectHideFlags: 0
@@ -20950,8 +20950,7 @@ MonoBehaviour:
   slot2: {fileID: 1948793846}
   slot3: {fileID: 2098920980}
   slot4: {fileID: 1453672092}
-  slot5: {fileID: 0}
-  p: {fileID: 0}
+  p: {fileID: 11400000, guid: a14c936c6adc0d34794da2330d8ae96d, type: 2}
 --- !u!114 &1933199378
 MonoBehaviour:
   m_ObjectHideFlags: 0

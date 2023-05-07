@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EquipmentInventory : MonoBehaviour
 {
-    public Slot slot, slot2, slot3, slot4, slot5;
+    public Slot slot, slot2, slot3, slot4/*, slot5*/;
     public P_Data p;
 
     private void Start() // ¿Â∫Ò ΩΩ∑‘ √ ±‚»≠
@@ -14,7 +14,7 @@ public class EquipmentInventory : MonoBehaviour
         slot2.item = null;
         slot3.item = null;
         slot4.item = null;
-        slot5.item = null;
+        // slot5.item = null;
     }
 
     public Slot FindEmptySlot(String itemName)  // ∫Û ΩΩ∑‘ √£±‚
@@ -35,10 +35,10 @@ public class EquipmentInventory : MonoBehaviour
         {
             return slot4;
         }
-        else if (itemName == "mobDrop")
+        /*else if (itemName == "mobDrop")
         {
             return slot5;
-        }
+        }*/
         else return null;
     }
 
