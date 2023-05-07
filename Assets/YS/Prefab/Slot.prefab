@@ -140,8 +140,11 @@ MonoBehaviour:
     itemType: 0
     itemName: 
     itemImage: {fileID: 0}
+    effectPoint: 0
+    coin: 0
     effects: []
   itemIcon: {fileID: 7913157973529991941}
+  p: {fileID: 11400000, guid: a14c936c6adc0d34794da2330d8ae96d, type: 2}
 --- !u!1 &7913157973529991947
 GameObject:
   m_ObjectHideFlags: 0

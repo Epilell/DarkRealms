@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5721309973370406513}
   - component: {fileID: 8396828937846237274}
   - component: {fileID: -7252419475719301143}
-  - component: {fileID: 7209540094269260534}
+  - component: {fileID: 2140630737449435709}
   m_Layer: 0
   m_Name: TypeF
   m_TagString: FieldItem
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.7066667
---- !u!114 &7209540094269260534
+--- !u!114 &2140630737449435709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,14 +111,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8071592843748401581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bd992bf5e43aab4999ac16e5de4cd7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a1838eacbc7b064a85a84fa24019720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   item:
     itemType: 0
-    itemName: 1
+    itemName: mobDrop
     itemImage: {fileID: 21300000, guid: cd721c319464c364080079a7177a064e, type: 3}
     effectPoint: 0
     coin: 0
-    effects: []
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
   image: {fileID: 8396828937846237274}
+  items: []

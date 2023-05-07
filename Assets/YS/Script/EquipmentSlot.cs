@@ -15,14 +15,18 @@ public class EquipmentSlot : Slot
             {
                 if (item.itemType != ItemType.Equipment)
                 {
+                    if (item.itemName == "apple" || item.itemName == "cherry")
+                    {
+                        p.P_CurrentHp += item.effectPoint;
+                    }
                     Inventory.instance.RemoveItem(slotNum);  // 인벤토리에서 제거
                 }
                 else
                 {
-                    // Debug.Log("장비 아이템, 오버라이드 구현");
                     EquipmentInventory equipmentInventory = GameObject.FindObjectOfType<EquipmentInventory>();  // 인스턴스
                     // Debug.Log(equipmentInventory); // Player
                     Slot targetSlot = equipmentInventory.FindEmptySlot(item.itemName);  // 대상 슬롯을 찾아서 불러옴
+
                     if (targetSlot != null) // 슬롯을 반환 받으면
                     {
                         equipmentInventory.AddItems(item, targetSlot);  // 대상 슬롯에 아이템 추가

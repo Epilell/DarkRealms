@@ -10,6 +10,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     public int slotNum;  // 슬롯 번호
     public Item item;
     public Image itemIcon;  // 아이콘
+    public P_Data p;
 
     public void UpdateSlotUI()
     {

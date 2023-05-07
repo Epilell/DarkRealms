@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class EquipmentInventory : MonoBehaviour
 {
-    public Slot slot, slot2, slot3, slot4;
+    public Slot slot, slot2, slot3, slot4, slot5;
+    public P_Data p;
 
     private void Start() // 장비 슬롯 초기화
     {
@@ -13,6 +14,7 @@ public class EquipmentInventory : MonoBehaviour
         slot2.item = null;
         slot3.item = null;
         slot4.item = null;
+        slot5.item = null;
     }
 
     public Slot FindEmptySlot(String itemName)  // 빈 슬롯 찾기
@@ -21,17 +23,21 @@ public class EquipmentInventory : MonoBehaviour
         {
             return slot;
         }
-        else if (itemName == "armor" || itemName == "armor2")
+        else if (itemName == "armor" /*|| itemName == "armor2"*/)
         {
             return slot2;
         }
-        else if (itemName == "sword")
+        else if (itemName == "rifle" || itemName == "shotgun")
         {
             return slot3;
         }
         else if (itemName == "shoes")
         {
             return slot4;
+        }
+        else if (itemName == "mobDrop")
+        {
+            return slot5;
         }
         else return null;
     }
@@ -45,22 +51,28 @@ public class EquipmentInventory : MonoBehaviour
 
             if (item.itemName == "helmet")
             {
+
                 Debug.Log("투구 장착");
             }
-            else if (item.itemName == "armor" || item.itemName == "armor2")
+            else if (item.itemName == "armor" /*|| item.itemName == "armor2"*/)
             {
                 Debug.Log("갑옷 장착");
-                HealthBar healthBar = GameObject.FindObjectOfType<HealthBar>();
+                p.P_MaxHp += item.effectPoint;
+/*                HealthBar healthBar = GameObject.FindObjectOfType<HealthBar>();
                 healthBar.maxHp += item.effectPoint;  // effectPoint만큼 최대 체력 증가
-                healthBar.currentHp += item.effectPoint / 2;  // effectPoint의 절반만큼 현재 체력 증가
+                healthBar.currentHp += item.effectPoint / 2;  // effectPoint의 절반만큼 현재 체력 증가*/
             }
             else if (item.itemName == "sword")
             {
-                Debug.Log("검 장착");
+                Debug.Log("무기 장착");
             }
             else if (item.itemName == "shoes")
             {
                 Debug.Log("신발 장착");
+            }
+            else if (item.itemName == "mobDrop")
+            {
+                Debug.Log("반지 장착");
             }
         }
         else
