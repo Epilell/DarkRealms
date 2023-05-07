@@ -131,10 +131,10 @@ MonoBehaviour:
   detectionRange: 10
   mobAttackRange: 8
   moveSpeed: 1
-  mobAttackSpeed: 1
+  mobAttackSpeed: 3
   bullet: {fileID: 5455975780477891010, guid: d76c41bf170d0e8499f47b2cadff2ea6, type: 3}
   firePoint: {fileID: 2136413482274836696}
-  bulletSpeed: 3
+  bulletSpeed: 1
 --- !u!114 &834271027276496990
 MonoBehaviour:
   m_ObjectHideFlags: 0
