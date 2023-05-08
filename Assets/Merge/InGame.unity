@@ -1925,7 +1925,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 35, y: 55}
+  m_SizeDelta: {x: 36, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &159642037
 MonoBehaviour:
@@ -8498,56 +8498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad02daff2861c03419962e12b7f81113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDB:
-  - itemType: 1
-    itemName: apple
-    itemImage: {fileID: 21300000, guid: aa6951ded2ecbe642aed998df2d7aea7, type: 3}
-    effectPoint: 0
-    coin: 0
-    effects:
-    - {fileID: 11400000, guid: 7f9da4dbe411a2c448f5533b57cdc310, type: 2}
-  - itemType: 1
-    itemName: cherry
-    itemImage: {fileID: 21300000, guid: 17ced0bb21329ef4397556157ed23351, type: 3}
-    effectPoint: 0
-    coin: 0
-    effects:
-    - {fileID: 11400000, guid: 367cf8448c951e4488fce31509e3ba22, type: 2}
-  - itemType: 0
-    itemName: helmet
-    itemImage: {fileID: 21300000, guid: 1f2175c841e0b0e4a9bc229e7961964f, type: 3}
-    effectPoint: 0
-    coin: 0
-    effects:
-    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
-  - itemType: 0
-    itemName: armor
-    itemImage: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
-    effectPoint: 150
-    coin: 0
-    effects:
-    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
-  - itemType: 0
-    itemName: sword
-    itemImage: {fileID: 21300000, guid: f58abb3061543a542a91551c4dbf9593, type: 3}
-    effectPoint: 0
-    coin: 0
-    effects:
-    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
-  - itemType: 0
-    itemName: shoes
-    itemImage: {fileID: 21300000, guid: adafb0641d4a51742b0716a5a36640a9, type: 3}
-    effectPoint: 0
-    coin: 0
-    effects:
-    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
-  - itemType: 0
-    itemName: armor2
-    itemImage: {fileID: 21300000, guid: 5105fe1d825990746b9a92407ea447ca, type: 3}
-    effectPoint: 80
-    coin: 0
-    effects:
-    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
+  itemDB: []
   fieldItemPrefab: {fileID: 3836436861504695149, guid: 4b4b037d9919b7946813240443496279, type: 3}
   posNum: 5
 --- !u!4 &763745030
@@ -13909,7 +13860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 475105508}
-  scene: LoadingOut
+  scene: {fileID: 102900000, guid: 63184fb1cf936ec49bbb3a341d7e0300, type: 3}
 --- !u!1 &1314100171
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class SceneLoad : MonoBehaviour
 {
     public Slider progressbar; // 로딩바로 사용할 슬라이더
     public Text loadText;
-    public string scene; // 로드할 씬
+    public SceneAsset scene; // 씬 가져오기
     public FadeOut fadeOut; // 페이드 아웃 스크립트
 
     private void Start()
@@ -19,7 +20,7 @@ public class SceneLoad : MonoBehaviour
     IEnumerator LoadScene()
     {
         yield return null;
-        AsyncOperation operation = SceneManager.LoadSceneAsync(scene); // 비동기 씬 로드 시작
+        AsyncOperation operation = SceneManager.LoadSceneAsync(scene.name); // 비동기 씬 로드 시작
         operation.allowSceneActivation = false; // 씬 로드가 완료되면 바로 전환하지 않도록 설정
 
         while (!operation.isDone) // 씬 로드가 완료될 때까지 반복

@@ -57,10 +57,9 @@ public class EquipmentInventory : MonoBehaviour
             else if (item.itemName == "armor" /*|| item.itemName == "armor2"*/)
             {
                 Debug.Log("갑옷 장착");
-                p.P_MaxHp += item.effectPoint;
-/*                HealthBar healthBar = GameObject.FindObjectOfType<HealthBar>();
+                // p.P_MaxHp += item.effectPoint;
+                HealthBar healthBar = GameObject.FindObjectOfType<HealthBar>();
                 healthBar.maxHp += item.effectPoint;  // effectPoint만큼 최대 체력 증가
-                healthBar.currentHp += item.effectPoint / 2;  // effectPoint의 절반만큼 현재 체력 증가*/
             }
             else if (item.itemName == "sword")
             {
