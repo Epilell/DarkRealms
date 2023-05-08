@@ -24,7 +24,7 @@ public class EquipmentSlot : Slot
                 else
                 {
                     EquipmentInventory equipmentInventory = GameObject.FindObjectOfType<EquipmentInventory>();  // 인스턴스
-                    // Debug.Log(equipmentInventory); // Player
+                    // Debug.Log(equipmentInventory); // == Player
                     Slot targetSlot = equipmentInventory.FindEmptySlot(item.itemName);  // 대상 슬롯을 찾아서 불러옴
 
                     if (targetSlot != null) // 슬롯을 반환 받으면

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EquipmentInventory : MonoBehaviour
 {
-    public Slot slot, slot2, slot3, slot4/*, slot5*/;
+    public Slot slot, slot2, slot3, slot4, slot5, slot6, slot7, slot8;
     public P_Data p;
 
     private void Start() // ¿Â∫Ò ΩΩ∑‘ √ ±‚»≠
@@ -14,7 +14,10 @@ public class EquipmentInventory : MonoBehaviour
         slot2.item = null;
         slot3.item = null;
         slot4.item = null;
-        // slot5.item = null;
+        slot5.item = null;
+        slot6.item = null;
+        slot7.item = null;
+        slot8.item = null;
     }
 
     public Slot FindEmptySlot(String itemName)  // ∫Û ΩΩ∑‘ √£±‚
@@ -27,7 +30,7 @@ public class EquipmentInventory : MonoBehaviour
         {
             return slot2;
         }
-        else if (itemName == "rifle" || itemName == "shotgun")
+        else if (itemName == "rifle")
         {
             return slot3;
         }
@@ -35,10 +38,14 @@ public class EquipmentInventory : MonoBehaviour
         {
             return slot4;
         }
-        /*else if (itemName == "mobDrop")
+        else if (itemName == "shotgun")
         {
-            return slot5;
-        }*/
+            return slot7;
+        }
+        else if (itemName == "mobDrop")
+        {
+            return slot8;
+        }
         else return null;
     }
 
@@ -54,30 +61,29 @@ public class EquipmentInventory : MonoBehaviour
 
                 Debug.Log("≈ı±∏ ¿Â¬¯");
             }
-            else if (item.itemName == "armor" /*|| item.itemName == "armor2"*/)
+            else if (item.itemName == "armor")
             {
                 Debug.Log("∞©ø  ¿Â¬¯");
                 // p.P_MaxHp += item.effectPoint;
-                HealthBar healthBar = GameObject.FindObjectOfType<HealthBar>();
-                healthBar.maxHp += item.effectPoint;  // effectPoint∏∏≈≠ √÷¥Î √º∑¬ ¡ı∞°
             }
-            else if (item.itemName == "sword")
+            else if (item.itemName == "rifle")
             {
-                Debug.Log("π´±‚ ¿Â¬¯");
+                Debug.Log("º“√— ¿Â¬¯");
             }
             else if (item.itemName == "shoes")
             {
                 Debug.Log("Ω≈πﬂ ¿Â¬¯");
+            }
+            else if (item.itemName == "shotgun")
+            {
+                Debug.Log("ªÍ≈∫√— ¿Â¬¯");
             }
             else if (item.itemName == "mobDrop")
             {
                 Debug.Log("π›¡ˆ ¿Â¬¯");
             }
         }
-        else
-        {
-            Debug.Log("¿ÃπÃ ¿Â¬¯µ«æÓ ¿÷Ω¿¥œ¥Ÿ. ¿Œ∫•≈‰∏Æø°º≠ ªË¡¶");
-        }
+        else { }
     }
 
     public void RemoveItem(int _index)
