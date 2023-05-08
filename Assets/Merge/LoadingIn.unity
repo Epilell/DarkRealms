@@ -270,7 +270,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Tip: \uC88B\uC2B5\uB2C8\uB2E4"
+  m_Text: "Tip: \uAC00\uB098\uB2E4\uB77C\n"
 --- !u!222 &487271591
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1172,6 +1172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedb67a46a84adc4bb160765dc393a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
   panel: {fileID: 486478250}
 --- !u!114 &2000252173
 MonoBehaviour:
