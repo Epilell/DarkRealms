@@ -3,22 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class Escape : MonoBehaviour
 {
     public Image panel; // 페이드 아웃에 사용할 이미지
     float time = 0f; // 경과 시간
     float fadeTime = 1f; // 페이드 아웃 시간
-    public string scene;
+    // public string scene;
+    public SceneAsset scene;
 
-    // 탈출구에서 F 키를 누르면 페이드 아웃 후 다음 씬 로드
-    /*void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Escape") && Input.GetKeyDown(KeyCode.F))
-        {
-            StartCoroutine(FadeOut());
-        }
-    }*/
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -42,11 +36,10 @@ public class Escape : MonoBehaviour
             yield return null; // 한 프레임 대기
         }
 
+        /*Coin coin = new Coin();
+        coin.SetCoin(100);*/
 
-
-        Coin coin = new Coin();
-        coin.SetCoin(100);
-
-        SceneManager.LoadScene(scene); // 씬 전환
+        // SceneManager.LoadScene(scene); // 씬 전환
+        SceneManager.LoadScene(scene.name);
     }
 }

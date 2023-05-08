@@ -961,7 +961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressbar: {fileID: 2056536105}
   loadText: {fileID: 499289310}
-  scene: InGameUI
+  scene: {fileID: 102900000, guid: e770657210d2ca7478d6a90c4543bdcb, type: 3}
   fadeOut: {fileID: 2000252173}
 --- !u!4 &1594124626
 Transform:
@@ -1187,7 +1187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 486478250}
-  scene: InGame
+  scene: {fileID: 102900000, guid: e770657210d2ca7478d6a90c4543bdcb, type: 3}
 --- !u!1 &2056536103
 GameObject:
   m_ObjectHideFlags: 0
