@@ -9,7 +9,6 @@ public class Inventory : MonoBehaviour
 
     public ItemType itemType;  // 아이템 타입
 
-    // public List<Item> items = new List<Item>();
     public List<Item> items = new();  // 인벤토리에 있는 아이템 리스트
 
     public delegate void OnSlotCountChange(int val);  // 슬롯 개수 변경 시 호출할 대리자
@@ -73,7 +72,8 @@ public class Inventory : MonoBehaviour
     {
         if (collision.CompareTag("FieldItem")/* && Input.GetKeyDown(KeyCode.F)*/)  // 충돌한 오브젝트의 태그가 "FieldItem"일때 F를 누르면
         {
-            //FieldItem fieldItem = collision.GetComponent<FieldItem>();  // 필드 아이템 컴포넌트 가져오기
+            // 필아이템 컴포넌트 가져오기
+            //FieldItem fieldItem = collision.GetComponent<FieldItem>();  
             PItem pItem = collision.GetComponent<PItem>();
 
             /*if (AddItem(fieldItem.GetItem()))  // AddItem()이 true이면(인벤토리에 아이템을 추가하면)

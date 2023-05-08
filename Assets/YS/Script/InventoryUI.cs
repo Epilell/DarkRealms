@@ -8,10 +8,12 @@ public class InventoryUI : MonoBehaviour
 {
     Inventory inventory;  // Inventory 클래스의 인스턴를 저장하는 변수
 
-    public GameObject profile_in, profile_out;
+    public GameObject SkillGroup;  // 스킬 UI
+    public GameObject profile_in, profile_out;  // 프로필 UI
     public GameObject inventoryPanel;  // 인벤토리 UI 패널 변수
     bool activeInventory = false;  // 인벤토리 UI 패널이 열려있는지?
     bool activeProfile = false;
+    bool activeSkillGroup = false;
 
     public Slot[] slots;  // 인벤토리의 슬롯들을 저장하는 배열 생성
     public Transform slotHolder;  // 슬롯들을 담고 있는 부모 오브젝트 생성
@@ -45,10 +47,13 @@ public class InventoryUI : MonoBehaviour
         {
             // activeInventory 반전(닫혀있으면 열고, 열려있으면 닫기)
             activeInventory = !activeInventory;
-            inventoryPanel.SetActive(activeInventory);
             activeProfile = !activeProfile;
+            activeSkillGroup = !activeSkillGroup;
+
+            inventoryPanel.SetActive(activeInventory);
             profile_in.SetActive(activeProfile);
             profile_out.SetActive(!activeProfile);
+            SkillGroup.SetActive(!activeSkillGroup);
         }
     }
 
