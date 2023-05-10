@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3836436861504695150}
   - component: {fileID: 3836436861504695151}
   - component: {fileID: 3836436861504695148}
-  - component: {fileID: 3836436861504695153}
+  - component: {fileID: -8335781452841883159}
   m_Layer: 0
-  m_Name: FieldItem
+  m_Name: Item
   m_TagString: FieldItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.2, y: 3.2}
   m_EdgeRadius: 0
---- !u!114 &3836436861504695153
+--- !u!114 &-8335781452841883159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,12 +121,64 @@ MonoBehaviour:
   m_GameObject: {fileID: 3836436861504695149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bd992bf5e43aab4999ac16e5de4cd7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a1838eacbc7b064a85a84fa24019720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   item:
     itemType: 0
     itemName: 
     itemImage: {fileID: 0}
+    effectPoint: 0
+    coin: 0
     effects: []
   image: {fileID: 3836436861504695151}
+  items:
+  - itemType: 1
+    itemName: apple
+    itemImage: {fileID: 21300000, guid: 60c1d42986dc0094c808b9e135f31ba2, type: 3}
+    effectPoint: 50
+    coin: 75
+    effects:
+    - {fileID: 11400000, guid: 7f9da4dbe411a2c448f5533b57cdc310, type: 2}
+  - itemType: 1
+    itemName: cherry
+    itemImage: {fileID: 21300000, guid: 17ced0bb21329ef4397556157ed23351, type: 3}
+    effectPoint: 30
+    coin: 50
+    effects:
+    - {fileID: 11400000, guid: 7f9da4dbe411a2c448f5533b57cdc310, type: 2}
+  - itemType: 0
+    itemName: helmet
+    itemImage: {fileID: 21300000, guid: 1f2175c841e0b0e4a9bc229e7961964f, type: 3}
+    effectPoint: 100
+    coin: 125
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
+  - itemType: 0
+    itemName: armor
+    itemImage: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
+    effectPoint: 100
+    coin: 165
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
+  - itemType: 0
+    itemName: rifle
+    itemImage: {fileID: 21300000, guid: f3600608e15a9924484f7ac34432e5c3, type: 3}
+    effectPoint: 100
+    coin: 275
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
+  - itemType: 0
+    itemName: shotgun
+    itemImage: {fileID: 21300000, guid: 2a84e7e46a9eac44a979f60537be73ec, type: 3}
+    effectPoint: 100
+    coin: 240
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
+  - itemType: 0
+    itemName: shoes
+    itemImage: {fileID: 21300000, guid: adafb0641d4a51742b0716a5a36640a9, type: 3}
+    effectPoint: 100
+    coin: 190
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}

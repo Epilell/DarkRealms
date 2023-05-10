@@ -627,7 +627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressbar: {fileID: 2056536105}
   loadText: {fileID: 499289310}
-  scene: MainMenu
+  scene: {fileID: 102900000, guid: ec413394a8cd737408be142e44870a79, type: 3}
   fadeOut: {fileID: 2000252173}
 --- !u!4 &1594124626
 Transform:
@@ -1299,7 +1299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1257556390}
-  scene: MainMenu
+  scene: {fileID: 102900000, guid: ec413394a8cd737408be142e44870a79, type: 3}
 --- !u!114 &2000252174
 MonoBehaviour:
   m_ObjectHideFlags: 0
