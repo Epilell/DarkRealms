@@ -9,33 +9,39 @@ public class BossPattern : MonoBehaviour
     SpriteRenderer spriteRenderer;
     private Transform player;
     private BossStat bossStat;
+    //Breath Pattren
     [SerializeField]
     private GameObject BreathAlert;
     [SerializeField]
     private GameObject Breath;
     [SerializeField]
     private GameObject BreathPoint;
-    [SerializeField]
-    private GameObject TailAlert;
+    //Tail Pattren
     [SerializeField]
     private GameObject TailAtk;
-    [SerializeField]
-    private GameObject PopOutAlert;
+    //PopOutAtk
     [SerializeField]
     private GameObject PopOutAtk;
+    //Delay
     [SerializeField]
     private float BreathDelay = 3f;
-    [SerializeField]
-    private float TailAtkDelay = 2f;
-    [SerializeField]
-    private float PopOutDelay = 2f;
+    //SpawnPattren
     [SerializeField]
     private GameObject mob;
     [SerializeField]
-    private GameObject spawnPoint;
-    Transform OutPoint;
-    //private BossHP bossHP;
-    // Start is called before the first frame update
+    private GameObject mobHPSliderPrefab; // 적 체력을 나타내는 Slider UI 프리팹
+    [SerializeField]
+    private Transform canvasTransform; // UI를 표현하는 Canvas 오브젝트의 Transform
+
+    [SerializeField]
+    //어떤 몬스터를 소환할지 리스트
+    private List<GameObject> mobList;  //List<자료형> 변수명 = new List<자료형>();
+    public List<GameObject> MobList => mobList;
+    public List<Transform> spawnPoint;
+    public float spawnDelay = 0.5f;
+    public int MaxSpawn = 3;
+    private int CurrentSpawn = 1;
+
     void Start()
     {
         // player를 찾아서 설정합니다.
@@ -62,23 +68,34 @@ public class BossPattern : MonoBehaviour
             if (pattrenChoicer >4)
             {
                 yield return StartCoroutine("BreathPattern()");
-            }else if (pattrenChoicer > 3)
+                yield return new WaitForSeconds(10f);
+            }
+            else if (pattrenChoicer > 3)
             {
                 yield return StartCoroutine("TailPattern()");
+                yield return StartCoroutine("TailPattern()");
+                yield return StartCoroutine("TailPattern()");
+                yield return new WaitForSeconds(5f);
             }
             else if (pattrenChoicer > 2)
             {
                 yield return StartCoroutine("PopOutPattern()");
+                yield return StartCoroutine("PopOutPattern()");
+                yield return StartCoroutine("PopOutPattern()");
+                yield return new WaitForSeconds(8f);
             }
             else if (pattrenChoicer > 1)
             {
                 yield return StartCoroutine("CrossPattern()");
+                yield return new WaitForSeconds(10f);
             }
             else
             {
                 yield return StartCoroutine("SpawnPattern()");
+                yield return new WaitForSeconds(20f);
             }*/
-            yield return PopOutPattern();//test
+            yield return TailPattern();//test
+            yield return new WaitForSeconds(10f);
         }
     }
     private IEnumerator BreathPattern()//브레스 공격
@@ -95,15 +112,13 @@ public class BossPattern : MonoBehaviour
     {
         //애니메이션 꼬리공격모션으로 바꾸고
         GetComponent<Animator>().SetTrigger("TailAttack");
-        //꼬리 공격 범위 표시 소환(몇초뒤 Destroy걸어놓기)
-        Instantiate(TailAlert, player.transform.position + Vector3.left, Quaternion.identity);
-        Instantiate(TailAlert, player.transform.position + Vector3.right, Quaternion.identity);
-        Instantiate(TailAlert, player.transform.position + Vector3.up, Quaternion.identity);
-        yield return new WaitForSeconds(TailAtkDelay);
         //플레이어 위치에 꼬리 공격 3개 정도 소환(몇초뒤 Destroy걸어놓기)
         Instantiate(TailAtk, player.transform.position + Vector3.left, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
         Instantiate(TailAtk, player.transform.position + Vector3.right, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
         Instantiate(TailAtk, player.transform.position + Vector3.up, Quaternion.identity);
+        yield return new WaitForSeconds(0.1f);
     }
     private IEnumerator PopOutPattern()//보스가 바닥에서 튀어나오는 공격
     {
@@ -112,18 +127,12 @@ public class BossPattern : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         //this.gameObject.SetActive(false);
         GetComponent<Animator>().SetBool("Stay", true);
-        //튀어나오기 공격 범위 표시 소환(몇초뒤 Destroy걸어놓기)
-        Instantiate(PopOutAlert, player.position, Quaternion.identity);
-        OutPoint = PopOutAlert.transform;
-        Debug.Log("1");
-        //플레이어 위치에 튀어나오기 공격 소환
+        //튀어나오기 공격 범위 표시 소환, 2초뒤 공격
         yield return new WaitForSeconds(2f);
-        Debug.Log("2");
-        Instantiate(PopOutAtk, PopOutAlert.transform.position, Quaternion.identity);
+        Instantiate(PopOutAtk, player.transform.position, Quaternion.identity);
         PopOutAtk.GetComponent<BossPopDamage>().SetStats(bossStat.BossDamageB);
         //튀어나오기 소환 이후 Boss gameObject.SetActive(true)하기
-        Debug.Log("3");
-        yield return new WaitForSeconds(PopOutDelay);
+        yield return new WaitForSeconds(4.2f);
         //this.gameObject.SetActive(true);
         GetComponent<Animator>().SetBool("Stay", false);
         GetComponent<Animator>().SetTrigger("ReturnPop");
@@ -139,10 +148,48 @@ public class BossPattern : MonoBehaviour
     {
         //애니메이션 잡몹소환모션으로 바꾸고
         GetComponent<Animator>().SetTrigger("SpawnMob");
-        for (int i = 0; i < Random.Range(2, 5); i++)
+        yield return SpawnMob();
+    }
+
+
+
+
+
+    protected virtual IEnumerator SpawnMob()
+    {
+        while (true)
         {
-            Instantiate(mob, spawnPoint.transform.position, Quaternion.identity);
+            CurrentSpawn++;
+            if (CurrentSpawn > MaxSpawn)
+            {
+                yield break;
+            }
+            for (int i = 0; i < mobList.Count; i++)
+            {
+                // i번째 몬스터를 i번째 spawnPoint에 생성
+                //Instantiate(mobList[i], spawnPoint[i].position, Quaternion.identity);
+                GameObject clone = Instantiate(mobList[i], spawnPoint[i].position, Quaternion.identity) as GameObject;
+                SpawnEnemyHPSlider(clone);
+                yield return new WaitForSeconds(spawnDelay);
+            }
         }
-        yield return new WaitForSeconds(3f);
+    }
+
+
+    protected virtual void SpawnEnemyHPSlider(GameObject enemy)
+    {
+        //적 체력을 나타내는 Slider UI 생성
+        GameObject sliderClone = Instantiate(mobHPSliderPrefab);
+
+        //Slider UI 프로젝트를 parent("Canvas" 오브젝트)의 자식으로 설정 단, UI는 캔버스의 자식으로 설정되어 있어야 화면에 보임
+        sliderClone.transform.SetParent(canvasTransform);
+
+        //계층 설정으로 바뀐 크기를 재설정
+        sliderClone.transform.localScale = Vector3.one;
+
+        //Slider UI가 쫓아다닐 대상을 본인으로 설정
+        sliderClone.GetComponent<SliderPositionAutoSetter>().Setup(enemy.transform);
+        //Slider UI에 자신의 체력 정보를 표시하도록 설정
+        sliderClone.GetComponent<MobHPViewer>().Setup(enemy.GetComponent<MobHP>());
     }
 }

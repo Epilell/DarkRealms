@@ -35,7 +35,7 @@ public class MobSpawner : MonoBehaviour
         StartCoroutine("SpawnMob");
     }
 
-    private IEnumerator SpawnMob()
+    protected virtual IEnumerator SpawnMob()
     {
         while (true)
         {
@@ -56,7 +56,7 @@ public class MobSpawner : MonoBehaviour
     }
 
 
-    private void SpawnEnemyHPSlider(GameObject enemy)
+    protected virtual void SpawnEnemyHPSlider(GameObject enemy)
     {
         //적 체력을 나타내는 Slider UI 생성
         GameObject sliderClone = Instantiate(mobHPSliderPrefab);

@@ -31,6 +31,10 @@ public class MobRangeBullet : MonoBehaviour
         {
             DestroyBullet();
         }
+        else if (collision.gameObject.CompareTag("BossMob"))
+        {
+            DestroyBullet();
+        }
     }
     private void DestroyBullet()
     {
