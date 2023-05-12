@@ -162,20 +162,6 @@ MonoBehaviour:
     effects:
     - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
   - itemType: 0
-    itemName: rifle
-    itemImage: {fileID: 21300000, guid: f3600608e15a9924484f7ac34432e5c3, type: 3}
-    effectPoint: 100
-    coin: 275
-    effects:
-    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
-  - itemType: 0
-    itemName: shotgun
-    itemImage: {fileID: 21300000, guid: 2a84e7e46a9eac44a979f60537be73ec, type: 3}
-    effectPoint: 100
-    coin: 240
-    effects:
-    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
-  - itemType: 0
     itemName: knee
     itemImage: {fileID: 21300000, guid: 6cc05bb1c5b2a0546b0220c0ed622cac, type: 3}
     effectPoint: 100
@@ -187,5 +173,19 @@ MonoBehaviour:
     itemImage: {fileID: 21300000, guid: 968d0524eb4c2804aaa4cd8b37b9a2ff, type: 3}
     effectPoint: 100
     coin: 190
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
+  - itemType: 0
+    itemName: rifle
+    itemImage: {fileID: 21300000, guid: f3600608e15a9924484f7ac34432e5c3, type: 3}
+    effectPoint: 100
+    coin: 275
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
+  - itemType: 0
+    itemName: shotgun
+    itemImage: {fileID: 21300000, guid: 2a84e7e46a9eac44a979f60537be73ec, type: 3}
+    effectPoint: 100
+    coin: 240
     effects:
     - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}

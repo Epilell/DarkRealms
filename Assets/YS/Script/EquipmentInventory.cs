@@ -30,13 +30,17 @@ public class EquipmentInventory : MonoBehaviour
         {
             return slot2;
         }
-        else if (itemName == "rifle")
+        else if (itemName == "knee")
         {
             return slot3;
         }
         else if (itemName == "shoes")
         {
             return slot4;
+        }
+        else if (itemName == "rifle")
+        {
+            return slot6;
         }
         else if (itemName == "shotgun")
         {
@@ -66,13 +70,17 @@ public class EquipmentInventory : MonoBehaviour
                 Debug.Log("°©¿Ê ÀåÂø");
                 // p.P_MaxHp += item.effectPoint;
             }
-            else if (item.itemName == "rifle")
+            else if (item.itemName == "knee")
             {
-                Debug.Log("¼ÒÃÑ ÀåÂø");
+                Debug.Log("¹«¸­ º¸È£±¸ ÀåÂø");
             }
             else if (item.itemName == "shoes")
             {
                 Debug.Log("½Å¹ß ÀåÂø");
+            }
+            else if (item.itemName == "shotgun")
+            {
+                Debug.Log("¼ÒÃÑ ÀåÂø");
             }
             else if (item.itemName == "shotgun")
             {
