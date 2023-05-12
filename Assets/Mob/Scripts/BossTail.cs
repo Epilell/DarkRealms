@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossPopDamage : MonoBehaviour
+public class BossTail : MonoBehaviour
 {
     private float Damage;
     private bool canDamage = false;
@@ -12,11 +12,11 @@ public class BossPopDamage : MonoBehaviour
     }
     private void Awake()
     {
-        Destroy(gameObject, 4.2f);
+        Destroy(gameObject, 1.8f);
     }
     private void Start()
     {
-        Invoke("EnableDamage", 2f);
+        Invoke("EnableDamage", 0.7f);
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -34,7 +34,7 @@ public class BossPopDamage : MonoBehaviour
         Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
         CircleCollider2D collider = gameObject.AddComponent<CircleCollider2D>();
         rb.gravityScale = 0f;
-        collider.radius = 3f;
-        GetComponent<Animator>().SetTrigger("BossPop");
+        collider.radius = 1.5f;
+        GetComponent<Animator>().SetTrigger("TailAtk");
     }
 }

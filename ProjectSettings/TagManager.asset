@@ -20,6 +20,7 @@ TagManager:
   - Weapon Case
   - Weapon
   - Map
+  - BossMob
   layers:
   - Default
   - TransparentFX
