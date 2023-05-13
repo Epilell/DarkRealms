@@ -9,6 +9,7 @@ public class BossPattern : MonoBehaviour
     SpriteRenderer spriteRenderer;
     private Transform player;
     private BossStat bossStat;
+    private BossHP bossHP;
     //Breath Pattren
     [SerializeField]
     private GameObject Breath;
@@ -25,7 +26,6 @@ public class BossPattern : MonoBehaviour
     private GameObject mob;
     [SerializeField]
     private GameObject mobHPSliderPrefab; // 적 체력을 나타내는 Slider UI 프리팹
-    [SerializeField]
     private Transform canvasTransform; // UI를 표현하는 Canvas 오브젝트의 Transform
 
     [SerializeField]
@@ -49,49 +49,84 @@ public class BossPattern : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         bossStat = GetComponent<BossStat>();
+        bossHP = GetComponent<BossHP>();
     }
-    private void FixedUpdate()
+    public void SetCanvas(Transform Canvas)
     {
-
+        this.canvasTransform = Canvas;
     }
+
     private IEnumerator BossPattrenStart()
     {
         int pattrenChoicer = Random.Range(1, 5);
         while (true)
         {
-            if (pattrenChoicer >4)
+            if (bossHP.CurrentHP<(bossHP.MaxHP*0.4))//보스HP40프로 이하시 패턴 추가 및 딜레이 감소
             {
-                yield return StartCoroutine("BreathPattern");
-                yield return new WaitForSeconds(1f);
-                pattrenChoicer = Random.Range(1, 5);
+                //현재 적의 색상을 color변수에 저장
+                Color color = spriteRenderer.color;
+                color.r = 1.3f;//빨강1.3배
+                spriteRenderer.color = color;
+                //차후 이미지 교체도 가능
+                if (pattrenChoicer > 4)
+                {
+                    yield return StartCoroutine("BreathPattern");
+                    yield return new WaitForSeconds(7f);
+                    pattrenChoicer = Random.Range(1, 5);
+                }
+                else if (pattrenChoicer > 3)
+                {
+                    yield return StartCoroutine("TailPattern");
+                    yield return StartCoroutine("TailPattern");
+                    yield return StartCoroutine("TailPattern");
+                    yield return new WaitForSeconds(1f);
+                    pattrenChoicer = Random.Range(1, 5);
+                }
+                else if (pattrenChoicer > 2)
+                {
+                    yield return StartCoroutine("PopOutPattern");
+                    yield return StartCoroutine("PopOutPattern");
+                    yield return StartCoroutine("PopOutPattern");
+                    yield return new WaitForSeconds(5f);
+                    pattrenChoicer = Random.Range(1, 5);
+                }
+                /*else if (pattrenChoicer > 1)
+                {
+                    yield return StartCoroutine("CrossPattern()");
+                    yield return new WaitForSeconds(10f);
+                    pattrenChoicer = Random.Range(1, 5);
+                }*/
+                else
+                {
+                    yield return StartCoroutine("SpawnPattern");
+                    yield return new WaitForSeconds(3f);
+                    pattrenChoicer = Random.Range(1, 5);
+                }
             }
-            else if (pattrenChoicer > 3)
-            {
-                yield return StartCoroutine("TailPattern");
-                yield return StartCoroutine("TailPattern");
-                yield return StartCoroutine("TailPattern");
-                yield return new WaitForSeconds(1f);
-                pattrenChoicer = Random.Range(1, 5);
-            }
-            else if (pattrenChoicer > 2)
-            {
-                yield return StartCoroutine("PopOutPattern");
-                yield return StartCoroutine("PopOutPattern");
-                yield return StartCoroutine("PopOutPattern");
-                yield return new WaitForSeconds(1f);
-                pattrenChoicer = Random.Range(1, 5);
-            }
-            /*else if (pattrenChoicer > 1)
-            {
-                yield return StartCoroutine("CrossPattern()");
-                yield return new WaitForSeconds(10f);
-                pattrenChoicer = Random.Range(1, 5);
-            }*/
             else
             {
-                yield return StartCoroutine("SpawnPattern");
-                yield return new WaitForSeconds(1f);
-                pattrenChoicer = Random.Range(1, 5);
+                if (pattrenChoicer > 4)
+                {
+                    yield return StartCoroutine("TailPattern");
+                    yield return StartCoroutine("TailPattern");
+                    yield return StartCoroutine("TailPattern");
+                    yield return new WaitForSeconds(3f);
+                    pattrenChoicer = Random.Range(1, 5);
+                }
+                else if (pattrenChoicer > 2)
+                {
+                    yield return StartCoroutine("PopOutPattern");
+                    yield return StartCoroutine("PopOutPattern");
+                    yield return StartCoroutine("PopOutPattern");
+                    yield return new WaitForSeconds(7f);
+                    pattrenChoicer = Random.Range(1, 5);
+                }
+                else
+                {
+                    yield return StartCoroutine("SpawnPattern");
+                    yield return new WaitForSeconds(5f);
+                    pattrenChoicer = Random.Range(1, 5);
+                }
             }
         }
     }
