@@ -11,9 +11,14 @@ using UnityEngine;
 public class W_Rifle : MonoBehaviour
 {
     //무기 기본 데이터 저장
-    public W_Data Data;
+    public W_Data data;
+    public P_Skill skill;
 
     //-----------------------------------<무기 기능>--------------------------------------------------
+
+    //시즈모드시 공격방식
+    public int bulletMultiply = 3;
+    private GameObject[] bullets;
 
     //발사위치 저장
     private GameObject Fire_Position;
@@ -21,26 +26,48 @@ public class W_Rifle : MonoBehaviour
 
     private void Attack()
     {
+
         Fire_Position = GameObject.FindWithTag("Fire Position");
         if (CurTime <= 0f)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && skill.siegeIsActive == false)
             {
                 //총알 생성
                 GameObject Bullet;
-                Bullet = Instantiate(Data.Bullet, Fire_Position.transform.position, Quaternion.Euler(0f, 0f, rotateDegree - 90f));
+                Bullet = Instantiate(data.Bullet, Fire_Position.transform.position, Quaternion.Euler(0f, 0f, rotateDegree - 90f));
 
                 //총알 데이터 입력
-                Bullet.GetComponent<Bullet>().SetStats(Data.W_Speed,Data.W_Damage,Data.W_Distance);
+                Bullet.GetComponent<Bullet>().SetStats(data.W_Speed,data.W_Damage,data.W_Distance);
 
                 //발사시간 초기화
-                CurTime = Data.W_AttackSpeed;
+                CurTime = data.W_AttackSpeed;
+            }
+            else if(Input.GetMouseButtonDown(0) && skill.siegeIsActive == true)
+            {
+                bullets = new GameObject[bulletMultiply];
+                float deg = -10f;
+                //총알 생성
+                for(int i = 0; i < bulletMultiply; i++)
+                {
+                    bullets[i] = Instantiate(data.Bullet, Fire_Position.transform.position, Quaternion.Euler(0f, 0f, rotateDegree - 90f + deg));
+
+                    //총알 데이터 입력
+                    bullets[i].GetComponent<Bullet>().SetStats(data.W_Speed, data.W_Damage, data.W_Distance);
+                    deg += 10f;
+                }
+                //발사시간 초기화
+                CurTime = data.W_AttackSpeed;
             }
         }
         else
         {
             CurTime -= Time.deltaTime;
         }
+    }
+
+    private void SpecialAttack()
+    {
+
     }
 
     //-----------------------------------<애니메이션>--------------------------------------------------
@@ -96,6 +123,7 @@ public class W_Rifle : MonoBehaviour
     {
         WeaponCase = GameObject.FindWithTag("Weapon Case");
         Fire_Position = GameObject.FindWithTag("Fire Position");
+        skill = GameObject.FindWithTag("Player").GetComponent<P_Skill>();
     }
 
     // Start is called before the first frame update

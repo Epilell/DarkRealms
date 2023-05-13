@@ -10,10 +10,19 @@ public class Molotov : MonoBehaviour
     private float elapsedTime;
     private float completePercentage;
 
+    private GameObject explosionEffect;
+
     public void SetCourse(Vector3 _target)
     {
         targetPos = _target;
     }
+
+    private void MakeAfterEffect()
+    {
+        Instantiate(explosionEffect);
+        Destroy(gameObject);
+    }
+
 
     private void Update()
     {
@@ -21,6 +30,6 @@ public class Molotov : MonoBehaviour
         float distance = Vector3.Distance(targetPos, transform.position);
         completePercentage = (elapsedTime / (distance / meterPerSec));
         transform.position = Vector3.Lerp(transform.position, targetPos, completePercentage);
-        if (transform.position == targetPos) { Destroy(gameObject); }
+        if (transform.position == targetPos) { MakeAfterEffect(); }
     }
 }

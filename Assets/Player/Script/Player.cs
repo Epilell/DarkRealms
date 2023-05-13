@@ -153,7 +153,7 @@ public class Player : MonoBehaviour
 
     //--------------------------------------<애니메이션>---------------------------------------------
     //플레이어 애니메이터
-    private Animator P_Ani;
+    private Animator ani;
 
     //마우스 및 플레이어 위치 변수
     private Vector3 Mouse_Position, P_Position;
@@ -193,16 +193,16 @@ public class Player : MonoBehaviour
     private void IsMove()
     {
         if (P_XSpeed != 0f || P_YSpeed != 0f)
-        { P_Ani.SetBool("IsMove", true); }
+        { ani.SetBool("IsMove", true); }
         else
-        { P_Ani.SetBool("IsMove", false); }
+        { ani.SetBool("IsMove", false); }
     }
 
     private void IsDead() 
     {
         if (CurrentHp <= 0) 
         {
-            P_Ani.SetBool("IsDead", true);
+            ani.SetBool("IsDead", true);
             P.enabled = false;
             weaponCase.SetActive(false);
         }
@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         //애니메이터 지정
-        P_Ani = GetComponent<Animator>();
+        ani = GetComponent<Animator>();
         P = GetComponent<Player>();
         weaponCase = GameObject.FindWithTag("Weapon Case");
 
