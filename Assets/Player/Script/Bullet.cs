@@ -23,8 +23,8 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Mob"))
         {
             collision.gameObject.GetComponent<MobHP>().TakeDamage(Damage);
-            DestroyBullet();
         }
+        DestroyBullet();
     }
 
     //ÃÑ¾Ë »èÁ¦

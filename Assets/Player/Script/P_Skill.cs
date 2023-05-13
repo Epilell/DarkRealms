@@ -15,6 +15,8 @@ public class P_Skill : MonoBehaviour
     private Vector3 DirectionVec;
     private float mx, my;
 
+    private Animator ani;
+
     //회피 방향 지정
     private void GetDir()
     {
@@ -51,13 +53,20 @@ public class P_Skill : MonoBehaviour
         {
             GameObject hitTarget = hit.collider.gameObject;
             transform.position = hit.point;
+            ani.SetBool("IsDash", true);
         }
         else
         {
             transform.position += DirectionVec.normalized * dodgeDistance;
+            ani.SetBool("IsDash", true);
         }
 
         dodgeTimeCheck = 0; canDodge = false;
+    }
+
+    public void EndDash()
+    {
+        ani.SetBool("IsDash", false);
     }
 
     /*--------------------------------------------------<화염병>-----------------------------------------------------------*/
@@ -111,7 +120,7 @@ public class P_Skill : MonoBehaviour
 
     /*--------------------------------------------------<시즈모드>-----------------------------------------------------------*/
     private Player player;
-    private bool siegeIsActive = false;
+    public bool siegeIsActive = false;
 
     public float siegeCooltime = 3f;
     private float siegeCurtime = 0f;
@@ -150,6 +159,7 @@ public class P_Skill : MonoBehaviour
     private void Awake()
     {
         player = this.GetComponent<Player>();
+        ani = this.GetComponent<Animator>();
     }
 
     private void Update()
