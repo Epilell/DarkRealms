@@ -11,8 +11,6 @@ public class BossPattern : MonoBehaviour
     private BossStat bossStat;
     //Breath Pattren
     [SerializeField]
-    private GameObject BreathAlert;
-    [SerializeField]
     private GameObject Breath;
     [SerializeField]
     private GameObject BreathPoint;
@@ -22,9 +20,6 @@ public class BossPattern : MonoBehaviour
     //PopOutAtk
     [SerializeField]
     private GameObject PopOutAtk;
-    //Delay
-    [SerializeField]
-    private float BreathDelay = 3f;
     //SpawnPattren
     [SerializeField]
     private GameObject mob;
@@ -61,52 +56,52 @@ public class BossPattern : MonoBehaviour
     }
     private IEnumerator BossPattrenStart()
     {
+        int pattrenChoicer = Random.Range(1, 5);
         while (true)
         {
-            /*
-            int pattrenChoicer = Random.Range(1, 5);
             if (pattrenChoicer >4)
             {
-                yield return StartCoroutine("BreathPattern()");
-                yield return new WaitForSeconds(10f);
+                yield return StartCoroutine("BreathPattern");
+                yield return new WaitForSeconds(1f);
+                pattrenChoicer = Random.Range(1, 5);
             }
             else if (pattrenChoicer > 3)
             {
-                yield return StartCoroutine("TailPattern()");
-                yield return StartCoroutine("TailPattern()");
-                yield return StartCoroutine("TailPattern()");
-                yield return new WaitForSeconds(5f);
+                yield return StartCoroutine("TailPattern");
+                yield return StartCoroutine("TailPattern");
+                yield return StartCoroutine("TailPattern");
+                yield return new WaitForSeconds(1f);
+                pattrenChoicer = Random.Range(1, 5);
             }
             else if (pattrenChoicer > 2)
             {
-                yield return StartCoroutine("PopOutPattern()");
-                yield return StartCoroutine("PopOutPattern()");
-                yield return StartCoroutine("PopOutPattern()");
-                yield return new WaitForSeconds(8f);
+                yield return StartCoroutine("PopOutPattern");
+                yield return StartCoroutine("PopOutPattern");
+                yield return StartCoroutine("PopOutPattern");
+                yield return new WaitForSeconds(1f);
+                pattrenChoicer = Random.Range(1, 5);
             }
-            else if (pattrenChoicer > 1)
+            /*else if (pattrenChoicer > 1)
             {
                 yield return StartCoroutine("CrossPattern()");
                 yield return new WaitForSeconds(10f);
-            }
+                pattrenChoicer = Random.Range(1, 5);
+            }*/
             else
             {
-                yield return StartCoroutine("SpawnPattern()");
-                yield return new WaitForSeconds(20f);
-            }*/
-            yield return TailPattern();//test
-            yield return new WaitForSeconds(10f);
+                yield return StartCoroutine("SpawnPattern");
+                yield return new WaitForSeconds(1f);
+                pattrenChoicer = Random.Range(1, 5);
+            }
         }
     }
     private IEnumerator BreathPattern()//브레스 공격
     {
         //애니메이션 브레스공격모션으로 바꾸고
         GetComponent<Animator>().SetTrigger("BreathAttack");
-        //브레스 공격범위 표시 소환(몇초뒤 Destroy걸어놓기)
-        Instantiate(BreathAlert, BreathPoint.transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(BreathDelay);//브레스 딜레이 동안 대기 후
-        //보스 정면에 브레스 소환(몇초뒤 Destroy걸어놓기)
+        //브레스 공격 소환
         Instantiate(Breath, BreathPoint.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.1f); ;//브레스 딜레이 동안 대기
     }
     private IEnumerator TailPattern()//바닥에서 튀어나오는 꼬리 공격
     {
@@ -124,7 +119,7 @@ public class BossPattern : MonoBehaviour
     {
         //애니메이션 튀어나오기공격모션으로 바꾸고
         GetComponent<Animator>().SetTrigger("Ready");
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.1f);
         //this.gameObject.SetActive(false);
         GetComponent<Animator>().SetBool("Stay", true);
         //튀어나오기 공격 범위 표시 소환, 2초뒤 공격
