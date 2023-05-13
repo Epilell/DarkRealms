@@ -5,12 +5,14 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Molotov : MonoBehaviour
 {
+    public W_Data data;
+
     private Vector3 targetPos;
     private float meterPerSec = 0.1f;
     private float elapsedTime;
     private float completePercentage;
 
-    private GameObject explosionEffect;
+    public GameObject explosionRange;
 
     public void SetCourse(Vector3 _target)
     {
@@ -19,7 +21,8 @@ public class Molotov : MonoBehaviour
 
     private void MakeAfterEffect()
     {
-        Instantiate(explosionEffect);
+        GameObject molotov = Instantiate(explosionRange, transform.position, transform.rotation);
+        molotov.GetComponent<MolotovRange>().setDamage(data.W_Damage);
         Destroy(gameObject);
     }
 

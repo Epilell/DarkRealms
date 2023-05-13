@@ -17,9 +17,8 @@ public class W_Rifle : MonoBehaviour
     //-----------------------------------<무기 기능>--------------------------------------------------
 
     //시즈모드시 공격방식
-    public int bulletMultiply = 3;
-    private GameObject[] bullets;
-
+    public int bulletMultiply = 4;
+    
     //발사위치 저장
     private GameObject Fire_Position;
     private float CurTime = 0;
@@ -33,26 +32,38 @@ public class W_Rifle : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && skill.siegeIsActive == false)
             {
                 //총알 생성
-                GameObject Bullet;
-                Bullet = Instantiate(data.Bullet, Fire_Position.transform.position, Quaternion.Euler(0f, 0f, rotateDegree - 90f));
+                GameObject Bullet1;
+                Bullet1 = Instantiate(data.Bullet, Fire_Position.transform.position, Quaternion.Euler(0f, 0f, rotateDegree - 90f));
 
                 //총알 데이터 입력
-                Bullet.GetComponent<Bullet>().SetStats(data.W_Speed,data.W_Damage,data.W_Distance);
+                Bullet1.GetComponent<Bullet>().SetStats(data.W_Speed,data.W_Damage,data.W_Distance);
 
                 //발사시간 초기화
                 CurTime = data.W_AttackSpeed;
             }
             else if(Input.GetMouseButtonDown(0) && skill.siegeIsActive == true)
             {
-                bullets = new GameObject[bulletMultiply];
-                float deg = -10f;
+                GameObject[] Bullet2 = new GameObject[bulletMultiply];
+                float deg;
+                if(bulletMultiply % 2 == 0)
+                {
+                    deg = -(((bulletMultiply - 2) * 10 ) - 5);
+                }
+                else if (bulletMultiply % 2 == 1)
+                {
+                    deg = -((int)(bulletMultiply / 2) * 10);
+                }
+                else
+                {
+                    deg = 0;
+                }
                 //총알 생성
                 for(int i = 0; i < bulletMultiply; i++)
                 {
-                    bullets[i] = Instantiate(data.Bullet, Fire_Position.transform.position, Quaternion.Euler(0f, 0f, rotateDegree - 90f + deg));
+                    Bullet2[i] = Instantiate(data.Bullet, Fire_Position.transform.position, Quaternion.Euler(0f, 0f, rotateDegree - 90f + deg));
 
                     //총알 데이터 입력
-                    bullets[i].GetComponent<Bullet>().SetStats(data.W_Speed, data.W_Damage, data.W_Distance);
+                    Bullet2[i].GetComponent<Bullet>().SetStats(data.W_Speed, data.W_Damage, data.W_Distance);
                     deg += 10f;
                 }
                 //발사시간 초기화
