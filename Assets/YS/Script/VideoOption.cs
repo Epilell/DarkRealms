@@ -8,7 +8,7 @@ public class VideoOption : MonoBehaviour
     FullScreenMode screenMode; // 전체화면 모드 저장할 변수
     public Dropdown resolutionDropdown;  // 해상도 드롭다운 UI
     public Toggle fullscreenBtn; // 전체화면 토글 UI
-    List<Resolution> resolutions = new List<Resolution>(); // 해상도 리스트
+    List<Resolution> resolutions = new(); // 해상도 리스트
     public int resolutionNum; // 선택한 해상도 인덱스
 
     void Start()
