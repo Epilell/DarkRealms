@@ -5,8 +5,10 @@ using UnityEngine.EventSystems;
 
 public class EquipmentSlot : Slot
 {
-    public override void OnPointerUp(PointerEventData eventData)
+    /*
+    new public void OnPointerUp(PointerEventData eventData)
     {
+        
         if (item != null)  // 아이템이 있으면
         {
             bool isUse = item.Use();  // 아이템 사용
@@ -39,5 +41,5 @@ public class EquipmentSlot : Slot
         {
             Debug.Log("빈칸!");  // 로그 출력
         }
-    }
+}*/
 }

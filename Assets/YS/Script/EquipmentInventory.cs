@@ -5,50 +5,62 @@ using UnityEngine;
 
 public class EquipmentInventory : MonoBehaviour
 {
-    public Slot slot, slot2, slot3, slot4, slot5, slot6, slot7, slot8;
+    public static EquipmentInventory instance;  // 인벤토리 인스턴스
+    //public EquipmentSlot slot, slot2, slot3, slot4, slot5, slot6, slot7, slot8;
+    private EquipmentSlot[] slots;
     public P_Data p;
-
+    public EquipmentData Eqdata;
+    public Transform slotHolder;
+    private void Awake()
+    {
+        if (instance != null)  // 인벤토리 인스턴스가 존재하면
+        {
+            Destroy(gameObject);  // 중복 생성 방지를 위해 현재 게임 오브젝트를 파괴
+            return;  // 종료
+        }
+        instance = this;  // 인스턴스가 존재하지 않으면 현재 인스턴스를 할당
+    }
     private void Start() // 장비 슬롯 초기화
     {
-        slot.item = null;
-        slot2.item = null;
-        slot3.item = null;
-        slot4.item = null;
-        slot5.item = null;
-        slot6.item = null;
-        slot7.item = null;
-        slot8.item = null;
+        slots = slotHolder.GetComponentsInChildren<EquipmentSlot>();
+        /*for (int i = 0; i < 8; i++)
+        {
+            if (slots[i] != null)
+            {
+                slots[i].item = Eqdata.EqItems[i];
+            }
+        }*/
     }
 
     public Slot FindEmptySlot(String itemName)  // 빈 슬롯 찾기
     {
         if (itemName == "helmet")
         {
-            return slot;
+            return slots[0];
         }
         else if (itemName == "armor" /*|| itemName == "armor2"*/)
         {
-            return slot2;
+            return slots[1];
         }
         else if (itemName == "knee")
         {
-            return slot3;
+            return slots[2];
         }
         else if (itemName == "shoes")
         {
-            return slot4;
+            return slots[3];
         }
         else if (itemName == "rifle")
         {
-            return slot6;
+            return slots[4];
         }
         else if (itemName == "shotgun")
         {
-            return slot7;
+            return slots[5];
         }
         else if (itemName == "mobDrop")
         {
-            return slot8;
+            return slots[6];
         }
         else return null;
     }

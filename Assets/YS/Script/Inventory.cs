@@ -10,14 +10,15 @@ public class Inventory : MonoBehaviour
     public ItemType itemType;  // 아이템 타입
 
     public List<Item> items = new();  // 인벤토리에 있는 아이템 리스트
-
+    [SerializeField]
+    private InventoryData InvenData;
     public delegate void OnSlotCountChange(int val);  // 슬롯 개수 변경 시 호출할 대리자
     public OnSlotCountChange onSlotCountChange;  // 슬롯 개수 변경 시 이벤트
 
     public delegate void OnChangeItem();  // 아이템 변경 대리자
     public OnChangeItem onChangeItem;  // 아이템 변경 인스턴스
 
-    private int slotCount;
+    protected int slotCount;
 
     private void Awake()
     {
@@ -39,9 +40,13 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
         SlotCount = 15;  // // 최초 활성 슬롯 개수
+
+        items = InvenData.items;
+        if (onChangeItem != null)  // 아이템 변경 이벤트가 등록되어 있으면
+            onChangeItem.Invoke();  // 아이템 변경 이벤트 호출
     }
 
     // 아이템 추가 함수
@@ -52,11 +57,13 @@ public class Inventory : MonoBehaviour
             items.Add(_item);  // 아이템 리스트에 아이템 추가
             if (onChangeItem != null)  // 아이템 변경 이벤트가 등록되어 있으면
                 onChangeItem.Invoke();  // 아이템 변경 이벤트 호출
+            InvenData.items = items;
             return true;  // 아이템 추가
         }
         else
         {
             Debug.Log("인벤토리 포화!");
+            InvenData.items = items;
             return false;  // 아이템 추가하지 않음
         }
     }
@@ -66,6 +73,7 @@ public class Inventory : MonoBehaviour
     {
         items.RemoveAt(_index);  // 아이템 리스트에서 해당 인덱스의 아이템 제거
         onChangeItem.Invoke();  // 아이템 변경 이벤트 호출
+        InvenData.items = items;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

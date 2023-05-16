@@ -6,29 +6,32 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    Inventory inventory;  // Inventory 클래스의 인스턴를 저장하는 변수
-
-    public GameObject SkillGroup;  // 스킬 UI
-    public GameObject profile_in, profile_out;  // 프로필 UI
+    public Inventory inventory;  // Inventory 클래스의 인스턴를 저장하는 변수
+    [SerializeField]
+    private GameObject SkillGroup;  // 스킬 UI
+    //[SerializeField]
+    //private GameObject profile_in, profile_out;  // 프로필 UI
+    [SerializeField]
+    private GameObject profile_out;
     public GameObject inventoryPanel;  // 인벤토리 UI 패널 변수
-    bool activeInventory = false;  // 인벤토리 UI 패널이 열려있는지?
-    bool activeProfile = false;
-    bool activeSkillGroup = false;
+    protected bool activeInventory = false;  // 인벤토리 UI 패널이 열려있는지?
+    protected bool activeProfile = false;
+    protected bool activeSkillGroup = false;
 
-    public Slot[] slots;  // 인벤토리의 슬롯들을 저장하는 배열 생성
+    protected Slot[] slots;  // 인벤토리의 슬롯들을 저장하는 배열 생성
     public Transform slotHolder;  // 슬롯들을 담고 있는 부모 오브젝트 생성
 
-    private void Start()
+    protected void Start()
     {
         inventory = Inventory.instance;
         slots = slotHolder.GetComponentsInChildren<Slot>();  // 슬롯 초기화
         inventory.onSlotCountChange += SlotChange;  // 슬롯 개수가 변경될 때마다 SlotChange() 함수 호출
         inventory.onChangeItem += RedrawSlotUI;  // 아이템이 추가되거나 제거될 때마다 RedrawSlotUI() 함수 호출
         inventoryPanel.SetActive(activeInventory);  // 인벤토리 비활성화
-        profile_in.SetActive(activeProfile);
+        //profile_in.SetActive(activeProfile);
     }
 
-    private void SlotChange(int val)
+    protected void SlotChange(int val)
     {
         for (int i = 0; i < slots.Length; i++)
         {
@@ -41,7 +44,7 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))  // Tab 키가 눌리면
         {
@@ -51,13 +54,13 @@ public class InventoryUI : MonoBehaviour
             activeSkillGroup = !activeSkillGroup;
 
             inventoryPanel.SetActive(activeInventory);
-            profile_in.SetActive(activeProfile);
+            //profile_in.SetActive(activeProfile);
             profile_out.SetActive(!activeProfile);
             SkillGroup.SetActive(!activeSkillGroup);
         }
     }
 
-    void RedrawSlotUI()
+    protected void RedrawSlotUI()
     {
         for (int i = 0; i < slots.Length; i++)
         {
