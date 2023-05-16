@@ -62,7 +62,6 @@ public class EquipmentInventory : MonoBehaviour
 
             if (item.itemName == "helmet")
             {
-
                 Debug.Log("Åõ±¸ ÀåÂø");
             }
             else if (item.itemName == "armor")

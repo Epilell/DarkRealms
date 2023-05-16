@@ -26,19 +26,4 @@ public class MobInventory : MonoBehaviour
             isInven = true;
         }
     }
-
-    /*
-    void OnTriggerStay2D(Collider2D other)
-    {
-      // 충돌한 오브젝트가 "DeadMob" 태그를 가진 대상이고, F키를 누를 때
-      if (other.CompareTag("DeadMob") && Input.GetKeyDown(KeyCode.F))
-      {
-        if (isInven == false)
-        {
-          inventory.SetActive(true);
-          isInven = true;
-        }
-      }
-    }
-    */
 }

@@ -21,6 +21,7 @@ TagManager:
   - Weapon
   - Map
   - BossMob
+  - Material
   layers:
   - Default
   - TransparentFX

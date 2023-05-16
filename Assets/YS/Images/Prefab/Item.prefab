@@ -189,3 +189,10 @@ MonoBehaviour:
     coin: 240
     effects:
     - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
+  - itemType: 2
+    itemName: Material
+    itemImage: {fileID: 21300000, guid: dda47c8e6d10f2d44887439b99ee701c, type: 3}
+    effectPoint: 0
+    coin: 100
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}

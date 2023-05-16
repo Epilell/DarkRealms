@@ -10,6 +10,7 @@ public class PItem : MonoBehaviour  // FieldItem의 기능 옮겨옴. 프리팹에 아이템 
     public SpriteRenderer image; // 아이템의 이미지
     public List<Item> items = new();
 
+    // _item으로 아이템 정보를 받아서 item 변수를 초기화하고, 해당 아이템의 이미지를 image에 표시
     public void SetItem(Item _item)
     {
         item.itemName = _item.itemName;
