@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public static Inventory instance;  // 인벤토리 인스턴스
-
-    public ItemType itemType;  // 아이템 타입
-
-    public List<Item> items = new();  // 인벤토리에 있는 아이템 리스트
     [SerializeField]
     private InventoryData InvenData;
+
+    public static Inventory instance;  // 인벤토리 인스턴스
+
+    public List<Item> items = new();  // 인벤토리에 있는 아이템 리스트
+
     public delegate void OnSlotCountChange(int val);  // 슬롯 개수 변경 시 호출할 대리자
     public OnSlotCountChange onSlotCountChange;  // 슬롯 개수 변경 시 이벤트
 
@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
 
     protected int slotCount;
 
-    private void Awake()
+    protected void Awake()
     {
         if (instance != null)  // 인벤토리 인스턴스가 존재하면
         {
@@ -40,13 +40,15 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void Start()
+    protected void Start()
     {
         SlotCount = 15;  // // 최초 활성 슬롯 개수
-
-        items = InvenData.items;
-        if (onChangeItem != null)  // 아이템 변경 이벤트가 등록되어 있으면
-            onChangeItem.Invoke();  // 아이템 변경 이벤트 호출
+        if (InvenData.items.Count >0)
+        {
+            items = InvenData.items;
+            if (onChangeItem != null)  // 아이템 변경 이벤트가 등록되어 있으면
+                onChangeItem.Invoke();  // 아이템 변경 이벤트 호출
+        }
     }
 
     // 아이템 추가 함수

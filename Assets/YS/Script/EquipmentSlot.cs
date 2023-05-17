@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class EquipmentSlot : Slot
 {
+    //여기다가 장비아이템 전용 코드를 만들어도 괜찮을듯?
     /*
     new public void OnPointerUp(PointerEventData eventData)
     {

@@ -296,5 +296,5 @@ MonoBehaviour:
     effectPoint: 0
     coin: 0
     effects: []
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 1832565759726393841}
   p: {fileID: 11400000, guid: a14c936c6adc0d34794da2330d8ae96d, type: 2}

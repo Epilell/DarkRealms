@@ -9,14 +9,24 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 {
     public int slotNum;  // 슬롯 번호
     public Item item;
-    public Image itemIcon;  // 아이콘
-    public P_Data p;
+    public Image itemIcon;  // 아이템이 표시될 아이콘(슬롯안에있음)
+    //public P_Data p;
 
     public void UpdateSlotUI()
-    {
+    {/*
         itemIcon.sprite = item.itemImage;  // 아이템 이미지 설정
         itemIcon.enabled = true;  // 아이콘 활성화
-        itemIcon.gameObject.SetActive(true);  // 아이템 오브젝트 활성화
+        itemIcon.gameObject.SetActive(true);  // 아이템 오브젝트 활성화*/
+        if (item != null && itemIcon != null)
+        {
+            itemIcon.sprite = item.itemImage;  // 아이템 이미지 설정
+            itemIcon.enabled = true;  // 아이콘 활성화
+            itemIcon.gameObject.SetActive(true);  // 아이템 오브젝트 활성화
+        }
+        else
+        {
+            Debug.Log("Slot.UpdateSlotUI 오류 발생");
+        }
     }
 
     public void RemoveSlot()
@@ -33,6 +43,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
             if (isUse)  // 사용했으면
             {
+                /* 여기부터 아래주석까지는 새로운 스크립트로 만드시오
                 if (item.itemType != ItemType.Equipment)
                 {
                     if (item.itemName == "apple" || item.itemName == "cherry")
@@ -52,7 +63,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
                         equipmentInventory.AddItems(item, targetSlot);  // 대상 슬롯에 아이템 추가
                         equipmentInventory.RemoveItem(slotNum);  // 현재 슬롯에서 아이템 제거
                     }
-                }
+                }새로운 스크립트로 만들부분은 여기까지임*/
             }
         }
         else  // 아이템이 없으면

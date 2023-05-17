@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8909a773418f86a4980c5fe51b4e70ef, type: 3}
+  m_Name: Storage Data
+  m_EditorClassIdentifier: 
+  items:
+  - itemType: 0
+    itemName: helmet
+    itemImage: {fileID: 21300000, guid: dbb33d6f64b5ace42ab7a247759cb2eb, type: 3}
+    effectPoint: 100
+    coin: 0
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
+  - itemType: 0
+    itemName: knee
+    itemImage: {fileID: 21300000, guid: 6cc05bb1c5b2a0546b0220c0ed622cac, type: 3}
+    effectPoint: 100
+    coin: 0
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
+  - itemType: 1
+    itemName: cherry
+    itemImage: {fileID: 21300000, guid: 17ced0bb21329ef4397556157ed23351, type: 3}
+    effectPoint: 30
+    coin: 0
+    effects:
+    - {fileID: 11400000, guid: 7f9da4dbe411a2c448f5533b57cdc310, type: 2}

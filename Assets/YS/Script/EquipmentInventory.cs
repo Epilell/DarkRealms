@@ -8,7 +8,7 @@ public class EquipmentInventory : MonoBehaviour
     public static EquipmentInventory instance;  // 인벤토리 인스턴스
     //public EquipmentSlot slot, slot2, slot3, slot4, slot5, slot6, slot7, slot8;
     private EquipmentSlot[] slots;
-    public P_Data p;
+    public P_Data p;//이건 장비아이템 코드를 따로 만들면 필요없음
     public EquipmentData Eqdata;
     public Transform slotHolder;
     private void Awake()
@@ -23,13 +23,13 @@ public class EquipmentInventory : MonoBehaviour
     private void Start() // 장비 슬롯 초기화
     {
         slots = slotHolder.GetComponentsInChildren<EquipmentSlot>();
-        /*for (int i = 0; i < 8; i++)
+        for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i] != null)
             {
                 slots[i].item = Eqdata.EqItems[i];
             }
-        }*/
+        }
     }
 
     public Slot FindEmptySlot(String itemName)  // 빈 슬롯 찾기
@@ -80,6 +80,7 @@ public class EquipmentInventory : MonoBehaviour
             {
                 Debug.Log("갑옷 장착");
                 // p.P_MaxHp += item.effectPoint;
+                //플레이어에게 장착효과 넣는것도 새로운 스크립트로 만들어서 여기서는 호출만 하시오
             }
             else if (item.itemName == "knee")
             {
