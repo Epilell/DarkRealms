@@ -108,7 +108,7 @@ public class EquipmentInventory : MonoBehaviour
 
     public void RemoveItem(int _index)
     {
-        Inventory.instance.items.RemoveAt(_index);  // 아이템 리스트에서 해당 인덱스의 아이템 제거
-        Inventory.instance.onChangeItem.Invoke();  // 아이템 변경 이벤트 호출
+        OldInventory.instance.items.RemoveAt(_index);  // 아이템 리스트에서 해당 인덱스의 아이템 제거
+        OldInventory.instance.onChangeItem.Invoke();  // 아이템 변경 이벤트 호출
     }
 }

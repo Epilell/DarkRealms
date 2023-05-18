@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryUI : MonoBehaviour
+public class OldInventoryUI : MonoBehaviour
 {
-    protected Inventory inventory;  // Inventory 클래스의 인스턴를 저장하는 변수
+    protected OldInventory inventory;  // Inventory 클래스의 인스턴를 저장하는 변수
     [SerializeField]
     private GameObject SkillGroup;  // 스킬 UI-----------------------이거랑 
     //[SerializeField]
@@ -26,7 +26,7 @@ public class InventoryUI : MonoBehaviour
 
     public void Start()
     {
-        inventory = Inventory.instance;
+        inventory = OldInventory.instance;
         slots = slotHolder.GetComponentsInChildren<Slot>();  // 슬롯 초기화
         inventory.onSlotCountChange += SlotChange;  // 슬롯 개수가 변경될 때마다 SlotChange() 함수 호출
         inventory.onChangeItem += RedrawSlotUI;  // 아이템이 추가되거나 제거될 때마다 RedrawSlotUI() 함수 호출

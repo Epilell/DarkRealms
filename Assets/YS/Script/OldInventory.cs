@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class OldInventory : MonoBehaviour
 {
     [SerializeField]
     private InventoryData InvenData;
 
-    public static Inventory instance;  // 인벤토리 인스턴스
+    public static OldInventory instance;  // 인벤토리 인스턴스
 
     public List<Item> items = new();  // 인벤토리에 있는 아이템 리스트
 

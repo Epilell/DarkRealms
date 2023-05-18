@@ -34,7 +34,10 @@ public class Slot : MonoBehaviour, IPointerUpHandler
         item = null;  // 슬롯 안 아이템 제거
         //itemIcon.gameObject.SetActive(false);  // 아이템 오브젝트 비활성화
     }
+    public void OnMouseDown(PointerEventData eventDat)
+    {
 
+    }
     public void OnPointerUp(PointerEventData eventData)
     {
         if (item != null)  // 아이템이 있으면

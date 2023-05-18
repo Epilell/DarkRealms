@@ -44,7 +44,7 @@ public class StorageInven : MonoBehaviour
 
     private void Start()
     {
-        SlotCount = 15; // 최초 활성 슬롯 개수
+        SlotCount = 30; // 최초 활성 슬롯 개수
         if (storData.items.Count > 0)
         {
             items = storData.items;
