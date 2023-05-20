@@ -13,7 +13,7 @@ public class ItemHealingEfffect : ItemEffect
         HealthBar healthBar = GameObject.FindObjectOfType<HealthBar>();
         // HealthBar 객체의 IncreaseHp 메서드를 호출하여 체력 회복
         healthBar.IncreaseHp(item.effectPoint);*/
-        Debug.Log("힐");
+        Debug.Log("회복");
 
         return true;
     }

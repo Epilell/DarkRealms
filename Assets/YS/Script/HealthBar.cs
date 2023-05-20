@@ -21,8 +21,22 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        currentHp = playerData.P_CurrentHp;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            currentHp -= 10;
+        }
+
         maxHp = playerData.P_MaxHp;
+        currentHp = playerData.P_CurrentHp;
+        if (currentHp > maxHp)
+        {
+            currentHp = maxHp;
+        }
+        if (currentHp < 0)
+        {
+            currentHp = 0;
+        }
+
         ChangeHP();
     }
 
@@ -32,9 +46,9 @@ public class HealthBar : MonoBehaviour
         hpbar.value = (float)currentHp / (float)maxHp; // 체력 갱신
         textObj2.text = currentHp.ToString() + "/" + maxHp.ToString(); // 체력 텍스트 갱신
         hpbar2.value = (float)currentHp / (float)maxHp; // 체력 갱신
-        // hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);
+        // hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);  ← 뭔가 이상해서 주석 처리
     }
-    
+
     /*public void IncreaseHp(float amount) // 체력 증가 함수
     {
         currentHp += amount;

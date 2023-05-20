@@ -43,7 +43,7 @@ public class OldInventory : MonoBehaviour
     protected void Start()
     {
         SlotCount = 15;  // // 최초 활성 슬롯 개수
-        if (InvenData.items.Count >0)
+        if (InvenData.items.Count > 0)
         {
             items = InvenData.items;
             if (onChangeItem != null)  // 아이템 변경 이벤트가 등록되어 있으면

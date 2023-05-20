@@ -13,10 +13,12 @@ public enum ItemType  // 열거형으로 아이템 종류 구분
 public class Item
 {
     public ItemType itemType;  // 위에서 만든 아이템 종류
-    public string itemName;
-    public Sprite itemImage;
+    public string itemName; // 이름
+    public Sprite itemImage; // 이미지
     public float effectPoint; // 버프 수치
-    public int coin;
+    public string grade; // 장비 등급
+    public int level; // 강화 레벨
+    public int coin; // 돈인데... 일단 보류함
     public List<ItemEffect> effects;  // 아이템 효과
 
     public bool Use()  // 아이템 사용시 호출

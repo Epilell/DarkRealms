@@ -55,6 +55,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 17790c504822a7041b2cb232729c9b19, type: 3}
   - {fileID: 21300000, guid: bd414a9002c9cc743a6b1481e409997d, type: 3}
   - {fileID: 21300000, guid: fc6ec0b0f09e050458575e72975d27bb, type: 3}
+  - {fileID: 21300000, guid: b7d19ec039fa7b141bd165aa95496c75, type: 3}
   - {fileID: 21300000, guid: f84b6dd0347a94f4a9a69ac911fc1f9d, type: 3}
   - {fileID: 21300000, guid: d1debd018f9877c408ca2c35857bb8c2, type: 3}
   - {fileID: 21300000, guid: b9505e419a14dda4ea399d26d5955f94, type: 3}
@@ -137,6 +138,7 @@ SpriteAtlas:
   - Scout [Paint]
   - RedwoodBow
   - VikingShortBow
+  - SmallPotion
   - SilverRing
   - GladiatorShield
   - SteelAxe

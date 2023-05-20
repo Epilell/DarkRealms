@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class EquipmentInventory : MonoBehaviour
 {
+    protected OldInventory oldInventory;
+
     public static EquipmentInventory instance;  // 인벤토리 인스턴스
-    //public EquipmentSlot slot, slot2, slot3, slot4, slot5, slot6, slot7, slot8;
     private EquipmentSlot[] slots;
-    public P_Data p;//이건 장비아이템 코드를 따로 만들면 필요없음
     public EquipmentData Eqdata;
     public Transform slotHolder;
+
+    public Equip equip;
+
     private void Awake()
     {
         if (instance != null)  // 인벤토리 인스턴스가 존재하면
@@ -20,14 +23,18 @@ public class EquipmentInventory : MonoBehaviour
         }
         instance = this;  // 인스턴스가 존재하지 않으면 현재 인스턴스를 할당
     }
+
     private void Start() // 장비 슬롯 초기화
     {
+        oldInventory = OldInventory.instance;
+        
         slots = slotHolder.GetComponentsInChildren<EquipmentSlot>();
         for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i] != null)
             {
-                slots[i].item = Eqdata.EqItems[i];
+                // slots[i].item = Eqdata.EqItems[i];
+                slots[i].item = null;
             }
         }
     }
@@ -38,7 +45,7 @@ public class EquipmentInventory : MonoBehaviour
         {
             return slots[0];
         }
-        else if (itemName == "armor" /*|| itemName == "armor2"*/)
+        else if (itemName == "armor")
         {
             return slots[1];
         }
@@ -58,49 +65,54 @@ public class EquipmentInventory : MonoBehaviour
         {
             return slots[5];
         }
-        else if (itemName == "mobDrop")
-        {
-            return slots[6];
-        }
         else return null;
     }
 
-    public void AddItems(Item item, Slot targetSlot)  // 빈 슬롯에 넣음
+    public void AddItems(Item item, Slot targetSlot, int slotNum)  // 빈 슬롯에 넣음
     {
-        if (targetSlot != null && targetSlot.item == null) // 해당 슬롯에 이미 아이템이 있으면 추가하지 않음
+        // image가 null이면 아이템이 없는 걸로, 이미지가 다르면 다른 아이템으로 간주
+        if (targetSlot != null && /*targetSlot.item.itemImage != item.itemImage || */targetSlot.item == null /*targetSlot.item.itemName == ""*/) // 해당 슬롯에 같은 아이템이 있으면 추가하지 않음
         {
+            if (targetSlot.item != null && targetSlot.item.itemImage != null)
+            {
+                equip.RemoveEquipmentEffect(targetSlot.item.itemName, targetSlot.item.effectPoint);
+                oldInventory.AddItem(targetSlot.item); // 다른 아이템이 존재하면 아이템 교체
+            }
+
+            // 장비 슬롯에 아이템 추가
             targetSlot.item = item;
             targetSlot.UpdateSlotUI();
 
+            // 종류 별로 효과 부여
             if (item.itemName == "helmet")
             {
-                Debug.Log("투구 장착");
+                equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
+                RemoveItem(slotNum);
             }
             else if (item.itemName == "armor")
             {
-                Debug.Log("갑옷 장착");
-                // p.P_MaxHp += item.effectPoint;
-                //플레이어에게 장착효과 넣는것도 새로운 스크립트로 만들어서 여기서는 호출만 하시오
+                equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
+                RemoveItem(slotNum);
             }
             else if (item.itemName == "knee")
             {
-                Debug.Log("무릎 보호구 장착");
+                equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
+                RemoveItem(slotNum);
             }
             else if (item.itemName == "shoes")
             {
-                Debug.Log("신발 장착");
+                equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
+                RemoveItem(slotNum);
+            }
+            else if (item.itemName == "rifle")
+            {
+                equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
+                RemoveItem(slotNum);
             }
             else if (item.itemName == "shotgun")
             {
-                Debug.Log("소총 장착");
-            }
-            else if (item.itemName == "shotgun")
-            {
-                Debug.Log("산탄총 장착");
-            }
-            else if (item.itemName == "mobDrop")
-            {
-                Debug.Log("반지 장착");
+                equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
+                RemoveItem(slotNum);
             }
         }
         else { }

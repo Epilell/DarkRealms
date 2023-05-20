@@ -10,7 +10,6 @@ public class Escape : MonoBehaviour
     public Image panel; // 페이드 아웃에 사용할 이미지
     float time = 0f; // 경과 시간
     float fadeTime = 1f; // 페이드 아웃 시간
-    // public string scene;
     public SceneAsset scene;
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -39,7 +38,6 @@ public class Escape : MonoBehaviour
         /*Coin coin = new Coin();
         coin.SetCoin(100);*/
 
-        // SceneManager.LoadScene(scene); // 씬 전환
         SceneManager.LoadScene(scene.name);
     }
 }

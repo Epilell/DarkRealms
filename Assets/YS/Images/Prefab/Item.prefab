@@ -162,6 +162,13 @@ MonoBehaviour:
     effects:
     - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
   - itemType: 0
+    itemName: armor
+    itemImage: {fileID: 21300000, guid: 21daaf5b8f3f3fa4cb4f00ec62484721, type: 3}
+    effectPoint: 80
+    coin: 100
+    effects:
+    - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
+  - itemType: 0
     itemName: knee
     itemImage: {fileID: 21300000, guid: 6cc05bb1c5b2a0546b0220c0ed622cac, type: 3}
     effectPoint: 100
@@ -171,7 +178,7 @@ MonoBehaviour:
   - itemType: 0
     itemName: shoes
     itemImage: {fileID: 21300000, guid: 968d0524eb4c2804aaa4cd8b37b9a2ff, type: 3}
-    effectPoint: 100
+    effectPoint: 2.5
     coin: 190
     effects:
     - {fileID: 11400000, guid: 733cd8b325f19514da5eac6d293a9a2e, type: 2}
