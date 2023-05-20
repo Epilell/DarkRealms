@@ -38,22 +38,28 @@ namespace Rito.InventorySystem
             Amount = Mathf.Clamp(amount, 0, MaxAmount);
         }
 
-        /// <summary> 개수 추가 및 최대치 초과량 반환(초과량 없을 경우 0) </summary>
+        /// <summary> 개수 추가 및 최대치 초과량 반환(초과량 없을 경우 0, -일경우 -반환) </summary>
         public int AddAmountAndGetExcess(int amount)
         {
             int nextAmount = Amount + amount;
             SetAmount(nextAmount);
-
-            return (nextAmount > MaxAmount) ? (nextAmount - MaxAmount) : 0;
+            if (nextAmount < 0)
+            {
+                return nextAmount;
+            }
+            else
+            {
+                return (nextAmount > MaxAmount) ? (nextAmount - MaxAmount) : 0;
+            }
         }
 
         /// <summary> 개수를 나누어 복제 </summary>
         public CountableItem SeperateAndClone(int amount)
         {
             // 수량이 한개 이하일 경우, 복제 불가
-            if(Amount <= 1) return null;
+            if (Amount <= 1) return null;
 
-            if(amount > Amount - 1)
+            if (amount > Amount - 1)
                 amount = Amount - 1;
 
             Amount -= amount;

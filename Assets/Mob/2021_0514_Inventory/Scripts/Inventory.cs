@@ -117,7 +117,7 @@ namespace Rito.InventorySystem
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            if(_initalCapacity > _maxCapacity)
+            if (_initalCapacity > _maxCapacity)
                 _initalCapacity = _maxCapacity;
         }
 #endif
@@ -170,6 +170,25 @@ namespace Rito.InventorySystem
                 }
             }
 
+            return -1;
+        }
+        /// <summary>
+        /// 재료아이템이 충분한지 검사, 재료아이템의 인덱스 반환(재료아이템,소비량,startIndex)
+        /// </summary>
+        private int FindMaterialSlotIndex(CountableItemData target, int amount, int startIndex = 0)
+        {
+            for (int i = startIndex; i < Capacity; i++)
+            {
+                var current = _items[i];
+                if (current == null)
+                    continue;
+
+                // 아이템 종류 일치
+                if (current.Data == target && current is CountableItem ci)
+                {
+                    return i;
+                }
+            }
             return -1;
         }
 
@@ -352,6 +371,7 @@ namespace Rito.InventorySystem
                         // 빈 슬롯조차 없는 경우 종료
                         if (index == -1)
                         {
+                            Debug.Log("빈슬롯 없음");
                             break;
                         }
                         // 빈 슬롯 발견 시, 슬롯에 아이템 추가 및 잉여량 계산
@@ -420,6 +440,45 @@ namespace Rito.InventorySystem
             _items[index] = null;
             _inventoryUI.RemoveItem(index);
         }
+        /// <summary>
+        /// 재료아이템 소비하기(재료아이템, 소비숫자) 반환값은 소비 성공or실패
+        /// </summary>
+        public bool UseMaterial(ItemData itemData, int amount)
+        {
+            int index;
+            if (itemData is CountableItemData ciData)
+            {
+                index = -1;
+                int currentAmount = 0;
+                while (currentAmount >= amount)
+                {
+                    index = FindMaterialSlotIndex(ciData, amount, index + 1);
+                    if (index == -1)
+                    {
+                        Debug.Log("재료 부족!");
+                        return false;
+                    }
+                    else
+                    {
+                        CountableItem ci = _items[index] as CountableItem;
+                        currentAmount += ci.Amount;
+                    }
+                }
+                while (amount < 0)
+                {
+                    index = FindMaterialSlotIndex(ciData, amount, index + 1);
+                    CountableItem ci = _items[index] as CountableItem;
+                    amount -= ci.AddAmountAndGetExcess(amount);
+                    Debug.Log(amount);
+                }
+                return true;
+            }
+            else
+            {
+                Debug.Log("이거 재료아이템 아닌데?");
+                return false;
+            }
+        }
 
         /// <summary> 두 인덱스의 아이템 위치를 서로 교체 </summary>
         public void Swap(int indexA, int indexB)
@@ -466,8 +525,8 @@ namespace Rito.InventorySystem
         {
             // amount : 나눌 목표 수량
 
-            if(!IsValidIndex(indexA)) return;
-            if(!IsValidIndex(indexB)) return;
+            if (!IsValidIndex(indexA)) return;
+            if (!IsValidIndex(indexB)) return;
 
             Item _itemA = _items[indexA];
             Item _itemB = _items[indexB];
@@ -530,7 +589,7 @@ namespace Rito.InventorySystem
 
             while (true)
             {
-                while (++j < Capacity && _items[j] == null);
+                while (++j < Capacity && _items[j] == null) ;
 
                 if (j == Capacity)
                     break;
