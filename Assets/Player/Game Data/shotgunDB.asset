@@ -10,11 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3c2374b2cf0d3e42a35f0b78a133b8c, type: 3}
-  m_Name: Rifle
+  m_Name: shotgunDB
   m_EditorClassIdentifier: 
-  W_Prefab: {fileID: 3469706018811520813, guid: 9fa5d11d0c6221a409e044f7735cb6a2, type: 3}
-  W_Damage: 10
-  W_AttackSpeed: 1
-  W_Distance: 0
-  W_Speed: 5
-  Bullet: {fileID: 5076240041137796760, guid: 65b2c829d312d044cb30dd74e8d56cf2, type: 3}
+  upgradeList:
+  - damage: 3
+    rpm: 60
+    pelletNum: 6
+  - damage: 3
+    rpm: 60
+    pelletNum: 7
+  - damage: 3
+    rpm: 60
+    pelletNum: 8
+  upgradeNum: 0
+  bulletPrefab: {fileID: 5076240041137796760, guid: 65b2c829d312d044cb30dd74e8d56cf2, type: 3}

@@ -5,9 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Rito.InventorySystem;
 
-// 날짜 : 2021-03-19 PM 11:01:36
-// 작성자 : Rito
-
 public class InventoryTester : MonoBehaviour
 {
     public Inventory _inventory;
@@ -26,6 +23,7 @@ public class InventoryTester : MonoBehaviour
     public Button _AddPortionA50;
     public Button _AddPortionB1;
     public Button _AddPortionB50;
+    public Button _UsePortionB50;
 
     private void Start()
     {
@@ -46,7 +44,7 @@ public class InventoryTester : MonoBehaviour
             for(int i = 0; i < capacity; i++)
                 _inventory.Remove(i);
         });
-
+        //아이템 추가하는법
         _AddArmorA1.onClick.AddListener(() => _inventory.Add(_itemDataArray[0]));
         _AddArmorB1.onClick.AddListener(() => _inventory.Add(_itemDataArray[1]));
 
@@ -57,6 +55,8 @@ public class InventoryTester : MonoBehaviour
         _AddPortionA50.onClick.AddListener(() => _inventory.Add(_itemDataArray[4], 50));
         _AddPortionB1.onClick.AddListener(() => _inventory.Add(_itemDataArray[5]));
         _AddPortionB50.onClick.AddListener(() => _inventory.Add(_itemDataArray[5], 50));
+        //재료아이템의 인덱스를 찾아 i에 등록
+        _UsePortionB50.onClick.AddListener(() => _inventory.UseMaterial(_itemDataArray[5], 50));
     }
 
 }

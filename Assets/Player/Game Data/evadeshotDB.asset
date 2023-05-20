@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3c2374b2cf0d3e42a35f0b78a133b8c, type: 3}
-  m_Name: Molotov
+  m_Script: {fileID: 11500000, guid: b529523fed775154faa4c468a6e99ad6, type: 3}
+  m_Name: evadeshotDB
   m_EditorClassIdentifier: 
-  W_Prefab: {fileID: 0}
-  W_Damage: 5
-  W_AttackSpeed: 0
-  W_Distance: 0
-  W_Speed: 0
-  Bullet: {fileID: 0}
+  upgradeList:
+  - coolTime: 10
+  - coolTime: 9
+  - coolTime: 8
+  upgradeNum: 0
