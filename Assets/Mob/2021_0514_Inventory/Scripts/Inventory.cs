@@ -175,12 +175,12 @@ namespace Rito.InventorySystem
         /// <summary>
         /// 재료아이템이 충분한지 검사, 재료아이템의 인덱스 반환(재료아이템,소비량,startIndex)
         /// </summary>
-        private int FindMaterialSlotIndex(CountableItemData target, int amount, int startIndex = 0)
+        private int FindMaterialSlotIndex(CountableItemData target, int startIndex = 0)
         {
             for (int i = startIndex; i < Capacity; i++)
             {
                 var current = _items[i];
-                if (current == null)
+                if (current == null)//null일시 다음 슬롯으로
                     continue;
 
                 // 아이템 종류 일치
@@ -445,14 +445,17 @@ namespace Rito.InventorySystem
         /// </summary>
         public bool UseMaterial(ItemData itemData, int amount)
         {
-            int index;
+            Debug.Log("UseMaterial1");
+            int index = -1;
             if (itemData is CountableItemData ciData)
             {
-                index = -1;
+                Debug.Log("UseMaterial2");
                 int currentAmount = 0;
-                while (currentAmount >= amount)
+                while (currentAmount < amount)
                 {
-                    index = FindMaterialSlotIndex(ciData, amount, index + 1);
+                    Debug.Log("재료가 충분한지확인");
+                    index = FindMaterialSlotIndex(ciData, index + 1);
+                    Debug.Log("index= "+index);
                     if (index == -1)
                     {
                         Debug.Log("재료 부족!");
@@ -462,16 +465,40 @@ namespace Rito.InventorySystem
                     {
                         CountableItem ci = _items[index] as CountableItem;
                         currentAmount += ci.Amount;
+                        Debug.Log("currentAmount = " + currentAmount);
                     }
                 }
-                while (amount < 0)
+                Debug.Log("currentAmount = " + currentAmount);
+                if (currentAmount >= amount)//사용될 재료가 충분하면 실행
                 {
-                    index = FindMaterialSlotIndex(ciData, amount, index + 1);
-                    CountableItem ci = _items[index] as CountableItem;
-                    amount -= ci.AddAmountAndGetExcess(amount);
-                    Debug.Log(amount);
+                    index = -1;
+                    Debug.Log("재료충분하니 실제로 사용함");
+                    while (amount > 0)
+                    {
+                        Debug.Log("index1 = " + index);
+                        index = FindMaterialSlotIndex(ciData, index + 1);
+                        if (index >= 0 && index < _items.Length)
+                        {
+                            CountableItem ci = _items[index] as CountableItem;
+                            amount = ci.ReAmountAndGetExcess(amount);
+                            UpdateSlot(index);
+                            Debug.Log("amount = " + amount);
+                            Debug.Log("index2 = " + index);
+                            // 인덱스 유효한 경우에 수행할 동작
+                        }
+                        else
+                        {
+                            Debug.Log("오류발생");
+                            return false;
+                        }
+                    }
+                    return true;
                 }
-                return true;
+                else
+                {
+                    Debug.Log("재료 부족! 2");
+                    return false;
+                }
             }
             else
             {

@@ -23,7 +23,7 @@ public class InventoryTester : MonoBehaviour
     public Button _AddPortionA50;
     public Button _AddPortionB1;
     public Button _AddPortionB50;
-    public Button _RemoveArmorA1;
+    public Button _UsePortionB50;
 
     private void Start()
     {
@@ -56,7 +56,7 @@ public class InventoryTester : MonoBehaviour
         _AddPortionB1.onClick.AddListener(() => _inventory.Add(_itemDataArray[5]));
         _AddPortionB50.onClick.AddListener(() => _inventory.Add(_itemDataArray[5], 50));
         //재료아이템의 인덱스를 찾아 i에 등록
-        //_RemoveArmorA1.onClick.AddListener(() => _inventory.RemoveMaterial(재료아이템,i));
+        _UsePortionB50.onClick.AddListener(() => _inventory.UseMaterial(_itemDataArray[5], 50));
     }
 
 }

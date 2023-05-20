@@ -38,10 +38,21 @@ namespace Rito.InventorySystem
             Amount = Mathf.Clamp(amount, 0, MaxAmount);
         }
 
-        /// <summary> 개수 추가 및 최대치 초과량 반환(초과량 없을 경우 0, -일경우 -반환) </summary>
+        /// <summary> 개수 추가 및 최대치 초과량 반환(초과량 없을 경우 0) </summary>
         public int AddAmountAndGetExcess(int amount)
         {
             int nextAmount = Amount + amount;
+            SetAmount(nextAmount);
+            return (nextAmount > MaxAmount) ? (nextAmount - MaxAmount) : 0;
+        }
+        /// <summary>
+        /// 개수 삭제 및 초과량 반환(없을경우 0)
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public int ReAmountAndGetExcess(int amount)
+        {
+            int nextAmount = Amount - amount;
             SetAmount(nextAmount);
             if (nextAmount < 0)
             {
