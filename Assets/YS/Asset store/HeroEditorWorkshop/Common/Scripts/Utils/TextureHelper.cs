@@ -93,7 +93,7 @@ namespace Assets.HeroEditorWorkshop.Common.Scripts.Utils
         {
             var pixels = texture.GetPixels((int) rect.xMin, (int) rect.yMin, (int) rect.height, (int) rect.width);
 
-            texture.Resize((int) rect.height, (int) rect.width);
+            texture.Reinitialize((int) rect.height, (int) rect.width);
             texture.SetPixels(pixels);
             texture.Apply();
         }
