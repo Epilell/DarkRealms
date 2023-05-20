@@ -15,46 +15,21 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //플레이어블 캐릭터 기본 데이터
-    public P_Data Data;
+    public P_Data data;
 
+    private Animator ani;
     private Player P;
     private GameObject weaponCase;
 
     //--------------------------------------<체력>---------------------------------------------------
-    private float MaxHp, CurrentHp, Helmet, Armor;
+    public float MaxHP, CurrentHp;
 
     //게임 시작시 데이터 불러오는 용도
-    private void StartSetting()
+    private void UpdateSetting()
     {
-        MaxHp = Data.P_MaxHp + (Data.Strength_Level * 10f);
-        CurrentHp = Data.P_CurrentHp;
-        Helmet = Data.P_HelmetArmor;
-        Armor = Data.P_BodyArmor;
+        MaxHP = data.maxHP + (data.GetStrLevel() * 10f);
+        Speed = data.speed + (data.GetAgiLevel() * 0.1f);
     }
-
-    //게임종료시 또는 사망시 사용
-    private void UpdateDB()
-    {
-        Data.P_MaxHp = MaxHp;
-        Data.P_CurrentHp = CurrentHp;
-        Data.P_HelmetArmor = Helmet;
-        Data.P_BodyArmor = Armor;
-    }
-
-    //레벨업시 능력치 반영시
-    private void UpdateMaxHp() { MaxHp = Data.P_MaxHp + (Data.Strength_Level * 10f); }
-
-    //데미지 입을시 반영
-    private void UpdateCurrentHp() { Data.P_CurrentHp = CurrentHp; }
-
-    //--------------------------------------<장비 능력치>-------------------------------------------------
-    private void UpdateArmor() 
-    {
-        Data.P_HelmetArmor = Helmet;
-        Data.P_BodyArmor = Armor;
-    }
-
-    private float TotalArmor() { return Helmet + Armor; }
 
     //--------------------------------------<체력 변경>-------------------------------------------------
     [Range(0f,1f)]
@@ -67,17 +42,15 @@ public class Player : MonoBehaviour
 
     public void P_TakeDamage(float damage)
     {
-        if((damage - TotalArmor()) * (1 - ArmorReduction) <= 1 ) { CurrentHp -= 1; }
-        else { CurrentHp -= (damage - TotalArmor()) * (1 - ArmorReduction); }
-        if(CurrentHp <=0) { CurrentHp = 0; IsDead(); UpdateDB(); }
-        UpdateCurrentHp();
+        if((damage - data.GetArmor()) * (1 - ArmorReduction) <= 1 ) { CurrentHp -= 1; }
+        else { CurrentHp -= (damage - data.GetArmor()) * (1 - ArmorReduction); }
+        if(CurrentHp <=0) { CurrentHp = 0; IsDead();}
     }
 
     public void P_Heal(float Amount)
     {
         CurrentHp += Amount;
-        if(CurrentHp > MaxHp) { CurrentHp = MaxHp; }
-        UpdateCurrentHp();
+        if(CurrentHp > MaxHP) { CurrentHp = MaxHP; }
     }
 
     //--------------------------------------<이동속도>-------------------------------------------------
@@ -93,8 +66,6 @@ public class Player : MonoBehaviour
 
     private void InputSpeed()
     {
-        //이동속도 입력
-        UpdateSpeed();
 
         //좌우 움직임 속도 대입
         if (Input.GetKey(KeyCode.D) && P_XSpeed >= 0)
@@ -135,25 +106,19 @@ public class Player : MonoBehaviour
 
     //--------------------------------------<능력치 레벨>--------------------------------------------
 
-    private void UpdateStrLevel() { Data.Strength_Level += 1; }
-    private void UpdateAgiLevel() { Data.Agility_Level += 1; }
-    private void UpdateIntLevel() { Data.Intelligent_Level += 1; }
-
     //능력치 레벨업 기능
     private void UpdateStats()
     {
-        if(Data.Str_Exp >= 100) { UpdateStrLevel(); Data.Str_Exp = 0; UpdateMaxHp(); }
+        if(data.Str_Exp >= 100) { data.StrLevelUP(); }
         
-        if(Data.Agi_Exp >= 100) { UpdateAgiLevel(); Data.Agi_Exp = 0; UpdateSpeed(); }
+        if(data.Agi_Exp >= 100) { data.AgiLevelUP(); }
         
-        if(Data.Int_Exp >= 100) { UpdateIntLevel(); Data.Int_Exp = 0; }
+        if(data.Int_Exp >= 100) { data.IntLevelUP(); }
+
+        UpdateSetting();
     }
 
-    private void UpdateSpeed() => Speed = Data.P_Speed + (Data.Agility_Level * 0.1f);
-
     //--------------------------------------<애니메이션>---------------------------------------------
-    //플레이어 애니메이터
-    private Animator ani;
 
     //마우스 및 플레이어 위치 변수
     private Vector3 Mouse_Position, P_Position;
@@ -215,12 +180,13 @@ public class Player : MonoBehaviour
         //애니메이터 지정
         ani = GetComponent<Animator>();
         P = GetComponent<Player>();
-        weaponCase = GameObject.FindWithTag("Weapon Case");
+        weaponCase = transform.Find("Weapon Case").gameObject;
+        
 
         P.enabled = true;
         weaponCase.SetActive(true);
 
-        StartSetting();
+        UpdateSetting();
 
         //플레이어 중력 및 축 회전 제외
         this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;

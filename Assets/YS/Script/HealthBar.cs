@@ -11,9 +11,11 @@ public class HealthBar : MonoBehaviour
     public float currentHp;
     public Text textObj, textObj2; // 체력 텍스트
     public P_Data playerData;
+    public Player player;
 
     private void Start()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
         // 체력바 초기화
         hpbar.value = (float)currentHp / (float)maxHp;
         hpbar2.value = (float)currentHp / (float)maxHp;
@@ -21,8 +23,8 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        currentHp = playerData.P_CurrentHp;
-        maxHp = playerData.P_MaxHp;
+        currentHp = player.CurrentHp;
+        maxHp = playerData.maxHP;
         ChangeHP();
     }
 

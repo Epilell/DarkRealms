@@ -1,38 +1,69 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Molotov : MonoBehaviour
 {
-    public W_Data data;
+    private float impactDmg, tickDmg, maxTime, radius;
+    //초기 불이 붙은 대상 저장
+    public Collider2D[] colliders;
+    //활성화 여부용
+    private bool IsActive = false;
+    //타이머
+    private float timer = 0f;
 
-    private Vector3 targetPos;
-    private float meterPerSec = 0.1f;
-    private float elapsedTime;
-    private float completePercentage;
-
-    public GameObject explosionRange;
-
-    public void SetCourse(Vector3 _target)
+    //화염 능력치 설정
+    public void SetStats(float _impactDmg, float _tickDmg, float _maxTime, float _radius)
     {
-        targetPos = _target;
+        impactDmg = _impactDmg; tickDmg = _tickDmg; maxTime = _maxTime; radius = _radius;
     }
 
-    private void MakeAfterEffect()
+    private void ApplyDamage(Collider2D[] collider, float _damage)
     {
-        GameObject molotov = Instantiate(explosionRange, transform.position, transform.rotation);
-        molotov.GetComponent<MolotovRange>().setDamage(data.W_Damage);
+        for (int i = 0; i < collider.Length; i++)
+        {
+            if (collider[i].gameObject.CompareTag("Mob"))
+            {
+                collider[i].gameObject.GetComponent<MobHP>().TakeDamage(_damage);
+            }
+        }
+    }
+
+    private void DestoryEffect()
+    {
         Destroy(gameObject);
     }
 
-
-    private void Update()
+    private void Awake()
     {
-        elapsedTime += Time.deltaTime;
-        float distance = Vector3.Distance(targetPos, transform.position);
-        completePercentage = (elapsedTime / (distance / meterPerSec));
-        transform.position = Vector3.Lerp(transform.position, targetPos, completePercentage);
-        if (transform.position == targetPos) { MakeAfterEffect(); }
+
+    }
+
+    private void Start()
+    {
+        Invoke("DestoryEffect", maxTime);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (IsActive == false)
+        {
+            colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+            ApplyDamage(colliders, impactDmg);
+            IsActive = true;
+        }
+        else
+        {
+            if (timer < 0.5f)
+            {
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                ApplyDamage(colliders, tickDmg);
+                timer = 0f;
+            }
+        }
     }
 }

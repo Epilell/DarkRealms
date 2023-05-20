@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2863688784089394175}
   - component: {fileID: 219713392357598088}
-  - component: {fileID: -2268969009735426917}
   - component: {fileID: -7774200844494895254}
   m_Layer: 0
-  m_Name: Range
+  m_Name: fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,22 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &-2268969009735426917
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570492172207745402}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &-7774200844494895254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,3 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b94ffab547261945a550486e9efb4d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmgPerTime: 1
+  Range: 2
+  DisabledTime: 5
