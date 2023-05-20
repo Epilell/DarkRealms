@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Equip : MonoBehaviour
 {
-    public P_Data p;
+   /* public P_Data p;
 
     public void ApplyEquipmentEffect(string itemName, float effectPoint)
     {
@@ -59,5 +59,5 @@ public class Equip : MonoBehaviour
             default:
                 return;
         }
-    }
+    }*/
 }

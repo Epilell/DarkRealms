@@ -33,8 +33,8 @@ public class EquipmentInventory : MonoBehaviour
         {
             if (slots[i] != null)
             {
-                // slots[i].item = Eqdata.EqItems[i];
-                slots[i].item = null;
+                slots[i].item = Eqdata.EqItems[i];
+                // slots[i].item = null;
             }
         }
     }
@@ -73,7 +73,7 @@ public class EquipmentInventory : MonoBehaviour
         // image가 null이면 아이템이 없는 걸로, 이미지가 다르면 다른 아이템으로 간주
         if (targetSlot != null && /*targetSlot.item.itemImage != item.itemImage || */targetSlot.item == null /*targetSlot.item.itemName == ""*/) // 해당 슬롯에 같은 아이템이 있으면 추가하지 않음
         {
-            if (targetSlot.item != null && targetSlot.item.itemImage != null)
+            /*if (targetSlot.item != null && targetSlot.item.itemImage != null)
             {
                 equip.RemoveEquipmentEffect(targetSlot.item.itemName, targetSlot.item.effectPoint);
                 oldInventory.AddItem(targetSlot.item); // 다른 아이템이 존재하면 아이템 교체
@@ -113,7 +113,7 @@ public class EquipmentInventory : MonoBehaviour
             {
                 equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
                 RemoveItem(slotNum);
-            }
+            }*/
         }
         else { }
     }

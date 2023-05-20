@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour
     public float maxHp;
     public float currentHp;
     public Text textObj, textObj2; // 체력 텍스트
-    public P_Data playerData;
+    // public P_Data playerData;
 
     private void Start()
     {
@@ -26,8 +26,8 @@ public class HealthBar : MonoBehaviour
             currentHp -= 10;
         }
 
-        maxHp = playerData.P_MaxHp;
-        currentHp = playerData.P_CurrentHp;
+        // maxHp = playerData.P_MaxHp;
+        // currentHp = playerData.P_CurrentHp;
         if (currentHp > maxHp)
         {
             currentHp = maxHp;
