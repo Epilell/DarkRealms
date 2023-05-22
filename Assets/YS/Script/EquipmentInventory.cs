@@ -12,7 +12,7 @@ public class EquipmentInventory : MonoBehaviour
     public EquipmentData Eqdata;
     public Transform slotHolder;
 
-    public Equip equip;
+    // public Equip equip;
 
     private void Awake()
     {

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b597242af57330945a22e8bf03013df0, type: 3}
-  m_Name: Item_Portion3
+  m_Name: Item_HP_Portion2
   m_EditorClassIdentifier: 
-  _id: 3
-  _name: potion3
-  _tooltip: "\uCCB4\uB825\uC744 \uD68C\uBCF5\uD55C\uB2E4"
-  _iconSprite: {fileID: 21300000, guid: 6e818494cff84c5488ccd61432d63a24, type: 3}
+  _id: 2
+  _name: hp_potion2
+  _tooltip: "\uCCB4\uB825\uC744 \uC18C\uB7C9 \uD68C\uBCF5\uD55C\uB2E4"
+  _iconSprite: {fileID: 21300000, guid: 231a85bf7bcfb0847b84e0cd112250a2, type: 3}
   _dropItemPrefab: {fileID: 0}
   _maxAmount: 99
-  _value: 100
+  _value: 50

@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour
     public float maxHp;
     public float currentHp;
     public Text textObj, textObj2; // 체력 텍스트
-    // public P_Data playerData;
+    public Player player; // 플레이어 객체
 
     private void Start()
     {
@@ -21,18 +21,16 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            currentHp -= 10;
-        }
+        // maxHp = player.MaxHP;
+        maxHp = 100f; // 임시로 100으로 설정
+        currentHp = player.CurrentHp;
 
-        // maxHp = playerData.P_MaxHp;
-        // currentHp = playerData.P_CurrentHp;
-        if (currentHp > maxHp)
+        if (currentHp > maxHp) // 현재 체력이 최대 체력을 넘지 않게
         {
             currentHp = maxHp;
         }
-        if (currentHp < 0)
+
+        if (currentHp < 0) // 현재 체력이 0 아래로 내려가지 않게
         {
             currentHp = 0;
         }
@@ -40,34 +38,14 @@ public class HealthBar : MonoBehaviour
         ChangeHP();
     }
 
-    public void ChangeHP()
+    public void ChangeHP() // 체력바 갱신
     {
         textObj.text = currentHp.ToString() + "/" + maxHp.ToString(); // 체력 텍스트 갱신
         hpbar.value = (float)currentHp / (float)maxHp; // 체력 갱신
+        //hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);  // ← 뭔가 이상해서 주석 처리
+
         textObj2.text = currentHp.ToString() + "/" + maxHp.ToString(); // 체력 텍스트 갱신
         hpbar2.value = (float)currentHp / (float)maxHp; // 체력 갱신
-        // hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);  ← 뭔가 이상해서 주석 처리
+        //hpbar2.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);  // ← 뭔가 이상해서 주석 처리
     }
-
-    /*public void IncreaseHp(float amount) // 체력 증가 함수
-    {
-        currentHp += amount;
-        if (currentHp >= maxHp)
-        {
-            currentHp = maxHp;
-        }
-        hpbar.value = currentHp;
-        hpbar2.value = currentHp;
-    }
-
-    public void DecreaseHp(float amount) // 체력 감소 함수
-    {
-        currentHp -= amount;
-        if (currentHp <= 0)
-        {
-            currentHp = 0;
-        }
-        hpbar.value = currentHp;
-        hpbar2.value = currentHp;
-    }*/
 }
