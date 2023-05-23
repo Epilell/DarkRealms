@@ -10,7 +10,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     public int slotNum;  // 슬롯 번호
     public Item item;
     public Image itemIcon;  // 아이템이 표시될 아이콘(슬롯 안에 있음)
-    // public P_Data p;
+    public Player player;
 
     public void UpdateSlotUI()
     {
@@ -43,7 +43,8 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             {
                 if (item.itemType == ItemType.Consumables)
                 {
-                    // p.P_CurrentHp += item.effectPoint;
+                    Debug.Log("slot use");
+                    player.P_Heal(item.effectPoint);
                     OldInventory.instance.RemoveItem(slotNum);  // 인벤토리에서 제거
                 }
                 else if (item.itemType == ItemType.Equipment)

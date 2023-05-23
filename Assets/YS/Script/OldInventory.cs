@@ -90,4 +90,27 @@ public class OldInventory : MonoBehaviour
             }
         }
     }
+
+    // 아래부터 5월 4주차
+    public void RemoveAllItem() // 인벤토리 내 모든 아이템 제거
+    {
+        items.Clear(); // 아이템 리스트 비우기
+        if (onChangeItem != null) { onChangeItem.Invoke(); } // 아이템 변경 이벤트 호출
+        InvenData.items = items; // 인벤토리 데이터 업데이트
+    }
+
+    public int GetItemSlotCount() // 아이템이 들어간 슬롯 수 반환
+    {
+        int count = 0;
+
+        foreach (Item item in items)
+        {
+            if (item != null)
+            {
+                count++;
+            }
+        }
+        
+        return count;
+    }
 }

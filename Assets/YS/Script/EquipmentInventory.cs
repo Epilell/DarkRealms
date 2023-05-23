@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipmentInventory : MonoBehaviour
@@ -12,7 +10,7 @@ public class EquipmentInventory : MonoBehaviour
     public EquipmentData Eqdata;
     public Transform slotHolder;
 
-    // public Equip equip;
+    public Equip equip;
 
     private void Awake()
     {
@@ -34,7 +32,7 @@ public class EquipmentInventory : MonoBehaviour
             if (slots[i] != null)
             {
                 slots[i].item = Eqdata.EqItems[i];
-                // slots[i].item = null;
+                slots[i].item = null;
             }
         }
     }
@@ -78,13 +76,16 @@ public class EquipmentInventory : MonoBehaviour
                 equip.RemoveEquipmentEffect(targetSlot.item.itemName, targetSlot.item.effectPoint);
                 oldInventory.AddItem(targetSlot.item); // 다른 아이템이 존재하면 아이템 교체
             }
+            */
 
             // 장비 슬롯에 아이템 추가
             targetSlot.item = item;
             targetSlot.UpdateSlotUI();
 
+            RemoveItem(slotNum); // 임시로 추가
+
             // 종류 별로 효과 부여
-            if (item.itemName == "helmet")
+            /*if (item.itemName == "helmet")
             {
                 equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
                 RemoveItem(slotNum);

@@ -1,16 +1,19 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MapRisk : MonoBehaviour
 {
     public List<GameObject> imageList; // 이미지 오브젝트 리스트
-    public float activateDelay; // 활성화 딜레이 시간
+    // public float activateDelay; // 활성화 딜레이 시간
 
     private void Start()
     {
-        DisableAllImages(); // 모든 이미지들 비활성화(초기화)
-        StartCoroutine(ActivateRandomImageRoutine()); // 랜덤하게 이미지를 활성화
+        foreach (GameObject image in imageList) { image.SetActive(false); }
+        int randomIndex = Random.Range(0, imageList.Count);
+        imageList[randomIndex].SetActive(true);
+        // DisableAllImages(); // 모든 이미지들 비활성화
+        // StartCoroutine(ActivateRandomImageRoutine()); // 랜덤한 이미지를 활성화
     }
 
     private void DisableAllImages()
@@ -34,4 +37,4 @@ public class MapRisk : MonoBehaviour
             randomImage.SetActive(true); // 선택한 이미지 활성화
         }
     }
-}
+}*/

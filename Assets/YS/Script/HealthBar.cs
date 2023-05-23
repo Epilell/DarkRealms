@@ -21,8 +21,7 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        // maxHp = player.MaxHP;
-        maxHp = 100f; // 임시로 100으로 설정
+        maxHp = player.MaxHP;
         currentHp = player.CurrentHp;
 
         if (currentHp > maxHp) // 현재 체력이 최대 체력을 넘지 않게
@@ -41,11 +40,9 @@ public class HealthBar : MonoBehaviour
     public void ChangeHP() // 체력바 갱신
     {
         textObj.text = currentHp.ToString() + "/" + maxHp.ToString(); // 체력 텍스트 갱신
-        hpbar.value = (float)currentHp / (float)maxHp; // 체력 갱신
-        //hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);  // ← 뭔가 이상해서 주석 처리
+        hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);  // 체력 갱신
 
         textObj2.text = currentHp.ToString() + "/" + maxHp.ToString(); // 체력 텍스트 갱신
-        hpbar2.value = (float)currentHp / (float)maxHp; // 체력 갱신
-        //hpbar2.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);  // ← 뭔가 이상해서 주석 처리
+        hpbar2.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);  // 체력 갱신
     }
 }
