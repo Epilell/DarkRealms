@@ -25,7 +25,7 @@ public class MoveItem : MonoBehaviour
         _rrList = _inventoryUI._RrList;
         _pgr = _inventoryUI._Pgr;
         _ped = _inventoryUI._Ped;
-        _beginDragSlot = _inventoryUI._BeginDragSlot
+        _beginDragSlot = _inventoryUI._BeginDragSlot;
     }
 
     private T RaycastAndGetComponent<T>() where T : Component
