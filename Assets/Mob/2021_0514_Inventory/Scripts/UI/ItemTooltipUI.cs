@@ -57,9 +57,9 @@ namespace Rito.InventorySystem
             _rt.pivot = LeftTop;
             _canvasScaler = GetComponentInParent<CanvasScaler>();
 
-            DisableAllChildrenRaycastTarget(transform);
+            //DisableAllChildrenRaycastTarget(transform);
         }
-
+        /*
         /// <summary> 모든 자식 UI에 레이캐스트 타겟 해제 </summary>
         private void DisableAllChildrenRaycastTarget(Transform tr)
         {
@@ -76,7 +76,7 @@ namespace Rito.InventorySystem
             {
                 DisableAllChildrenRaycastTarget(tr.GetChild(i));
             }
-        }
+        }*/
 
         #endregion
         /***********************************************************************

@@ -65,6 +65,7 @@ namespace Rito.InventorySystem
         [SerializeField] private bool _showRemovingPopup = true;
 
         [Header("Connected Objects")]
+        [SerializeField] private GameObject canvas;            // 켄버스
         [SerializeField] private RectTransform _contentAreaRT; // 슬롯들이 위치할 영역
         [SerializeField] private GameObject _slotUiPrefab;     // 슬롯의 원본 프리팹
         [SerializeField] private ItemTooltipUI _itemTooltip;   // 아이템 정보를 보여줄 툴팁 UI
@@ -73,11 +74,14 @@ namespace Rito.InventorySystem
         [Header("Buttons")]
         [SerializeField] private Button _trimButton;
         [SerializeField] private Button _sortButton;
+        [SerializeField] private Button _ItemMoveButton;
 
         [Header("Filter Toggles")]
         [SerializeField] private Toggle _toggleFilterAll;
         [SerializeField] private Toggle _toggleFilterEquipments;
         [SerializeField] private Toggle _toggleFilterPortions;
+
+        [SerializeField] private GameObject _otherInven;
 
         [Space(16)]
         [SerializeField] private bool _mouseReversed = false; // 마우스 클릭 반전 여부
@@ -90,20 +94,17 @@ namespace Rito.InventorySystem
 
         /// <summary> 연결된 인벤토리 </summary>
         private Inventory _inventory;
-        public Inventory _Inventory =>_inventory;
+        public Inventory _Inventory => _inventory;
+
+        private GraphicRaycaster _cgr; //캔버스 레이캐스터
 
         private List<ItemSlotUI> _slotUIList = new List<ItemSlotUI>();
         private GraphicRaycaster _gr;
-        private GraphicRaycaster _pgr;
-        public GraphicRaycaster _Pgr=>_pgr;
         private PointerEventData _ped;
-        public PointerEventData _Ped => _ped;
         private List<RaycastResult> _rrList;
-        public List<RaycastResult> _RrList => _rrList;
 
         private ItemSlotUI _pointerOverSlot; // 현재 포인터가 위치한 곳의 슬롯
         private ItemSlotUI _beginDragSlot; // 현재 드래그를 시작한 슬롯
-        public ItemSlotUI _BeginDragSlot => _beginDragSlot;
         private Transform _beginDragIconTransform; // 해당 슬롯의 아이콘 트랜스폼
 
         private int _leftClick = 0;
@@ -112,7 +113,8 @@ namespace Rito.InventorySystem
         private Vector3 _beginDragIconPoint;   // 드래그 시작 시 슬롯의 위치
         private Vector3 _beginDragCursorPoint; // 드래그 시작 시 커서의 위치
         private int _beginDragSlotSiblingIndex;
-        
+        public bool isActive;
+
         /// <summary> 인벤토리 UI 내 아이템 필터링 옵션 </summary>
         private enum FilterOption
         {
@@ -131,8 +133,7 @@ namespace Rito.InventorySystem
             InitSlots();
             InitButtonEvents();
             InitToggleEvents();
-
-            _pgr = transform.parent.GetComponent<GraphicRaycaster>();
+            _cgr = canvas.GetComponent<GraphicRaycaster>();
         }
 
         private void Update()
@@ -140,10 +141,12 @@ namespace Rito.InventorySystem
             _ped.position = Input.mousePosition;
 
             OnPointerEnterAndExit();
-            if(_showTooltip) ShowOrHideItemTooltip();
+            if (_showTooltip) ShowOrHideItemTooltip();
             OnPointerDown();
             OnPointerDrag();
             OnPointerUp();
+
+            isActive = _otherInven.activeSelf;
         }
 
         #endregion
@@ -215,7 +218,7 @@ namespace Rito.InventorySystem
             }
 
             // 슬롯 프리팹 - 프리팹이 아닌 경우 파괴
-            if(_slotUiPrefab.scene.rootCount != 0)
+            if (_slotUiPrefab.scene.rootCount != 0)
                 Destroy(_slotUiPrefab);
 
             // -- Local Method --
@@ -237,9 +240,9 @@ namespace Rito.InventorySystem
 
         private void InitToggleEvents()
         {
-            _toggleFilterAll.onValueChanged.AddListener(       flag => UpdateFilter(flag, FilterOption.All));
+            _toggleFilterAll.onValueChanged.AddListener(flag => UpdateFilter(flag, FilterOption.All));
             _toggleFilterEquipments.onValueChanged.AddListener(flag => UpdateFilter(flag, FilterOption.Equipment));
-            _toggleFilterPortions.onValueChanged.AddListener(  flag => UpdateFilter(flag, FilterOption.Portion));
+            _toggleFilterPortions.onValueChanged.AddListener(flag => UpdateFilter(flag, FilterOption.Portion));
 
             // Local Method
             void UpdateFilter(bool flag, FilterOption option)
@@ -266,12 +269,40 @@ namespace Rito.InventorySystem
             _rrList.Clear();
 
             _gr.Raycast(_ped, _rrList);
-            
-            if(_rrList.Count == 0)
+
+            if (_rrList.Count == 0)
                 return null;
 
             return _rrList[0].gameObject.GetComponent<T>();
         }
+        /*
+        /// <summary>
+        /// 캔버스 레이캐스트 후 컴포넌트 리턴
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        private T CanvasRaycastAndGetComponent<T>() where T : Component
+        {
+            _rrList.Clear();
+
+            _cgr.Raycast(_ped, _rrList);
+            Debug.Log(_rrList.Count);
+            if (_rrList != null)
+            {
+                for (int i = 0; i < _rrList.Count; i++)
+                {
+                    T t = _rrList[i].gameObject.GetComponent<T>();
+                    if (t != null)
+                    {
+                        return t;
+                    }
+                }
+            }
+
+            Debug.Log("원하던 결과가 없는데요? ");
+            return null;
+
+        }*/
 
         /// <summary> 슬롯에 포인터가 올라가는 경우, 슬롯에서 포인터가 빠져나가는 경우 </summary>
         private void OnPointerEnterAndExit()
@@ -309,7 +340,7 @@ namespace Rito.InventorySystem
             // ===================== Local Methods ===============================
             void OnCurrentEnter()
             {
-                if(_showHighlight)
+                if (_showHighlight)
                     curSlot.Highlight(true);
             }
             void OnPrevExit()
@@ -368,17 +399,27 @@ namespace Rito.InventorySystem
             else if (Input.GetMouseButtonDown(_rightClick))
             {
                 ItemSlotUI slot = RaycastAndGetFirstComponent<ItemSlotUI>();
-
-                if (slot != null && slot.HasItem && slot.IsAccessible)
+                if (isActive==false)//창고가 열려있지 않으면 아이템 사용
                 {
-                    TryUseItem(slot.Index);
+                    if (slot != null && slot.HasItem && slot.IsAccessible)
+                    {
+                        TryUseItem(slot.Index);
+                    }
+                }
+                else
+                {
+                    if (slot != null && slot.HasItem && slot.IsAccessible)
+                    {
+                        _otherInven.GetComponent<InventoryUI>()._Inventory.Add(_inventory.GetItemData(slot.Index), _inventory.GetCurrentAmount(slot.Index));
+                        TryRemoveItem_P(slot.Index);
+                    }
                 }
             }
         }
         /// <summary> 드래그하는 도중 </summary>
         private void OnPointerDrag()
         {
-            if(_beginDragSlot == null) return;
+            if (_beginDragSlot == null) return;
 
             if (Input.GetMouseButton(_leftClick))
             {
@@ -417,15 +458,13 @@ namespace Rito.InventorySystem
         private void EndDrag()
         {
             ItemSlotUI endDragSlot = RaycastAndGetFirstComponent<ItemSlotUI>();
-            
-            // 아이템 슬롯끼리 아이콘 교환 또는 이동
             if (endDragSlot != null && endDragSlot.IsAccessible)
             {
                 // 수량 나누기 조건
                 // 1) 마우스 클릭 떼는 순간 좌측 Ctrl 또는 Shift 키 유지
                 // 2) begin : 셀 수 있는 아이템 / end : 비어있는 슬롯
                 // 3) begin 아이템의 수량 > 1
-                bool isSeparatable = 
+                bool isSeparatable =
                     (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftShift)) &&
                     (_inventory.IsCountableItem(_beginDragSlot.Index) && !_inventory.HasItem(endDragSlot.Index));
 
@@ -444,7 +483,7 @@ namespace Rito.InventorySystem
                 }
 
                 // 1. 개수 나누기
-                if(isSeparation)
+                if (isSeparation)
                     TrySeparateAmount(_beginDragSlot.Index, endDragSlot.Index, currentAmount);
                 // 2. 교환 또는 이동
                 else
@@ -454,7 +493,17 @@ namespace Rito.InventorySystem
                 UpdateTooltipUI(endDragSlot);
                 return;
             }
-
+            /*
+            ItemSlotUI otherInvenSlotUI = CanvasRaycastAndGetComponent<ItemSlotUI>();
+            if (otherInvenSlotUI != null)
+            {
+                //다른인벤토리에 추가하고 this 인벤토리에서 삭제
+                InventoryUI otherInven = otherInvenSlotUI.transform.parent.GetComponent<InventoryUI>();
+                Debug.Log("옮기기 성공?");
+                otherInven._Inventory.Add(_inventory.GetItemData(_beginDragSlot.Index), _inventory.GetCurrentAmount(_beginDragSlot.Index));
+                TryRemoveItem_P(_beginDragSlot.Index);
+                Debug.Log("옮기기 성공!");
+            }*/
             // 버리기(커서가 UI 레이캐스트 타겟 위에 있지 않은 경우)
             if (!IsOverUI())
             {
@@ -464,10 +513,10 @@ namespace Rito.InventorySystem
                 int amount = _inventory.GetCurrentAmount(index);
 
                 // 셀 수 있는 아이템의 경우, 수량 표시
-                if(amount > 1)
+                if (amount > 1)
                     itemName += $" x{amount}";
 
-                if(_showRemovingPopup)
+                if (_showRemovingPopup)
                     _popup.OpenConfirmationPopup(() => TryRemoveItem(index), itemName);
                 else
                     TryRemoveItem(index);
@@ -538,7 +587,7 @@ namespace Rito.InventorySystem
         /// <summary> 툴팁 UI의 슬롯 데이터 갱신 </summary>
         private void UpdateTooltipUI(ItemSlotUI slot)
         {
-            if(!slot.IsAccessible || !slot.HasItem)
+            if (!slot.IsAccessible || !slot.HasItem)
                 return;
 
             // 툴팁 정보 갱신
@@ -620,7 +669,7 @@ namespace Rito.InventorySystem
             bool isFiltered = true;
 
             // null인 슬롯은 타입 검사 없이 필터 활성화
-            if(itemData != null)
+            if (itemData != null)
                 switch (_currentFilterOption)
                 {
                     case FilterOption.Equipment:
@@ -846,7 +895,7 @@ namespace Rito.InventorySystem
             private static Queue<GameObject> targetQueue = new Queue<GameObject>();
 
             static Destroyer()
-            { 
+            {
                 UnityEditor.EditorApplication.update += () =>
                 {
                     for (int i = 0; targetQueue.Count > 0 && i < 100000; i++)

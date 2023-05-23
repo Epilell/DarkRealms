@@ -2575,7 +2575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.70980394}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5516,15 +5516,18 @@ MonoBehaviour:
   _showTooltip: 1
   _showHighlight: 1
   _showRemovingPopup: 1
+  canvas: {fileID: 2062397864}
   _contentAreaRT: {fileID: 980037213}
   _slotUiPrefab: {fileID: 542146360}
   _itemTooltip: {fileID: 812124064}
   _popup: {fileID: 1594883819}
   _trimButton: {fileID: 609651463}
   _sortButton: {fileID: 669472981}
+  _ItemMoveButton: {fileID: 0}
   _toggleFilterAll: {fileID: 1514949688}
   _toggleFilterEquipments: {fileID: 351426075}
   _toggleFilterPortions: {fileID: 78807268}
+  _otherInven: {fileID: 1544464127}
   _mouseReversed: 0
   _showDebug: 1
   __showPreview: 1
@@ -5751,7 +5754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6369,7 +6372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -10033,15 +10036,18 @@ MonoBehaviour:
   _showTooltip: 1
   _showHighlight: 1
   _showRemovingPopup: 1
+  canvas: {fileID: 2062397864}
   _contentAreaRT: {fileID: 1244281535}
   _slotUiPrefab: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef, type: 3}
   _itemTooltip: {fileID: 334643373}
   _popup: {fileID: 1732884328}
   _trimButton: {fileID: 225696597}
   _sortButton: {fileID: 181975673}
+  _ItemMoveButton: {fileID: 0}
   _toggleFilterAll: {fileID: 1018181372}
   _toggleFilterEquipments: {fileID: 670119692}
   _toggleFilterPortions: {fileID: 848739624}
+  _otherInven: {fileID: 811253733}
   _mouseReversed: 0
   _showDebug: 1
   __showPreview: 1
@@ -12957,7 +12963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.9935299, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
