@@ -5527,8 +5527,8 @@ MonoBehaviour:
   _toggleFilterAll: {fileID: 1514949688}
   _toggleFilterEquipments: {fileID: 351426075}
   _toggleFilterPortions: {fileID: 78807268}
-  _otherInven: {fileID: 1544464127}
   _mouseReversed: 0
+  isActive: 0
   _showDebug: 1
   __showPreview: 1
   __previewAlpha: 0.134
@@ -9909,7 +9909,7 @@ GameObject:
   - component: {fileID: 1544464133}
   m_Layer: 5
   m_Name: Warehouse
-  m_TagString: Untagged
+  m_TagString: Warehouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10047,8 +10047,8 @@ MonoBehaviour:
   _toggleFilterAll: {fileID: 1018181372}
   _toggleFilterEquipments: {fileID: 670119692}
   _toggleFilterPortions: {fileID: 848739624}
-  _otherInven: {fileID: 811253733}
   _mouseReversed: 0
+  isActive: 0
   _showDebug: 1
   __showPreview: 1
   __previewAlpha: 0.1

@@ -10,8 +10,6 @@ TagManager:
   - Mob
   - AddSlotItem
   - Bullet
-  - FieldItem
-  - FieldItem
   - Escape
   - DeadMob
   - FieldItem
@@ -22,6 +20,7 @@ TagManager:
   - Map
   - BossMob
   - Material
+  - Warehouse
   layers:
   - Default
   - TransparentFX

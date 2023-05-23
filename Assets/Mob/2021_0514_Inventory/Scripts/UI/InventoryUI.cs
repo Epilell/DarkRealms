@@ -81,8 +81,6 @@ namespace Rito.InventorySystem
         [SerializeField] private Toggle _toggleFilterEquipments;
         [SerializeField] private Toggle _toggleFilterPortions;
 
-        [SerializeField] private GameObject _otherInven;
-
         [Space(16)]
         [SerializeField] private bool _mouseReversed = false; // 마우스 클릭 반전 여부
 
@@ -91,7 +89,7 @@ namespace Rito.InventorySystem
         *                               Private Fields
         ***********************************************************************/
         #region .
-
+        private GameObject? _otherInven = null;
         /// <summary> 연결된 인벤토리 </summary>
         private Inventory _inventory;
         public Inventory _Inventory => _inventory;
@@ -134,6 +132,7 @@ namespace Rito.InventorySystem
             InitButtonEvents();
             InitToggleEvents();
             _cgr = canvas.GetComponent<GraphicRaycaster>();
+            InitFindWarehouse();
         }
 
         private void Update()
@@ -231,7 +230,13 @@ namespace Rito.InventorySystem
                 return rt;
             }
         }
-
+        private void InitFindWarehouse()
+        {
+            if (GameObject.FindWithTag("Warehouse") != null)
+            {
+                _otherInven = GameObject.FindWithTag("Warehouse");
+            }
+        }
         private void InitButtonEvents()
         {
             _trimButton.onClick.AddListener(() => _inventory.TrimAll());
@@ -399,7 +404,7 @@ namespace Rito.InventorySystem
             else if (Input.GetMouseButtonDown(_rightClick))
             {
                 ItemSlotUI slot = RaycastAndGetFirstComponent<ItemSlotUI>();
-                if (isActive==false)//창고가 열려있지 않으면 아이템 사용
+                if (isActive==false|| _otherInven==null)//창고가 열려있지 않으면 아이템 사용
                 {
                     if (slot != null && slot.HasItem && slot.IsAccessible)
                     {
