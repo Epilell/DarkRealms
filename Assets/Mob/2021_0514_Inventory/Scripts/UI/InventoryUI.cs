@@ -90,14 +90,20 @@ namespace Rito.InventorySystem
 
         /// <summary> 연결된 인벤토리 </summary>
         private Inventory _inventory;
+        public Inventory _Inventory =>_inventory;
 
         private List<ItemSlotUI> _slotUIList = new List<ItemSlotUI>();
         private GraphicRaycaster _gr;
+        private GraphicRaycaster _pgr;
+        public GraphicRaycaster _Pgr=>_pgr;
         private PointerEventData _ped;
+        public PointerEventData _Ped => _ped;
         private List<RaycastResult> _rrList;
+        public List<RaycastResult> _RrList => _rrList;
 
         private ItemSlotUI _pointerOverSlot; // 현재 포인터가 위치한 곳의 슬롯
         private ItemSlotUI _beginDragSlot; // 현재 드래그를 시작한 슬롯
+        public ItemSlotUI _BeginDragSlot => _beginDragSlot;
         private Transform _beginDragIconTransform; // 해당 슬롯의 아이콘 트랜스폼
 
         private int _leftClick = 0;
@@ -125,6 +131,8 @@ namespace Rito.InventorySystem
             InitSlots();
             InitButtonEvents();
             InitToggleEvents();
+
+            _pgr = transform.parent.GetComponent<GraphicRaycaster>();
         }
 
         private void Update()
@@ -264,6 +272,7 @@ namespace Rito.InventorySystem
 
             return _rrList[0].gameObject.GetComponent<T>();
         }
+
         /// <summary> 슬롯에 포인터가 올라가는 경우, 슬롯에서 포인터가 빠져나가는 경우 </summary>
         private void OnPointerEnterAndExit()
         {
@@ -408,7 +417,7 @@ namespace Rito.InventorySystem
         private void EndDrag()
         {
             ItemSlotUI endDragSlot = RaycastAndGetFirstComponent<ItemSlotUI>();
-
+            
             // 아이템 슬롯끼리 아이콘 교환 또는 이동
             if (endDragSlot != null && endDragSlot.IsAccessible)
             {
@@ -544,7 +553,10 @@ namespace Rito.InventorySystem
         *                               Public Methods
         ***********************************************************************/
         #region .
-
+        public void TryRemoveItem_P(int index)
+        {
+            TryRemoveItem(index);
+        }
         /// <summary> 인벤토리 참조 등록 (인벤토리에서 직접 호출) </summary>
         public void SetInventoryReference(Inventory inventory)
         {
