@@ -19,3 +19,5 @@ MonoBehaviour:
   _dropItemPrefab: {fileID: 0}
   _maxDurability: 150
   _defence: 10
+  _nextArmorData: {fileID: 0}
+  _requirements: []

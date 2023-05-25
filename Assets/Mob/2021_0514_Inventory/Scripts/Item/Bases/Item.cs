@@ -20,5 +20,11 @@ namespace Rito.InventorySystem
         public ItemData Data { get; private set; }
 
         public Item(ItemData data) => Data = data;
+
+        public bool HasNextItemData()
+        {
+            return (Data is ArmorItemData armorData && armorData.NextArmorData != null)
+                || (Data is WeaponItemData weaponData && weaponData.NextWeaponData != null);
+        }
     }
 }

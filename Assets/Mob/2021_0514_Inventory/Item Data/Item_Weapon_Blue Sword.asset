@@ -19,3 +19,11 @@ MonoBehaviour:
   _dropItemPrefab: {fileID: 0}
   _maxDurability: 100
   _damage: 10
+  _nextWeaponData: {fileID: 11400000, guid: e73a0198a0431f04a8ff190aae00be09, type: 2}
+  _requirements:
+  - _data: {fileID: 0}
+    _num: 0
+  - _data: {fileID: 0}
+    _num: 0
+  - _data: {fileID: 0}
+    _num: 0

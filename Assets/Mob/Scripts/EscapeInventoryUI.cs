@@ -14,7 +14,7 @@ public class EscapeInventoryUI : OldInventoryUI
         inventory.onChangeItem += RedrawSlotUI;  // 아이템이 추가되거나 제거될 때마다 RedrawSlotUI() 함수 호출
         inventoryPanel.SetActive(activeInventory);  // 인벤토리 비활성화
     }
-    new protected void Update()
+    protected void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))  // Tab 키가 눌리면
         {
