@@ -840,8 +840,7 @@ namespace Rito.InventorySystem
 
                 for (int i = 0; i < count; i++)
                 {
-                    GameObject slotGo = Instantiate(_slotUiPrefab);
-                    slotGo.transform.SetParent(_contentAreaRT.transform);
+                    GameObject slotGo = Instantiate(_slotUiPrefab,_contentAreaRT);
                     slotGo.SetActive(true);
                     slotGo.AddComponent<PreviewItemSlot>();
 
