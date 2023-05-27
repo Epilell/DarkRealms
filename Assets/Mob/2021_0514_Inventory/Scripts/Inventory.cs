@@ -62,6 +62,10 @@ namespace Rito.InventorySystem
         #region .
         /// <summary> 아이템 수용 한도 </summary>
         public int Capacity { get; private set; }
+        /// <summary>
+        /// !!!중요!!!창고인지 아닌지
+        /// </summary>
+        public bool _isWarehouse;
 
         // /// <summary> 현재 아이템 개수 </summary>
         //public int ItemCount => _itemArray.Count;
@@ -82,13 +86,16 @@ namespace Rito.InventorySystem
 
         [SerializeField]
         private InventoryUI _inventoryUI; // 연결된 인벤토리 UI
+        [SerializeField]
+        private GameManager gm;
 
         /// <summary> 아이템 목록 </summary>
         [SerializeField]
         private Item[] _items;
+        public Item[] _Items { get => _items; }
 
-        /// <summary> 업데이트 할 인덱스 목록 </summary>
-        private readonly HashSet<int> _indexSetForUpdate = new HashSet<int>();
+    /// <summary> 업데이트 할 인덱스 목록 </summary>
+    private readonly HashSet<int> _indexSetForUpdate = new HashSet<int>();
 
         /// <summary> 아이템 데이터 타입별 정렬 가중치 </summary>
         private readonly static Dictionary<Type, int> _sortWeightDict = new Dictionary<Type, int>
@@ -126,6 +133,21 @@ namespace Rito.InventorySystem
             _items = new Item[_maxCapacity];
             Capacity = _initalCapacity;
             _inventoryUI.SetInventoryReference(this);
+            /*
+            if (_isWarehouse)//창고라면 Awake시 창고 정보 Load함
+            {
+                //ForSaveInven.LoadWareHouse;
+                GameObject GM = GameObject.Find("GameManager");
+                _items = GM.GetComponent<GameManager>().LoadWarehouse();
+                UpdateSlot();
+            }*/
+        }
+        private void OnDestroy()
+        {
+            if (_isWarehouse)
+            {
+                gm.GetComponent<GameManager>().SaveWarehouse(this);
+            }
         }
 
         private void Start()
@@ -327,6 +349,10 @@ namespace Rito.InventorySystem
             _inventoryUI = inventoryUI;
             _inventoryUI.SetInventoryReference(this);
         }
+        public void SetItems(Item[] setitems)
+        {
+            _items = setitems;
+        }
 
         /// <summary> 인벤토리에 아이템 추가
         /// <para/> 넣는 데 실패한 잉여 아이템 개수 리턴
@@ -455,7 +481,7 @@ namespace Rito.InventorySystem
                 {
                     Debug.Log("재료가 충분한지확인");
                     index = FindMaterialSlotIndex(ciData, index + 1);
-                    Debug.Log("index= "+index);
+                    Debug.Log("index= " + index);
                     if (index == -1)
                     {
                         Debug.Log("재료 부족!");
