@@ -59,6 +59,7 @@ namespace Rito.InventorySystem
         /// <param name="_items"></param>
         private void FindUpgradableItemAndMakeList(Item[] _items)
         {
+
             //아이템 리스트가 비어있을경우 ( Inventory에 아이템리스트가 List<>형식으로 안되어있어서 작동안됨 )
             //형식을 바꾸는 것도 고려해봄
             if (_items != null && _items.Length != 0)
@@ -69,7 +70,7 @@ namespace Rito.InventorySystem
                     Transform child = _contentArea.GetChild(i);
                     Destroy(child.gameObject);
                 }
-
+                int num = 0;
                 // 아이템 리스트의 길이만큼 생성
                 for (int i = 0; i < _items.Length; i++)
                 {
@@ -77,8 +78,16 @@ namespace Rito.InventorySystem
                     //아이템이 null이 아니고 ArmorItem 또는 WeaponItem일 경우만
                     if (_items[i] != null && _items[i].HasNextItemData())
                     {
+                        num++;
                         RectTransform RT = CloneUpgradePanel();
-                        RT.localPosition = new Vector2(0, -280 * (_contentArea.childCount - 1));
+                        if (i == 0)
+                        {
+                            RT.localPosition = new Vector3(0,0,0);
+                        }
+                        else
+                        {
+                            RT.localPosition = new Vector2(0, -280 * (num - 1));
+                        }
                         RT.gameObject.SetActive(true);
                         //RT.gameObject.name = $"Upgrade List [{i}]";
                         if (_items[i].GetType() == typeof(ArmorItem))
@@ -114,15 +123,19 @@ namespace Rito.InventorySystem
                     RectTransform CloneUpgradePanel()
                     {
                         GameObject UpgradeList = Instantiate(_targetPanelPrefab,_contentArea);
+
                         RectTransform rt = UpgradeList.GetComponent<RectTransform>();
 
                         return rt;
                     }
                 }
-                _contentArea.sizeDelta = new Vector2(_contentArea.sizeDelta.x, _contentArea.childCount * 280);
+                _contentArea.sizeDelta = new Vector2(_contentArea.sizeDelta.x, num * 280);
             }
         }
 
+        /// <summary> 방어구 강화 시도 </summary>
+        /// <param name="_data"></param>
+        /// <param name="_index"></param>
         private void AttemptArmorUpgrade(ArmorItemData _data, int _index)
         {
             bool canUpgrade = true;
@@ -145,6 +158,9 @@ namespace Rito.InventorySystem
             }
         }
 
+        /// <summary> 무기 강화 시도 </summary>
+        /// <param name="_data"></param>
+        /// <param name="_index"></param>
         private void AttemptWeaponUpgrade(WeaponItemData _data, int _index)
         {
             bool canUpgrade = true;
