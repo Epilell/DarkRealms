@@ -98,6 +98,22 @@ public class OldInventory : MonoBehaviour
         InvenData.items = items; // 인벤토리 데이터 업데이트
     }
 
+    public int GetItemCount(string itemName) // 해당 아이템 개수 반환
+    {
+        int count = 0;
+
+        foreach (Item item in items)
+        {
+            if (item.itemName == itemName)
+            {
+                count++; // 밑에 걸로
+                // count += item.amount;
+            }
+        }
+        
+        return count;
+    }
+
     public int GetItemSlotCount() // 용량(아이템 슬롯 수) 반환
     {
         int count = 0;

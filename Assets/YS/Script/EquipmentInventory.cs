@@ -10,8 +10,6 @@ public class EquipmentInventory : MonoBehaviour
     public EquipmentData Eqdata;
     public Transform slotHolder;
 
-    public Equip equip;
-
     private void Awake()
     {
         if (instance != null)  // 인벤토리 인스턴스가 존재하면

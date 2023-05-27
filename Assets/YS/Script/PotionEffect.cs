@@ -1,8 +1,8 @@
+using Rito.InventorySystem; // PortionItemData 가져오기 위해 추가
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Rito.InventorySystem; // PortionItemData 가져오기 위해 추가
 using System.Text.RegularExpressions; // 정규 표현식 사용하기 위해 추가
+using UnityEngine;
 
 public class PotionEffect : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class PotionEffect : MonoBehaviour
     {
         PortionItemData targetItemData = null; // 원하는 아이템 데이터를 저장할 변수
 
-        // 아이템 데이터 리스트를 돌면서 매개변수로 받은 itemName과 이름이 일치하는 아이템 찾기
+        // 아이템 데이터 리스트를 돌면서 itemName과 이름이 일치하는 아이템 찾기
         foreach (PortionItemData itemData in portionItemDataList)
         {
             if (itemData.Name == itemName) // 매개변수로 받은 itemName과 이름이 일치하는 아이템이 있는지 확인
@@ -25,16 +25,12 @@ public class PotionEffect : MonoBehaviour
 
         if (targetItemData != null) // 찾은 아이템 데이터가 있다면
         {
-            // 아이템 종류 별로 효과 넣기
-            // e.g. 이름에 hp가 포함되면 체력 회복 아이템
+            // 아이템 종류 별로 효과 결정: e.g. 이름에 hp가 포함되면 체력 회복 아이템
+            string containWord = Regex.Match(itemName, "hp|power|armor|cooldown|blood|immunity|release|undying", RegexOptions.IgnoreCase).Value.ToLower();
 
-            // 효과 종류 결정 하기
-            string containWord = Regex.Match(itemName, "hp||power||armor||cooldown||blood||immunity||release||undying", RegexOptions.IgnoreCase).Value.ToLower();
-
-            switch (containWord)
+            switch (containWord) // 종류 별로 선택
             {
-                // 종류 별로 선택: 불필요한 것들은 지울 예정
-                case "hp": // 체력 회복
+                case "hp": // 회복
                     player.P_Heal(targetItemData.Value);
                     break;
                 case "power": // 공격력 증가
@@ -50,13 +46,13 @@ public class PotionEffect : MonoBehaviour
                     Debug.Log("blood!");
                     break;
                 case "immunity": // 면역
-                    Debug.Log("immunity!");
+                    GetComponent<ImmunityEffect>().Immunity(targetItemData.Value);
                     break;
                 case "release": // 이상 해제
                     Debug.Log("release!");
                     break;
                 case "undying": // 불사
-                    Debug.Log("undying!");
+                    GetComponent<UndyingEffect>().Undying(targetItemData.Value);
                     break;
                 default: break;
             }

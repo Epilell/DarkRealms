@@ -22,7 +22,7 @@ public class MagneticField : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("감소 속도: " + decreaseSpeed);
+        // Debug.Log("영역 감소 속도: " + decreaseSpeed);
         currentRadius -= decreaseSpeed * Time.deltaTime; // 자기장 크기 감소
 
         if (currentRadius <= 0f)
@@ -44,7 +44,7 @@ public class MagneticField : MonoBehaviour
                 damageTimer = 1f; // 타이머 재설정
             }
         }
-        Debug.Log("원 반지름: " + currentRadius);
-        Debug.Log("자기장 중심과의 거리: " + Vector3.Distance(transform.position, player.transform.position));
+        /*Debug.Log("원 반지름: " + currentRadius);
+        Debug.Log("자기장 중심과의 거리: " + Vector3.Distance(transform.position, player.transform.position));*/
     }
 }
