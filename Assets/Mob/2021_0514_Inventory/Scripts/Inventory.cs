@@ -68,10 +68,6 @@ namespace Rito.InventorySystem
         /// </summary>
         public bool _isWarehouse;
 
-        /// <summary> 아이템 목록 </summary>
-        [SerializeField]
-        public Item[] _items;
-
         #endregion
         /***********************************************************************
         *                               Private Fields
