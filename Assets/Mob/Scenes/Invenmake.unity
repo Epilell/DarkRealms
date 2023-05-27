@@ -2107,7 +2107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.9935299, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3905,13 +3905,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571361443}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 533.65, y: 276.43518, z: 4.2075396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &571361445
 MonoBehaviour:
@@ -3925,9 +3925,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd347083a75615f448ffa248fb2c97d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isWarehouse: 1
   _initalCapacity: 32
   _maxCapacity: 64
   _inventoryUI: {fileID: 1544464133}
+  gm: {fileID: 761150907}
+  _upgradeSystem: {fileID: 0}
 --- !u!1 &581738182
 GameObject:
   m_ObjectHideFlags: 0
@@ -5289,6 +5292,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &761150905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 761150906}
+  - component: {fileID: 761150907}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &761150906
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761150905}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 437.00845, y: 225.69408, z: 2.2141206}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &761150907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761150905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed1a8813c8ea8f43aa51852354c4921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Inventory: {fileID: 1533077963}
+  Warehouse: {fileID: 571361443}
 --- !u!1 &796399818
 GameObject:
   m_ObjectHideFlags: 0
@@ -5464,7 +5513,7 @@ GameObject:
   - component: {fileID: 811253736}
   - component: {fileID: 811253735}
   m_Layer: 5
-  m_Name: Inventory
+  m_Name: InventoryUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5523,12 +5572,11 @@ MonoBehaviour:
   _popup: {fileID: 1594883819}
   _trimButton: {fileID: 609651463}
   _sortButton: {fileID: 669472981}
-  _ItemMoveButton: {fileID: 0}
   _toggleFilterAll: {fileID: 1514949688}
   _toggleFilterEquipments: {fileID: 351426075}
   _toggleFilterPortions: {fileID: 78807268}
   _mouseReversed: 0
-  isActive: 0
+  isActiveoOtherInven: 0
   _showDebug: 1
   __showPreview: 1
   __previewAlpha: 0.134
@@ -5678,7 +5726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.70980394}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7388,7 +7436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -9637,7 +9685,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1514949686
 GameObject:
@@ -9795,9 +9843,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd347083a75615f448ffa248fb2c97d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isWarehouse: 0
   _initalCapacity: 32
   _maxCapacity: 64
   _inventoryUI: {fileID: 811253735}
+  gm: {fileID: 761150907}
+  _upgradeSystem: {fileID: 0}
 --- !u!4 &1533077965
 Transform:
   m_ObjectHideFlags: 0
@@ -9805,13 +9856,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533077963}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.1323242, y: 3.1708984, z: 1.7446289}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1540369382
 GameObject:
@@ -9908,7 +9959,7 @@ GameObject:
   - component: {fileID: 1544464131}
   - component: {fileID: 1544464133}
   m_Layer: 5
-  m_Name: Warehouse
+  m_Name: WarehouseUI
   m_TagString: Warehouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10043,12 +10094,11 @@ MonoBehaviour:
   _popup: {fileID: 1732884328}
   _trimButton: {fileID: 225696597}
   _sortButton: {fileID: 181975673}
-  _ItemMoveButton: {fileID: 0}
   _toggleFilterAll: {fileID: 1018181372}
   _toggleFilterEquipments: {fileID: 670119692}
   _toggleFilterPortions: {fileID: 848739624}
   _mouseReversed: 0
-  isActive: 0
+  isActiveoOtherInven: 0
   _showDebug: 1
   __showPreview: 1
   __previewAlpha: 0.1
@@ -11188,7 +11238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -13095,6 +13145,7 @@ GameObject:
   - component: {fileID: 2062397868}
   - component: {fileID: 2062397867}
   - component: {fileID: 2062397866}
+  - component: {fileID: 2062397869}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -13186,6 +13237,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2062397869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062397864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02467c90af696e4091166df4b1d5321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closeButton1: {fileID: 1335224004}
+  Obj1: {fileID: 811253733}
+  closeButton2: {fileID: 264708944}
+  Obj2: {fileID: 1544464127}
 --- !u!1 &2072763756
 GameObject:
   m_ObjectHideFlags: 0

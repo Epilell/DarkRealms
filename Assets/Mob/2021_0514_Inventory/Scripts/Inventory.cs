@@ -63,10 +63,10 @@ namespace Rito.InventorySystem
         #region .
         /// <summary> 아이템 수용 한도 </summary>
         public int Capacity { get; private set; }
-
-        /// <summary> 아이템 목록 </summary>
-        [SerializeField]
-        public Item[] _items;
+        /// <summary>
+        /// !!!중요!!!창고인지 아닌지
+        /// </summary>
+        public bool _isWarehouse;
 
         #endregion
         /***********************************************************************
@@ -84,7 +84,12 @@ namespace Rito.InventorySystem
 
         [SerializeField]
         private InventoryUI _inventoryUI; // 연결된 인벤토리 UI
+        [SerializeField]
+        private GameManager gm;
 
+        [SerializeField]
+        private Item[] _items;
+        public Item[] _Items { get => _items; }
         [SerializeField]
         private UpgradeSystem _upgradeSystem; // 연결된 강화시스템
 
@@ -127,6 +132,21 @@ namespace Rito.InventorySystem
             _items = new Item[_maxCapacity];
             Capacity = _initalCapacity;
             _inventoryUI.SetInventoryReference(this);
+            /*
+            if (_isWarehouse)//창고라면 Awake시 창고 정보 Load함
+            {
+                //ForSaveInven.LoadWareHouse;
+                GameObject GM = GameObject.Find("GameManager");
+                _items = GM.GetComponent<GameManager>().LoadWarehouse();
+                UpdateSlot();
+            }*/
+        }
+        private void OnDestroy()
+        {
+            if (_isWarehouse)
+            {
+                gm.GetComponent<GameManager>().SaveWarehouse(this);
+            }
         }
 
         private void Start()
@@ -330,6 +350,10 @@ namespace Rito.InventorySystem
             _inventoryUI = inventoryUI;
             _inventoryUI.SetInventoryReference(this);
         }
+        public void SetItems(Item[] setitems)
+        {
+            _items = setitems;
+        }
 
         /// <summary> 인벤토리에 아이템 추가
         /// <para/> 넣는 데 실패한 잉여 아이템 개수 리턴
@@ -458,7 +482,7 @@ namespace Rito.InventorySystem
                 {
                     Debug.Log("재료가 충분한지확인");
                     index = FindMaterialSlotIndex(ciData, index + 1);
-                    Debug.Log("index= "+index);
+                    Debug.Log("index= " + index);
                     if (index == -1)
                     {
                         Debug.Log("재료 부족!");

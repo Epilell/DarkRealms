@@ -75,7 +75,6 @@ namespace Rito.InventorySystem
         [Header("Buttons")]
         [SerializeField] private Button _trimButton;
         [SerializeField] private Button _sortButton;
-        [SerializeField] private Button _ItemMoveButton;
 
         [Header("Filter Toggles")]
         [SerializeField] private Toggle _toggleFilterAll;
@@ -112,7 +111,7 @@ namespace Rito.InventorySystem
         private Vector3 _beginDragIconPoint;   // 드래그 시작 시 슬롯의 위치
         private Vector3 _beginDragCursorPoint; // 드래그 시작 시 커서의 위치
         private int _beginDragSlotSiblingIndex;
-        public bool isActive;
+        public bool isActiveoOtherInven;
 
         /// <summary> 인벤토리 UI 내 아이템 필터링 옵션 </summary>
         private enum FilterOption
@@ -145,8 +144,10 @@ namespace Rito.InventorySystem
             OnPointerDown();
             OnPointerDrag();
             OnPointerUp();
-
-            isActive = _otherInven.activeSelf;
+            if (_inventory._isWarehouse == false)
+            {
+                isActiveoOtherInven = _otherInven.activeSelf;
+            }
         }
 
         #endregion
@@ -404,7 +405,7 @@ namespace Rito.InventorySystem
             else if (Input.GetMouseButtonDown(_rightClick))
             {
                 ItemSlotUI slot = RaycastAndGetFirstComponent<ItemSlotUI>();
-                if (isActive==false|| _otherInven==null)//창고가 열려있지 않으면 아이템 사용
+                if (isActiveoOtherInven == false|| _otherInven==null)//자기자신이 창고가 아니고 창고가 열려있지 않으면 아이템 사용
                 {
                     if (slot != null && slot.HasItem && slot.IsAccessible)
                     {
@@ -529,7 +530,6 @@ namespace Rito.InventorySystem
             // 슬롯이 아닌 다른 UI 위에 놓은 경우
             else
             {
-
                 PointerEventData eventdata = new PointerEventData(EventSystem.current);
                 eventdata.position = _ped.position;
 
@@ -842,6 +842,7 @@ namespace Rito.InventorySystem
                 {
                     GameObject slotGo = Instantiate(_slotUiPrefab,_contentAreaRT);
                     slotGo.SetActive(true);
+                    slotGo.transform.localScale = Vector3.one;
                     slotGo.AddComponent<PreviewItemSlot>();
 
                     slotGo.transform.localScale = Vector3.one; // 버그 해결

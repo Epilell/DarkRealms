@@ -89,6 +89,7 @@ namespace Rito.InventorySystem
         {
             InitComponents();
             InitValues();
+            transform.localScale = Vector3.one;
         }
 
         #endregion

@@ -8,13 +8,14 @@ using UnityEngine;
 
 namespace Rito.InventorySystem
 {
+    /// <summary> List<>사용, 사용 재료와 개수를 저장 </summary>
     [Serializable]
     public class Requirements
     {
-        public ItemData Data => _data;
+        public CountableItemData Data => _data;
         public int Num => _num;
 
-        [SerializeField] private ItemData _data;
+        [SerializeField] private CountableItemData _data;
         [SerializeField] private int _num;
     }
 

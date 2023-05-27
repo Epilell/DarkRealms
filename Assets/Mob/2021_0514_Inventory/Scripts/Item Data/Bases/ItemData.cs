@@ -20,7 +20,7 @@ namespace Rito.InventorySystem
                 - ArmorItemData
 
     */
-
+    [System.Serializable]
     public abstract class ItemData : ScriptableObject
     {
         public int ID => _id;
