@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Reflection;
 
 /*
     [기능 - 에디터 전용]
@@ -268,7 +269,6 @@ namespace Rito.InventorySystem
         #region .
         private bool IsOverUI()
             => EventSystem.current.IsPointerOverGameObject();
-
         /// <summary> 레이캐스트하여 얻은 첫 번째 UI에서 컴포넌트 찾아 리턴 </summary>
         private T RaycastAndGetFirstComponent<T>() where T : Component
         {
@@ -417,7 +417,7 @@ namespace Rito.InventorySystem
                     if (slot != null && slot.HasItem && slot.IsAccessible)
                     {
                         _otherInven.GetComponent<InventoryUI>()._Inventory.Add(_inventory.GetItemData(slot.Index), _inventory.GetCurrentAmount(slot.Index));
-                        TryRemoveItem_P(slot.Index);
+                        _inventory.Remove(slot.Index);
                     }
                 }
             }
@@ -530,7 +530,27 @@ namespace Rito.InventorySystem
             // 슬롯이 아닌 다른 UI 위에 놓은 경우
             else
             {
-                EditorLog($"Drag End(Do Nothing)");
+
+                PointerEventData eventdata = new PointerEventData(EventSystem.current);
+                eventdata.position = _ped.position;
+
+                List<RaycastResult> results = new List<RaycastResult>();
+                EventSystem.current.RaycastAll(eventdata, results);
+
+                foreach (RaycastResult result in results)
+                {
+                    Inventory targetInventory = result.gameObject.GetComponent<Inventory>();
+                    if (targetInventory != null)
+                    {
+                        int index = _beginDragSlot.Index;
+                        targetInventory.Add(_inventory.GetItemData(index), _inventory.GetCurrentAmount(index));
+                        _inventory.Remove(index);
+                    }
+                    else
+                    {
+                        Debug.Log("아무것도 안함");
+                    }
+                }
             }
         }
 
@@ -608,10 +628,6 @@ namespace Rito.InventorySystem
         *                               Public Methods
         ***********************************************************************/
         #region .
-        public void TryRemoveItem_P(int index)
-        {
-            TryRemoveItem(index);
-        }
         /// <summary> 인벤토리 참조 등록 (인벤토리에서 직접 호출) </summary>
         public void SetInventoryReference(Inventory inventory)
         {
@@ -825,8 +841,7 @@ namespace Rito.InventorySystem
 
                 for (int i = 0; i < count; i++)
                 {
-                    GameObject slotGo = Instantiate(_slotUiPrefab);
-                    slotGo.transform.SetParent(_contentAreaRT.transform);
+                    GameObject slotGo = Instantiate(_slotUiPrefab,_contentAreaRT);
                     slotGo.SetActive(true);
                     slotGo.transform.localScale = Vector3.one;
                     slotGo.AddComponent<PreviewItemSlot>();

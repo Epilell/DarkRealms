@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 /*
@@ -67,8 +68,9 @@ namespace Rito.InventorySystem
         /// </summary>
         public bool _isWarehouse;
 
-        // /// <summary> 현재 아이템 개수 </summary>
-        //public int ItemCount => _itemArray.Count;
+        /// <summary> 아이템 목록 </summary>
+        [SerializeField]
+        public Item[] _items;
 
         #endregion
         /***********************************************************************
@@ -77,11 +79,11 @@ namespace Rito.InventorySystem
         #region .
 
         // 초기 수용 한도
-        [SerializeField, Range(8, 64)]
+        [SerializeField, Range(1, 64)]
         private int _initalCapacity = 32;
 
         // 최대 수용 한도(아이템 배열 크기)
-        [SerializeField, Range(8, 64)]
+        [SerializeField, Range(1, 64)]
         private int _maxCapacity = 64;
 
         [SerializeField]
@@ -89,13 +91,14 @@ namespace Rito.InventorySystem
         [SerializeField]
         private GameManager gm;
 
-        /// <summary> 아이템 목록 </summary>
         [SerializeField]
         private Item[] _items;
         public Item[] _Items { get => _items; }
+        [SerializeField]
+        private UpgradeSystem _upgradeSystem; // 연결된 강화시스템
 
-    /// <summary> 업데이트 할 인덱스 목록 </summary>
-    private readonly HashSet<int> _indexSetForUpdate = new HashSet<int>();
+        /// <summary> 업데이트 할 인덱스 목록 </summary>
+        private readonly HashSet<int> _indexSetForUpdate = new HashSet<int>();
 
         /// <summary> 아이템 데이터 타입별 정렬 가중치 </summary>
         private readonly static Dictionary<Type, int> _sortWeightDict = new Dictionary<Type, int>
@@ -160,6 +163,7 @@ namespace Rito.InventorySystem
         *                               Private Methods
         ***********************************************************************/
         #region .
+
         /// <summary> 인덱스가 수용 범위 내에 있는지 검사 </summary>
         private bool IsValidIndex(int index)
         {
@@ -343,6 +347,7 @@ namespace Rito.InventorySystem
         *                               Public Methods
         ***********************************************************************/
         #region .
+
         /// <summary> 인벤토리 UI 연결 </summary>
         public void ConnectUI(InventoryUI inventoryUI)
         {

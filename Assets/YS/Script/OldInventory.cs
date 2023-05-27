@@ -82,8 +82,7 @@ public class OldInventory : MonoBehaviour
     {
         if (collision.CompareTag("FieldItem"))  // 충돌한 오브젝트의 태그가 "FieldItem"일 때
         {
-            // 아이템 컴포넌트 가져오기
-            PItem pItem = collision.GetComponent<PItem>();
+            PItem pItem = collision.GetComponent<PItem>(); // 아이템 컴포넌트 가져오기
             if (AddItem(pItem.GetItem()))  // AddItem()이 true이면(인벤토리에 아이템을 추가하면)
             {
                 pItem.DestroyItem();  // 필드에서 삭제
@@ -99,7 +98,7 @@ public class OldInventory : MonoBehaviour
         InvenData.items = items; // 인벤토리 데이터 업데이트
     }
 
-    public int GetItemSlotCount() // 아이템이 들어간 슬롯 수 반환
+    public int GetItemSlotCount() // 용량(아이템 슬롯 수) 반환
     {
         int count = 0;
 
@@ -110,7 +109,7 @@ public class OldInventory : MonoBehaviour
                 count++;
             }
         }
-        
+
         return count;
     }
 }

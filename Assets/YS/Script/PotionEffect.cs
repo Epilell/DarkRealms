@@ -27,7 +27,6 @@ public class PotionEffect : MonoBehaviour
         {
             // 아이템 종류 별로 효과 넣기
             // e.g. 이름에 hp가 포함되면 체력 회복 아이템
-            // if (itemName.Contains("hp")) { player.CurrentHp += targetItemData.Value; }
 
             // 효과 종류 결정 하기
             string containWord = Regex.Match(itemName, "hp||power||armor||cooldown||blood||immunity||release||undying", RegexOptions.IgnoreCase).Value.ToLower();
@@ -36,8 +35,6 @@ public class PotionEffect : MonoBehaviour
             {
                 // 종류 별로 선택: 불필요한 것들은 지울 예정
                 case "hp": // 체력 회복
-                    Debug.Log("hp!"); // 테스트용 로그 ← 나중에 지울 거임
-                    // player.CurrentHp += targetItemData.Value; // 플레이어 체력 회복
                     player.P_Heal(targetItemData.Value);
                     break;
                 case "power": // 공격력 증가
@@ -64,7 +61,7 @@ public class PotionEffect : MonoBehaviour
                 default: break;
             }
         }
-        else { Debug.Log("사용 불가한 아이템"); }
+        else { Debug.Log("사용 불가"); }
     }
 }
 /*
