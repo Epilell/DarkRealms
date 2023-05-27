@@ -3238,16 +3238,19 @@ MonoBehaviour:
   _showTooltip: 1
   _showHighlight: 1
   _showRemovingPopup: 1
+  canvas: {fileID: 382786664}
   _contentAreaRT: {fileID: 765924359}
   _slotUiPrefab: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef, type: 3}
   _itemTooltip: {fileID: 1412603258}
   _popup: {fileID: 1568632898}
   _trimButton: {fileID: 1425549448}
   _sortButton: {fileID: 2139170950}
+  _ItemMoveButton: {fileID: 0}
   _toggleFilterAll: {fileID: 1536314889}
   _toggleFilterEquipments: {fileID: 236285571}
   _toggleFilterPortions: {fileID: 1457504135}
   _mouseReversed: 0
+  isActive: 0
   _showDebug: 0
   __showPreview: 1
   __previewAlpha: 0.1
@@ -3477,6 +3480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetInventory: {fileID: 0}
+  _inventory: {fileID: 0}
   _contentArea: {fileID: 1482811649}
   _targetPanelPrefab: {fileID: 3636651685158024614, guid: 669cfc2ebd3be0c47b7dabd1f311abb3, type: 3}
 --- !u!114 &829790541
@@ -7282,7 +7286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.012329102, y: 0.004333496}
+  m_AnchoredPosition: {x: 0.012329102, y: 0.0043945312}
   m_SizeDelta: {x: 0.024719242, y: -0.008666992}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536362934

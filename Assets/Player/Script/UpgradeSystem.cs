@@ -6,6 +6,7 @@ using TMPro;
 using System;
 using System.Linq;
 using Unity.VisualScripting;
+using System.Reflection;
 
 namespace Rito.InventorySystem
 {
@@ -54,9 +55,7 @@ namespace Rito.InventorySystem
 
         // Private Method
         #region
-        /// <summary>
-        /// 업그레이드 가능한 아이템 리스트를 가져오고 업그레이드 패널 생성
-        /// </summary>
+        /// <summary> 업그레이드 가능한 아이템 리스트를 가져오고 업그레이드 패널 생성 </summary>
         /// <param name="_items"></param>
         private void FindUpgradableItemAndMakeList(Item[] _items)
         {
@@ -90,21 +89,10 @@ namespace Rito.InventorySystem
                             UI._beforeImage.sprite = data.IconSprite;
                             UI._afterImage.sprite = data.NextArmorData.IconSprite;
 
-                            //필요데이터와 수량을 넣음
-                            /*if (data.Requirements.Count != 0)
-                            {
-                                for (int k = 0; k < data.Requirements.Count; k++)
-                                {
-                                    Requirements require = data.Requirements[k];
-                                    _inventory.UseMaterial(require.Data, require.Num);
-                                }
-                            }*/
-
                             //해당 패널의 업그레이드 버튼에 기능 할당
                             UI._upgradeButton.onClick.AddListener(() =>
-                            { 
-                                _inventory.Remove(index);
-                                _inventory.Add(data.NextArmorData);
+                            {
+                                AttemptArmorUpgrade(data, index);
                             });
                         }
                         if (_items[i].GetType() == typeof(WeaponItem))
@@ -115,21 +103,10 @@ namespace Rito.InventorySystem
                             UI._beforeImage.sprite = data.IconSprite;
                             UI._afterImage.sprite = data.NextWeaponData.IconSprite;
 
-                            //필요한 재료를 소진하는 기능을 버튼에 추가
-                            /*if (data.Requirements.Count != 0)
-                            {
-                                for (int k = 0; k < data.Requirements.Count; k++)
-                                {
-                                    Requirements require = data.Requirements[k];
-                                    _inventory.UseMaterial(require.Data, require.Num);
-                                }
-                            }*/
-
                             //해당 패널의 업그레이드 버튼에 기능 할당
                             UI._upgradeButton.onClick.AddListener(() =>
                             {
-                                _inventory.Remove(index);
-                                _inventory.Add(data.NextWeaponData);
+                                AttemptWeaponUpgrade(data, index);
                             });
                         }
                     }
@@ -145,6 +122,51 @@ namespace Rito.InventorySystem
                 _contentArea.sizeDelta = new Vector2(_contentArea.sizeDelta.x, _contentArea.childCount * 280);
             }
         }
+
+        private void AttemptArmorUpgrade(ArmorItemData _data, int _index)
+        {
+            bool canUpgrade = true;
+            if( canUpgrade )
+            {
+                if(_data.Requirements.Count == 0)
+                {
+                    _inventory.Remove(_index);
+                    _inventory.Add(_data.NextArmorData);
+                }
+                else
+                {
+                    for (int i = 0; i < _data.Requirements.Count; i++)
+                    {
+                        canUpgrade = _inventory.UseMaterial(_data.Requirements[_index].Data, _data.Requirements[_index].Num);
+                    }
+                    _inventory.Remove(_index);
+                    _inventory.Add(_data.NextArmorData);
+                }
+            }
+        }
+
+        private void AttemptWeaponUpgrade(WeaponItemData _data, int _index)
+        {
+            bool canUpgrade = true;
+            if(canUpgrade)
+            {
+                if(_data.Requirements.Count == 0)
+                {
+                    _inventory.Remove(_index);
+                    _inventory.Add(_data.NextWeaponData);
+                }
+                else
+                {
+                    for (int i = 0; i < _data.Requirements.Count; i++)
+                    {
+                        canUpgrade = _inventory.UseMaterial(_data.Requirements[_index].Data, _data.Requirements[_index].Num);
+                    }
+                    _inventory.Remove(_index);
+                    _inventory.Add(_data.NextWeaponData);
+                }
+            }
+        }
+
         #endregion
 
         // Unity Event
@@ -159,16 +181,16 @@ namespace Rito.InventorySystem
         {
             if (_firstMake)
             {
-                _latestItemList = new List<Item>(_inventory._items);
-                FindUpgradableItemAndMakeList(_inventory._items);
+                _latestItemList = new List<Item>(_inventory._Items);
+                FindUpgradableItemAndMakeList(_inventory._Items);
                 _firstMake = false;
             }
 
-            if (_inventory._items != null && _latestItemList != null && !AreListsEqual(_latestItemList, new List<Item>(_inventory._items)))
+            if (_inventory._Items != null && _latestItemList != null && !AreListsEqual(_latestItemList, new List<Item>(_inventory._Items)))
             {
                 _contentArea.sizeDelta = new Vector2(_contentArea.sizeDelta.x, 0);
-                _latestItemList = new List<Item>(_inventory._items);
-                FindUpgradableItemAndMakeList( _inventory._items);
+                _latestItemList = new List<Item>(_inventory._Items);
+                FindUpgradableItemAndMakeList( _inventory._Items);
             }
         }
         #endregion

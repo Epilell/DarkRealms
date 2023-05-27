@@ -530,7 +530,6 @@ namespace Rito.InventorySystem
             // 슬롯이 아닌 다른 UI 위에 놓은 경우
             else
             {
-
                 PointerEventData eventdata = new PointerEventData(EventSystem.current);
                 eventdata.position = _ped.position;
 
