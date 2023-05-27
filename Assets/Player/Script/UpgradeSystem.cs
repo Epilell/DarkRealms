@@ -159,16 +159,16 @@ namespace Rito.InventorySystem
         {
             if (_firstMake)
             {
-                _latestItemList = new List<Item>(_inventory._items);
-                FindUpgradableItemAndMakeList(_inventory._items);
+                _latestItemList = new List<Item>(_inventory._Items);
+                FindUpgradableItemAndMakeList(_inventory._Items);
                 _firstMake = false;
             }
 
-            if (_inventory._items != null && _latestItemList != null && !AreListsEqual(_latestItemList, new List<Item>(_inventory._items)))
+            if (_inventory._Items != null && _latestItemList != null && !AreListsEqual(_latestItemList, new List<Item>(_inventory._Items)))
             {
                 _contentArea.sizeDelta = new Vector2(_contentArea.sizeDelta.x, 0);
-                _latestItemList = new List<Item>(_inventory._items);
-                FindUpgradableItemAndMakeList( _inventory._items);
+                _latestItemList = new List<Item>(_inventory._Items);
+                FindUpgradableItemAndMakeList( _inventory._Items);
             }
         }
         #endregion
