@@ -358,14 +358,19 @@ namespace Rito.InventorySystem
         private void ShowOrHideItemTooltip()
         {
             // 마우스가 유효한 아이템 아이콘 위에 올라와 있다면 툴팁 보여주기
-            bool isValid =
-                _pointerOverSlot != null && _pointerOverSlot.HasItem && _pointerOverSlot.IsAccessible
-                && (_pointerOverSlot != _beginDragSlot); // 드래그 시작한 슬롯이면 보여주지 않기
-
+            bool isValid = _pointerOverSlot != null && _pointerOverSlot.HasItem && _pointerOverSlot.IsAccessible&& (_pointerOverSlot != _beginDragSlot); // 드래그 시작한 슬롯이면 보여주지 않기
+            
             if (isValid)
             {
-                UpdateTooltipUI(_pointerOverSlot);
-                _itemTooltip.Show();
+                if (_pointerOverSlot != null)
+                {
+                    UpdateTooltipUI(_pointerOverSlot);
+                    _itemTooltip.Show();
+                }
+                else
+                {
+                    Debug.Log("오류!");
+                }
             }
             else
                 _itemTooltip.Hide();
@@ -405,7 +410,7 @@ namespace Rito.InventorySystem
             else if (Input.GetMouseButtonDown(_rightClick))
             {
                 ItemSlotUI slot = RaycastAndGetFirstComponent<ItemSlotUI>();
-                if (isActiveoOtherInven == false|| _otherInven==null)//자기자신이 창고가 아니고 창고가 열려있지 않으면 아이템 사용
+                if (isActiveoOtherInven == false || _otherInven == null)//자기자신이 창고가 아니고 창고가 열려있지 않으면 아이템 사용
                 {
                     if (slot != null && slot.HasItem && slot.IsAccessible)
                     {
@@ -530,7 +535,8 @@ namespace Rito.InventorySystem
             // 슬롯이 아닌 다른 UI 위에 놓은 경우
             else
             {
-
+                Debug.Log("아무것도 안함");
+                /*
                 PointerEventData eventdata = new PointerEventData(EventSystem.current);
                 eventdata.position = _ped.position;
 
@@ -550,7 +556,7 @@ namespace Rito.InventorySystem
                     {
                         Debug.Log("아무것도 안함");
                     }
-                }
+                }*/
             }
         }
 
@@ -841,7 +847,7 @@ namespace Rito.InventorySystem
 
                 for (int i = 0; i < count; i++)
                 {
-                    GameObject slotGo = Instantiate(_slotUiPrefab,_contentAreaRT);
+                    GameObject slotGo = Instantiate(_slotUiPrefab, _contentAreaRT);
                     slotGo.SetActive(true);
                     slotGo.transform.localScale = Vector3.one;
                     slotGo.AddComponent<PreviewItemSlot>();

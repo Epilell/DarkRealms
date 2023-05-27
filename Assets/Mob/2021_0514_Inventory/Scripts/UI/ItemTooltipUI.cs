@@ -86,8 +86,16 @@ namespace Rito.InventorySystem
         /// <summary> 툴팁 UI에 아이템 정보 등록 </summary>
         public void SetItemInfo(ItemData data)
         {
-            _titleText.text = data.Name;
-            _contentText.text = data.Tooltip;
+            //Debug.Log(data.name);
+            if (data != null)
+            {
+                _titleText.text = data.Name;
+                _contentText.text = data.Tooltip;
+            }
+            else
+            {
+                Debug.Log("아이템 데이터 없음!");
+            }
         }
 
         /// <summary> 툴팁의 위치 조정 </summary>

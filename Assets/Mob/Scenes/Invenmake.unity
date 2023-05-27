@@ -2107,7 +2107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.9935299, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3930,6 +3930,7 @@ MonoBehaviour:
   _maxCapacity: 64
   _inventoryUI: {fileID: 1544464133}
   gm: {fileID: 761150907}
+  _upgradeSystem: {fileID: 0}
 --- !u!1 &581738182
 GameObject:
   m_ObjectHideFlags: 0
@@ -5575,7 +5576,7 @@ MonoBehaviour:
   _toggleFilterEquipments: {fileID: 351426075}
   _toggleFilterPortions: {fileID: 78807268}
   _mouseReversed: 0
-  isActiveother: 0
+  isActiveoOtherInven: 0
   _showDebug: 1
   __showPreview: 1
   __previewAlpha: 0.134
@@ -5725,7 +5726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.70980394}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7435,7 +7436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -9847,6 +9848,7 @@ MonoBehaviour:
   _maxCapacity: 64
   _inventoryUI: {fileID: 811253735}
   gm: {fileID: 761150907}
+  _upgradeSystem: {fileID: 0}
 --- !u!4 &1533077965
 Transform:
   m_ObjectHideFlags: 0
@@ -10096,7 +10098,7 @@ MonoBehaviour:
   _toggleFilterEquipments: {fileID: 670119692}
   _toggleFilterPortions: {fileID: 848739624}
   _mouseReversed: 0
-  isActiveother: 0
+  isActiveoOtherInven: 0
   _showDebug: 1
   __showPreview: 1
   __previewAlpha: 0.1
@@ -11236,7 +11238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
