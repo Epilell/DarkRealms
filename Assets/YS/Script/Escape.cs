@@ -14,7 +14,7 @@ public class Escape : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")) // 플레이어랑 충돌하면 페이드 아웃
         {
             StartCoroutine(FadeOut());
         }
@@ -34,9 +34,6 @@ public class Escape : MonoBehaviour
             panel.color = alpha; // 이미지의 색상 정보변경
             yield return null; // 한 프레임 대기
         }
-
-        /*Coin coin = new Coin();
-        coin.SetCoin(100);*/
 
         SceneManager.LoadScene(scene.name);
     }
