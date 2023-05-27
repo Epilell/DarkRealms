@@ -15,5 +15,11 @@ namespace Rito.InventorySystem
         public int MaxDurability => _maxDurability;
 
         [SerializeField] private int _maxDurability = 100;
+        [SerializeField]
+        public string itemType;
+        public string ItemType
+        {
+            get => itemType;
+        }
     }
 }

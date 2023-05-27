@@ -144,9 +144,13 @@ namespace Rito.InventorySystem
             OnPointerDown();
             OnPointerDrag();
             OnPointerUp();
-            if (_inventory._isWarehouse == false)
+            if (_otherInven != null)
             {
                 isActiveoOtherInven = _otherInven.activeSelf;
+            }
+            else
+            {
+                Debug.Log("다른인벤없음");
             }
         }
 
@@ -234,9 +238,24 @@ namespace Rito.InventorySystem
         }
         private void InitFindWarehouse()
         {
-            if (GameObject.FindWithTag("Warehouse") != null)
+            string tag = gameObject.tag;
+
+            // 태그가 "Warehouse"인지 확인합니다.
+            if (tag == "Warehouse")
             {
-                _otherInven = GameObject.FindWithTag("Warehouse");
+                // 태그가 "Warehouse"인 경우에 대한 처리를 여기에 작성합니다.
+                _otherInven = GameObject.FindWithTag("InventoryUI");
+            }
+            else
+            {
+                if (GameObject.FindWithTag("Warehouse") != null)
+                {
+                    _otherInven = GameObject.FindWithTag("Warehouse");
+                }
+                else
+                {
+                    Debug.Log("다른 인벤 없다");
+                }
             }
         }
         private void InitButtonEvents()
@@ -358,8 +377,8 @@ namespace Rito.InventorySystem
         private void ShowOrHideItemTooltip()
         {
             // 마우스가 유효한 아이템 아이콘 위에 올라와 있다면 툴팁 보여주기
-            bool isValid = _pointerOverSlot != null && _pointerOverSlot.HasItem && _pointerOverSlot.IsAccessible&& (_pointerOverSlot != _beginDragSlot); // 드래그 시작한 슬롯이면 보여주지 않기
-            
+            bool isValid = _pointerOverSlot != null && _pointerOverSlot.HasItem && _pointerOverSlot.IsAccessible && (_pointerOverSlot != _beginDragSlot); // 드래그 시작한 슬롯이면 보여주지 않기
+
             if (isValid)
             {
                 if (_pointerOverSlot != null)

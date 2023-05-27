@@ -16,8 +16,9 @@ MonoBehaviour:
   _name: "\uD478\uB978 \uC7A5\uAC80"
   _tooltip: "\uD30C\uB791\uD30C\uB791 \uC7A5\uAC80\uC774\uB2E4."
   _iconSprite: {fileID: 21300000, guid: bb1bdd56c1352fb419836f9c2b0bf4bf, type: 3}
-  _dropItemPrefab: {fileID: 0}
+  _dropItemPrefab: {fileID: 7603268250365703012, guid: 321d95a9967970344b1e239f775b6245, type: 3}
   _maxDurability: 100
+  itemType: weapon
   _damage: 10
   _nextWeaponData: {fileID: 11400000, guid: e73a0198a0431f04a8ff190aae00be09, type: 2}
   _requirements:

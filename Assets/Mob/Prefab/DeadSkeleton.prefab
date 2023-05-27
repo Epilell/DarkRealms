@@ -99,15 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5132ace5481117e47a7e3d6d274bfc55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DropItem: {fileID: 8071592843748401581, guid: 9094f8bda04c04040931efbdecfe630f, type: 3}
-  mobItemUI: {fileID: 0}
   itemDropList:
-  - item:
-      itemType: 0
-      itemName: 
-      itemImage: {fileID: 0}
-      effectPoint: 0
-      effects: []
+  - item: {fileID: 11400000, guid: e44506062b1a62e4f9afc1bf9cf480fd, type: 2}
     dropChance: 1
 --- !u!114 &965568549241441880
 MonoBehaviour:

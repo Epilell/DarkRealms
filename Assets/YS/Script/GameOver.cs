@@ -1,9 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using Rito.InventorySystem;
 
 public class GameOver : MonoBehaviour
 {
-    public OldInventory oldInventory;
+    public Inventory Inventory;
     public Player player;
     private float playTime = 10f; // 테스트용 10초
 
@@ -15,8 +16,11 @@ public class GameOver : MonoBehaviour
 
         player.CurrentHp = 0; // 죽음: 체력 0
         FindObjectOfType<HealthBar>().ChangeHP(); // 체력바 변경
-
-        oldInventory.RemoveAllItem(); // 죽으면 인벤토리 내 모든 아이템 제거
+        for(int i = 0; i < Inventory._Items.Length; i++)
+        {
+            Inventory.Remove(i); // 죽으면 인벤토리 내 모든 아이템 제거
+        }
+        
 
         // 3초 간 정지 후 페이드 아웃
         Time.timeScale = 0;

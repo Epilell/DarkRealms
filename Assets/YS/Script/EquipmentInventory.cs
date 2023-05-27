@@ -1,19 +1,22 @@
 using System;
 using UnityEngine;
+using Rito.InventorySystem;
 
 public class EquipmentInventory : MonoBehaviour
 {
-    protected OldInventory oldInventory;
+    public Inventory _inventory;
+    public static EquipmentInventory instance;  // 장비 인벤토리 인스턴스
+    public P_Data playerData;
 
-    public static EquipmentInventory instance;  // 인벤토리 인스턴스
-    private EquipmentSlot[] slots;
-    public EquipmentData Eqdata;
+    private Rito.InventorySystem.Item[] _eqitems;
+    public Rito.InventorySystem.Item[] EqItems { get => _eqitems; }
+
+    private ItemSlotUI[] slots;
     public Transform slotHolder;
-
-    public Equip equip;
 
     private void Awake()
     {
+        _eqitems = new Rito.InventorySystem.Item[5];
         if (instance != null)  // 인벤토리 인스턴스가 존재하면
         {
             Destroy(gameObject);  // 중복 생성 방지를 위해 현재 게임 오브젝트를 파괴
@@ -24,104 +27,154 @@ public class EquipmentInventory : MonoBehaviour
 
     private void Start() // 장비 슬롯 초기화
     {
-        oldInventory = OldInventory.instance;
-        
-        slots = slotHolder.GetComponentsInChildren<EquipmentSlot>();
+        slots = slotHolder.GetComponentsInChildren<ItemSlotUI>();
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i] != null)
+            Updateslot(i);
+        }
+    }
+    /// <summary>
+    /// 장착해제
+    /// </summary>
+    /// <param name="index"></param>
+    public void UnEquip(int index)
+    {
+        _inventory.Add(_eqitems[index].Data);
+        _eqitems[index] = null;
+        slots[index].RemoveItem();
+    }
+    /// <summary>
+    /// 장비하기. 아이템 데이터를 받고 장비시키며 이미 장비한 아이템이 있으면 그 데이터 돌려주고 없으면 null반환
+    /// </summary>
+    /// <param name="itemData"></param>
+    /// <returns></returns>
+    public ItemData ChangeEquip(ItemData itemData)
+    {
+        if (itemData is EquipmentItemData eqData)
+        {
+            int index = FindSlot(eqData);
+            if (index == 5)
             {
-                slots[i].item = Eqdata.EqItems[i];
-                slots[i].item = null;
+                return itemData;
             }
+            if (_eqitems[index] == null)
+            {
+                _eqitems[index] = itemData.CreateItem();
+                Updateslot(index);
+                //아이템 장비 효과
+                ItemEffect(_eqitems[index].Data as EquipmentItemData);
+                return null;
+            }
+            else
+            {
+                ItemData forReturnItemData = _eqitems[index].Data;
+                _eqitems[index] = itemData.CreateItem();
+                Updateslot(index);
+                //아이템 장비 효과
+                ItemEffect(_eqitems[index].Data as EquipmentItemData);
+                return forReturnItemData;
+            }
+        }
+        else
+        {
+            return itemData;
         }
     }
 
-    public Slot FindEmptySlot(String itemName)  // 빈 슬롯 찾기
+    public int FindSlot(EquipmentItemData eqdata)  // 빈 슬롯 찾기
     {
-        if (itemName == "helmet")
+        if (eqdata.itemType == "helmet")
         {
-            return slots[0];
+            return 0;
         }
-        else if (itemName == "armor")
+        else if (eqdata.itemType == "leg")
         {
-            return slots[1];
+            return 1;
         }
-        else if (itemName == "knee")
+        else if (eqdata.itemType == "weapon")
         {
-            return slots[2];
+            return 2;
         }
-        else if (itemName == "shoes")
+        else if (eqdata.itemType == "armor")
         {
-            return slots[3];
+            return 3;
         }
-        else if (itemName == "rifle")
+        else if (eqdata.itemType == "shoes")
         {
-            return slots[4];
+            return 4;
         }
-        else if (itemName == "shotgun")
-        {
-            return slots[5];
-        }
-        else return null;
+        else return 5;
     }
 
-    public void AddItems(Item item, Slot targetSlot, int slotNum)  // 빈 슬롯에 넣음
+    private void Updateslot(int index)
     {
-        // image가 null이면 아이템이 없는 걸로, 이미지가 다르면 다른 아이템으로 간주
-        if (targetSlot != null && /*targetSlot.item.itemImage != item.itemImage || */targetSlot.item == null /*targetSlot.item.itemName == ""*/) // 해당 슬롯에 같은 아이템이 있으면 추가하지 않음
+        Rito.InventorySystem.Item? item;
+        if (_eqitems[index] != null)
         {
-            /*if (targetSlot.item != null && targetSlot.item.itemImage != null)
-            {
-                equip.RemoveEquipmentEffect(targetSlot.item.itemName, targetSlot.item.effectPoint);
-                oldInventory.AddItem(targetSlot.item); // 다른 아이템이 존재하면 아이템 교체
-            }
-            */
-
-            // 장비 슬롯에 아이템 추가
-            targetSlot.item = item;
-            targetSlot.UpdateSlotUI();
-
-            RemoveItem(slotNum); // 임시로 추가
-
-            // 종류 별로 효과 부여
-            /*if (item.itemName == "helmet")
-            {
-                equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
-                RemoveItem(slotNum);
-            }
-            else if (item.itemName == "armor")
-            {
-                equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
-                RemoveItem(slotNum);
-            }
-            else if (item.itemName == "knee")
-            {
-                equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
-                RemoveItem(slotNum);
-            }
-            else if (item.itemName == "shoes")
-            {
-                equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
-                RemoveItem(slotNum);
-            }
-            else if (item.itemName == "rifle")
-            {
-                equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
-                RemoveItem(slotNum);
-            }
-            else if (item.itemName == "shotgun")
-            {
-                equip.ApplyEquipmentEffect(item.itemName, item.effectPoint);
-                RemoveItem(slotNum);
-            }*/
+            item = _eqitems[index];
         }
-        else { }
-    }
+        else
+        {
+            item = null;
+        }
+        // 1. 아이템이 슬롯에 존재하는 경우
+        if (item != null)
+        {
+            // 아이콘 등록
+            SetItemIcon(index, item.Data.IconSprite);
+        }
+        // 2. 빈 슬롯인 경우 : 아이콘 제거
+        else
+        {
+            RemoveIcon();
+        }
 
-    public void RemoveItem(int _index)
+        // 로컬 : 아이콘 제거하기
+        void RemoveIcon()
+        {
+            RemoveItem(index);
+        }
+    }
+    public void SetItemIcon(int index, Sprite icon)
     {
-        OldInventory.instance.items.RemoveAt(_index);  // 아이템 리스트에서 해당 인덱스의 아이템 제거
-        OldInventory.instance.onChangeItem.Invoke();  // 아이템 변경 이벤트 호출
+        slots[index].SetItem(icon);
+    }
+    public void RemoveItem(int index)
+    {
+        slots[index].RemoveItem();
+    }
+    /// <summary>
+    /// 장비 아이템 장착 효과
+    /// </summary>
+    /// <param name="eqdata"></param>
+    private void ItemEffect(EquipmentItemData eqdata)
+    {
+        int itemNum =FindSlot(eqdata);
+        if (eqdata is ArmorItemData armdata)
+        {
+            switch (itemNum)
+            {
+                case 0: 
+                    playerData.Helmet = armdata.Defence;
+                    break;
+                case 1:
+                    playerData.Leg = armdata.Defence;
+                    break;
+                case 3:
+                    playerData.Body = armdata.Defence;
+                    break;
+                case 4:
+                    playerData.Shoes = armdata.Defence;
+                    break;
+            }
+        }
+        else if(eqdata is WeaponItemData wdata)
+        {
+            //playerData.공격력 = wdata.Damage;
+        }
+        else
+        {
+            Debug.Log("장비아이템이 아님");
+        }
     }
 }

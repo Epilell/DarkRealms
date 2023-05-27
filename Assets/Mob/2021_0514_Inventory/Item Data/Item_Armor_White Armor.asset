@@ -18,6 +18,7 @@ MonoBehaviour:
   _iconSprite: {fileID: 21300000, guid: a1f270ff46445564e9afa40d0d9574db, type: 3}
   _dropItemPrefab: {fileID: 0}
   _maxDurability: 150
+  itemType: armor
   _defence: 10
   _nextArmorData: {fileID: 0}
   _requirements: []

@@ -66,7 +66,7 @@ namespace Rito.InventorySystem
         /// <summary>
         /// !!!중요!!!창고인지 아닌지
         /// </summary>
-        public bool _isWarehouse;
+        public bool _isWarehouse=false;
 
         #endregion
         /***********************************************************************
@@ -84,6 +84,8 @@ namespace Rito.InventorySystem
 
         [SerializeField]
         private InventoryUI _inventoryUI; // 연결된 인벤토리 UI
+        [SerializeField]
+        private EquipmentInventory _eqInven;
         [SerializeField]
         private GameManager gm;
 
@@ -604,7 +606,7 @@ namespace Rito.InventorySystem
             if (_items[index] == null) return;
 
             // 사용 가능한 아이템인 경우
-            if (_items[index] is IUsableItem uItem)
+            if (_items[index] is IUsableItem uItem && _isWarehouse == false)
             {
                 // 아이템 사용
                 bool succeeded = uItem.Use();
@@ -613,6 +615,27 @@ namespace Rito.InventorySystem
                 {
                     UpdateSlot(index);
                 }
+            }
+            //장비아이템이고 인벤토리인경우
+            else if(_items[index] is EquipmentItem eItem&&_isWarehouse==false)
+            {
+                ItemData idata=_eqInven.ChangeEquip(eItem.Data);//장비하기
+
+                if (idata == null)//들어있던 아이템이 없을경우 그냥삭제
+                {
+                    Remove(index);
+                    UpdateSlot(index);
+                }
+                else//있으면 인벤에 넣기
+                {
+                    Remove(index);
+                    Add(idata);
+                    UpdateSlot(index);
+                }
+            }
+            else
+            {
+                Debug.Log("Inventory.Use 실패");
             }
         }
 
