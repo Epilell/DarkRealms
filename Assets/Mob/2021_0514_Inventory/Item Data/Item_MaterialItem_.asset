@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f955c1d619ece49bd09b61229c8acc, type: 3}
+  m_Name: Item_MaterialItem_
+  m_EditorClassIdentifier: 
+  _id: 999
+  _name: "\uAC15\uD654\uC7AC\uB8CC"
+  _tooltip: "\uAC15\uD654\uC7AC\uB8CC\uC784 \uAC15\uD654\uD558\uB294\uB370 \uC4F0\uC148"
+  _iconSprite: {fileID: 21300000, guid: 6f04b426aa4435344896c39b692fbf6e, type: 3}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
+  _maxAmount: 99
+  _value: 0

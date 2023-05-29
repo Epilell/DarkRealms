@@ -25,7 +25,14 @@ public class MobDropItem : MonoBehaviour
             {
                 DropItem = itemDrop.item.DropItemPrefab;
                 //mobItemUI.SetActive(true);
-                Instantiate(DropItem, transform.position, Quaternion.identity);//임시아이템드롭
+                GameObject itemclon = Instantiate(DropItem, transform.position, Quaternion.identity);//임시아이템드롭
+                ItemContactToInven itemComponent = itemclon.GetComponent<ItemContactToInven>();
+                if (itemComponent != null)
+                {
+                    itemComponent.itemData = itemDrop.item;
+
+                }
+
             }
         }
     }

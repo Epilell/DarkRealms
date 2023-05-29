@@ -75,11 +75,11 @@ namespace Rito.InventorySystem
         #region .
 
         // 초기 수용 한도
-        [SerializeField, Range(1, 64)]
+        [SerializeField, Range(1, 128)]
         private int _initalCapacity = 32;
 
         // 최대 수용 한도(아이템 배열 크기)
-        [SerializeField, Range(1, 64)]
+        [SerializeField, Range(1, 128)]
         private int _maxCapacity = 64;
 
         [SerializeField]
@@ -476,14 +476,14 @@ namespace Rito.InventorySystem
         {
             Debug.Log("UseMaterial1");
             int index = -1;
-            if (itemData is CountableItemData ciData)
+            if (itemData is MaterialItemData miData)
             {
                 Debug.Log("UseMaterial2");
                 int currentAmount = 0;
                 while (currentAmount < amount)
                 {
                     Debug.Log("재료가 충분한지확인");
-                    index = FindMaterialSlotIndex(ciData, index + 1);
+                    index = FindMaterialSlotIndex(miData, index + 1);
                     Debug.Log("index= " + index);
                     if (index == -1)
                     {
@@ -505,10 +505,10 @@ namespace Rito.InventorySystem
                     while (amount > 0)
                     {
                         Debug.Log("index1 = " + index);
-                        index = FindMaterialSlotIndex(ciData, index + 1);
+                        index = FindMaterialSlotIndex(miData, index + 1);
                         if (index >= 0 && index < _items.Length)
                         {
-                            CountableItem ci = _items[index] as CountableItem;
+                            MaterialItem ci = _items[index] as MaterialItem;
                             amount = ci.ReAmountAndGetExcess(amount);
                             UpdateSlot(index);
                             Debug.Log("amount = " + amount);
