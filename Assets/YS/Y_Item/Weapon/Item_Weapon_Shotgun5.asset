@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 5
   _name: shotgun5
-  _tooltip: "\uD604\uB300\uC2DD \uC0F7\uAC74\uC774\uB2E4"
+  _tooltip: "\uAC15\uB825\uD55C \uD604\uB300\uC2DD \uC0F7\uAC74\uC774\uB2E4"
   _iconSprite: {fileID: 21300000, guid: 02aae56356051d1468f0769ee8dce910, type: 3}
   _dropItemPrefab: {fileID: 0}
   _maxDurability: 100
+  itemType: weapon
   _damage: 80
+  _nextWeaponData: {fileID: 0}
+  _requirements: []

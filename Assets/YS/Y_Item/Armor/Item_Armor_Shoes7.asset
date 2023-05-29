@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b50f428ada62c3a40b63fb5674b59ee3, type: 3}
+  m_Name: Item_Armor_Shoes7
+  m_EditorClassIdentifier: 
+  _id: 7
+  _name: shoes7
+  _tooltip: "\uB354 \uBD80\uB4DC\uB7FD\uACE0 \uD0C4\uB825\uC788\uB294 \uC804\uD22C\uD654\uB2E4"
+  _iconSprite: {fileID: 21300000, guid: 103757ce660cb494eae1390b6077f31a, type: 3}
+  _dropItemPrefab: {fileID: 0}
+  _maxDurability: 100
+  itemType: shoes
+  _defence: 75
+  _nextArmorData: {fileID: 11400000, guid: 0bc00f05fb558f94fb2161b007aa6e84, type: 2}
+  _requirements: []
