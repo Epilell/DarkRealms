@@ -12,15 +12,10 @@ public class CapacityRisk : MonoBehaviour
 
     void Update()
     {
-<<<<<<< Updated upstream
         capacity = inventory._Items.Length; // 용량 받기
         // player.ChangeSpeedReduction(capacity / 10); // 용량만큼 이동속도 감소
-        if (magneticField != null) { magneticField.decreaseSpeed = capacity; } // 용량만큼 자기장 감소 속도가 빨라짐
-=======
-        capacity = oldInventory.GetItemSlotCount(); // 용량 받기
-        if (capacity >= 1) { magneticField.decreaseSpeed = capacity; } // 용량만큼 자기장 축소 속도 증가
+        if (magneticField != null && capacity >= 1) { magneticField.decreaseSpeed = capacity; } // 용량만큼 자기장 감소 속도가 빨라짐
         // player.ChangeSpeedReduction(capacity / 10); // 용량만큼 이동속도 감소
         // 몹 스폰 증가??
->>>>>>> Stashed changes
     }
 }
