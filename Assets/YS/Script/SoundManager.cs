@@ -5,38 +5,51 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource musicSource, efSource;  // 오디오 소스
-    public Image image1, image2;
-    public Sprite music_off, music_on, effect_off, effect_on;
+    [Header("AudioSource")] // 오디오 소스
+    public AudioSource bgm;
+    public List<AudioSource> sfxSources;
 
-    public void SetMusicVolume(float volume)
+    [Header("ImgSource")] // 이미지 소스
+    public Sprite bgm_on;
+    public Sprite bgm_off;
+    public Sprite sfx_on;
+    public Sprite sfx_off;
+
+    [Header("IconObj")] // 아이콘 오브젝트
+    public Image bgmIcon;
+    public Image sfxIcon;
+
+    public void SetBgmVolume(float volume) // 배경음악 볼륨 조절
     {
-        musicSource.volume = volume;  // 배경음악 볼륨 조절
-        if (musicSource.volume <= 0)
+        bgm.volume = volume;
+        if (bgm.volume <= 0) { bgmIcon.sprite = bgm_off; } // 볼륨이 0이면 OFF로 이미지 변경
+        else { bgmIcon.sprite = bgm_on; } // 0이 아니면 ON으로 이미지 변경
+    }
+
+    public void SetSfx(float volume)  // 효과음 볼륨 조절
+    {
+        foreach (AudioSource efSource in sfxSources)
         {
-            image1.sprite = music_off;  // 배경음악 볼륨이 0이면 OFF로 이미지 변경
-        }
-        else
-        {
-            image1.sprite = music_on;  // 0이 아니면 ON으로 이미지 변경
+            efSource.volume = volume;
+            if (efSource.volume <= 0) { sfxIcon.sprite = sfx_off; } // 볼륨이 0이면 OFF로 이미지 변경
+            else { sfxIcon.sprite = sfx_on; }
         }
     }
 
-    public void SetEffectVolume(float volume)
+    public void PlaySound(string sourceName) // 효과음 재생
     {
-        efSource.volume = volume;  // 효과음 볼륨 조절
-        if (efSource.volume <= 0)
-        {
-            image2.sprite = effect_off;
-        }
-        else
-        {
-            image2.sprite = effect_on;
-        }
-    }
+        AudioSource targetSource = null; // 대상 효과음 소스
 
-    public void OnSfx() // 효과음 재생 함수
-    {
-        efSource.Play();
+        foreach (AudioSource audioSource in sfxSources) // 일치하는 거 찾기
+        {
+            if (audioSource.name == sourceName)
+            {
+                targetSource = audioSource;
+                break;
+            }
+        }
+
+        if (targetSource != null) { targetSource.Play(); } // 찾으면 실행
+        else { }
     }
 }

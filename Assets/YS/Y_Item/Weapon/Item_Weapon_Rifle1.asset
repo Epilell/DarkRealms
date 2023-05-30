@@ -18,4 +18,7 @@ MonoBehaviour:
   _iconSprite: {fileID: 21300000, guid: f3600608e15a9924484f7ac34432e5c3, type: 3}
   _dropItemPrefab: {fileID: 0}
   _maxDurability: 100
+  itemType: weapon
   _damage: 10
+  _nextWeaponData: {fileID: 11400000, guid: 3d5395fb81cd77340952a9940422ac2f, type: 2}
+  _requirements: []
