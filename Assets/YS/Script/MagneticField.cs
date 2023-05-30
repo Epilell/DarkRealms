@@ -22,8 +22,6 @@ public class MagneticField : MonoBehaviour
 
     private void Update()
     {
-        if (decreaseSpeed < 1) { decreaseSpeed = 1; }
-
         // Debug.Log("영역 감소 속도: " + decreaseSpeed);
         currentRadius -= decreaseSpeed * Time.deltaTime; // 자기장 크기 감소
 

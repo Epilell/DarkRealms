@@ -14,11 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 1
   _name: armor1
-  _tooltip: "\uAC12\uC2FC \uBC29\uC5B4\uAD6C\uB2E4"
+  _tooltip: "\uC2E0\uCCB4\uB97C \uB2E8\uB2E8\uD788 \uBCF4\uD638\uD558\uB294 \uBC29\uC5B4\uAD6C\uB2E4"
   _iconSprite: {fileID: 21300000, guid: 1cc139689f6eee6409b67e28832906d9, type: 3}
   _dropItemPrefab: {fileID: 0}
   _maxDurability: 100
-  itemType: armor
-  _defence: 15
-  _nextArmorData: {fileID: 11400000, guid: c68ff887ae3406142a35fe7f6dbf4f70, type: 2}
-  _requirements: []
+  _defence: 25

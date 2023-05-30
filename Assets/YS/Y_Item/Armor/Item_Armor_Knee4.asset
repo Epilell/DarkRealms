@@ -14,12 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 4
   _name: knee4
-  _tooltip: "\uB354 \uB113\uC740 \uBC94\uC704\uB97C \uBCF4\uD638\uD574 \uC8FC\uB294
-    \n\uBB34\uB98E \uBCF4\uD638\uAD6C\uB2E4"
+  _tooltip: "\uBB34\uB98E\uC744 \uBCF4\uD638\uD574 \uC8FC\uB294 \uBCF4\uD638\uAD6C\uB2E4\n"
   _iconSprite: {fileID: 21300000, guid: d0b2cc72e18c0a24e8de900ff01cc617, type: 3}
   _dropItemPrefab: {fileID: 0}
   _maxDurability: 100
-  itemType: leg
-  _defence: 45
-  _nextArmorData: {fileID: 11400000, guid: 3c45d3d618c2d954895bde3227e6be40, type: 2}
-  _requirements: []
+  _defence: 55

@@ -18,7 +18,4 @@ MonoBehaviour:
   _iconSprite: {fileID: 21300000, guid: ca97b3c162530e44ea76d11d7dbc373e, type: 3}
   _dropItemPrefab: {fileID: 0}
   _maxDurability: 100
-  itemType: shoes
-  _defence: 40
-  _nextArmorData: {fileID: 11400000, guid: 1c3d6d8d6d3d823498c3aaf75e6d7b3a, type: 2}
-  _requirements: []
+  _defence: 55

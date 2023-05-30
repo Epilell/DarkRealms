@@ -6,7 +6,7 @@ public class GameOver : MonoBehaviour
 {
     public Inventory Inventory;
     public Player player;
-    public float playTime = 10f; // 테스트용 10초
+    private float playTime = 10f; // 테스트용 10초
 
     private void Start() { StartCoroutine(GameOverRoutine()); }
 
@@ -20,6 +20,7 @@ public class GameOver : MonoBehaviour
         {
             Inventory.Remove(i); // 죽으면 인벤토리 내 모든 아이템 제거
         }
+        
 
         // 3초 간 정지 후 페이드 아웃
         Time.timeScale = 0;
