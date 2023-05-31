@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: knee1
   _tooltip: "\uAE30\uBCF8\uC801\uC778 \uBB34\uB98E \uBCF4\uD638\uAD6C\uB2E4"
   _iconSprite: {fileID: 21300000, guid: bc30215fa177d414f981a70dd3253b66, type: 3}
-  _dropItemPrefab: {fileID: 0}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
   _maxDurability: 100
   itemType: leg
   _defence: 10

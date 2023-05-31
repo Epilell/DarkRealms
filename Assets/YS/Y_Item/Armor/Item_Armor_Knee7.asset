@@ -17,7 +17,7 @@ MonoBehaviour:
   _tooltip: "\uBB34\uB98E\uC744 \uB2E8\uB2E8\uD788 \uBCF4\uD638\uD574\uC8FC\uB294
     \n\uD0C4\uC131\uAE4C\uC9C0 \uAC16\uCD98 \uBCF4\uD638\uAD6C\uB2E4"
   _iconSprite: {fileID: 21300000, guid: 110c640e29a797143b41705214ffe846, type: 3}
-  _dropItemPrefab: {fileID: 0}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
   _maxDurability: 100
   itemType: leg
   _defence: 75

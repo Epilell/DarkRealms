@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: shoes6
   _tooltip: "\uC815\uAC15\uC774 \uBD80\uADFC\uAE4C\uC9C0 \uBCF4\uD638\uD574 \uC900\uB2E4"
   _iconSprite: {fileID: 21300000, guid: ca48df3c9a040b14c9b44c171de2fecd, type: 3}
-  _dropItemPrefab: {fileID: 0}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
   _maxDurability: 100
   itemType: shoes
   _defence: 68

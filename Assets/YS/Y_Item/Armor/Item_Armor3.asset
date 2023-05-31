@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: armor3
   _tooltip: "\uCCA0\uD310\uC744 \uB367\uB304 \uAC11\uC637\uC774\uB2E4"
   _iconSprite: {fileID: 21300000, guid: 245a848f12de5f447ad351446783fec8, type: 3}
-  _dropItemPrefab: {fileID: 0}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
   _maxDurability: 100
   itemType: armor
   _defence: 35

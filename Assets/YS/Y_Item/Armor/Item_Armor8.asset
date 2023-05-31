@@ -17,7 +17,7 @@ MonoBehaviour:
   _tooltip: "\uD2B9\uC218 \uD569\uAE08\uC73C\uB85C \uB9CC\uB4E0 \uAC11\uC637\uC73C\uB85C
     \n\uB6F0\uC5B4\uB09C \uBC29\uC5B4\uB825\uC744 \uC790\uB791\uD55C\uB2E4."
   _iconSprite: {fileID: 21300000, guid: aa7521e3475898a439871ec4e0cef92f, type: 3}
-  _dropItemPrefab: {fileID: 0}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
   _maxDurability: 100
   itemType: armor
   _defence: 95

@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: shotgun4
   _tooltip: "\uBC18\uB3D9\uAE4C\uC9C0 \uC904\uC778 \uC0F7\uAC74\uC774\uB2E4"
   _iconSprite: {fileID: 21300000, guid: 2b9eb81fff1973342979bd7b051b24c3, type: 3}
-  _dropItemPrefab: {fileID: 0}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
   _maxDurability: 100
   itemType: weapon
   _damage: 70

@@ -16,6 +16,6 @@ MonoBehaviour:
   _name: immunity_potion
   _tooltip: "\uBC1B\uB294 \uD53C\uD574 \uAC10\uC18C"
   _iconSprite: {fileID: 21300000, guid: 10140eca207cd264bb59fd8b7763c0fa, type: 3}
-  _dropItemPrefab: {fileID: 0}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
   _maxAmount: 99
   _value: 5

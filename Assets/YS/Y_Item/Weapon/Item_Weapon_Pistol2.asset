@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: pistol2
   _tooltip: "\uAC1C\uB7C9\uB41C \uAD8C\uCD1D\uC774\uB2E4"
   _iconSprite: {fileID: 21300000, guid: dac9e2034255695498005e731ffc78a1, type: 3}
-  _dropItemPrefab: {fileID: 0}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
   _maxDurability: 100
   itemType: weapon
   _damage: 30

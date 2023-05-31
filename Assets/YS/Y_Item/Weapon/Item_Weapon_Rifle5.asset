@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: rifle5
   _tooltip: "\uAC15\uB825\uD55C \uD604\uB300\uC2DD \uC18C\uCD1D\uC774\uB2E4"
   _iconSprite: {fileID: 21300000, guid: ab0a01096656ad54d85296c40573929f, type: 3}
-  _dropItemPrefab: {fileID: 0}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
   _maxDurability: 100
   itemType: weapon
   _damage: 80

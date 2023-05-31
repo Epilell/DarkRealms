@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: helmet5
   _tooltip: "\uB354 \uB2E8\uB2E8\uD55C \uAE08\uC18D\uC73C\uB85C \uB9CC\uB4E0 \uD5EC\uBA67\uC774\uB2E4"
   _iconSprite: {fileID: 21300000, guid: dbb33d6f64b5ace42ab7a247759cb2eb, type: 3}
-  _dropItemPrefab: {fileID: 0}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
   _maxDurability: 100
   itemType: helmet
   _defence: 55
