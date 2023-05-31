@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: 4
   _name: hp_potion4
   _tooltip: "\uCCB4\uB825\uC744 \uD06C\uAC8C \uD68C\uBCF5\uD55C\uB2E4"
-  _iconSprite: {fileID: 21300000, guid: 1a83daeb55a863842b5113433e81dc6e, type: 3}
+  _iconSprite: {fileID: 21300000, guid: fa5c37266b2211d42889262390f3c1da, type: 3}
   _dropItemPrefab: {fileID: 0}
   _maxAmount: 99
   _value: 150

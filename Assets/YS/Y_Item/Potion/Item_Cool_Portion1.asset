@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: 1
   _name: cooldown_potion1
   _tooltip: "\uCFE8\uD0C0\uC784\uC744 \uC870\uAE08 \uAC10\uC18C\uC2DC\uD0A8\uB2E4"
-  _iconSprite: {fileID: 21300000, guid: 6c3cf7c606daf1647ad9406d641b65a4, type: 3}
+  _iconSprite: {fileID: 21300000, guid: ef319f02053373d49b00a26639ce8259, type: 3}
   _dropItemPrefab: {fileID: 0}
   _maxAmount: 99
   _value: 10

@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: 3
   _name: armor_potion3
   _tooltip: "\uBC29\uC5B4\uB825\uC744 \uD06C\uAC8C \uC99D\uAC00\uC2DC\uD0A8\uB2E4"
-  _iconSprite: {fileID: 21300000, guid: 5204c4a5f9b80744192b880dd0d3345f, type: 3}
+  _iconSprite: {fileID: 21300000, guid: 01ce22c01eed6544591c3ffb62b48ed2, type: 3}
   _dropItemPrefab: {fileID: 0}
   _maxAmount: 99
   _value: 80
