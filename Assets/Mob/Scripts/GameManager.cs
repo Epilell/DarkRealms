@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(Inventory);
         DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(Warehouse);
     }
     /*public void OnDestroy()
     {

@@ -12,7 +12,7 @@ public class BossPopDamage : MonoBehaviour
     }
     private void Awake()
     {
-        Destroy(gameObject, 4.2f);
+        Destroy(gameObject, 5.4f);
     }
     private void Start()
     {

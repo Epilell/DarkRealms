@@ -8,8 +8,24 @@ public class BossPattern : MonoBehaviour
     private Animator animator;
     SpriteRenderer spriteRenderer;
     private Transform player;
-    private BossStat bossStat;
+    public BossStat bossStat;
     private BossHP bossHP;
+    private Transform canvasTransform; // UI를 표현하는 Canvas 오브젝트의 Transform
+    [Header("패턴간 딜레이")]
+    [SerializeField]
+    private float BreathDelay = 7f;
+    [SerializeField]
+    private float TailDelay = 5f;
+    [SerializeField]
+    private float PopDelay = 10f;
+    [SerializeField]
+    private float CrossDelay = 10f;
+    [SerializeField]
+    private float SpawnDelay = 5f;
+
+    private float _spawnDelay = 0.5f;
+
+    [Header("패턴 오브젝트")]
     //Breath Pattren
     [SerializeField]
     private GameObject Breath;
@@ -26,14 +42,12 @@ public class BossPattern : MonoBehaviour
     private GameObject mob;
     [SerializeField]
     private GameObject mobHPSliderPrefab; // 적 체력을 나타내는 Slider UI 프리팹
-    private Transform canvasTransform; // UI를 표현하는 Canvas 오브젝트의 Transform
 
     [SerializeField]
     //어떤 몬스터를 소환할지 리스트
     private List<GameObject> mobList;  //List<자료형> 변수명 = new List<자료형>();
     public List<GameObject> MobList => mobList;
     public List<Transform> spawnPoint;
-    public float spawnDelay = 0.5f;
     public int MaxSpawn = 3;
     private int CurrentSpawn = 1;
 
@@ -48,7 +62,6 @@ public class BossPattern : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        bossStat = GetComponent<BossStat>();
         bossHP = GetComponent<BossHP>();
     }
     public void SetCanvas(Transform Canvas)
@@ -65,21 +78,20 @@ public class BossPattern : MonoBehaviour
             {
                 //현재 적의 색상을 color변수에 저장
                 Color color = spriteRenderer.color;
-                color.r = 1.3f;//빨강1.3배
+                color.b = 0.8f;
+                color.g = 0.8f;
                 spriteRenderer.color = color;
                 //차후 이미지 교체도 가능
                 if (pattrenChoicer > 4)
                 {
                     yield return StartCoroutine("BreathPattern");
-                    yield return new WaitForSeconds(7f);
+                    yield return new WaitForSeconds(BreathDelay);
                     pattrenChoicer = Random.Range(1, 5);
                 }
                 else if (pattrenChoicer > 3)
                 {
                     yield return StartCoroutine("TailPattern");
-                    yield return StartCoroutine("TailPattern");
-                    yield return StartCoroutine("TailPattern");
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(TailDelay);
                     pattrenChoicer = Random.Range(1, 5);
                 }
                 else if (pattrenChoicer > 2)
@@ -87,15 +99,15 @@ public class BossPattern : MonoBehaviour
                     yield return StartCoroutine("PopOutPattern");
                     yield return StartCoroutine("PopOutPattern");
                     yield return StartCoroutine("PopOutPattern");
-                    yield return new WaitForSeconds(5f);
+                    yield return new WaitForSeconds(PopDelay);
                     pattrenChoicer = Random.Range(1, 5);
                 }
-                /*else if (pattrenChoicer > 1)
+                else if (pattrenChoicer > 1)
                 {
                     yield return StartCoroutine("CrossPattern()");
-                    yield return new WaitForSeconds(10f);
+                    yield return new WaitForSeconds(CrossDelay);
                     pattrenChoicer = Random.Range(1, 5);
-                }*/
+                }
                 else
                 {
                     yield return StartCoroutine("SpawnPattern");
@@ -103,6 +115,7 @@ public class BossPattern : MonoBehaviour
                     pattrenChoicer = Random.Range(1, 5);
                 }
             }
+            
             else
             {
                 if (pattrenChoicer > 4)
@@ -110,7 +123,7 @@ public class BossPattern : MonoBehaviour
                     yield return StartCoroutine("TailPattern");
                     yield return StartCoroutine("TailPattern");
                     yield return StartCoroutine("TailPattern");
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(TailDelay);
                     pattrenChoicer = Random.Range(1, 5);
                 }
                 else if (pattrenChoicer > 2)
@@ -136,7 +149,7 @@ public class BossPattern : MonoBehaviour
         GetComponent<Animator>().SetTrigger("BreathAttack");
         //브레스 공격 소환
         Instantiate(Breath, BreathPoint.transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(0.1f); ;//브레스 딜레이 동안 대기
+        yield return new WaitForSeconds(0.1f);
     }
     private IEnumerator TailPattern()//바닥에서 튀어나오는 꼬리 공격
     {
@@ -154,13 +167,13 @@ public class BossPattern : MonoBehaviour
     {
         //애니메이션 튀어나오기공격모션으로 바꾸고
         GetComponent<Animator>().SetTrigger("Ready");
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(2f);
         //this.gameObject.SetActive(false);
         GetComponent<Animator>().SetBool("Stay", true);
         //튀어나오기 공격 범위 표시 소환, 2초뒤 공격
         yield return new WaitForSeconds(2f);
         Instantiate(PopOutAtk, player.transform.position, Quaternion.identity);
-        PopOutAtk.GetComponent<BossPopDamage>().SetStats(bossStat.BossDamageB);
+        PopOutAtk.GetComponent<BossPopDamage>().SetStats(bossStat.BossDamageMiddle);
         //튀어나오기 소환 이후 Boss gameObject.SetActive(true)하기
         yield return new WaitForSeconds(4.2f);
         //this.gameObject.SetActive(true);
@@ -200,7 +213,7 @@ public class BossPattern : MonoBehaviour
                 //Instantiate(mobList[i], spawnPoint[i].position, Quaternion.identity);
                 GameObject clone = Instantiate(mobList[i], spawnPoint[i].position, Quaternion.identity) as GameObject;
                 SpawnEnemyHPSlider(clone);
-                yield return new WaitForSeconds(spawnDelay);
+                yield return new WaitForSeconds(_spawnDelay);
             }
         }
     }

@@ -12,7 +12,7 @@ public class BossTail : MonoBehaviour
     }
     private void Awake()
     {
-        Destroy(gameObject, 1.8f);
+        Destroy(gameObject, 2.8f);
     }
     private void Start()
     {

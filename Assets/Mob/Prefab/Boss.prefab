@@ -204,7 +204,6 @@ GameObject:
   - component: {fileID: 2229558517594964393}
   - component: {fileID: 2229558517594964392}
   - component: {fileID: 2229558517594964438}
-  - component: {fileID: 2229558517594964439}
   - component: {fileID: -3620804179797144117}
   m_Layer: 0
   m_Name: Boss
@@ -271,7 +270,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f4dce670cbc6f85469c53fc277c36844, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e923fdb7e82b06a4692257c44081d988, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -316,7 +315,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
 --- !u!50 &2229558517594964392
@@ -352,13 +351,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e70d8ad72485e4394a5046e54f4c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossStat: {fileID: 11400000, guid: 685a4d127f69b8c459cbf59b23374e5f, type: 2}
+  BreathDelay: 7
+  TailDelay: 3
+  PopDelay: 5
+  CrossDelay: 10
+  SpawnDelay: 5
   Breath: {fileID: 2934003829614675948, guid: a23281c747987464eb3e31668ce5ec3d, type: 3}
   BreathPoint: {fileID: 2229558517336028740}
   TailAtk: {fileID: 6807664168534620330, guid: 8fbf01468c87ddd4e921f0b1214c8ee3, type: 3}
   PopOutAtk: {fileID: 2285809461198697502, guid: 1d0b08d9255de2e418060f9d67e5a32b, type: 3}
   mob: {fileID: 834271027276496964, guid: 89128abefdd923c48869e62249ce0baf, type: 3}
   mobHPSliderPrefab: {fileID: 704872632598038351, guid: a560c60edbd12d34993049e7be4fb26e, type: 3}
-  canvasTransform: {fileID: 0}
   mobList:
   - {fileID: 834271027276496964, guid: 89128abefdd923c48869e62249ce0baf, type: 3}
   - {fileID: 2655877666149952692, guid: 6239fba6ac8f2c145882cf39fe93e3f7, type: 3}
@@ -369,24 +373,7 @@ MonoBehaviour:
   - {fileID: 2229558517395180447}
   - {fileID: 2229558517110756352}
   - {fileID: 2229558516884055424}
-  spawnDelay: 0.5
   MaxSpawn: 2
---- !u!114 &2229558517594964439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2229558517594964397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf03b8da131d194488e84e23092701d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossHP: 100
-  bossDamageA: 10
-  bossDamageB: 25
-  bossDamageC: 40
 --- !u!114 &-3620804179797144117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,4 +387,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
-  DeadMob: {fileID: 0}
+  DeadMob: {fileID: 4641412873053835146, guid: a6c4617ccd967eb458e0b4b4b8115b2e, type: 3}
+  Stat: {fileID: 11400000, guid: 685a4d127f69b8c459cbf59b23374e5f, type: 2}
