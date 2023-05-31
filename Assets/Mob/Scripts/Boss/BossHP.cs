@@ -12,8 +12,8 @@ public class BossHP : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     public GameObject DeadMob;
-    private BossStat Stat;
-
+    public BossStat Stat;
+    
 
     //적의 체력 정보를 외부 클래스에서 확인할 수 있도록 프로퍼티 생성
     public float MaxHP => maxHP;
@@ -25,7 +25,6 @@ public class BossHP : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         //dropItem = GetComponent<MobDropItem>();
-        Stat = GetComponent<BossStat>();
         maxHP = Stat.BossHP;
     }
 
@@ -38,8 +37,8 @@ public class BossHP : MonoBehaviour
         currentHP -= damage;
 
         //HitAlphaAnimation -> 적의 투명도 변화
-        StopCoroutine("HitAlphaAnimation");
-        StartCoroutine("HitAlphaAnimation");
+        //StopCoroutine("HitAlphaAnimation");
+        //StartCoroutine("HitAlphaAnimation");
 
         //체력 0이하시 사망
         if (currentHP <= 0)
@@ -53,7 +52,7 @@ public class BossHP : MonoBehaviour
     {
         // 몬스터가 죽을 때의 처리
         animator.SetBool("IsDead", true);
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(4.0f);
         Destroy(gameObject);
         Instantiate(DeadMob, transform.position, Quaternion.identity); // 시체 생성
         //dropItem.ItemDrop();//아이템 드롭
