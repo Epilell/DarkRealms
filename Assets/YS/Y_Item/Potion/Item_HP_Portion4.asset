@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b597242af57330945a22e8bf03013df0, type: 3}
   m_Name: Item_HP_Portion4
   m_EditorClassIdentifier: 
-  _id: 4
+  _id: 104
   _name: hp_potion4
   _tooltip: "\uCCB4\uB825\uC744 \uD06C\uAC8C \uD68C\uBCF5\uD55C\uB2E4"
   _iconSprite: {fileID: 21300000, guid: fa5c37266b2211d42889262390f3c1da, type: 3}

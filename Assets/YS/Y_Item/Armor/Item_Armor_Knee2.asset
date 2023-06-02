@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50f428ada62c3a40b63fb5674b59ee3, type: 3}
   m_Name: Item_Armor_Knee2
   m_EditorClassIdentifier: 
-  _id: 2
+  _id: 22
   _name: knee2
   _tooltip: "\uB354 \uD06C\uACE0 \uB2E8\uB2E8\uD55C \uBCF4\uD638\uB300\uB2E4"
   _iconSprite: {fileID: 21300000, guid: 38a83ec4d2d76e542ba5b5fe7f3f616c, type: 3}

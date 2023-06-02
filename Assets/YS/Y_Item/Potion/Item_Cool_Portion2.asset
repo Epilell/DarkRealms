@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b597242af57330945a22e8bf03013df0, type: 3}
   m_Name: Item_Cool_Portion2
   m_EditorClassIdentifier: 
-  _id: 2
+  _id: 110
   _name: cooldown_potion2
   _tooltip: "\uCFE8\uD0C0\uC784\uC744 \uAC10\uC18C\uC2DC\uD0A8\uB2E4"
   _iconSprite: {fileID: 21300000, guid: c05926ac100c4c74dad4d8ceacc87824, type: 3}

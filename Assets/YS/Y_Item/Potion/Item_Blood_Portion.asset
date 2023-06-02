@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b597242af57330945a22e8bf03013df0, type: 3}
   m_Name: Item_Blood_Portion
   m_EditorClassIdentifier: 
-  _id: 0
+  _id: 114
   _name: blood_potion
   _tooltip: "\uD761\uD608 \uD6A8\uACFC\uB97C \uC9C0\uB2CC\uB2E4"
   _iconSprite: {fileID: 21300000, guid: b0242846cade8e44b9896d91798b5732, type: 3}

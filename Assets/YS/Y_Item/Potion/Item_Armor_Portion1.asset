@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b597242af57330945a22e8bf03013df0, type: 3}
   m_Name: Item_Armor_Portion1
   m_EditorClassIdentifier: 
-  _id: 1
+  _id: 106
   _name: armor_potion1
   _tooltip: "\uBC29\uC5B4\uB825\uC744 \uC870\uAE08 \uC99D\uAC00\uC2DC\uD0A8\uB2E4\n"
   _iconSprite: {fileID: 21300000, guid: 6973a006724487a4985d9c86e2e3c754, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be323efc2a71414498d934aca6fd26a, type: 3}
   m_Name: Item_Weapon_Pistol4
   m_EditorClassIdentifier: 
-  _id: 4
+  _id: 64
   _name: pistol4
   _tooltip: "\uAC15\uB825\uD55C \uBB34\uBC18\uB3D9 \uAD8C\uCD1D\uC774\uB2E4"
   _iconSprite: {fileID: 21300000, guid: 4e8bc328026632249be323c851aeffcd, type: 3}

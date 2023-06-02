@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50f428ada62c3a40b63fb5674b59ee3, type: 3}
   m_Name: Item_Armor4
   m_EditorClassIdentifier: 
-  _id: 4
+  _id: 14
   _name: armor4
   _tooltip: "\uD5C8\uBC85\uC9C0 \uBD80\uADFC\uAE4C\uC9C0 \uBCF4\uD638\uD574 \uC8FC\uC9C0\uB9CC
     \n\uAE30\uB3D9\uC131\uC740 \uB0AE\uC740 \uAC11\uC637\uC774\uB2E4"

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be323efc2a71414498d934aca6fd26a, type: 3}
   m_Name: Item_Weapon_Shotgun3
   m_EditorClassIdentifier: 
-  _id: 3
+  _id: 53
   _name: shotgun3
   _tooltip: "\uC9D1\uD0C4\uB960\uC744 \uD5A5\uC0C1\uC2DC\uD0A8 \uC0F7\uAC74\uC774\uB2E4"
   _iconSprite: {fileID: 21300000, guid: 2229f111b06e055418b9c66b49da7310, type: 3}
