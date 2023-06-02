@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Rito.InventorySystem;
 
 public class OpenCloseUI : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class OpenCloseUI : MonoBehaviour
     void Start()
     {
         //closeButton = GetComponent<Button>(); // 버튼을 참조합니다
-        if(inven!=null&& InvenCloseButton != null)
+        if (inven!=null&& InvenCloseButton != null)
         {
             InvenCloseButton.onClick.AddListener(CloseInvenUI);// 버튼 클릭 시 ClosePanel 함수를 호출합니다
         }
@@ -55,6 +56,11 @@ public class OpenCloseUI : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 inven.SetActive(!inven.activeSelf);
+                /*Inventory _inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+                _inventory.SaveInven();
+                _inventory.LoadInven();*/
+                InventoryUI _inventoryUI = inven.GetComponent<InventoryUI>();
+                _inventoryUI.UpdateAllSlotFilters();
             }
         }
         if (Tester != null)
