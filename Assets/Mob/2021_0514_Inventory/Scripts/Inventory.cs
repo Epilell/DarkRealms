@@ -133,6 +133,7 @@ namespace Rito.InventorySystem
         private void Awake()
         {
             _items = new Item[_maxCapacity];
+
             //LoadInven();
             Capacity = _initalCapacity;
             if (!_isWarehouse)
@@ -161,7 +162,29 @@ namespace Rito.InventorySystem
         {
             UpdateAccessibleStatesAll();
         }
-
+        int a = 0;
+        private void Update()
+        {
+            if (a == 2)
+            {
+                if (!_isWarehouse)
+                {
+                    _items = new Item[_maxCapacity];
+                    GameManager gm = GetComponentInParent<GameManager>();
+                    gm.LoadInven();
+                }
+            }
+            a++;
+            if (a > 2000)
+            {
+                if (!_isWarehouse)
+                {
+                    GameManager gm = GetComponentInParent<GameManager>();
+                    gm.SaveInven();
+                }
+                a = 0;
+            }
+        }
 
         #endregion
         /***********************************************************************
@@ -352,7 +375,7 @@ namespace Rito.InventorySystem
         *                               Public Methods
         ***********************************************************************/
         #region .
-
+        /*
         /// <summary>
         /// 저장
         /// </summary>
@@ -399,7 +422,7 @@ namespace Rito.InventorySystem
                 }
             }
         }
-
+        */
 
         /// <summary> 인벤토리 UI 연결 </summary>
         public void ConnectUI(InventoryUI inventoryUI)
