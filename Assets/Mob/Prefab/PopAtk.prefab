@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2285809461198697696}
   - component: {fileID: 2285809461198697503}
   - component: {fileID: 2285809461198697698}
+  - component: {fileID: 7136568070393254724}
   m_Layer: 0
   m_Name: PopAtk
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2285809461198697502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.56, y: -2.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 86399aa84285f4442b8e6be5c096fd42, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba95e67068c315143b189272ffe583b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,3 +120,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4cbe2f82d6cf9479d5a49d4f37deb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &7136568070393254724
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2285809461198697502}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -3}
+  serializedVersion: 2
+  m_Radius: 4

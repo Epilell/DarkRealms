@@ -16,7 +16,7 @@ public class BossPopDamage : MonoBehaviour
     }
     private void Start()
     {
-        Invoke("EnableDamage", 2f);
+        Invoke("EnableDamage", 0.125f);
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -35,7 +35,8 @@ public class BossPopDamage : MonoBehaviour
         CircleCollider2D collider = gameObject.AddComponent<CircleCollider2D>();
         collider.isTrigger = true;
         rb.gravityScale = 0f;
+        collider.offset=new Vector2(0,-3);
         collider.radius = 3f;
-        GetComponent<Animator>().SetTrigger("BossPop");
+        //GetComponent<Animator>().SetTrigger("BossPop");
     }
 }
