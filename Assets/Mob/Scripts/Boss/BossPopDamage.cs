@@ -12,11 +12,12 @@ public class BossPopDamage : MonoBehaviour
     }
     private void Awake()
     {
-        Destroy(gameObject, 5.4f);
+        Destroy(gameObject, 3.625f);
     }
     private void Start()
     {
         Invoke("EnableDamage", 0.125f);
+        Invoke("DisableDamage", 2.6f);
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -38,5 +39,9 @@ public class BossPopDamage : MonoBehaviour
         collider.offset=new Vector2(0,-3);
         collider.radius = 3f;
         //GetComponent<Animator>().SetTrigger("BossPop");
+    }
+    private void DisableDamage()
+    {
+        canDamage = false;
     }
 }

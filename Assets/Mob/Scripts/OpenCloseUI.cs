@@ -5,32 +5,66 @@ using UnityEngine.UI;
 
 public class OpenCloseUI : MonoBehaviour
 {
+    [Header("Invens")]
     public GameObject inven;
-    public GameObject warehouse;
+    public GameObject ?warehouse;
     [Header("Buttons")]
-    public Button InvenCloseButton;
-    public Button WarehouseOpenButton;
-    public Button WarehouseCloseButton;
+    public Button ?InvenCloseButton;
+    public Button ?WarehouseOpenButton;
+    public Button ?WarehouseCloseButton;
+    public Button? UpgradeOpenButton;
+    public Button? UpgradeCloseButton;
     [Header("Tester")]
     public GameObject Tester;
+    public GameObject Upgrade;
     void Start()
     {
         //closeButton = GetComponent<Button>(); // 버튼을 참조합니다
-        InvenCloseButton.onClick.AddListener(CloseInvenUI);// 버튼 클릭 시 ClosePanel 함수를 호출합니다
-        WarehouseCloseButton.onClick.AddListener(CloseWarehouseUI); // 버튼 클릭 시 ClosePanel 함수를 호출합니다
-        WarehouseOpenButton.onClick.AddListener(OpenWarehouseUI);
+        if(inven!=null&& InvenCloseButton != null)
+        {
+            InvenCloseButton.onClick.AddListener(CloseInvenUI);// 버튼 클릭 시 ClosePanel 함수를 호출합니다
+        }
+        if (warehouse != null)
+        {
+            if (WarehouseCloseButton != null)
+            {
+                WarehouseCloseButton.onClick.AddListener(CloseWarehouseUI); // 버튼 클릭 시 ClosePanel 함수를 호출합니다
+            }
+            if (WarehouseOpenButton != null)
+            {
+                WarehouseOpenButton.onClick.AddListener(OpenWarehouseUI);
+            }
+        }
+        if (Upgrade != null)
+        {
+            if (UpgradeOpenButton != null)
+            {
+                UpgradeOpenButton.onClick.AddListener(OpenCloseUpgrade); 
+            }
+            if (UpgradeCloseButton != null)
+            {
+                UpgradeCloseButton.onClick.AddListener(OpenCloseUpgrade);
+            }
+        }
     }
     private void Update()
     {
-        // 탭 키를 눌렀을 때 인벤토리를 엽니다.
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if(inven != null)
         {
-            inven.SetActive(!inven.activeSelf);
+            // 탭 키를 눌렀을 때 인벤토리를 엽니다.
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                inven.SetActive(!inven.activeSelf);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Tester != null)
         {
-            Tester.SetActive(!Tester.activeSelf);
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                Tester.SetActive(!Tester.activeSelf);
+            }
         }
+
     }
     public void CloseInvenUI()
     {
@@ -43,5 +77,9 @@ public class OpenCloseUI : MonoBehaviour
     public void OpenWarehouseUI()
     {
         warehouse.SetActive(true);
+    }
+    public void OpenCloseUpgrade()
+    {
+        Upgrade.SetActive(!Upgrade.activeSelf);
     }
 }

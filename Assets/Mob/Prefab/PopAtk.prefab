@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2285809461198697696}
   - component: {fileID: 2285809461198697503}
   - component: {fileID: 2285809461198697698}
-  - component: {fileID: 7136568070393254724}
   m_Layer: 0
   m_Name: PopAtk
   m_TagString: Untagged
@@ -120,19 +119,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4cbe2f82d6cf9479d5a49d4f37deb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &7136568070393254724
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2285809461198697502}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -3}
-  serializedVersion: 2
-  m_Radius: 4
