@@ -14,9 +14,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject Inventory;
     [SerializeField]
-    private GameObject Warehouse;
+    private GameObject? Warehouse;
     //singelton
     #region .
+    /*
     public static GameManager Instance
     {
         get
@@ -28,20 +29,40 @@ public class GameManager : MonoBehaviour
             }
             return instance;
         }
-    }
+    }*/
     #endregion
     //unitys
     #region .
+
     private void Awake()
     {
-        //Load(Inventory.GetComponent<Inventory>());
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
     private void Start()
     {
         DontDestroyOnLoad(Inventory);
         DontDestroyOnLoad(this.gameObject);
     }
-    /*public void OnDestroy()
+    /*
+    int counter = 0;
+    public void FixedUpdate()
+    {
+        counter++;
+        if (counter < 150)
+        {
+            SaveInven();
+            counter = 0;
+        }
+    }
+    public void OnDestroy()
     {
         Inventory warehouse = GameObject.FindWithTag("Warehouse").GetComponent<Inventory>();
         Save(warehouse);
@@ -64,13 +85,15 @@ public class GameManager : MonoBehaviour
     {
         var binaryFormatter = new BinaryFormatter();
         var memoryStream = new MemoryStream();
+        for (int i = 0; i < Inventory.GetComponent<Inventory>()._Items.Length; i++)
+        {
+            // items를 바이트 배열로 변환해서 저장합니다.
+            binaryFormatter.Serialize(memoryStream, Inventory.GetComponent<Inventory>()._Items[i].Data);
 
-        // items를 바이트 배열로 변환해서 저장합니다.
-        binaryFormatter.Serialize(memoryStream, Inventory.GetComponent<Inventory>()._Items);
-
-        // 그것을 다시 한번 문자열 값으로 변환해서 
-        // 'SaveInven'라는 스트링 키값으로 PlayerPrefs에 저장합니다.
-        PlayerPrefs.SetString("SaveInven", Convert.ToBase64String(memoryStream.GetBuffer()));
+            // 그것을 다시 한번 문자열 값으로 변환해서 
+            // 'SaveInven'라는 스트링 키값으로 PlayerPrefs에 저장합니다.
+            PlayerPrefs.SetString("SaveInven" + i, Convert.ToBase64String(memoryStream.GetBuffer()));
+        }
     }
     /// <summary>
     /// 창고 저장
@@ -92,17 +115,38 @@ public class GameManager : MonoBehaviour
     public void LoadInven(Inventory _inventory)
     {
         // 'SaveInven' 스트링 키값으로 데이터를 가져옵니다.
-        var data = PlayerPrefs.GetString("SaveInven");
-        if (!string.IsNullOrEmpty(data))
+        int Invenleanth = 0;
+        var invendata = ("null");
+        for (int i = 0; i < 300; i++)
         {
-            var binaryFormatter = new BinaryFormatter();
-            var memoryStream = new MemoryStream(Convert.FromBase64String(data));
-
-            // 가져온 데이터를 바이트 배열로 변환하고
-            // 사용하기 위해 다시 리스트로 캐스팅해줍니다.
-            Rito.InventorySystem.Item[] itemN = (Rito.InventorySystem.Item[])binaryFormatter.Deserialize(memoryStream);
-            _inventory.SetItems(itemN);
+            if (invendata != null)
+            {
+                invendata = PlayerPrefs.GetString("SaveInven" + i);
+                Invenleanth++;
+            }
+            else
+            {
+                i = 300;
+            }
         }
+        for (int i = 0; i < Invenleanth; i++)
+        {
+
+            var data = PlayerPrefs.GetString("SaveInven" + i);
+            if (!string.IsNullOrEmpty(data))
+            {
+                var binaryFormatter = new BinaryFormatter();
+                var memoryStream = new MemoryStream(Convert.FromBase64String(data));
+
+                // 가져온 데이터를 바이트 배열로 변환하고
+                // 사용하기 위해 다시 리스트로 캐스팅해줍니다.
+                Rito.InventorySystem.ItemData itemN = (Rito.InventorySystem.ItemData)binaryFormatter.Deserialize(memoryStream);
+
+                _inventory.Add(itemN);
+
+            }
+        }
+
     }
     public Rito.InventorySystem.Item[] LoadWarehouse()
     {

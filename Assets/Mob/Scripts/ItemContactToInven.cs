@@ -25,6 +25,12 @@ public class ItemContactToInven : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(collision.gameObject.tag== "Player")
+        {
+            Inventory inventoryComponent = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
+            inventoryComponent.Add(this.itemData);
+            Destroy(this.gameObject);
+        }
         // 충돌한 오브젝트의 자식 오브젝트들을 확인합니다.
         foreach (Transform child in collision.transform)
         {

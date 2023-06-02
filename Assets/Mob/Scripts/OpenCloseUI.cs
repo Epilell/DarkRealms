@@ -2,57 +2,90 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class Invens
-{
-    public Button closeButton;
-    public Button OpenButton;
-    public GameObject Obj;
-}
+using Rito.InventorySystem;
 
 public class OpenCloseUI : MonoBehaviour
 {
-    /*
-    public List<Invens> invens;
+    [Header("Invens")]
+    public GameObject inven;
+    public GameObject ?warehouse;
+    [Header("Buttons")]
+    public Button ?InvenCloseButton;
+    public Button ?WarehouseOpenButton;
+    public Button ?WarehouseCloseButton;
+    public Button? UpgradeOpenButton;
+    public Button? UpgradeCloseButton;
     [Header("Tester")]
-    public GameObject Obj3;
+    public GameObject Tester;
+    public GameObject Upgrade;
     void Start()
     {
         //closeButton = GetComponent<Button>(); // 버튼을 참조합니다
-        invens[0].closeButton.onClick.AddListener(CloseUI(Invens[0].obj)); // 버튼 클릭 시 ClosePanel 함수를 호출합니다
-        closeButton2.onClick.AddListener(CloseUI2); // 버튼 클릭 시 ClosePanel 함수를 호출합니다
-        OpenButton1.onClick.AddListener(OpenUI1);
-        OpenButton2.onClick.AddListener(OpenUI2);
+        if (inven!=null&& InvenCloseButton != null)
+        {
+            InvenCloseButton.onClick.AddListener(CloseInvenUI);// 버튼 클릭 시 ClosePanel 함수를 호출합니다
+        }
+        if (warehouse != null)
+        {
+            if (WarehouseCloseButton != null)
+            {
+                WarehouseCloseButton.onClick.AddListener(CloseWarehouseUI); // 버튼 클릭 시 ClosePanel 함수를 호출합니다
+            }
+            if (WarehouseOpenButton != null)
+            {
+                WarehouseOpenButton.onClick.AddListener(OpenWarehouseUI);
+            }
+        }
+        if (Upgrade != null)
+        {
+            if (UpgradeOpenButton != null)
+            {
+                UpgradeOpenButton.onClick.AddListener(OpenCloseUpgrade); 
+            }
+            if (UpgradeCloseButton != null)
+            {
+                UpgradeCloseButton.onClick.AddListener(OpenCloseUpgrade);
+            }
+        }
     }
     private void Update()
     {
-        // 탭 키를 눌렀을 때 인벤토리를 엽니다.
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if(inven != null)
         {
-            Obj1.SetActive(!Obj1.activeSelf);
+            // 탭 키를 눌렀을 때 인벤토리를 엽니다.
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                inven.SetActive(!inven.activeSelf);
+                /*Inventory _inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+                _inventory.SaveInven();
+                _inventory.LoadInven();*/
+                InventoryUI _inventoryUI = inven.GetComponent<InventoryUI>();
+                _inventoryUI.UpdateAllSlotFilters();
+            }
         }
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Tester != null)
         {
-            Obj3.SetActive(!Obj3.activeSelf);
-        }
-    }
-    public void init()
-    {
-        for(int i = 0; i < invens.Count; i++)
-        {
-            invens[i].closeButton.onClick.AddListener(CloseUI(invens[i].Obj));
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                Tester.SetActive(!Tester.activeSelf);
+            }
         }
 
     }
-    public void CloseUI(GameObject obj)
+    public void CloseInvenUI()
     {
-        obj.SetActive(false); // UI 오브젝트 비활성화
+        inven.SetActive(false); // UI 오브젝트 비활성화
     }
-    public void OpenUI1()
+    public void CloseWarehouseUI()
     {
-        Obj1.SetActive(true);
+        warehouse.SetActive(false); // UI 오브젝트 비활성화
     }
-    public void OpenUI2()
+    public void OpenWarehouseUI()
     {
-        Obj2.SetActive(true);
-    }*/
+        warehouse.SetActive(true);
+    }
+    public void OpenCloseUpgrade()
+    {
+        Upgrade.SetActive(!Upgrade.activeSelf);
+    }
 }

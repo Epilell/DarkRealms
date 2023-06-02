@@ -12,11 +12,12 @@ public class BossTail : MonoBehaviour
     }
     private void Awake()
     {
-        Destroy(gameObject, 2.8f);
+        Destroy(gameObject, 3.2f);
     }
     private void Start()
     {
-        Invoke("EnableDamage", 0.7f);
+        Invoke("EnableDamage", 0.1f);
+        Invoke("DisableDamage", 0.33f);
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -32,10 +33,14 @@ public class BossTail : MonoBehaviour
     {
         canDamage = true;
         Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
-        CircleCollider2D collider = gameObject.AddComponent<CircleCollider2D>();
+        BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
         collider.isTrigger = true;
         rb.gravityScale = 0f;
-        collider.radius = 1.5f;
-        GetComponent<Animator>().SetTrigger("TailAtk");
+        collider.size = new Vector2(7,10);
+        //GetComponent<Animator>().SetTrigger("TailAtk");
+    }
+    private void DisableDamage()
+    {
+        canDamage = false; ;
     }
 }

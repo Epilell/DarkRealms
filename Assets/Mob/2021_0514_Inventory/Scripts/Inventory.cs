@@ -66,7 +66,8 @@ namespace Rito.InventorySystem
         /// <summary>
         /// !!!중요!!!창고인지 아닌지
         /// </summary>
-        public bool _isWarehouse=false;
+        public bool _isWarehouse = false;
+        public InvenData I_Data;
 
         #endregion
         /***********************************************************************
@@ -132,7 +133,12 @@ namespace Rito.InventorySystem
         private void Awake()
         {
             _items = new Item[_maxCapacity];
+            //LoadInven();
             Capacity = _initalCapacity;
+            if (!_isWarehouse)
+            {
+                _inventoryUI = GameObject.FindWithTag("InventoryUI").GetComponent<InventoryUI>();
+            }
             _inventoryUI.SetInventoryReference(this);
             /*
             if (_isWarehouse)//창고라면 Awake시 창고 정보 Load함
@@ -155,6 +161,7 @@ namespace Rito.InventorySystem
         {
             UpdateAccessibleStatesAll();
         }
+
 
         #endregion
         /***********************************************************************
@@ -345,6 +352,54 @@ namespace Rito.InventorySystem
         *                               Public Methods
         ***********************************************************************/
         #region .
+
+        /// <summary>
+        /// 저장
+        /// </summary>
+        public void SaveInven()
+        {
+            if (_items != null)
+            {
+                for (int i = 0; i < _items.Length; i++)
+                {
+                    if (_items != null && _items[i] != null && _items[i].Data != null)
+                    {
+                        if (_items[i] is CountableItem ci)
+                        {
+                            I_Data.invenitems[i] = _items[i].Data;
+                            I_Data.count[i] = ci.Amount;
+                        }
+                        else
+                        {
+                            I_Data.invenitems[i] = _items[i].Data;
+                            I_Data.count[i] = 1;
+                        }
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// 불러오기
+        /// </summary>
+        public void LoadInven()
+        {
+            if (I_Data.invenitems.Count != 0)
+            {
+                _items = new Item[_maxCapacity];
+                for (int i = 0; i < _items.Length; i++)
+                {
+                    if (I_Data.count[i] == 1)
+                    {
+                        Add(I_Data.invenitems[i]);
+                    }
+                    else
+                    {
+                        Add(I_Data.invenitems[i], I_Data.count[i]);
+                    }
+                }
+            }
+        }
+
 
         /// <summary> 인벤토리 UI 연결 </summary>
         public void ConnectUI(InventoryUI inventoryUI)
@@ -617,9 +672,9 @@ namespace Rito.InventorySystem
                 }
             }
             //장비아이템이고 인벤토리인경우
-            else if(_items[index] is EquipmentItem eItem&&_isWarehouse==false)
+            else if (_items[index] is EquipmentItem eItem && _isWarehouse == false)
             {
-                ItemData idata=_eqInven.ChangeEquip(eItem.Data);//장비하기
+                ItemData idata = _eqInven.ChangeEquip(eItem.Data);//장비하기
 
                 if (idata == null)//들어있던 아이템이 없을경우 그냥삭제
                 {
