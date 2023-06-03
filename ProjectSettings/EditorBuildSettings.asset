@@ -4,29 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/YS/Scene/Menu.unity
-    guid: ec413394a8cd737408be142e44870a79
-  - enabled: 1
-    path: Assets/YS/Scene/LoadIn.unity
-    guid: f99b7b4351c4bd049a6b42d58609b839
-  - enabled: 1
-    path: Assets/YS/Scene/LoadOut.unity
-    guid: 2ba0b527896c870419aff18682a6e932
-  - enabled: 1
-    path: Assets/YS/Scene/InGameUI.unity
-    guid: 8eb6e3c8d6388864a8d95a1ce38e55f1
-  - enabled: 1
-    path: Assets/Merge/InGame.unity
-    guid: e770657210d2ca7478d6a90c4543bdcb
-  - enabled: 1
-    path: Assets/Merge/LoadingIn.unity
-    guid: 900b123cf2b93ce4881e55ed0718a4e0
-  - enabled: 1
-    path: Assets/Merge/LoadingOut.unity
-    guid: 63184fb1cf936ec49bbb3a341d7e0300
-  - enabled: 1
-    path: Assets/Merge/MainMenu.unity
-    guid: 28fba96e96d2fe94ba8a65c913649dc9
+  m_Scenes: []
   m_configObjects: {}
