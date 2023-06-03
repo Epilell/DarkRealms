@@ -68,10 +68,10 @@ public class GameManager : MonoBehaviour
         SaveInven();
         SaveWarehouse(warehouse);
     }
-    public void Load(Inventory Inventory)
+    public void Load(Inventory warehouse)
     {
         LoadInven();
-        LoadWarehouse();
+        LoadWarehouse(warehouse);
     }
     // 만든 클래스를 리스트에 담아서 관리하면 마치 테이블처럼 사용할 수 있습니다. 
     public void SaveInven()
@@ -122,12 +122,39 @@ public class GameManager : MonoBehaviour
     {
         var binaryFormatter = new BinaryFormatter();
         var memoryStream = new MemoryStream();
+        if (warehouse != null && warehouse._Items != null)
+        {
+            for (int i = 0; i < warehouse._Items.Length; i++)
+            {
+                if (warehouse._Items[i] != null)
+                {
+                    if (warehouse._Items[i].Data != null)
+                    {
+                        int _id = warehouse._Items[i].Data.ID;
+                        if (warehouse._Items[i] is CountableItem ci)
+                        {
+                            saveDatas[i].id = _id;
+                            saveDatas[i].amount = ci.Amount;
+                        }
+                        else
+                        {
+                            saveDatas[i].id = _id;
+                            saveDatas[i].amount = 1;
+                        }
+                    }
 
-        // items를 바이트 배열로 변환해서 저장합니다.
-        binaryFormatter.Serialize(memoryStream, warehouse._Items);
-
-        // 그것을 다시 한번 문자열 값으로 변환해서 
-        // 'SaveWarehouse'라는 스트링 키값으로 PlayerPrefs에 저장합니다.
+                }
+                else
+                {
+                    // 요소가 null인 경우 처리할 내용 추가
+                }
+            }
+        }
+        else
+        {
+            // inventory 또는 _Items가 null인 경우 처리할 내용 추가
+        }
+        binaryFormatter.Serialize(memoryStream, saveDatas);
         PlayerPrefs.SetString("SaveWarehouse", Convert.ToBase64String(memoryStream.GetBuffer()));
     }
 
@@ -160,7 +187,11 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public Rito.InventorySystem.Item[] LoadWarehouse()
+    /// <summary>
+    /// 창고 로드
+    /// </summary>
+    /// <param name="warehouse">불러올 창고</param>
+    public void LoadWarehouse(Inventory warehouse)
     {
         // 'SaveInven' 스트링 키값으로 데이터를 가져옵니다.
         var data = PlayerPrefs.GetString("SaveWarehouse");
@@ -171,10 +202,20 @@ public class GameManager : MonoBehaviour
 
             // 가져온 데이터를 바이트 배열로 변환하고
             // 사용하기 위해 다시 리스트로 캐스팅해줍니다.
-            return (Rito.InventorySystem.Item[])binaryFormatter.Deserialize(memoryStream);
+            saveDatas = (List<SaveData>)binaryFormatter.Deserialize(memoryStream);
+            //아이템DB에서 찾아서 add
+            for (int i = 0; i < saveDatas.Count; i++)
+            {
+                for (int j = 0; j < idb.itemDB.Count; j++)
+                {
+                    if (saveDatas[i].id == idb.itemDB[j].ID)
+                    {
+                        ItemData idata = idb.itemDB[j];
+                        warehouse.Add(idata, saveDatas[i].amount);
+                    }
+                }
+            }
         }
-        else
-            return null;
     }
     #endregion
 }

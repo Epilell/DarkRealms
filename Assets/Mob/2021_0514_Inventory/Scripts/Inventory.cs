@@ -156,12 +156,29 @@ namespace Rito.InventorySystem
             {
                 gm.GetComponent<GameManager>().SaveWarehouse(this);
             }
+            else
+            {
+                gm.GetComponent<GameManager>().SaveInven();
+            }
         }
 
         private void Start()
         {
             UpdateAccessibleStatesAll();
+            if (!_isWarehouse)
+            {
+                _items = new Item[_maxCapacity];
+                GameManager gm = GetComponentInParent<GameManager>();
+                gm.LoadInven();
+            }
+            else
+            {
+                _items = new Item[_maxCapacity];
+                GameManager gm = GetComponentInParent<GameManager>();
+                gm.LoadWarehouse(this);
+            }
         }
+        /*
         int a = 0;
         private void Update()
         {
@@ -184,7 +201,7 @@ namespace Rito.InventorySystem
                 }
                 a = 0;
             }
-        }
+        }*/
 
         #endregion
         /***********************************************************************

@@ -50,12 +50,30 @@ public class BossPattern : MonoBehaviour
     public List<Transform> spawnPoint;
     public int MaxSpawn = 3;
     private int CurrentSpawn = 1;
-
+    [SerializeField]
+    private float detectionRange = 20;
+    private bool _onAttackRange=false;
+    private void FixedUpdate()
+    {
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        if (distanceToPlayer< detectionRange)
+        {
+            if (!_onAttackRange)
+            {
+                StartCoroutine("BossPattrenStart");
+                _onAttackRange = true;
+            }
+        }
+        else
+        {
+            StopCoroutine("BossPattrenStart");
+            _onAttackRange = false;
+        }
+    }
     void Start()
     {
         // player를 찾아서 설정합니다.
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        StartCoroutine("BossPattrenStart");
     }
     private void Awake()
     {
@@ -170,6 +188,7 @@ public class BossPattern : MonoBehaviour
         yield return new WaitForSeconds(2f);
         //this.gameObject.SetActive(false);
         GetComponent<Animator>().SetBool("Stay", true);
+        bossHP.CanDamage = false;
         //튀어나오기 공격 범위 표시 소환, 2초뒤 공격
         yield return new WaitForSeconds(2f);
         Instantiate(PopOutAtk, player.transform.position, Quaternion.identity);
@@ -178,6 +197,7 @@ public class BossPattern : MonoBehaviour
         yield return new WaitForSeconds(4.2f);
         //this.gameObject.SetActive(true);
         GetComponent<Animator>().SetBool("Stay", false);
+        bossHP.CanDamage = true;
         GetComponent<Animator>().SetTrigger("ReturnPop");
         Debug.Log("4");
     }
