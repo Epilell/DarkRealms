@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50f428ada62c3a40b63fb5674b59ee3, type: 3}
   m_Name: Item_Armor_White Armor
   m_EditorClassIdentifier: 
-  _id: 4
+  _id: 997
   _name: "\uD558\uC580 \uAC11\uC637"
   _tooltip: "\uD558\uC580 \uAC11\uC637\uC774\uB2E4."
   _iconSprite: {fileID: 21300000, guid: a1f270ff46445564e9afa40d0d9574db, type: 3}
