@@ -6,12 +6,15 @@ using UnityEngine;
 [Serializable]
 public class EvdShot
 {
+    public float damage;
     public float coolTime;
 }
 
 [CreateAssetMenu(fileName = "EvadeShot", menuName = "Skill/EvadeShot")]
 public class EvdshotData : ScriptableObject
 {
+    public GameObject effect;
+
     public List<EvdShot> upgradeList = new List<EvdShot>();
     public int upgradeNum = 0;
 

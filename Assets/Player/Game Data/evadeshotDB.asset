@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b529523fed775154faa4c468a6e99ad6, type: 3}
   m_Name: evadeshotDB
   m_EditorClassIdentifier: 
+  effect: {fileID: 5897908193924532351, guid: 1a5a50cfa44e3b74fb545ac80a6b184a, type: 3}
   upgradeList:
-  - coolTime: 10
-  - coolTime: 9
-  - coolTime: 8
+  - damage: 10
+    coolTime: 3
+  - damage: 15
+    coolTime: 2
+  - damage: 20
+    coolTime: 1
   upgradeNum: 0

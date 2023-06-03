@@ -7,9 +7,9 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject curWeapon;
+    public GameObject curWeapon;
 
-    public void changeWeapon(string WeaponName)
+    public void ChangeWeapon(string WeaponName)
     {
         if (this.transform.childCount >= 1)
         {
@@ -55,16 +55,16 @@ public class WeaponManager : MonoBehaviour
         switch (Input.inputString)
         {
             case "1":
-                changeWeapon("rifle");
+                ChangeWeapon("rifle");
                 break;
             case "2":
-                changeWeapon("shotgun");
+                ChangeWeapon("shotgun");
                 break;
             case "3":
-                changeWeapon("pistol");
+                ChangeWeapon("pistol");
                 break;
             case "4":
-                changeWeapon("dualPistol");
+                ChangeWeapon("dualPistol");
                 break;
         }
     }

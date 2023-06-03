@@ -12,7 +12,7 @@ namespace Rito.InventorySystem
 {
     public class UpgradeSystem : MonoBehaviour
     {
-        //private Fields
+        //Private Fields
         #region
         [SerializeField]
         private GameObject _targetInventory;
@@ -32,6 +32,12 @@ namespace Rito.InventorySystem
 
         // Check Method
         #region
+        /// <summary>
+        /// 리스트에 변화가 있는지 리턴 ( 같으면 T 다르면 F )
+        /// </summary>
+        /// <param name="list1"></param>
+        /// <param name="list2"></param>
+        /// <returns></returns>
         bool AreListsEqual(List<Item> list1, List<Item> list2)
         {
             if (list1.Count != list2.Count)
@@ -60,8 +66,7 @@ namespace Rito.InventorySystem
         private void FindUpgradableItemAndMakeList(Item[] _items)
         {
 
-            //아이템 리스트가 비어있을경우 ( Inventory에 아이템리스트가 List<>형식으로 안되어있어서 작동안됨 )
-            //형식을 바꾸는 것도 고려해봄
+            //아이템 리스트가 비어있을경우
             if (_items != null && _items.Length != 0)
             {
                 //기존의 패널 삭제
@@ -97,6 +102,15 @@ namespace Rito.InventorySystem
                             var UI = RT.GetComponent<UpgradePanelUI>();
                             UI._beforeImage.sprite = data.IconSprite;
                             UI._afterImage.sprite = data.NextArmorData.IconSprite;
+                            if(data.Requirements.Count != 0)
+                            {
+                                UI._requirements.text += data.Requirements[0].Num + " X " + data.Requirements[0].Data.Name;
+                            }
+                            else
+                            {
+                                UI._requirements.text += " X ";
+                            }
+                            
 
                             //해당 패널의 업그레이드 버튼에 기능 할당
                             UI._upgradeButton.onClick.AddListener(() =>
@@ -111,6 +125,14 @@ namespace Rito.InventorySystem
                             UpgradePanelUI UI = RT.GetComponent<UpgradePanelUI>();
                             UI._beforeImage.sprite = data.IconSprite;
                             UI._afterImage.sprite = data.NextWeaponData.IconSprite;
+                            if (data.Requirements.Count != 0)
+                            {
+                                UI._requirements.text += data.Requirements[0].Num + " X " + data.Requirements[0].Data.Name;
+                            }
+                            else
+                            {
+                                UI._requirements.text += " X ";
+                            }
 
                             //해당 패널의 업그레이드 버튼에 기능 할당
                             UI._upgradeButton.onClick.AddListener(() =>
@@ -138,23 +160,18 @@ namespace Rito.InventorySystem
         /// <param name="_index"></param>
         private void AttemptArmorUpgrade(ArmorItemData _data, int _index)
         {
-            bool canUpgrade = true;
-            if( canUpgrade )
+            if (_data.Requirements.Count != 0)
             {
-                if(_data.Requirements.Count == 0)
+                if (_inventory.UseMaterial(_data.Requirements[0].Data, _data.Requirements[0].Num))
                 {
                     _inventory.Remove(_index);
                     _inventory.Add(_data.NextArmorData);
                 }
-                else
-                {
-                    for (int i = 0; i < _data.Requirements.Count; i++)
-                    {
-                        canUpgrade = _inventory.UseMaterial(_data.Requirements[_index].Data, _data.Requirements[_index].Num);
-                    }
-                    _inventory.Remove(_index);
-                    _inventory.Add(_data.NextArmorData);
-                }
+            }
+            else
+            {
+                _inventory.Remove(_index);
+                _inventory.Add(_data.NextArmorData);
             }
         }
 
@@ -163,24 +180,20 @@ namespace Rito.InventorySystem
         /// <param name="_index"></param>
         private void AttemptWeaponUpgrade(WeaponItemData _data, int _index)
         {
-            bool canUpgrade = true;
-            if(canUpgrade)
+            if(_data.Requirements.Count != 0)
             {
-                if(_data.Requirements.Count == 0)
+                if (_inventory.UseMaterial(_data.Requirements[0].Data, _data.Requirements[0].Num))
                 {
-                    _inventory.Remove(_index);
-                    _inventory.Add(_data.NextWeaponData);
-                }
-                else
-                {
-                    for (int i = 0; i < _data.Requirements.Count; i++)
-                    {
-                        canUpgrade = _inventory.UseMaterial(_data.Requirements[_index].Data, _data.Requirements[_index].Num);
-                    }
                     _inventory.Remove(_index);
                     _inventory.Add(_data.NextWeaponData);
                 }
             }
+            else
+            {
+                _inventory.Remove(_index);
+                _inventory.Add(_data.NextWeaponData);
+            }
+            
         }
 
         #endregion

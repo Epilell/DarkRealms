@@ -14,6 +14,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //public 
     //플레이어블 캐릭터 기본 데이터
     public P_Data data;
 
@@ -24,6 +25,12 @@ public class Player : MonoBehaviour
     //--------------------------------------<체력>---------------------------------------------------
     public float MaxHP, CurrentHp;
 
+    
+    //체력관련
+    #region
+    [Range(0f,1f)]
+    private float ArmorReduction;
+
     //게임 시작시 데이터 불러오는 용도
     private void UpdateSetting()
     {
@@ -31,9 +38,6 @@ public class Player : MonoBehaviour
         Speed = data.speed + (data.GetAgiLevel() * 0.1f);
     }
 
-    //--------------------------------------<체력 변경>-------------------------------------------------
-    [Range(0f,1f)]
-    private float ArmorReduction;
 
     public void ChangeArmorReduction(float amount)
     {
@@ -52,8 +56,10 @@ public class Player : MonoBehaviour
         CurrentHp += Amount;
         if(CurrentHp > MaxHP) { CurrentHp = MaxHP; }
     }
+    #endregion
 
-    //--------------------------------------<이동속도>-------------------------------------------------
+    //이동관련
+    #region
     // 플레이어 이동시 대입할 변수
     private float Speed, P_XSpeed, P_YSpeed;
     [Range(0f,1f)]
@@ -103,8 +109,10 @@ public class Player : MonoBehaviour
         else
         { P_YSpeed = 0; }
     }
+    #endregion
 
-    //--------------------------------------<능력치 레벨>--------------------------------------------
+    //능력치 레벨
+    #region
 
     //능력치 레벨업 기능
     private void UpdateStats()
@@ -117,12 +125,14 @@ public class Player : MonoBehaviour
 
         UpdateSetting();
     }
+    #endregion
 
-    //--------------------------------------<애니메이션>---------------------------------------------
-
+    //애니메이션
+    #region
     //마우스 및 플레이어 위치 변수
     private Vector3 Mouse_Position, P_Position;
-    private float dx, dy;
+    [HideInInspector]
+    public float dx, dy;
 
     //방향벡터 계산 함수
     private void CalcVec()
@@ -173,8 +183,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    #endregion
 
-    //------------------------------------------<초기화>-------------------------------------------
+    //Unity Event
+    #region
     private void Awake()
     {
         //애니메이터 지정
@@ -219,4 +231,5 @@ public class Player : MonoBehaviour
         //플레이어 움직임 변경
         this.transform.Translate(P_XSpeed * Time.deltaTime, P_YSpeed * Time.deltaTime, 0);
     }
+    #endregion
 }

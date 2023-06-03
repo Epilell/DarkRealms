@@ -2343,17 +2343,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Upgrade Panel
+  m_text: "\uAC15\uD654 \uC2DC\uC2A4\uD15C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 491726f7506f91242ad157abb1a42a0a, type: 2}
+  m_sharedMaterial: {fileID: 8087890265877373469, guid: 491726f7506f91242ad157abb1a42a0a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4289429880
+  m_fontColor: {r: 0.47076362, g: 0.50737303, b: 0.6698113, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2365,7 +2365,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
+  m_TextStyleHashCode: 97690656
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -3245,12 +3245,11 @@ MonoBehaviour:
   _popup: {fileID: 1568632898}
   _trimButton: {fileID: 1425549448}
   _sortButton: {fileID: 2139170950}
-  _ItemMoveButton: {fileID: 0}
   _toggleFilterAll: {fileID: 1536314889}
   _toggleFilterEquipments: {fileID: 236285571}
   _toggleFilterPortions: {fileID: 1457504135}
   _mouseReversed: 0
-  isActive: 0
+  isActiveoOtherInven: 0
   _showDebug: 0
   __showPreview: 1
   __previewAlpha: 0.1
@@ -3342,9 +3341,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd347083a75615f448ffa248fb2c97d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isWarehouse: 0
   _initalCapacity: 64
   _maxCapacity: 64
   _inventoryUI: {fileID: 776609851}
+  _eqInven: {fileID: 0}
+  gm: {fileID: 0}
   _upgradeSystem: {fileID: 0}
 --- !u!1 &785966159
 GameObject:
@@ -3462,10 +3464,10 @@ RectTransform:
   m_Father: {fileID: 1536362933}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -580.5}
-  m_SizeDelta: {x: 650.01, y: 971.18994}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 9.8996, y: -28.251099}
+  m_SizeDelta: {x: -21.4489, y: -133.4977}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &829790540
 MonoBehaviour:
@@ -3498,7 +3500,7 @@ MonoBehaviour:
   m_Content: {fileID: 1482811649}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -5224,7 +5226,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: -17}
+  m_SizeDelta: {x: 7.5707, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1193307072
 MonoBehaviour:
@@ -5247,7 +5249,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.3962264, g: 0.248576, b: 0.25945255, a: 1}
+    m_NormalColor: {r: 0.54901963, g: 0.454902, b: 0.40784317, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -5270,7 +5272,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1541665147}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6795,8 +6797,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0000166893}
-  m_SizeDelta: {x: 633, y: 971.19}
+  m_AnchoredPosition: {x: 0, y: -0.00012207031}
+  m_SizeDelta: {x: 669.45, y: 854.9741}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1502287837
 GameObject:

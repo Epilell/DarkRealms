@@ -6,16 +6,18 @@ using UnityEngine;
 public class P_Data : ScriptableObject
 {
     //플레이어블 캐릭터별 기본정보
-
+    #region
     public float maxHP = 100f;
-
-    private float currentHP;
-    public float CurrentHP { get { return CurrentHP; } set { CurrentHP = value; } }
 
     public float speed = 2f;
 
+    private float damage;
+    public float Damage { get { return damage; } set { damage = value; } }
 
-    //방어력
+    #endregion
+
+    //장비 방어력
+    #region
     [Range(0, 100)]
     private float helmet;
     public float Helmet { get { return helmet; } set {  helmet = value; } }
@@ -29,35 +31,21 @@ public class P_Data : ScriptableObject
     private float shoes;
     public float Shoes { get { return shoes; } set { shoes = value; } }
 
-    public void HelmetUpgrade()
-    {
-        List<float> list = new List<float>();
-        int upgradeNum = 0;
-        list[upgradeNum] = 0;
-    }
-
-    public void BodyUpgrade()
-    {
-
-    }
-
-    public void LegUpgrade()
-    {
-
-    }
-
-    public void ShoesUpgrade()
-    {
-
-    }
-
     //방어력 총합 리턴
     public float GetArmor()
     {
-        return helmet + body + leg + shoes;
+        return (helmet + body + leg + shoes) / 4;
     }
+    #endregion
 
     //플레이어 능력치 레벨
+    #region
+
+    //각 능력 경험치
+    public float Str_Exp = 0;
+    public float Agi_Exp = 0;
+    public float Int_Exp = 0;
+
     //힘
     private int Strength_Level = 0;
 
@@ -99,11 +87,7 @@ public class P_Data : ScriptableObject
         Intelligent_Level++;
         Int_Exp = 0;
     }
-    
-    //각 능력 경험치
-    public float Str_Exp = 0;
-    public float Agi_Exp = 0;
-    public float Int_Exp = 0;
 
+    #endregion
 }
 

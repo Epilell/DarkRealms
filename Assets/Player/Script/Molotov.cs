@@ -5,8 +5,9 @@ using UnityEngine;
 public class Molotov : MonoBehaviour
 {
     private float impactDmg, tickDmg, maxTime, radius;
+
     //초기 불이 붙은 대상 저장
-    public Collider2D[] colliders;
+    private Collider2D[] colliders;
     //활성화 여부용
     private bool IsActive = false;
     //타이머
@@ -29,11 +30,13 @@ public class Molotov : MonoBehaviour
         }
     }
 
-    private void DestoryEffect()
+    private void Extinguish()
     {
         Destroy(gameObject);
     }
 
+    //unity event
+    #region
     private void Awake()
     {
 
@@ -41,7 +44,7 @@ public class Molotov : MonoBehaviour
 
     private void Start()
     {
-        Invoke("DestoryEffect", maxTime);
+        Invoke("Extinguish", maxTime);
     }
 
     // Update is called once per frame
@@ -66,4 +69,5 @@ public class Molotov : MonoBehaviour
             }
         }
     }
+    #endregion
 }

@@ -10,13 +10,12 @@ public abstract class WeaponBase : MonoBehaviour
     public GameObject firePos;
     protected GameObject weapon, weaponImg;
 
-    public float Rpm;
-
     protected float curTime = 0f, rotateDeg;
 
     public abstract void Attack();
 
-    //-----------------------------------<애니메이션>--------------------------------------------------
+    //애니메이션
+    #region
     private void CalcVec()
     {
         Vector3 mousePos, weaponPos;
@@ -50,8 +49,10 @@ public abstract class WeaponBase : MonoBehaviour
             weaponImg.GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
     }
+    #endregion
 
-    //-----------------------------------<초기화>--------------------------------------------------
+    //unity event
+    #region
 
     private void Awake()
     {
@@ -67,15 +68,18 @@ public abstract class WeaponBase : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Rpm = data.upgradeList[data.upgradeNum].rpm;
         CalcVec();
-        if (curTime >= 60 / Rpm)
+        if (curTime >= 60 / data.upgradeList[data.upgradeNum].rpm)
         {
-            Attack();
+            if (Input.GetMouseButton(0))
+            {
+                Attack();
+            }
         }
         else
         {
             curTime += Time.deltaTime;
         }
     }
+    #endregion
 }

@@ -172,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _beforeImage: {fileID: 6568286169712971283}
   _afterImage: {fileID: 9139746917148610904}
-  _requirements: {fileID: 7859514835263308490}
+  _requirements: {fileID: 4281389121896450972}
   _upgradeButton: {fileID: 4874490753388557361}
 --- !u!1 &5059524912822778004
 GameObject:
@@ -618,8 +618,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 890, y: -200}
-  m_SizeDelta: {x: 1780, y: 115}
+  m_AnchoredPosition: {x: 832.9094, y: -195.94}
+  m_SizeDelta: {x: 1665.8188, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7897174142209706347
 CanvasRenderer:
@@ -651,8 +651,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Need Item :'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 491726f7506f91242ad157abb1a42a0a, type: 2}
+  m_sharedMaterial: {fileID: 8087890265877373469, guid: 491726f7506f91242ad157abb1a42a0a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

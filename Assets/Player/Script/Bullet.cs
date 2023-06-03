@@ -24,6 +24,10 @@ public class Bullet : MonoBehaviour
                 collider.gameObject.GetComponent<MobHP>().TakeDamage(damage);
                 DestroyBullet();
                 break;
+            case "BossMob":
+                collider.gameObject.GetComponent<BossHP>().TakeDamage(damage);
+                DestroyBullet();
+                break;
             case "Map":
                 DestroyBullet();
                 break;

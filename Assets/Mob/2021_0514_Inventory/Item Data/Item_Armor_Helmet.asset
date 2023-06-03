@@ -21,4 +21,6 @@ MonoBehaviour:
   itemType: helmet
   _defence: 5
   _nextArmorData: {fileID: 11400000, guid: e7e18c97d59896341a1a487bee626a6d, type: 2}
-  _requirements: []
+  _requirements:
+  - _data: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    _num: 3
