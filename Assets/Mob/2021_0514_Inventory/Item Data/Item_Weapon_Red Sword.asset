@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be323efc2a71414498d934aca6fd26a, type: 3}
   m_Name: Item_Weapon_Red Sword
   m_EditorClassIdentifier: 
-  _id: 3
+  _id: 993
   _name: "\uBD89\uC740 \uB2E8\uAC80"
   _tooltip: "\uBD89\uAC8C \uBB3C\uB4E0 \uB2E8\uAC80\uC774\uB2E4."
   _iconSprite: {fileID: 21300000, guid: 1f0a1cc5b62b0d747928186abd4be7c2, type: 3}
-  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
+    type: 3}
   _maxDurability: 120
   itemType: weapon
   _damage: 20
