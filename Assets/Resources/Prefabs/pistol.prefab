@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4218435809195533709}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.843, y: 0.033, z: 0}
+  m_LocalPosition: {x: 0.287, y: 0.146, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4308453515144533534}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.008, y: 0.062, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -102,10 +102,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 963221861
-  m_SortingLayer: 0
+  m_SortingLayerID: -727751137
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 192618097, guid: af4d689b580a1484b822f4496b742a26, type: 3}
+  m_Sprite: {fileID: 1084414868, guid: af4d689b580a1484b822f4496b742a26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -162,10 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 12caffd7323d9be42948293ab938317d, type: 2}
-  skill: {fileID: 0}
   firePos: {fileID: 4218435809195533709}
-  weapon: {fileID: 0}
-  weaponImg: {fileID: 0}
+  weapon: {fileID: 8700631233077008096}
+  weaponImg: {fileID: 4308453515144533534}
   bullet: {fileID: 5076240041137796760, guid: 65b2c829d312d044cb30dd74e8d56cf2, type: 3}
-  curTime: 0
-  rotateDeg: 0

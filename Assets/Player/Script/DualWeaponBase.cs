@@ -2,17 +2,22 @@ using Rito.InventorySystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public abstract class WeaponBase : MonoBehaviour
+public abstract class DualWeaponBase : MonoBehaviour
 {
     //Public Field
     #region
+
     public WeaponItemData data;
+    public GameObject firePos1, firePos2;
+    public GameObject weapon, weaponImg1, weaponImg2, bullet;
 
-    public GameObject firePos;
-    public GameObject weapon, weaponImg, bullet;
+    #endregion
 
+    //Protected Field
+    #region
+
+    protected int order = 1;
     protected float curTime = 0f, rotateDeg;
 
     #endregion
@@ -54,13 +59,16 @@ public abstract class WeaponBase : MonoBehaviour
         //마우스위치에 따라 좌우 반전
         if (dx < 0f)
         {
+            
             weapon.transform.localScale = new Vector3(-1, -1, 1);
-            weaponImg.GetComponent<SpriteRenderer>().sortingOrder = -1;
+            weaponImg1.GetComponent<SpriteRenderer>().sortingOrder = -1;
+            weaponImg2.GetComponent<SpriteRenderer>().sortingOrder = -1;
         }
         else
         {
             weapon.transform.localScale = new Vector3(1, 1, 1);
-            weaponImg.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            weaponImg1.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            weaponImg2.GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
     }
     #endregion

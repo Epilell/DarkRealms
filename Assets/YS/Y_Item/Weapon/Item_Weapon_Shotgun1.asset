@@ -16,9 +16,12 @@ MonoBehaviour:
   _name: shotgun1
   _tooltip: "\uD3C9\uBC94\uD55C \uC0F7\uAC74\uC774\uB2E4"
   _iconSprite: {fileID: 21300000, guid: 2a84e7e46a9eac44a979f60537be73ec, type: 3}
-  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
+    type: 3}
   _maxDurability: 100
   itemType: weapon
-  _damage: 20
+  _damage: 5
+  _rpm: 50
+  _pelletNum: 5
   _nextWeaponData: {fileID: 11400000, guid: 5eca9d9d83d721b4eaafd9e061d231f3, type: 2}
   _requirements: []

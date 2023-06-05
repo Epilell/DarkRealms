@@ -21,8 +21,6 @@ public class PlayerSpawnSystem : MonoBehaviour
     [SerializeField]
     private GameObject playerObject;
 
-    private int i = 0;
-
     /// <summary>
     /// 랜덤 생성위치 리턴
     /// </summary>
