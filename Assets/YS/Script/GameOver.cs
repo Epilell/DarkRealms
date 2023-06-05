@@ -6,9 +6,21 @@ public class GameOver : MonoBehaviour
 {
     public Inventory Inventory;
     public Player player;
-    public float playTime = 10f; // 테스트용 10초
 
-    private void Start() { StartCoroutine(GameOverRoutine()); }
+    // 코루틴으로 자체 동작에서 TimeUI에서 호출만 하도록 변경
+    public void PlayerGameOver()
+    {
+        player.CurrentHp -= 10000; // 죽음
+        FindObjectOfType<HealthBar>().ChangeHP(); // 체력바 변경
+
+        for (int i = 0; i < Inventory._Items.Length; i++) { Inventory.Remove(i); } // 죽으면 인벤토리 내 모든 아이템 제거
+
+        Time.timeScale = 0;
+
+        // FindObjectOfType<FadeOut>().Fade(); // FadeOut 클래스의 인스턴스를 찾아 Fade() 호출
+    }
+
+    /*private void Start() { StartCoroutine(GameOverRoutine()); }
 
     private IEnumerator GameOverRoutine()
     {
@@ -36,5 +48,5 @@ public class GameOver : MonoBehaviour
         Time.timeScale = 1f;
 
         FindObjectOfType<FadeOut>().Fade(); // FadeOut 클래스의 인스턴스를 찾아 Fade() 호출
-    }
+    }*/
 }

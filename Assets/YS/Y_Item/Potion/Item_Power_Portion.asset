@@ -16,6 +16,7 @@ MonoBehaviour:
   _name: power_potion
   _tooltip: "\uACF5\uACA9\uB825\uC774 \uC99D\uAC00\uD55C\uB2E4"
   _iconSprite: {fileID: 21300000, guid: cc56a4920a2c08243afb5a267889905d, type: 3}
-  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
+    type: 3}
   _maxAmount: 99
-  _value: 50
+  _value: 3

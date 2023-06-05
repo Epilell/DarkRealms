@@ -5,55 +5,48 @@ using UnityEngine.UI;
 
 public class CoolDown : MonoBehaviour
 {
-    [SerializeField] private float cooldownTimeQ, cooldownTimeE, cooldownTimeSpace; // 각 스킬의 쿨다운 시간
-    [SerializeField] private Image cooldownImageQ, cooldownImageE, cooldownImageSpace; // 각 스킬의 쿨다운 이미지
+    [SerializeField] private Image iconQ, iconE, iconSpace, iconMouseRight; // 스킬 아이콘
+    [SerializeField] private Image cooldownImageQ, cooldownImageE, cooldownImageSpace, cooldownImageMouseRight; // 각 스킬의 쿨다운 이미지
+    [SerializeField] private Sprite onSpriteQ, offSpriteQ, onSpriteE, offSpriteE, onSpriteSpace, offSpriteSpace, onSpriteMouseRight, offSpriteMouseRight; // 스프라이트
 
-    private float currentTimeQ, currentTimeE, currentTimeSpace; // 각각의 남은 쿨다운 시간
-    private bool isCooldownQ, isCooldownE, isCooldownSpace; // 각각의 쿨다운 상태
+    [SerializeField] private float cooldownTimeQ, cooldownTimeE, cooldownTimeSpace, cooldownTimeMouseRight; // 각 스킬의 쿨다운 시간
+    private float currentTimeQ, currentTimeE, currentTimeSpace, currentTimeMouseRight; // 각각의 남은 쿨다운 시간
+    private bool isCooldownQ, isCooldownE, isCooldownSpace, isCooldownMouseRight; // 각각의 쿨다운 상태
 
-    void Start()
+    void Start() // 투명하게 초기화
     {
-        // 처음에는 투명하게 초기화
         cooldownImageQ.fillAmount = 0;
         cooldownImageE.fillAmount = 0;
         cooldownImageSpace.fillAmount = 0;
+        cooldownImageMouseRight.fillAmount = 0;
     }
 
     void Update()
     {
-        // Q, E, Space 키 별로 스킬 사용
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            UseSkill(ref isCooldownQ, ref currentTimeQ, cooldownImageQ, cooldownTimeQ);
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            UseSkill(ref isCooldownE, ref currentTimeE, cooldownImageE, cooldownTimeE);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            UseSkill(ref isCooldownSpace, ref currentTimeSpace, cooldownImageSpace, cooldownTimeSpace);
-        }
+        // 각 스킬 사용 UI
+        if (Input.GetKeyDown(KeyCode.Q)) { UseSkill(ref isCooldownQ, ref currentTimeQ, cooldownImageQ, cooldownTimeQ, iconQ, offSpriteQ); }
+        if (Input.GetKeyDown(KeyCode.E)) { UseSkill(ref isCooldownE, ref currentTimeE, cooldownImageE, cooldownTimeE, iconE, offSpriteE); }
+        if (Input.GetKeyDown(KeyCode.Space)) { UseSkill(ref isCooldownSpace, ref currentTimeSpace, cooldownImageSpace, cooldownTimeSpace, iconSpace, offSpriteSpace); }
+        if (Input.GetKeyDown(KeyCode.Mouse1)) { UseSkill(ref isCooldownMouseRight, ref currentTimeMouseRight, cooldownImageMouseRight, cooldownTimeMouseRight, iconMouseRight, offSpriteMouseRight); }
 
         // 각 쿨다운 업데이트
-        UpdateCooldown(ref isCooldownQ, ref currentTimeQ, cooldownImageQ, cooldownTimeQ);
-        UpdateCooldown(ref isCooldownE, ref currentTimeE, cooldownImageE, cooldownTimeE);
-        UpdateCooldown(ref isCooldownSpace, ref currentTimeSpace, cooldownImageSpace, cooldownTimeSpace);
+        UpdateCooldown(ref isCooldownQ, ref currentTimeQ, cooldownImageQ, cooldownTimeQ, iconQ, onSpriteQ);
+        UpdateCooldown(ref isCooldownE, ref currentTimeE, cooldownImageE, cooldownTimeE, iconE, onSpriteE);
+        UpdateCooldown(ref isCooldownSpace, ref currentTimeSpace, cooldownImageSpace, cooldownTimeSpace, iconSpace, onSpriteSpace);
+        UpdateCooldown(ref isCooldownMouseRight, ref currentTimeMouseRight, cooldownImageMouseRight, cooldownTimeMouseRight, iconMouseRight, onSpriteMouseRight);
     }
 
-    private void UseSkill(ref bool isCooldown, ref float currentTime, Image cooldownImage, float cooldownTime) // 스킬 사용 및 쿨다운 시작
+    private void UseSkill(ref bool isCooldown, ref float currentTime, Image cooldownImage, float cooldownTime, Image skillIcon, Sprite offSprite) // 스킬 사용 및 쿨다운 시작
     {
         if (!isCooldown)
         {
             isCooldown = true;
             currentTime = cooldownTime;
-            // 스킬 호출 부분
+            skillIcon.sprite = offSprite;
         }
     }
 
-    private void UpdateCooldown(ref bool isCooldown, ref float currentTime, Image cooldownImage, float cooldownTime) // 쿨다운 상태 업데이트 및 이미지 상태 업데이트
+    private void UpdateCooldown(ref bool isCooldown, ref float currentTime, Image cooldownImage, float cooldownTime, Image skillIcon, Sprite onSprite) // 쿨다운 상태 업데이트 및 이미지 상태 업데이트
     {
         if (isCooldown)
         {
@@ -65,6 +58,7 @@ public class CoolDown : MonoBehaviour
                 currentTime = 0;
                 isCooldown = false;
                 cooldownImage.fillAmount = 0;
+                skillIcon.sprite = onSprite;
             }
         }
     }

@@ -34,7 +34,7 @@ public class PotionEffect : MonoBehaviour
                     player.P_Heal(targetItemData.Value);
                     break;
                 case "power": // 공격력 증가
-                    Debug.Log("power!");
+                    GetComponent<AttackEffect>().IncreaseDamage(targetItemData.Value);
                     break;
                 case "armor": // 방어력 증가
                     Debug.Log("armor!");
