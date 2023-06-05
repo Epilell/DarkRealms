@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
     [Item의 상속구조]
@@ -130,16 +131,28 @@ namespace Rito.InventorySystem
                 _initalCapacity = _maxCapacity;
         }
 #endif
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
         private void Awake()
         {
-            gm = GetComponentInParent<GameManager>();
             _items = new Item[_maxCapacity];
-
-            //LoadInven();
             Capacity = _initalCapacity;
             if (!_isWarehouse)
             {
+                gm = GetComponentInParent<GameManager>();
                 _inventoryUI = GameObject.FindWithTag("InventoryUI").GetComponent<InventoryUI>();
+            }
+            else
+            {
+                gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
             }
             _inventoryUI.SetInventoryReference(this);
             /*
@@ -151,7 +164,7 @@ namespace Rito.InventorySystem
                 UpdateSlot();
             }*/
         }
-        private void OnDestroy()
+        private void OnApplicationQuit()
         {
             if (_isWarehouse)
             {
@@ -175,8 +188,9 @@ namespace Rito.InventorySystem
             else
             {
                 _items = new Item[_maxCapacity];
-                GameManager gm = GetComponentInParent<GameManager>();
-                gm.LoadWarehouse(this);
+                //GameManager gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+                gm.GetComponent<GameManager>().SaveWarehouse(this);
+                //gm.LoadWarehouse(this);
             }
         }
         /*
@@ -209,7 +223,17 @@ namespace Rito.InventorySystem
         *                               Private Methods
         ***********************************************************************/
         #region .
-
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (!_isWarehouse)
+            {
+                if (GameObject.FindWithTag("InventoryUI")!=null)
+                {
+                    _inventoryUI = GameObject.FindWithTag("InventoryUI").GetComponent<InventoryUI>();
+                }
+                
+            }
+        }
         /// <summary> 인덱스가 수용 범위 내에 있는지 검사 </summary>
         private bool IsValidIndex(int index)
         {
@@ -715,7 +739,7 @@ namespace Rito.InventorySystem
             //장비아이템이고 인벤토리인경우
             else if (_items[index] is EquipmentItem eItem && _isWarehouse == false)
             {
-                ItemData idata = _eqInven.ChangeEquip(eItem.Data);//장비하기
+                ItemData idata = _eqInven.Add(eItem.Data);//장비하기
 
                 if (idata == null)//들어있던 아이템이 없을경우 그냥삭제
                 {

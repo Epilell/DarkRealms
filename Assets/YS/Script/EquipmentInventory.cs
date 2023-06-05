@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Rito.InventorySystem;
+using UnityEngine.SceneManagement;
 
 public class EquipmentInventory : MonoBehaviour
 {
@@ -13,12 +14,38 @@ public class EquipmentInventory : MonoBehaviour
 
     private ItemSlotUI[] slots;
     public Transform slotHolder;
-    GameManager gm;
+    public GameManager gm;
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (GameObject.Find("InventoryB") != null)
+        {
+            slotHolder = GameObject.Find("InventoryB").transform;
+            gm = GetComponentInParent<GameManager>();
+            _eqitems = new Rito.InventorySystem.Item[5];
+            //gm.LoadEquibment(this);
+        }
+    }
     private void Awake()
     {
-        gm = GetComponentInParent<GameManager>();
-        gm.LoadEquibment(this);
         _eqitems = new Rito.InventorySystem.Item[5];
+        gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        //gm.SaveEquipment();
+        if (GameObject.Find("InventoryB").transform != null)
+        {
+            slotHolder = GameObject.Find("InventoryB").transform;
+            gm = GetComponentInParent<GameManager>();
+            gm.LoadEquibment(this);
+        }
+        
         if (instance != null)  // 인벤토리 인스턴스가 존재하면
         {
             Destroy(gameObject);  // 중복 생성 방지를 위해 현재 게임 오브젝트를 파괴
@@ -28,8 +55,8 @@ public class EquipmentInventory : MonoBehaviour
     }
     private void OnDestroy()
     {
-        gm = GetComponentInParent<GameManager>();
-        gm.SaveEquipment(this);
+        gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        gm.SaveEquipment();
     }
     private void Start() // 장비 슬롯 초기화
     {
@@ -54,7 +81,7 @@ public class EquipmentInventory : MonoBehaviour
     /// </summary>
     /// <param name="itemData"></param>
     /// <returns></returns>
-    public ItemData ChangeEquip(ItemData itemData)
+    public ItemData Add(ItemData itemData)
     {
         if (itemData is EquipmentItemData eqData)
         {
@@ -63,23 +90,27 @@ public class EquipmentInventory : MonoBehaviour
             {
                 return itemData;
             }
-            if (_eqitems[index] == null)
-            {
-                _eqitems[index] = itemData.CreateItem();
-                Updateslot(index);
-                //아이템 장비 효과
-                ItemEffect(_eqitems[index].Data as EquipmentItemData);
-                return null;
-            }
             else
             {
-                ItemData forReturnItemData = _eqitems[index].Data;
-                _eqitems[index] = itemData.CreateItem();
-                Updateslot(index);
-                //아이템 장비 효과
-                ItemEffect(_eqitems[index].Data as EquipmentItemData);
-                return forReturnItemData;
+                if (_eqitems[index] == null)
+                {
+                    _eqitems[index] = itemData.CreateItem();
+                    Updateslot(index);
+                    //아이템 장비 효과
+                    ItemEffect(_eqitems[index].Data as EquipmentItemData);
+                    return null;
+                }
+                else
+                {
+                    ItemData forReturnItemData = _eqitems[index].Data;
+                    _eqitems[index] = itemData.CreateItem();
+                    Updateslot(index);
+                    //아이템 장비 효과
+                    ItemEffect(_eqitems[index].Data as EquipmentItemData);
+                    return forReturnItemData;
+                }
             }
+
         }
         else
         {
@@ -155,12 +186,12 @@ public class EquipmentInventory : MonoBehaviour
     /// <param name="eqdata"></param>
     private void ItemEffect(EquipmentItemData eqdata)
     {
-        int itemNum =FindSlot(eqdata);
+        int itemNum = FindSlot(eqdata);
         if (eqdata is ArmorItemData armdata)
         {
             switch (itemNum)
             {
-                case 0: 
+                case 0:
                     playerData.Helmet = armdata.Defence;
                     break;
                 case 1:
@@ -174,7 +205,7 @@ public class EquipmentInventory : MonoBehaviour
                     break;
             }
         }
-        else if(eqdata is WeaponItemData wdata)
+        else if (eqdata is WeaponItemData wdata)
         {
             //playerData.공격력 = wdata.Damage;
         }
