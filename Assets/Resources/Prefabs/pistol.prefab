@@ -103,9 +103,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 963221861
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  m_Sprite: {fileID: 192618097, guid: af4d689b580a1484b822f4496b742a26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -161,6 +161,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613262ee88fca16489d2d46e9b52b574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 1031bcd825a6346488e7baaaad5a10a5, type: 2}
+  data: {fileID: 11400000, guid: 12caffd7323d9be42948293ab938317d, type: 2}
   skill: {fileID: 0}
   firePos: {fileID: 4218435809195533709}
+  weapon: {fileID: 0}
+  weaponImg: {fileID: 0}
+  bullet: {fileID: 5076240041137796760, guid: 65b2c829d312d044cb30dd74e8d56cf2, type: 3}
+  curTime: 0
+  rotateDeg: 0

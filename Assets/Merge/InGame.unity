@@ -19030,7 +19030,7 @@ GameObject:
   - component: {fileID: 1403007653}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19047,6 +19047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed1a8813c8ea8f43aa51852354c4921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eqinven: {fileID: 1445337376}
   idb: {fileID: 451689492}
   saveDatas: []
   Inventory: {fileID: 1445337373}
@@ -19899,6 +19900,7 @@ MonoBehaviour:
   _inventory: {fileID: 1445337374}
   playerData: {fileID: 11400000, guid: a14c936c6adc0d34794da2330d8ae96d, type: 2}
   slotHolder: {fileID: 526498477}
+  gm: {fileID: 1403007653}
 --- !u!1 &1445714408
 GameObject:
   m_ObjectHideFlags: 0

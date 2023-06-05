@@ -6,6 +6,7 @@ using Rito.InventorySystem;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 [Serializable]
 public class SaveData
 {
@@ -15,8 +16,10 @@ public class SaveData
 
 public class GameManager : MonoBehaviour
 {
+    public EquipmentInventory eqinven;
     public ItemDB idb;
     public List<SaveData> saveDatas;
+    public List<SaveData> saveEqDatas;
     private static GameManager instance;
     [SerializeField]
     private GameObject Inventory;
@@ -25,7 +28,21 @@ public class GameManager : MonoBehaviour
 
     //unitys
     #region .
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Warehouse = GameObject.FindWithTag("Warehouse");
+
+        Save(Warehouse.GetComponent<Inventory>());
+    }
     private void Awake()
     {
         LoadInven();
@@ -67,11 +84,13 @@ public class GameManager : MonoBehaviour
     {
         SaveInven();
         SaveWarehouse(warehouse);
+        SaveEquipment();
     }
-    public void Load(Inventory warehouse)
+    public void Load(Inventory warehouse, EquipmentInventory eqinven)
     {
         LoadInven();
         LoadWarehouse(warehouse);
+        LoadEquibment(eqinven);
     }
     // 만든 클래스를 리스트에 담아서 관리하면 마치 테이블처럼 사용할 수 있습니다. 
     public void SaveInven()
@@ -157,7 +176,7 @@ public class GameManager : MonoBehaviour
         binaryFormatter.Serialize(memoryStream, saveDatas);
         PlayerPrefs.SetString("SaveWarehouse", Convert.ToBase64String(memoryStream.GetBuffer()));
     }
-    public void SaveEquipment(EquipmentInventory eqinven)
+    public void SaveEquipment()
     {
         var binaryFormatter = new BinaryFormatter();
         var memoryStream = new MemoryStream();
@@ -172,13 +191,13 @@ public class GameManager : MonoBehaviour
                         int _id = eqinven.EqItems[i].Data.ID;
                         if (eqinven.EqItems[i] is CountableItem ci)
                         {
-                            saveDatas[i].id = _id;
-                            saveDatas[i].amount = ci.Amount;
+                            saveEqDatas[i].id = _id;
+                            saveEqDatas[i].amount = ci.Amount;
                         }
                         else
                         {
-                            saveDatas[i].id = _id;
-                            saveDatas[i].amount = 1;
+                            saveEqDatas[i].id = _id;
+                            saveEqDatas[i].amount = 1;
                         }
                     }
 
@@ -193,7 +212,7 @@ public class GameManager : MonoBehaviour
         {
             // inventory 또는 _Items가 null인 경우 처리할 내용 추가
         }
-        binaryFormatter.Serialize(memoryStream, saveDatas);
+        binaryFormatter.Serialize(memoryStream, saveEqDatas);
         PlayerPrefs.SetString("SaveEquipment", Convert.ToBase64String(memoryStream.GetBuffer()));
     }
 
@@ -267,16 +286,16 @@ public class GameManager : MonoBehaviour
 
             // 가져온 데이터를 바이트 배열로 변환하고
             // 사용하기 위해 다시 리스트로 캐스팅해줍니다.
-            saveDatas = (List<SaveData>)binaryFormatter.Deserialize(memoryStream);
+            saveEqDatas = (List<SaveData>)binaryFormatter.Deserialize(memoryStream);
             //아이템DB에서 찾아서 add
-            for (int i = 0; i < saveDatas.Count; i++)
+            for (int i = 0; i < saveEqDatas.Count; i++)
             {
                 for (int j = 0; j < idb.itemDB.Count; j++)
                 {
-                    if (saveDatas[i].id == idb.itemDB[j].ID)
+                    if (saveEqDatas[i].id == idb.itemDB[j].ID)
                     {
                         ItemData idata = idb.itemDB[j];
-                        eqinven.ChangeEquip(idata);
+                        eqinven.Add(idata);
 
                     }
                 }

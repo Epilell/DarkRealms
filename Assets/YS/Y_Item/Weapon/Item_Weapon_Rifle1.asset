@@ -16,9 +16,12 @@ MonoBehaviour:
   _name: rifle1
   _tooltip: "\uD3C9\uBC94\uD55C \uC18C\uCD1D\uC774\uB2E4"
   _iconSprite: {fileID: 21300000, guid: f3600608e15a9924484f7ac34432e5c3, type: 3}
-  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
+    type: 3}
   _maxDurability: 100
   itemType: weapon
   _damage: 10
+  _rpm: 600
+  _pelletNum: 1
   _nextWeaponData: {fileID: 11400000, guid: 3d5395fb81cd77340952a9940422ac2f, type: 2}
   _requirements: []

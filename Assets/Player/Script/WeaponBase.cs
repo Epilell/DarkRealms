@@ -1,3 +1,4 @@
+using Rito.InventorySystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,16 +6,29 @@ using UnityEngine.UIElements;
 
 public abstract class WeaponBase : MonoBehaviour
 {
-    public WeaponData data;
+    //Public Field
+    #region
+    public WeaponItemData data;
     public SkillManager skill;
     public GameObject firePos;
-    protected GameObject weapon, weaponImg;
+    public GameObject weapon, weaponImg, bullet;
 
-    protected float curTime = 0f, rotateDeg;
+    public float curTime = 0f, rotateDeg;
 
+    #endregion
+
+    //Public Method
+    #region
     public abstract void Attack();
 
-    //애니메이션
+    public void SetStatus(WeaponItemData _data)
+    {
+        data = _data;
+    }
+
+    #endregion
+
+    //Animation
     #region
     private void CalcVec()
     {
@@ -40,7 +54,7 @@ public abstract class WeaponBase : MonoBehaviour
         //마우스위치에 따라 좌우 반전
         if (dx < 0f)
         {
-            weapon.transform.localScale = new Vector3(1, -1, 1);
+            weapon.transform.localScale = new Vector3(-1, -1, 1);
             weaponImg.GetComponent<SpriteRenderer>().sortingOrder = -1;
         }
         else
@@ -69,7 +83,7 @@ public abstract class WeaponBase : MonoBehaviour
     private void Update()
     {
         CalcVec();
-        if (curTime >= 60 / data.upgradeList[data.upgradeNum].rpm)
+        if (curTime >= 60 / data.Rpm)
         {
             if (Input.GetMouseButton(0))
             {
