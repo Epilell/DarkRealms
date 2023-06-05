@@ -3981,14 +3981,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66012ba06d7e90f429738e5c70163260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 1479233286}
-  efSource: {fileID: 321131273}
-  image1: {fileID: 1215161006}
-  image2: {fileID: 794441869}
-  music_off: {fileID: 21300000, guid: 48a4ed9393c927a4ca9a8093fa52fbb3, type: 3}
-  music_on: {fileID: 21300000, guid: 1b3874ace64f2d24d9063e73177abe98, type: 3}
-  effect_off: {fileID: 21300000, guid: 4f9eebff97778df4481a07a8f53c057a, type: 3}
-  effect_on: {fileID: 21300000, guid: 4f8394d748a655c448d18d41079fa41c, type: 3}
+  bgm: {fileID: 0}
+  sfxSources: []
+  bgm_on: {fileID: 0}
+  bgm_off: {fileID: 0}
+  sfx_on: {fileID: 0}
+  sfx_off: {fileID: 0}
+  bgmIcon: {fileID: 0}
+  sfxIcon: {fileID: 0}
 --- !u!4 &1251038286
 Transform:
   m_ObjectHideFlags: 0
@@ -5715,7 +5715,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2880ae29695584149a11eb5bb2ba87ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 61b09c6e87f4cf544bc84e9c4b44a28c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

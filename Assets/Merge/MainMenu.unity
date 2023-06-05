@@ -361,7 +361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedb67a46a84adc4bb160765dc393a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
   panel: {fileID: 2002834436}
 --- !u!1 &101525543
 GameObject:
@@ -4358,6 +4357,7 @@ MonoBehaviour:
   sfxSources:
   - {fileID: 321131273}
   - {fileID: 766146412}
+  - {fileID: 0}
   bgm_on: {fileID: 21300000, guid: 078176a793aa6aa4aa4127602003707d, type: 3}
   bgm_off: {fileID: 21300000, guid: cfacda740c2f45c46a37c6f01034469f, type: 3}
   sfx_on: {fileID: 21300000, guid: 558641e3df78a7547aff33132eb6d056, type: 3}
@@ -6294,7 +6294,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2880ae29695584149a11eb5bb2ba87ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 61b09c6e87f4cf544bc84e9c4b44a28c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6313,8 +6313,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880098524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 4, y: 3, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3.1, y: 2.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
