@@ -14,36 +14,51 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //public 
+    //Public Field
+    #region
+
     //플레이어블 캐릭터 기본 데이터
+    [Header("Player Data")]
     public P_Data data;
+
+    #endregion
+
+    //Private Field
+    #region
 
     private Animator ani;
     private Player P;
     private GameObject weaponCase;
 
-    //--------------------------------------<체력>---------------------------------------------------
-    public float MaxHP, CurrentHp;
+    #endregion
 
-    
     //체력관련
     #region
+
+    public float MaxHP, CurrentHp;
     [Range(0f,1f)]
     private float ArmorReduction;
 
     //게임 시작시 데이터 불러오는 용도
     private void UpdateSetting()
     {
-        MaxHP = data.maxHP + (data.GetStrLevel() * 10f);
-        Speed = data.speed + (data.GetAgiLevel() * 0.1f);
+        MaxHP = data.maxHP + (data.Strlevel * 10f);
+        Speed = data.speed + (data.Agilevel * 0.1f);
     }
 
-
+    /// <summary>
+    /// 플레이어에게 들어오는 데미지를 amount%만큼 경감
+    /// </summary>
+    /// <param name="amount"></param>
     public void ChangeArmorReduction(float amount)
     {
-        ArmorReduction = amount;
+        ArmorReduction = amount/100;
     }
 
+    /// <summary>
+    /// 플레이어 체력을 damage만큼 제거
+    /// </summary>
+    /// <param name="damage"></param>
     public void P_TakeDamage(float damage)
     {
         if((damage - data.GetArmor()) * (1 - ArmorReduction) <= 1 ) { CurrentHp -= 1; }
@@ -51,9 +66,13 @@ public class Player : MonoBehaviour
         if(CurrentHp <=0) { CurrentHp = 0; IsDead();}
     }
 
-    public void P_Heal(float Amount)
+    /// <summary>
+    /// 플레이어 체력을 Amount만큼 회복
+    /// </summary>
+    /// <param name="amount"></param>
+    public void P_Heal(float amount)
     {
-        CurrentHp += Amount;
+        CurrentHp += amount;
         if(CurrentHp > MaxHP) { CurrentHp = MaxHP; }
     }
     #endregion
@@ -65,9 +84,13 @@ public class Player : MonoBehaviour
     [Range(0f,1f)]
     private float SpeedReduction;
 
+    /// <summary>
+    /// 플레이어 이동속도를 amount% 만큼 감소
+    /// </summary>
+    /// <param name="amount"></param>
     public void ChangeSpeedReduction(float amount)
     {
-        SpeedReduction = amount;
+        SpeedReduction = amount/100;
     }
 
     private void InputSpeed()
@@ -117,11 +140,11 @@ public class Player : MonoBehaviour
     //능력치 레벨업 기능
     private void UpdateStats()
     {
-        if(data.Str_Exp >= 100) { data.StrLevelUP(); }
+        if(data.Strexp >= 100) { data.Strlevel++; }
         
-        if(data.Agi_Exp >= 100) { data.AgiLevelUP(); }
+        if(data.Agiexp >= 100) { data.Agilevel++; }
         
-        if(data.Int_Exp >= 100) { data.IntLevelUP(); }
+        if(data.Intexp >= 100) { data.Intlevel++; }
 
         UpdateSetting();
     }
@@ -154,13 +177,11 @@ public class Player : MonoBehaviour
         //마우스위치에 따라 좌우 반전
         if (dx < 0f)
         { 
-            //this.transform.localScale = new Vector3(-1, 1, 1);
-            this.GetComponent<SpriteRenderer>().flipX = true;
+            this.transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         { 
-            //this.transform.localScale = new Vector3(1, 1, 1);
-            this.GetComponent<SpriteRenderer>().flipX = false;
+            this.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 

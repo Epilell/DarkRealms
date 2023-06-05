@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 963221861
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1772703093, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 5101767274100709288}
   - component: {fileID: 340873833120929259}
   m_Layer: 6
-  m_Name: shotgun
+  m_Name: Shotgun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,6 +161,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0793a0a68e65831478fd3ba748ac4b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 3cc7e0fc1b0bc5145b9fbb8b6493947b, type: 2}
+  data: {fileID: 11400000, guid: bb5d5f5be134712448c132c1c2d9ee97, type: 2}
   skill: {fileID: 0}
   firePos: {fileID: 4197239847491347880}
+  weapon: {fileID: 0}
+  weaponImg: {fileID: 0}
+  bullet: {fileID: 5076240041137796760, guid: 65b2c829d312d044cb30dd74e8d56cf2, type: 3}
+  curTime: 0
+  rotateDeg: 0

@@ -14,11 +14,11 @@ public class Rifle : WeaponBase
 
     public override void Attack()
     {
-        float damage = data.upgradeList[data.upgradeNum].damage;
+        float damage = data.Damage;
 
         //총알 생성
         GameObject Bullet;
-        Bullet = Instantiate(data.bulletPrefab, firePos.transform.position, Quaternion.Euler(0f, 0f, rotateDeg - 90f));
+        Bullet = Instantiate(bullet, firePos.transform.position, Quaternion.Euler(0f, 0f, rotateDeg - 90f));
 
         //총알 데이터 입력
         Bullet.GetComponent<Bullet>().SetStats(damage);

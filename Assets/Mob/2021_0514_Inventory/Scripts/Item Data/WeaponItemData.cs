@@ -23,7 +23,13 @@ namespace Rito.InventorySystem
     public class WeaponItemData : EquipmentItemData
     {
         /// <summary> 공격력 </summary>
-        public int Damage => _damage;
+        public float Damage => _damage;
+
+        /// <summary>  분당 발사량  </summary>
+        public float Rpm => _rpm;
+
+        /// <summary> 발사시 총알 개수 </summary>
+        public int PelletNum => _pelletNum;
 
         /// <summary> 업그레이드 후 아이템 정보 </summary>
         public WeaponItemData NextWeaponData => _nextWeaponData;
@@ -32,6 +38,8 @@ namespace Rito.InventorySystem
         public List<Requirements> Requirements => _requirements;
 
         [SerializeField] private int _damage = 1;
+        [SerializeField] private float _rpm;
+        [SerializeField] private int _pelletNum;
         [SerializeField] private WeaponItemData _nextWeaponData;
         [SerializeField] private List<Requirements> _requirements = new List<Requirements>();
         public override Item CreateItem()

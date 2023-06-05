@@ -176,7 +176,9 @@ public class EquipmentInventory : MonoBehaviour
         }
         else if(eqdata is WeaponItemData wdata)
         {
-            //playerData.°ø°Ý·Â = wdata.Damage;
+            //playerData.Damage = wdata.Damage;
+            //playerData.Rpm = wdata.Rpm;
+            //playerData.PelletNum = wdata.PelletNum
         }
         else
         {

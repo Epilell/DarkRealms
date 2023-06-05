@@ -6,10 +6,10 @@ public class Pistol : WeaponBase
 {
     public override void Attack()
     {
-        float damage = data.upgradeList[data.upgradeNum].damage;
+        float damage = data.Damage;
 
         GameObject Bullet;
-        Bullet = Instantiate(data.bulletPrefab, firePos.transform.position, Quaternion.Euler(0f, 0f, rotateDeg - 90f));
+        Bullet = Instantiate(bullet, firePos.transform.position, Quaternion.Euler(0f, 0f, rotateDeg - 90f));
         Bullet.GetComponent<Bullet>().SetStats(damage);
 
         curTime = 0f;

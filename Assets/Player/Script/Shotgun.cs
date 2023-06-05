@@ -6,8 +6,8 @@ public class Shotgun : WeaponBase
 {
     public override void Attack()
     {
-        float damage = data.upgradeList[data.upgradeNum].damage;
-        int pelletNum = data.upgradeList[data.upgradeNum].pelletNum;
+        float damage = data.Damage;
+        int pelletNum = data.PelletNum;
 
         GameObject[] Bullet = new GameObject[pelletNum];
         float deg;
@@ -26,7 +26,7 @@ public class Shotgun : WeaponBase
         //총알 생성
         for (int i = 0; i < pelletNum; i++)
         {
-            Bullet[i] = Instantiate(data.bulletPrefab, firePos.transform.position, Quaternion.Euler(0f, 0f, rotateDeg - 90f + deg));
+            Bullet[i] = Instantiate(bullet, firePos.transform.position, Quaternion.Euler(0f, 0f, rotateDeg - 90f + deg));
 
             //총알 데이터 입력
             Bullet[i].GetComponent<Bullet>().SetStats(damage);
