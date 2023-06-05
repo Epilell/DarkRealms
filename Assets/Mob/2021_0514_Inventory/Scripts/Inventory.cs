@@ -67,7 +67,6 @@ namespace Rito.InventorySystem
         /// !!!중요!!!창고인지 아닌지
         /// </summary>
         public bool _isWarehouse = false;
-        public InvenData I_Data;
 
         #endregion
         /***********************************************************************
@@ -105,6 +104,7 @@ namespace Rito.InventorySystem
             { typeof(PortionItemData), 10000 },
             { typeof(WeaponItemData),  20000 },
             { typeof(ArmorItemData),   30000 },
+            { typeof(MaterialItemData), 40000 }
         };
 
         private class ItemComparer : IComparer<Item>
@@ -132,6 +132,7 @@ namespace Rito.InventorySystem
 #endif
         private void Awake()
         {
+            gm = GetComponentInParent<GameManager>();
             _items = new Item[_maxCapacity];
 
             //LoadInven();
@@ -156,12 +157,29 @@ namespace Rito.InventorySystem
             {
                 gm.GetComponent<GameManager>().SaveWarehouse(this);
             }
+            else
+            {
+                gm.GetComponent<GameManager>().SaveInven();
+            }
         }
 
         private void Start()
         {
             UpdateAccessibleStatesAll();
+            if (_isWarehouse==false)
+            {
+                _items = new Item[_maxCapacity];
+                GameManager gm = GetComponentInParent<GameManager>();
+                gm.LoadInven();
+            }
+            else
+            {
+                _items = new Item[_maxCapacity];
+                GameManager gm = GetComponentInParent<GameManager>();
+                gm.LoadWarehouse(this);
+            }
         }
+        /*
         int a = 0;
         private void Update()
         {
@@ -184,7 +202,7 @@ namespace Rito.InventorySystem
                 }
                 a = 0;
             }
-        }
+        }*/
 
         #endregion
         /***********************************************************************

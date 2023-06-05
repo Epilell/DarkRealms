@@ -13,7 +13,7 @@ public class BossHP : MonoBehaviour
     private Animator animator;
     public GameObject DeadMob;
     public BossStat Stat;
-    
+    public bool CanDamage=true;
 
     //적의 체력 정보를 외부 클래스에서 확인할 수 있도록 프로퍼티 생성
     public float MaxHP => maxHP;
@@ -30,6 +30,10 @@ public class BossHP : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if(CanDamage == false)
+        {
+            return;
+        }
         //죽었으면 실행x
         if (isDie == true) return;
 

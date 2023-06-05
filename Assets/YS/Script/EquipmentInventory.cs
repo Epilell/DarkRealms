@@ -13,9 +13,11 @@ public class EquipmentInventory : MonoBehaviour
 
     private ItemSlotUI[] slots;
     public Transform slotHolder;
-
+    GameManager gm;
     private void Awake()
     {
+        gm = GetComponentInParent<GameManager>();
+        gm.LoadEquibment(this);
         _eqitems = new Rito.InventorySystem.Item[5];
         if (instance != null)  // 인벤토리 인스턴스가 존재하면
         {
@@ -24,7 +26,11 @@ public class EquipmentInventory : MonoBehaviour
         }
         instance = this;  // 인스턴스가 존재하지 않으면 현재 인스턴스를 할당
     }
-
+    private void OnDestroy()
+    {
+        gm = GetComponentInParent<GameManager>();
+        gm.SaveEquipment(this);
+    }
     private void Start() // 장비 슬롯 초기화
     {
         slots = slotHolder.GetComponentsInChildren<ItemSlotUI>();

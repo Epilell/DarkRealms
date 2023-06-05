@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Map
+  - Weapon Case
+  - Escape
+  - InventoryUI
+  - Center
+  - Mob
+  - DeadMob
+  - Weapon
+  - Fire Position
+  - Warehouse
+  - BossMob
   layers:
   - Default
   - TransparentFX
