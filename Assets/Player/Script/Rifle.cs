@@ -10,8 +10,6 @@ using UnityEngine;
 
 public class Rifle : WeaponBase
 {
-    //-----------------------------------<무기 기능>--------------------------------------------------
-
     public override void Attack()
     {
         float damage = data.Damage;

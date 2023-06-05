@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: siegemodeDB
   m_EditorClassIdentifier: 
   upgradeList:
-  - coolTime: 0
+  - coolTime: 10
     ArmorReduction: 0.1
-  - coolTime: 0
+  - coolTime: 8
     ArmorReduction: 0.2
-  - coolTime: 0
+  - coolTime: 6
     ArmorReduction: 0.3
   upgradeNum: 0

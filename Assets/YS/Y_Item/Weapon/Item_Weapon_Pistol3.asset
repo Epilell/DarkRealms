@@ -16,9 +16,12 @@ MonoBehaviour:
   _name: pistol3
   _tooltip: "\uAC15\uB825\uD55C \uAD8C\uCD1D\uC774\uB2E4"
   _iconSprite: {fileID: 21300000, guid: 0bb2bfb732d074343bacb47da4ce5398, type: 3}
-  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
+    type: 3}
   _maxDurability: 100
   itemType: weapon
-  _damage: 55
+  _damage: 45
+  _rpm: 150
+  _pelletNum: 1
   _nextWeaponData: {fileID: 11400000, guid: 676e960bb21776c479f751b16bb47347, type: 2}
   _requirements: []

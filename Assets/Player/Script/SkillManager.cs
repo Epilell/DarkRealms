@@ -358,6 +358,11 @@ public class SkillManager : MonoBehaviour
         GetMousePos();
         GetMouseVec();
 
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+
         DodgeTimeCheck();
         if (siegeIsActive == false && canDodge == true )
         {

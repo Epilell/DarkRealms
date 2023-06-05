@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -105,15 +105,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: guns_0
+      name: chest1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 16
-        width: 28
-        height: 12
-      alignment: 9
-      pivot: {x: 0.12910597, y: 0.37463555}
+        x: 1
+        y: 64
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,7 +126,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guns_1
+      name: pistol1
       rect:
         serializedVersion: 2
         x: 16
@@ -134,7 +134,7 @@ TextureImporter:
         width: 15
         height: 11
       alignment: 9
-      pivot: {x: 0.251608, y: 0.29031858}
+      pivot: {x: 0.25752208, y: 0.26612437}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,7 +147,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guns_2
+      name: pistol2
       rect:
         serializedVersion: 2
         x: 32
@@ -155,7 +155,7 @@ TextureImporter:
         width: 16
         height: 11
       alignment: 9
-      pivot: {x: 0.22832131, y: 0.32257703}
+      pivot: {x: 0.25604343, y: 0.31451276}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,7 +168,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guns_3
+      name: pistol3
       rect:
         serializedVersion: 2
         x: 48
@@ -176,7 +176,7 @@ TextureImporter:
         width: 16
         height: 12
       alignment: 9
-      pivot: {x: 0.29485488, y: 0.35214743}
+      pivot: {x: 0.29485488, y: 0.30779204}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,7 +189,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guns_4
+      name: pistol4
       rect:
         serializedVersion: 2
         x: 64
@@ -197,7 +197,7 @@ TextureImporter:
         width: 16
         height: 13
       alignment: 9
-      pivot: {x: 0.2837658, y: 0.35669708}
+      pivot: {x: 0.35029936, y: 0.3498729}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,7 +210,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guns_6
+      name: shotgun1
       rect:
         serializedVersion: 2
         x: 16
@@ -218,7 +218,7 @@ TextureImporter:
         width: 31
         height: 10
       alignment: 9
-      pivot: {x: 0.16518581, y: 0.39354628}
+      pivot: {x: 0.2023874, y: 0.27822152}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,7 +231,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guns_7
+      name: shotgun2
       rect:
         serializedVersion: 2
         x: 48
@@ -239,7 +239,7 @@ TextureImporter:
         width: 32
         height: 10
       alignment: 9
-      pivot: {x: 0.17842102, y: 0.29596367}
+      pivot: {x: 0.22277677, y: 0.3225773}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,7 +252,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guns_9
+      name: dbshotgun1
       rect:
         serializedVersion: 2
         x: 16
@@ -260,7 +260,7 @@ TextureImporter:
         width: 27
         height: 9
       alignment: 9
-      pivot: {x: 0.15501086, y: 0.36200416}
+      pivot: {x: 0.2240087, y: 0.28314972}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -273,7 +273,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guns_10
+      name: dbshotgun2
       rect:
         serializedVersion: 2
         x: 48
@@ -281,7 +281,7 @@ TextureImporter:
         width: 30
         height: 10
       alignment: 9
-      pivot: {x: 0.13628298, y: 0.34031907}
+      pivot: {x: 0.15993932, y: 0.2870922}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -294,7 +294,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guns_12
+      name: rifle2
       rect:
         serializedVersion: 2
         x: 48
@@ -302,7 +302,7 @@ TextureImporter:
         width: 28
         height: 13
       alignment: 9
-      pivot: {x: 0.1990148, y: 0.4590561}
+      pivot: {x: 0.19584656, y: 0.43176034}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -310,6 +310,174 @@ TextureImporter:
       bones: []
       spriteID: 85d08541499986d4c82bb1ca1f0e94c1
       internalID: 1293199425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chest2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 48
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e55636c298d686448bbda09a1b6af04
+      internalID: 1848664306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chest3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 32
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaab86421010c304cabe1f7521c6529a
+      internalID: -46107395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chest4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed0c3304afc7556488ba5696b37dc138
+      internalID: -1481169649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chest5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3edfdd3d228296947a98c46d96e0ae74
+      internalID: -154548121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pistolammo
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e29f136558f1a6498ab255600f81554
+      internalID: 302789976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rifleammo
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40019fcc211cb6f49b74ab4346ca8e48
+      internalID: 1049783439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shotugnammo
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 0
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd9b130c0c47a504b8387908d33eaf7e
+      internalID: 306686405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rifle1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 28
+        height: 12
+      alignment: 9
+      pivot: {x: 0.18634163, y: 0.49260744}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0b899ca7b4971144bbf9395bf373ad2
+      internalID: 583216135
       vertices: []
       indices: 
       edges: []
@@ -325,23 +493,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      guns_0: -833150141
-      guns_1: 1084414868
-      guns_10: 1950882791
-      guns_11: 1263252841
-      guns_12: 1293199425
-      guns_13: 442999930
-      guns_14: 819992008
-      guns_15: -713548673
-      guns_16: -582132052
-      guns_2: -1054595613
-      guns_3: 606712586
-      guns_4: 743649665
-      guns_5: -1549311520
-      guns_6: 192618097
-      guns_7: -601387936
-      guns_8: 483781328
-      guns_9: 1444003727
+      chest1: -833150141
+      chest2: -1549311520
+      chest3: 483781328
+      chest4: 1263252841
+      chest5: 442999930
+      dbshotgun1: 1444003727
+      dbshotgun2: 1950882791
+      pistol1: 1084414868
+      pistol2: -1054595613
+      pistol3: 606712586
+      pistol4: 743649665
+      pistolammo: 819992008
+      rifle1: 583216135
+      rifle2: 1293199425
+      rifleammo: -713548673
+      shotgun1: 192618097
+      shotgun2: -601387936
+      shotugnammo: -582132052
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
