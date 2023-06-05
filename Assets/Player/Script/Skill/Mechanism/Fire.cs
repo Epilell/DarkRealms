@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Molotov : MonoBehaviour
+public class Fire : MonoBehaviour
 {
     private float impactDmg, tickDmg, maxTime, radius;
 

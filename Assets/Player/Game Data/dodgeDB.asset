@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b91df5c2713a1847959698ab51590ea, type: 3}
   m_Name: dodgeDB
   m_EditorClassIdentifier: 
-  upgradeList:
-  - coolTime: 5
-  - coolTime: 4.5
-  - coolTime: 4
-  upgradeNum: 0
+  skillName: 
+  toolTip: 
+  coolTime: 3
