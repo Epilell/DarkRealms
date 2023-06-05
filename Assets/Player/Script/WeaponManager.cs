@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Rito.InventorySystem;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -6,10 +7,29 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    //Public Field
+    #region
+
     [SerializeField]
     public GameObject curWeapon;
 
-    public void ChangeWeapon(string WeaponName)
+    #endregion
+
+    //Private Field
+    #region
+
+    private readonly EquipmentInventory EI = EquipmentInventory.instance;
+
+    #endregion
+
+    //Public Method
+    #region
+
+    #endregion
+
+    //Private Method
+    #region
+    private void ChangeWeapon(string WeaponName)
     {
         if (this.transform.childCount >= 1)
         {
@@ -20,6 +40,7 @@ public class WeaponManager : MonoBehaviour
         curWeapon = prefab;
         GameObject Instance = Instantiate(prefab, this.transform);
         Instance.tag = "Weapon";
+        Instance.GetComponent<WeaponBase>().SetStatus(EI.EqItems[2].Data as WeaponItemData);
     }
 
     private void RemoveWeapon()
@@ -38,34 +59,65 @@ public class WeaponManager : MonoBehaviour
             }
         }
     }
+    #endregion
 
-    //--------------------------------------<강화>--------------------------------------------
+    //Check Method
+    #region
 
-    public void WeaponUpgrade()
+    /// <summary>
+    /// 현재 장착한 무기의 종류를 확인하여 리턴
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    private int CheckCurWeapon(Rito.InventorySystem.ItemData data)
     {
-        curWeapon.GetComponent<WeaponBase>().data.Upgrade();
-        Debug.Log("Upgrade");
-    }
-
-    
-
-    // Update is called once per frame
-    private void Update()
-    {
-        switch (Input.inputString)
+        string s1 = data.name;
+        if (s1.Contains("rifle"))
         {
-            case "1":
-                ChangeWeapon("rifle");
-                break;
-            case "2":
-                ChangeWeapon("shotgun");
-                break;
-            case "3":
-                ChangeWeapon("pistol");
-                break;
-            case "4":
-                ChangeWeapon("dualPistol");
-                break;
+            return 1;
+        }
+        else if (s1.Contains("shotgun"))
+        {
+            return 2;
+        }
+        else if (s1.Contains("pistol"))
+        {
+            return 3;
+        }
+        else
+        {
+            return 0;
         }
     }
+
+    #endregion
+
+    //Unity Event
+    #region
+    private void Update()
+    {
+        if (SkillManager.Instance.siegeIsActive)
+        {
+            //ChangeWeapon("dual pistol");
+        }
+        else
+        {
+            /*switch (CheckCurWeapon(EI.EqItems[2].Data))
+        {
+            case 0: //Null
+                break;
+            case 1: //rifle
+                ChangeWeapon("rifle");
+                break;
+            case 2: //shotgun
+                ChangeWeapon("shotgun");
+                break;
+            case 3: //pistol
+                ChangeWeapon("pistol");
+                break;
+        }
+        */
+        }
+    }
+    #endregion
 }

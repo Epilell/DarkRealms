@@ -11,6 +11,8 @@ public class SkillManager : MonoBehaviour
     //public field
     #region
 
+    public static SkillManager Instance;
+
     #endregion
 
     //private field
@@ -28,10 +30,15 @@ public class SkillManager : MonoBehaviour
     //Data Field
     #region
 
-    public DodgeData dodgedata;
-    public MolotovData molotovdata;
-    public SiegeModeData siegemodedata;
-    public EvdshotData evdshotdata;
+    [Header("Skill Data")]
+    [SerializeField]
+    private DodgeData dodgedata;
+    [SerializeField]
+    private MolotovData molotovdata;
+    [SerializeField]
+    private SiegeModeData siegemodedata;
+    [SerializeField]
+    private EvdshotData evdshotdata;
 
     #endregion
 
@@ -50,18 +57,42 @@ public class SkillManager : MonoBehaviour
     }
     #endregion
 
-    //회피
+    //회피 ( Dodge )
     #region
-    
-    private float dodgeTimeCheck = 0;   //시간 체크용
-    public bool canDodge;              //회피 가능여부 체크
+
+    //회피 가능여부 확인
+    public bool canDodge;
+    //시간 확인용
+    private float dodgeCurtime = 0;
+
+    //Public Method
+    #region
+
+    /// <summary> 회피스킬 남은 시간 가져오기 </summary>
+    /// <returns></returns>
+    public float GetDodgeTime()
+    {
+        if (dodgeCurtime > dodgedata.upgradeList[0].coolTime)
+        {
+            return 0;
+        }
+        else
+        {
+            return dodgedata.upgradeList[0].coolTime - dodgeCurtime;
+        }
+    }
+
+    #endregion
+
+    //Private Method
+    #region
 
     //회피 시간 체크
     private void DodgeTimeCheck()
     {
-        if (dodgeTimeCheck <= dodgedata.upgradeList[dodgedata.upgradeNum].coolTime)
+        if (dodgeCurtime <= dodgedata.upgradeList[dodgedata.upgradeNum].coolTime)
         {
-            dodgeTimeCheck += Time.deltaTime;
+            dodgeCurtime += Time.deltaTime;
         }
         else
         {
@@ -71,7 +102,7 @@ public class SkillManager : MonoBehaviour
 
     private IEnumerator Dodge()
     {
-        dodgeTimeCheck = 0; canDodge = false;
+        dodgeCurtime = 0; canDodge = false;
         rb.AddForce(new Vector2(mx,my).normalized * 20f, ForceMode2D.Impulse);
         ani.SetBool("IsDash", true);
 
@@ -82,11 +113,37 @@ public class SkillManager : MonoBehaviour
     }
     #endregion
 
-    //화염병
+    #endregion
+
+    //화염병 ( Molotov )
     #region
-    
+
+    //화염병 투척 가능여부 확인
     public bool canThrow;
+    //시간 확인용
     private float throwCurtime = 0;
+
+    //Public Method
+    #region
+
+    /// <summary> 시즈모드 스킬 남은시간 가져오기 </summary>
+    /// <returns></returns>
+    public float GetMolotovTime()
+    {
+        if (throwCurtime >= molotovdata.upgradeList[0].coolTime)
+        {
+            return 0;
+        }
+        else
+        {
+            return molotovdata.upgradeList[0].coolTime - throwCurtime;
+        }
+    }
+
+    #endregion
+
+    //Private Method
+    #region
 
     //화염병 스킬 쿨타임 체크
     private void ThrowTimeCheck()
@@ -123,14 +180,39 @@ public class SkillManager : MonoBehaviour
     }
     #endregion
 
+    #endregion
+
     //시즈모드
     #region
-    
+
+    //시즈모드 가능여부 확인
     public bool canSiege;
+    //시즈모드 활성화여부 확인
     public bool siegeIsActive = false;
+    //시간 확인용
     private float siegeCurtime = 0f;
-    
-    
+
+    //Public Method
+    #region
+
+    /// <summary> 시즈모드스킬 남은 시간 가져오기 </summary>
+    /// <returns></returns>
+    public float GetSiegeTime()
+    {
+        if (siegeCurtime > siegemodedata.upgradeList[0].coolTime)
+        {
+            return 0;
+        }
+        else
+        {
+            return siegemodedata.upgradeList[0].coolTime - siegeCurtime;
+        }
+    }
+
+    #endregion
+
+    //Private Method
+    #region
     private void SiegeTimeCheck()
     {
         if( siegeCurtime < siegemodedata.upgradeList[siegemodedata.upgradeNum].coolTime && siegeIsActive == false)
@@ -154,24 +236,62 @@ public class SkillManager : MonoBehaviour
         }
         else
         {
-            player.ChangeArmorReduction(0.7f);
-            player.ChangeSpeedReduction(1f);
+            player.ChangeArmorReduction(70f);
+            player.ChangeSpeedReduction(100f);
             siegeIsActive = true;
             siegeCurtime = 0f;
         }
     }
     #endregion
 
-    //회피사격
+    #endregion
+
+    //회피사격 ( EvadeShot )
     #region
 
+    //회피사격 가능여부 확인
     public bool canEvdshot = false;
+    //시간 확인용
     private float evdshotCurtime = 0f;
 
     [SerializeField]
-    private GameObject shotgun;
+    private GameObject evadeshotgun;
 
-    private void ApplyDamage(Collider2D[] colliders, float dmg)
+    //Public Method
+
+    /// <summary> 회피사격스킬 남은 시간 가져오기 </summary>
+    /// <returns></returns>
+    public float GetEvdshotTime()
+    {
+        if( evdshotCurtime > evdshotdata.upgradeList[0].coolTime )
+        {
+            return 0;
+        }
+        else
+        {
+            return evdshotdata.upgradeList[0].coolTime - evdshotCurtime;
+        }
+    }
+
+    //Private Method
+    #region
+
+    private void EvdshotTimeCheck()
+    {
+        if (evdshotCurtime <= evdshotdata.upgradeList[evdshotdata.upgradeNum].coolTime)
+        {
+            evdshotCurtime += Time.deltaTime;
+        }
+        else
+        {
+            canEvdshot = true;
+        }
+    }
+
+    /// <summary> 대상에게 데미지 적용 (Collider2D[], float) </summary>
+    /// <param name="colliders"></param>
+    /// <param name="dmg"></param>
+    private void ApplyEvdshotDamage(Collider2D[] colliders, float dmg)
     {
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -187,10 +307,12 @@ public class SkillManager : MonoBehaviour
         }
     }
 
+    /// <summary> 회피사격 실행 </summary>
+    /// <returns></returns>
     private IEnumerator Evdshot()
     {
         evdshotCurtime = 0f; canEvdshot = false; 
-        shotgun.SetActive(true);
+        evadeshotgun.SetActive(true);
         yield return new WaitForSeconds(0.2f);
 
         //이펙트, 데미지
@@ -198,37 +320,28 @@ public class SkillManager : MonoBehaviour
         {
             Instantiate(evdshotdata.effect, this.transform.position + new Vector3(1, 0, 0), this.transform.rotation);
             Collider2D[] col = Physics2D.OverlapCircleAll(this.transform.position + new Vector3(1, 0, 0), 1);
-            ApplyDamage(col, evdshotdata.upgradeList[evdshotdata.upgradeNum].damage);
-            rb.AddForce(Vector2.left * 20f, ForceMode2D.Impulse);
+            ApplyEvdshotDamage(col, evdshotdata.upgradeList[evdshotdata.upgradeNum].damage);
+            rb.AddForce(Vector2.left * 20f, ForceMode2D.Impulse); // 좌측으로
         }
         else if (player.dx < 0) 
         {
             Instantiate(evdshotdata.effect, this.transform.position + new Vector3(-1, 0, 0), this.transform.rotation);
             Collider2D[] col = Physics2D.OverlapCircleAll(this.transform.position + new Vector3(-1, 0, 0), 1);
-            ApplyDamage(col, evdshotdata.upgradeList[evdshotdata.upgradeNum].damage);
-            rb.AddForce(Vector2.right * 20f, ForceMode2D.Impulse);
+            ApplyEvdshotDamage(col, evdshotdata.upgradeList[evdshotdata.upgradeNum].damage);
+            rb.AddForce(Vector2.right * 20f, ForceMode2D.Impulse); // 우측으로
         }
 
-        shotgun.SetActive(false);
-        //rb.AddForce(mouseVec * -20f, ForceMode2D.Impulse);
+        evadeshotgun.SetActive(false);
+        //rb.AddForce(mouseVec * -20f, ForceMode2D.Impulse); ( 마우스 반대 방향으로 )
         yield return new WaitForSeconds(0.1f);
         rb.velocity = Vector2.zero;
     }
-
-    private void EvdshotTimeCheck()
-    {
-        if (evdshotCurtime <= evdshotdata.upgradeList[evdshotdata.upgradeNum].coolTime)
-        {
-            evdshotCurtime += Time.deltaTime;
-        }
-        else
-        {
-            canEvdshot = true;
-        }
-    }
+    
     #endregion
 
-    //설정
+    #endregion
+
+    //Unity Event
     #region
     private void Awake()
     {

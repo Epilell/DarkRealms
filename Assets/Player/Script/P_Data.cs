@@ -5,18 +5,32 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Player Data", menuName = "ScriptableObject/Player Data")]
 public class P_Data : ScriptableObject
 {
-    //플레이어블 캐릭터별 기본정보
+    //플레이어 기본 능력치
     #region
     public float maxHP = 100f;
 
-    public float speed = 2f;
-
-    private float damage;
-    public float Damage { get { return damage; } set { damage = value; } }
+    public float speed = 3f;
 
     #endregion
 
-    //장비 방어력
+    //무기
+    #region
+
+    //무기 데미지
+    private float damage;
+    public float Damage { get { return damage; } set { damage = value; } }
+
+    //분당 발사개수
+    private float rpm;
+    public float Rpm { get { return rpm; } set { rpm = value; } }
+
+    //탄환 개수
+    private int pelletNum;
+    public int PelletNum { get { return pelletNum; } set { pelletNum = value; } }
+
+    #endregion
+
+    //방어구
     #region
     [Range(0, 100)]
     private float helmet;
@@ -38,56 +52,60 @@ public class P_Data : ScriptableObject
     }
     #endregion
 
-    //플레이어 능력치 레벨
+    //플레이어 특수 능력치 레벨 및 경험치
+    //힘
     #region
 
-    //각 능력 경험치
-    public float Str_Exp = 0;
-    public float Agi_Exp = 0;
-    public float Int_Exp = 0;
+    private int strlevel = 0;
+    public int Strlevel { get { return strlevel; } set { strlevel++; Strexp = 0; } }
 
-    //힘
-    private int Strength_Level = 0;
+    private float strexp;
+    public float Strexp { get { return strexp; } set { strexp = value; } }
 
-    public int GetStrLevel()
+    /// <summary> amount양 만큼 Strength 경험치 추가 </summary>
+    /// <param name="amount"></param>
+    public void AddStrExp(float amount)
     {
-        return Strength_Level;
-    }
-
-    public void StrLevelUP()
-    {
-        Strength_Level++;
-        Str_Exp = 0;
-    }
-
-    //민첨
-    private int Agility_Level = 0;
-
-    public int GetAgiLevel()
-    {
-        return Agility_Level;
-    }
-
-    public void AgiLevelUP()
-    {
-        Agility_Level++;
-        Agi_Exp = 0;
-    }
-
-    //지능
-    private int Intelligent_Level = 0;
-
-    public int GetIntLevel()
-    {
-        return Intelligent_Level;
-    }
-
-    public void IntLevelUP()
-    {
-        Intelligent_Level++;
-        Int_Exp = 0;
+        Strexp += amount;
     }
 
     #endregion
+
+    //민첨
+    #region
+
+    private int agilevel = 0;
+    public int Agilevel { get { return agilevel; } set { agilevel = value; Agiexp = 0; } }
+
+    private float agiexp;
+    public float Agiexp { get { return agiexp; } set { agiexp = value; } }
+
+    /// <summary> amount양 만큼 Agillity 경험치 추가 </summary>
+    /// <param name="amount"></param>
+    public void AddAgiExp(float amount)
+    {
+        Agiexp += amount;
+    }
+
+    #endregion
+
+    //지능
+    #region
+
+    private int intlevel = 0;
+    public int Intlevel { get { return intlevel; } set { intlevel = value; Intexp = 0; } }
+
+    private float intexp;
+    public float Intexp { get { return intexp; } set { intexp = value; } }
+
+    /// <summary> amount양 만큼 Intelligent 경험치 추가 </summary>
+    /// <param name="amount"></param>
+    public void AddIntExp(float amount)
+    {
+        Intexp += amount;
+    }
+
+    #endregion
+
 }
 
