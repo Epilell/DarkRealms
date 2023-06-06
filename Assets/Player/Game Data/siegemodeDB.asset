@@ -12,11 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d703fe0c3ccff7541b8eebb3e1caa9d8, type: 3}
   m_Name: siegemodeDB
   m_EditorClassIdentifier: 
-  upgradeList:
-  - coolTime: 10
-    ArmorReduction: 0.1
-  - coolTime: 8
-    ArmorReduction: 0.2
-  - coolTime: 6
-    ArmorReduction: 0.3
-  upgradeNum: 0
+  skillName: "\uC2DC\uC988\uBAA8\uB4DC"
+  toolTip: 
+  coolTime: 20
+  reductionRate: 50
+  speedReduction: 100

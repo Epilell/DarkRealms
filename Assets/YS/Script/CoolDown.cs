@@ -36,10 +36,10 @@ public class CoolDown : MonoBehaviour
     void Start()
     {
         // 초기 쿨타임 초기화
-        cooldownTimeQ = skillManager.GetMolotovTime();
-        cooldownTimeE = skillManager.GetSiegeTime();
-        cooldownTimeSpace = skillManager.GetDodgeTime();
-        cooldownTimeMouseRight = skillManager.GetEvdshotTime();
+        cooldownTimeQ = skillManager.molotovdata.CoolTime;
+        cooldownTimeE = skillManager.siegemodedata.CoolTime;
+        cooldownTimeSpace = skillManager.dodgedata.CoolTime;
+        cooldownTimeMouseRight = skillManager.evdshotdata.CoolTime;
 
         // 투명하게 초기화
         cooldownImageQ.fillAmount = 0;

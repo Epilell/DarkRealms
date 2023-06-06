@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class ThrowMolotov : MonoBehaviour
+public class Molotov : MonoBehaviour
 {
     public MolotovData data;
 
@@ -23,9 +23,7 @@ public class ThrowMolotov : MonoBehaviour
     private void MakeFire()
     {
         GameObject molotov = Instantiate(data.firePrefab, transform.position, transform.rotation);
-        molotov.GetComponent<Molotov>().
-            SetStats(data.upgradeList[data.upgradeNum].impactDamage, data.upgradeList[data.upgradeNum].tickDamage,
-            data.upgradeList[data.upgradeNum].maxTime, data.upgradeList[data.upgradeNum].radius);
+        molotov.GetComponent<Fire>().SetStats(data.Damage, data.TickDamage, data.MaxTime, data.Radius);
         Destroy(gameObject);
     }
 
