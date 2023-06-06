@@ -87,6 +87,7 @@ public abstract class WeaponBase : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 Attack();
+                FindObjectOfType<SoundManager>().PlaySound(weapon.name);
             }
         }
         else

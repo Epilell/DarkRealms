@@ -34,19 +34,20 @@ public class PotionEffect : MonoBehaviour
                     player.P_Heal(targetItemData.Value);
                     break;
                 case "power": // 공격력 증가
-                    GetComponent<AttackEffect>().IncreaseDamage(targetItemData.Value);
+                    //GetComponent<AttackEffect>().IncreaseDamage(targetItemData.Value);
                     break;
                 case "armor": // 방어력 증가
-                    Debug.Log("armor!");
+                    GetComponent<ArmorEffect>().SetArmor(targetItemData.Value);
                     break;
                 case "cooldown": // 쿨타임 감소
                     Debug.Log("cooldown!");
                     break;
                 case "blood": // 흡혈
                     Debug.Log("blood!");
+                    //GetComponent<BloodEffect>().SetBlood(targetItemData.Value);
                     break;
                 case "immunity": // 면역
-                    GetComponent<ImmunityEffect>().Immunity(targetItemData.Value);
+                    //GetComponent<ImmunityEffect>().Immunity(targetItemData.Value);
                     break;
                 case "release": // 이상 해제
                     Debug.Log("release!");

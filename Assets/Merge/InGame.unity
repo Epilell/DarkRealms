@@ -1748,7 +1748,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d0e83306d4ed314438d7884a61d1f8ba, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4faa668503ba05743ba58621c41154c9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -14096,7 +14096,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &966179850
 Transform:
   m_ObjectHideFlags: 0
@@ -14105,7 +14105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966179849}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: -0.000012397766, y: 0, z: 10}
   m_LocalScale: {x: 23, y: 11, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19792,7 +19792,7 @@ MonoBehaviour:
   player: {fileID: 1933199370}
   escape: {fileID: 272590705}
   filter: {fileID: 966179849}
-  initialRadius: 100
+  initialRadius: 600
   decreaseSpeed: 1
   damage: 5
 --- !u!212 &1415418791
@@ -22909,7 +22909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a09cd1397e3964a9a5ffdf0636dc0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 5
+  totalTime: 600
   timerText: {fileID: 1326035306}
   goMainBtn: {fileID: 1971287877}
 --- !u!1 &1598238586
@@ -27819,6 +27819,7 @@ GameObject:
   - component: {fileID: 1933199370}
   - component: {fileID: 1933199378}
   - component: {fileID: 1933199379}
+  - component: {fileID: 1933199380}
   m_Layer: 0
   m_Name: Test Player
   m_TagString: Player
@@ -27997,11 +27998,6 @@ MonoBehaviour:
   molotovdata: {fileID: 11400000, guid: 130865fbfad2982468ccb48fccd2c4a4, type: 2}
   siegemodedata: {fileID: 11400000, guid: 5a493631c695a964281bb6ee6d8b6467, type: 2}
   evdshotdata: {fileID: 11400000, guid: 4d924b4251aa8144bbedb784f199a948, type: 2}
-  canDodge: 0
-  canThrow: 0
-  canSiege: 0
-  siegeIsActive: 0
-  canEvdshot: 0
   evadeshotgun: {fileID: 0}
 --- !u!114 &1933199379
 MonoBehaviour:
@@ -28019,6 +28015,21 @@ MonoBehaviour:
   p_data: {fileID: 11400000, guid: a14c936c6adc0d34794da2330d8ae96d, type: 2}
   inventory: {fileID: 1445337374}
   magneticField: {fileID: 1415418790}
+--- !u!114 &1933199380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933199369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34919a549a18f6c48b0652510014f6c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1933199370}
+  portionItemDataList:
+  - {fileID: 11400000, guid: e5805420d5ed0884c9bf74ee61cf6838, type: 2}
 --- !u!1 &1933488342
 GameObject:
   m_ObjectHideFlags: 0
