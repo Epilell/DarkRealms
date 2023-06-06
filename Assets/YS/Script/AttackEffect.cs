@@ -1,11 +1,11 @@
-using Rito.InventorySystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackEffect : MonoBehaviour
 {
-    public WeaponItemData weaponItemData;
+    public Player player;
+    public P_Data pData;
 
     public void IncreaseDamage(float value)
     {
@@ -14,12 +14,14 @@ public class AttackEffect : MonoBehaviour
 
     private IEnumerator DamageCoroutine(float dutation)
     {
-        //int initialDamage = weaponItemData._damage;
+        float originalDamage = pData.Damage;
 
-        //weaponItemData._damage *= 2; // 공증
+        // 데미지 증가
+        pData.Damage *= 1.25f;
 
         yield return new WaitForSeconds(dutation);
 
-        //weaponItemData._damage = initialDamage; // 원래대로 복구
+        // 원래의 데미지로 복구
+        pData.Damage = originalDamage;
     }
 }
