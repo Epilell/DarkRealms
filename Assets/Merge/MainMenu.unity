@@ -4357,7 +4357,6 @@ MonoBehaviour:
   sfxSources:
   - {fileID: 321131273}
   - {fileID: 766146412}
-  - {fileID: 0}
   bgm_on: {fileID: 21300000, guid: 078176a793aa6aa4aa4127602003707d, type: 3}
   bgm_off: {fileID: 21300000, guid: cfacda740c2f45c46a37c6f01034469f, type: 3}
   sfx_on: {fileID: 21300000, guid: 558641e3df78a7547aff33132eb6d056, type: 3}

@@ -8,14 +8,19 @@ public class TimerUI : MonoBehaviour
     public Text timerText; // 타이머UI
     public Button goMainBtn;
 
+    private bool isGameOver = false; // 게임 오버 여부
+
     private void Start()
     {
-        currentTime = totalTime;
         goMainBtn.gameObject.SetActive(false);
+        currentTime = totalTime;
     }
 
     private void Update()
     {
+        if (GetComponent<GameOver>().isGameOver) // 게임 오버 상태인 경우 Update() 실행하지 않음
+            return;
+
         currentTime -= Time.deltaTime;
 
         if (currentTime <= 0) // 플레이 시간 지나면 타이머 종료 및 게임 오버
