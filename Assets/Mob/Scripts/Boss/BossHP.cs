@@ -55,8 +55,9 @@ public class BossHP : MonoBehaviour
     private IEnumerator Die()
     {
         // 몬스터가 죽을 때의 처리
-        animator.SetBool("IsDead", true);
-        yield return new WaitForSeconds(4.0f);
+        animator.SetTrigger("IsDead");
+        gameObject.transform.position += new Vector3(0, -3.5f, 0);
+        yield return new WaitForSeconds(6.0f);
         Destroy(gameObject);
         Instantiate(DeadMob, transform.position, Quaternion.identity); // 시체 생성
         //dropItem.ItemDrop();//아이템 드롭
