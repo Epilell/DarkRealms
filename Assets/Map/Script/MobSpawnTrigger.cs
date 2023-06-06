@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class MobSpawnTrigger : MonoBehaviour
 {
-    public GameObject Skeleton;
+    public GameObject Mob;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Nope");
-            GameObject mob = Instantiate(Skeleton, transform.position, transform.rotation);
+            GameObject mob = Instantiate(Mob, transform.position, transform.rotation);
         }
     }
 }

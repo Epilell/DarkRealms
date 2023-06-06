@@ -49,7 +49,7 @@ public class BossPattern : MonoBehaviour
     public List<GameObject> MobList => mobList;
     public List<Transform> spawnPoint;
     public int MaxSpawn = 3;
-    private int CurrentSpawn = 1;
+    private int CurrentSpawn = 0;
     [SerializeField]
     private float detectionRange = 20;
     private bool _onAttackRange=false;
@@ -90,9 +90,9 @@ public class BossPattern : MonoBehaviour
     private IEnumerator BossPattrenStart()
     {
         int pattrenChoicer = Random.Range(1, 5);
-        while (true)
+        while (bossHP.IsDie==false)
         {
-            if (bossHP.CurrentHP<(bossHP.MaxHP*0.4))//보스HP40프로 이하시 패턴 추가 및 딜레이 감소
+            if (bossHP.CurrentHP<(bossHP.MaxHP*0.5))//보스HP40프로 이하시 패턴 추가 및 딜레이 감소
             {
                 //현재 적의 색상을 color변수에 저장
                 Color color = spriteRenderer.color;
@@ -115,8 +115,6 @@ public class BossPattern : MonoBehaviour
                 else if (pattrenChoicer > 2)
                 {
                     yield return StartCoroutine("PopOutPattern");
-                    yield return StartCoroutine("PopOutPattern");
-                    yield return StartCoroutine("PopOutPattern");
                     yield return new WaitForSeconds(PopDelay);
                     pattrenChoicer = Random.Range(1, 5);
                 }
@@ -129,7 +127,7 @@ public class BossPattern : MonoBehaviour
                 else
                 {
                     yield return StartCoroutine("SpawnPattern");
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(SpawnDelay);
                     pattrenChoicer = Random.Range(1, 5);
                 }
             }
@@ -139,23 +137,19 @@ public class BossPattern : MonoBehaviour
                 if (pattrenChoicer > 4)
                 {
                     yield return StartCoroutine("TailPattern");
-                    yield return StartCoroutine("TailPattern");
-                    yield return StartCoroutine("TailPattern");
-                    yield return new WaitForSeconds(TailDelay);
+                    yield return new WaitForSeconds(TailDelay+2f);
                     pattrenChoicer = Random.Range(1, 5);
                 }
                 else if (pattrenChoicer > 2)
                 {
                     yield return StartCoroutine("PopOutPattern");
-                    yield return StartCoroutine("PopOutPattern");
-                    yield return StartCoroutine("PopOutPattern");
-                    yield return new WaitForSeconds(7f);
+                    yield return new WaitForSeconds(PopDelay+2f);
                     pattrenChoicer = Random.Range(1, 5);
                 }
                 else
                 {
-                    yield return StartCoroutine("SpawnPattern");
-                    yield return new WaitForSeconds(5f);
+                    yield return StartCoroutine("BreathPattern");
+                    yield return new WaitForSeconds(BreathDelay+4f);
                     pattrenChoicer = Random.Range(1, 5);
                 }
             }
@@ -164,9 +158,14 @@ public class BossPattern : MonoBehaviour
     private IEnumerator BreathPattern()//브레스 공격
     {
         //애니메이션 브레스공격모션으로 바꾸고
-        GetComponent<Animator>().SetTrigger("BreathAttack");
+        GetComponent<Animator>().SetTrigger("Breath_Ready");
+        GetComponent<Animator>().SetBool("Breath_Atk",true);
+        yield return new WaitForSeconds(3.7f);
         //브레스 공격 소환
         Instantiate(Breath, BreathPoint.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(5f);
+        GetComponent<Animator>().SetBool("Breath_Atk", false);
+        GetComponent<Animator>().SetTrigger("Breath_Out");
         yield return new WaitForSeconds(0.1f);
     }
     private IEnumerator TailPattern()//바닥에서 튀어나오는 꼬리 공격
@@ -185,7 +184,7 @@ public class BossPattern : MonoBehaviour
     {
         //애니메이션 튀어나오기공격모션으로 바꾸고
         GetComponent<Animator>().SetTrigger("Ready");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         //this.gameObject.SetActive(false);
         GetComponent<Animator>().SetBool("Stay", true);
         bossHP.CanDamage = false;
@@ -211,7 +210,14 @@ public class BossPattern : MonoBehaviour
     {
         //애니메이션 잡몹소환모션으로 바꾸고
         GetComponent<Animator>().SetTrigger("SpawnMob");
-        yield return SpawnMob();
+        yield return new WaitForSeconds(1.5f);
+        for (int i = 0; i < mobList.Count; i++)
+        {
+            // i번째 몬스터를 i번째 spawnPoint에 생성
+            //Instantiate(mobList[i], spawnPoint[i].position, Quaternion.identity);
+            GameObject clone = Instantiate(mobList[i], spawnPoint[i].position, Quaternion.identity) as GameObject;
+            SpawnEnemyHPSlider(clone);
+        }
     }
 
 
@@ -220,13 +226,9 @@ public class BossPattern : MonoBehaviour
 
     protected virtual IEnumerator SpawnMob()
     {
-        while (true)
+        while (CurrentSpawn < MaxSpawn)
         {
             CurrentSpawn++;
-            if (CurrentSpawn > MaxSpawn)
-            {
-                yield break;
-            }
             for (int i = 0; i < mobList.Count; i++)
             {
                 // i번째 몬스터를 i번째 spawnPoint에 생성

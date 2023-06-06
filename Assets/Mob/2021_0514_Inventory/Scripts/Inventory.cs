@@ -164,6 +164,17 @@ namespace Rito.InventorySystem
                 UpdateSlot();
             }*/
         }
+        private void OnDestroy()
+        {
+            if (_isWarehouse)
+            {
+                gm.GetComponent<GameManager>().SaveWarehouse(this);
+            }
+            else
+            {
+                gm.GetComponent<GameManager>().SaveInven();
+            }
+        }
         private void OnApplicationQuit()
         {
             if (_isWarehouse)
@@ -190,7 +201,7 @@ namespace Rito.InventorySystem
                 _items = new Item[_maxCapacity];
                 //GameManager gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
                 gm.GetComponent<GameManager>().SaveWarehouse(this);
-                //gm.LoadWarehouse(this);
+                gm.LoadWarehouse(this);
             }
         }
         /*

@@ -315,12 +315,7 @@ MonoBehaviour:
   molotovdata: {fileID: 11400000, guid: 130865fbfad2982468ccb48fccd2c4a4, type: 2}
   siegemodedata: {fileID: 11400000, guid: 5a493631c695a964281bb6ee6d8b6467, type: 2}
   evdshotdata: {fileID: 11400000, guid: 4d924b4251aa8144bbedb784f199a948, type: 2}
-  canDodge: 0
-  canThrow: 0
-  canSiege: 0
-  siegeIsActive: 0
-  canEvdshot: 0
-  shotgun: {fileID: 0}
+  evadeshotgun: {fileID: 0}
 --- !u!114 &372074667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -798,7 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4df21ebbb73a80408f1ea5716d24da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curWeapon: {fileID: 0}
+  curWeaponName: 
 --- !u!1 &1730526264
 GameObject:
   m_ObjectHideFlags: 0

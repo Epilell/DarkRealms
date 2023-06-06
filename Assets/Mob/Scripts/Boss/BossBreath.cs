@@ -12,11 +12,11 @@ public class BossBreath : MonoBehaviour
     }
     private void Awake()
     {
-        Destroy(gameObject, 4f);
+        Destroy(gameObject, 5f);
     }
     private void Start()
     {
-        Invoke("EnableDamage", 1.5f);
+        Invoke("EnableDamage", 0.01f);
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {

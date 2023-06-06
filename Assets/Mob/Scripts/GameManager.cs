@@ -39,9 +39,7 @@ public class GameManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Warehouse = GameObject.FindWithTag("Warehouse");
-
-        Save(Warehouse.GetComponent<Inventory>());
+        SaveInven();
     }
     private void Awake()
     {
@@ -58,7 +56,6 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        DontDestroyOnLoad(Inventory);
         DontDestroyOnLoad(this.gameObject);
     }
     /*
