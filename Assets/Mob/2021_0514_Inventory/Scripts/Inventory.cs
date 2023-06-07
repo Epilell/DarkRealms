@@ -300,7 +300,7 @@ namespace Rito.InventorySystem
             }
             if (_inventoryUI != null)
             {
-
+                _items = new Item[_maxCapacity];
             }
             _inventoryUI.SetInventoryReference(this);
             gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
@@ -790,7 +790,7 @@ namespace Rito.InventorySystem
                 }
             }
             //장비아이템이고 인벤토리인경우
-            else if (_items[index] is EquipmentItem eItem && _isWarehouse == false)
+            else if (_items[index] is EquipmentItem eItem && _isWarehouse == false&& index<999)
             {
                 ItemData idata = _eqInven.Add(eItem.Data);//장비하기
 
@@ -805,6 +805,10 @@ namespace Rito.InventorySystem
                     Add(idata);
                     UpdateSlot(index);
                 }
+            }
+            else if (_items[index] is EquipmentItem NowEqItem && _isWarehouse == false && index > 999)
+            {
+                _eqInven.UnEquip(index);
             }
             else
             {
@@ -860,6 +864,38 @@ namespace Rito.InventorySystem
         }
 
         /// <summary> 빈 슬롯 없이 채우면서 아이템 종류별로 정렬하기 </summary>
+        /// 
+        public void SortAll()
+        {
+            // 1. Trim
+            int i = 0; // i의 초기값을 0으로 설정
+            while (_items[i] != null)
+                i++;
+
+            int j = i; // j의 초기값을 i로 설정
+
+            while (true)
+            {
+                while (++j < Capacity && _items[j] == null)
+                    ;
+
+                if (j == Capacity)
+                    break;
+
+                _items[i] = _items[j];
+                _items[j] = null;
+                i++;
+            }
+
+            // 2. Sort
+            Array.Sort(_items, 0, i, _itemComparer);
+
+            // 3. Update
+            UpdateAllSlot();
+            _inventoryUI.UpdateAllSlotFilters();
+        }
+
+        /*
         public void SortAll()
         {
             // 1. Trim
@@ -885,7 +921,7 @@ namespace Rito.InventorySystem
             // 3. Update
             UpdateAllSlot();
             _inventoryUI.UpdateAllSlotFilters(); // 필터 상태 업데이트
-        }
+        }*/
 
         #endregion
     }

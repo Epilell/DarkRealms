@@ -1442,6 +1442,7 @@ MonoBehaviour:
   Warehouse: {fileID: 905313822}
   InvenData: {fileID: 11400000, guid: b13cc849d3b12e544b182e4acfda3057, type: 2}
   WarehouseData: {fileID: 11400000, guid: ba2e1dea957f4ae44a8cf0bf7688a54d, type: 2}
+  EQData: {fileID: 11400000, guid: 618965862ccca6945b543e7eef5a4d22, type: 2}
 --- !u!4 &109384675
 Transform:
   m_ObjectHideFlags: 0
@@ -1581,12 +1582,6 @@ PrefabInstance:
 --- !u!224 &110556542 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1699345936202001808, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 110556541}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &110556543 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
     type: 3}
   m_PrefabInstance: {fileID: 110556541}
   m_PrefabAsset: {fileID: 0}
@@ -4354,7 +4349,7 @@ RectTransform:
   - {fileID: 2091200506}
   - {fileID: 747821536}
   m_Father: {fileID: 1804843973}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -9951,7 +9946,7 @@ RectTransform:
   - {fileID: 1246398008}
   - {fileID: 1735941448}
   m_Father: {fileID: 1804843973}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10490,7 +10485,7 @@ PrefabInstance:
     - target: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
         type: 3}
       propertyPath: m_Name
-      value: Item Slot Prefab (4)
+      value: Item Slot Prefab (5)
       objectReference: {fileID: 0}
     - target: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
         type: 3}
@@ -11791,7 +11786,7 @@ RectTransform:
   m_Children:
   - {fileID: 1356228870}
   m_Father: {fileID: 1804843973}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12286,7 +12281,7 @@ PrefabInstance:
     - target: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
         type: 3}
       propertyPath: m_Name
-      value: Item Slot Prefab
+      value: Item Slot Prefab (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
         type: 3}
@@ -13057,7 +13052,7 @@ PrefabInstance:
     - target: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
         type: 3}
       propertyPath: m_Name
-      value: Item Slot Prefab (2)
+      value: Item Slot Prefab (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
         type: 3}
@@ -15969,9 +15964,9 @@ RectTransform:
   - {fileID: 1716879495}
   - {fileID: 1202272631}
   - {fileID: 1865431193}
-  - {fileID: 1250416363}
   - {fileID: 1423368375}
   - {fileID: 503512462}
+  - {fileID: 1250416363}
   - {fileID: 2096482033}
   - {fileID: 2012424551}
   - {fileID: 106854697}
@@ -16005,7 +16000,8 @@ MonoBehaviour:
   _showRemovingPopup: 1
   canvas: {fileID: 1775234808}
   _contentAreaRT: {fileID: 1865431193}
-  _slotUiPrefab: {fileID: 110556543}
+  _slotUiPrefab: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
+    type: 3}
   _itemTooltip: {fileID: 1250416364}
   _popup: {fileID: 2096482034}
   _trimButton: {fileID: 1806490870}
@@ -16602,7 +16598,7 @@ PrefabInstance:
     - target: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
         type: 3}
       propertyPath: m_Name
-      value: Item Slot Prefab (1)
+      value: Item Slot Prefab (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
         type: 3}
@@ -18046,7 +18042,7 @@ PrefabInstance:
     - target: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
         type: 3}
       propertyPath: m_Name
-      value: Item Slot Prefab (3)
+      value: Item Slot Prefab (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
         type: 3}

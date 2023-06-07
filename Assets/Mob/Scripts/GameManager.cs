@@ -70,22 +70,7 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
     }
-    /*
-    int counter = 0;
-    public void FixedUpdate()
-    {
-        counter++;
-        if (counter < 150)
-        {
-            SaveInven();
-            counter = 0;
-        }
-    }
-    public void OnDestroy()
-    {
-        Inventory warehouse = GameObject.FindWithTag("Warehouse").GetComponent<Inventory>();
-        Save(warehouse);
-    }*/
+
     #endregion
     //Public Methods
     #region .
@@ -195,8 +180,14 @@ public class GameManager : MonoBehaviour
                 Debug.LogError("Invalid index for loading inventory data.");
                 return;
             }
-
-            eqinven.Add(EQData.invenitems[i]);
+            if (EQData.invenitems[i] != null)
+            {
+                eqinven.Add(EQData.invenitems[i]);
+            }
+            else
+            {
+                Debug.Log("EQData.invenitems[i] ==null");
+            }
         }
     }
 
@@ -272,7 +263,7 @@ public class GameManager : MonoBehaviour
         }
         binaryFormatter.Serialize(memoryStream, saveDatas);
         PlayerPrefs.SetString("SaveInven", Convert.ToBase64String(memoryStream.GetBuffer()));
-    }*/
+    }
 
     public void SaveInven()
     {
@@ -412,7 +403,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-    }*/
+    }
     public void Addidb()
     {
         Inventory ti = Inventory.GetComponent<Inventory>();
@@ -508,6 +499,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
     #endregion
 }
