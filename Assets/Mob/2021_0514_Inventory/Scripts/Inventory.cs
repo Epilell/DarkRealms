@@ -82,13 +82,13 @@ namespace Rito.InventorySystem
         // 최대 수용 한도(아이템 배열 크기)
         [SerializeField, Range(1, 128)]
         private int _maxCapacity = 64;
+        public int MaxCapacity => _maxCapacity;
 
         [SerializeField]
         private InventoryUI _inventoryUI; // 연결된 인벤토리 UI
         [SerializeField]
         private EquipmentInventory _eqInven;
-        [SerializeField]
-        private GameManager gm;
+        public GameManager gm;
 
         [SerializeField]
         private Item[] _items;
@@ -147,25 +147,26 @@ namespace Rito.InventorySystem
             Capacity = _initalCapacity;
             if (!_isWarehouse)
             {
-                gm = GetComponentInParent<GameManager>();
                 _inventoryUI = GameObject.FindWithTag("InventoryUI").GetComponent<InventoryUI>();
             }
             else
             {
-                gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+                if (GameObject.FindWithTag("Warehouse") != null)
+                {
+
+                    _inventoryUI = GameObject.FindWithTag("Warehouse").GetComponent<InventoryUI>();
+                }
+            }
+            if (_inventoryUI != null)
+            {
+
             }
             _inventoryUI.SetInventoryReference(this);
-            /*
-            if (_isWarehouse)//창고라면 Awake시 창고 정보 Load함
-            {
-                //ForSaveInven.LoadWareHouse;
-                GameObject GM = GameObject.Find("GameManager");
-                _items = GM.GetComponent<GameManager>().LoadWarehouse();
-                UpdateSlot();
-            }*/
         }
+        /*
         private void OnDestroy()
         {
+            gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
             if (_isWarehouse)
             {
                 gm.GetComponent<GameManager>().SaveWarehouse(this);
@@ -177,6 +178,7 @@ namespace Rito.InventorySystem
         }
         private void OnApplicationQuit()
         {
+            gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
             if (_isWarehouse)
             {
                 gm.GetComponent<GameManager>().SaveWarehouse(this);
@@ -185,65 +187,147 @@ namespace Rito.InventorySystem
             {
                 gm.GetComponent<GameManager>().SaveInven();
             }
-        }
+        }*/
 
         private void Start()
         {
             UpdateAccessibleStatesAll();
-            if (_isWarehouse==false)
+            StartCoroutine("SaveEveryMinute", 5f);
+            /*
+            if (_isWarehouse)
             {
                 _items = new Item[_maxCapacity];
-                GameManager gm = GetComponentInParent<GameManager>();
-                gm.LoadInven();
+                gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+                gm.LoadWarehouse(this);
+                
+                StartCoroutine("SaveWareHouseEveryMinute", 5f);
+
+                UpdateAllSlot();
             }
             else
             {
-                _items = new Item[_maxCapacity];
-                //GameManager gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-                gm.GetComponent<GameManager>().SaveWarehouse(this);
-                gm.LoadWarehouse(this);
-            }
+
+                gm.LoadInven();
+                StartCoroutine("SaveInvenEveryMinute", 5f);
+            }*/
         }
-        /*
-        int a = 0;
-        private void Update()
-        {
-            if (a == 2)
-            {
-                if (!_isWarehouse)
-                {
-                    _items = new Item[_maxCapacity];
-                    GameManager gm = GetComponentInParent<GameManager>();
-                    gm.LoadInven();
-                }
-            }
-            a++;
-            if (a > 2000)
-            {
-                if (!_isWarehouse)
-                {
-                    GameManager gm = GetComponentInParent<GameManager>();
-                    gm.SaveInven();
-                }
-                a = 0;
-            }
-        }*/
 
         #endregion
         /***********************************************************************
         *                               Private Methods
         ***********************************************************************/
         #region .
+        /*
+        private void testSave()
+        {
+            if (_isWarehouse == false)
+            {
+                gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+                gm.SaveInven();
+            }
+        }
+        private void testLoad()
+        {
+            if (_isWarehouse == false)
+            {
+                gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+                gm.LoadInven();
+                //gm.Addidb();
+            }
+        }
+        private void LoadInit()
+        {
+            gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+            if (_isWarehouse == false)
+            {
+                _items = new Item[_maxCapacity];
+                //gm.LoadInven();
+                
+            }
+            UpdateAllSlot();
+        }
+        private IEnumerator SaveInvenEveryMinute(float minute)
+        {
+            gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+
+            gm.GetComponent<GameManager>().SaveInven();
+            
+            yield return new WaitForSeconds(minute);
+            StartCoroutine("SaveInvenEveryMinute", minute);
+        }
+        private IEnumerator SaveWareHouseEveryMinute(float minute)
+        {
+            gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+            if (_isWarehouse)
+            {
+                gm.GetComponent<GameManager>().SaveWarehouse(this);
+                
+                yield return new WaitForSeconds(minute);
+                StartCoroutine("SaveWareHouseEveryMinute", minute);
+            }
+        }*/
+        private IEnumerator SaveEveryMinute(float minute)
+        {
+            gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+            if (_isWarehouse)
+            {
+                gm.SaveW(this);
+            }
+            else
+            {
+                gm.Save(this);
+            }
+            yield return new WaitForSeconds(minute);
+            StartCoroutine("SaveEveryMinute", minute);
+        }
+
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             if (!_isWarehouse)
             {
-                if (GameObject.FindWithTag("InventoryUI")!=null)
+                if (GameObject.FindWithTag("InventoryUI") != null)
                 {
                     _inventoryUI = GameObject.FindWithTag("InventoryUI").GetComponent<InventoryUI>();
                 }
-                
             }
+            else
+            {
+                if (GameObject.FindWithTag("Warehouse") != null)
+                {
+
+                    _inventoryUI = GameObject.FindWithTag("Warehouse").GetComponent<InventoryUI>();
+                }
+            }
+            if (_inventoryUI != null)
+            {
+
+            }
+            _inventoryUI.SetInventoryReference(this);
+            gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+            if (_inventoryUI != null)
+            {
+                if (_isWarehouse)
+                {
+                    gm.LoadW(this);
+                }
+                else
+                {
+                    gm.Load(this);
+                }
+            }
+
+            /*
+            if (!_isWarehouse)
+            {
+                if (GameObject.FindWithTag("InventoryUI") != null)
+                {
+                    _inventoryUI = GameObject.FindWithTag("InventoryUI").GetComponent<InventoryUI>();
+                    if (_inventoryUI != null)
+                    {
+                        LoadInit();
+                    }
+                }
+            }*/
         }
         /// <summary> 인덱스가 수용 범위 내에 있는지 검사 </summary>
         private bool IsValidIndex(int index)
@@ -303,6 +387,7 @@ namespace Rito.InventorySystem
         private void UpdateSlot(int index)
         {
             if (!IsValidIndex(index)) return;
+            if (index >= _items.Length) return;
 
             Item item = _items[index];
 
@@ -428,54 +513,6 @@ namespace Rito.InventorySystem
         *                               Public Methods
         ***********************************************************************/
         #region .
-        /*
-        /// <summary>
-        /// 저장
-        /// </summary>
-        public void SaveInven()
-        {
-            if (_items != null)
-            {
-                for (int i = 0; i < _items.Length; i++)
-                {
-                    if (_items != null && _items[i] != null && _items[i].Data != null)
-                    {
-                        if (_items[i] is CountableItem ci)
-                        {
-                            I_Data.invenitems[i] = _items[i].Data;
-                            I_Data.count[i] = ci.Amount;
-                        }
-                        else
-                        {
-                            I_Data.invenitems[i] = _items[i].Data;
-                            I_Data.count[i] = 1;
-                        }
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// 불러오기
-        /// </summary>
-        public void LoadInven()
-        {
-            if (I_Data.invenitems.Count != 0)
-            {
-                _items = new Item[_maxCapacity];
-                for (int i = 0; i < _items.Length; i++)
-                {
-                    if (I_Data.count[i] == 1)
-                    {
-                        Add(I_Data.invenitems[i]);
-                    }
-                    else
-                    {
-                        Add(I_Data.invenitems[i], I_Data.count[i]);
-                    }
-                }
-            }
-        }
-        */
 
         /// <summary> 인벤토리 UI 연결 </summary>
         public void ConnectUI(InventoryUI inventoryUI)
@@ -531,7 +568,14 @@ namespace Rito.InventorySystem
                         // 빈 슬롯조차 없는 경우 종료
                         if (index == -1)
                         {
-                            Debug.Log("빈슬롯 없음");
+                            if (_isWarehouse)
+                            {
+                                Debug.Log("창고 빈슬롯 없음");
+                            }
+                            else
+                            {
+                                Debug.Log("인벤 빈슬롯 없음");
+                            }
                             break;
                         }
                         // 빈 슬롯 발견 시, 슬롯에 아이템 추가 및 잉여량 계산
@@ -605,11 +649,9 @@ namespace Rito.InventorySystem
         /// </summary>
         public bool UseMaterial(ItemData itemData, int amount)
         {
-            Debug.Log("UseMaterial1");
             int index = -1;
             if (itemData is MaterialItemData miData)
             {
-                Debug.Log("UseMaterial2");
                 int currentAmount = 0;
                 while (currentAmount < amount)
                 {

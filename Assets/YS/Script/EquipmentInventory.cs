@@ -43,7 +43,7 @@ public class EquipmentInventory : MonoBehaviour
         {
             slotHolder = GameObject.Find("InventoryB").transform;
             gm = GetComponentInParent<GameManager>();
-            gm.LoadEquibment(this);
+            gm.LoadEq(this);
         }
         
         if (instance != null)  // 인벤토리 인스턴스가 존재하면
@@ -56,7 +56,8 @@ public class EquipmentInventory : MonoBehaviour
     private void OnDestroy()
     {
         gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-        gm.SaveEquipment();
+
+        gm.SaveEq(this);
     }
     private void Start() // 장비 슬롯 초기화
     {

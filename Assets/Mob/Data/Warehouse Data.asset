@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 905a135f15d64ee4094724cd3eee1a04, type: 3}
-  m_Name: Inven Data
+  m_Name: Warehouse Data
   m_EditorClassIdentifier: 
   invenitems:
   - {fileID: 0}
