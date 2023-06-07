@@ -1,6 +1,10 @@
 using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using Rito.InventorySystem;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class EquipmentInventory : MonoBehaviour
@@ -11,6 +15,12 @@ public class EquipmentInventory : MonoBehaviour
 
     private Rito.InventorySystem.Item[] _eqitems;
     public Rito.InventorySystem.Item[] EqItems { get => _eqitems; }
+
+
+    private List<RaycastResult> _rrList;
+    private GraphicRaycaster _gr;
+    private PointerEventData _ped;
+
 
     private ItemSlotUI[] slots;
     public Transform slotHolder;
@@ -28,10 +38,29 @@ public class EquipmentInventory : MonoBehaviour
     {
         if (GameObject.Find("InventoryB") != null)
         {
-            slotHolder = GameObject.Find("InventoryB").transform;
-            gm = GetComponentInParent<GameManager>();
             _eqitems = new Rito.InventorySystem.Item[5];
-            //gm.LoadEquibment(this);
+            slotHolder = GameObject.Find("InventoryB").transform;
+            slots = slotHolder.GetComponentsInChildren<ItemSlotUI>();
+
+            if (slots != null)
+            {
+                for (int i = 0; i < slots.Length; i++)
+                {
+                    slots[i].SetSlotIndex(i);
+                    Updateslot(i);
+                }
+            }
+
+            gm = GetComponentInParent<GameManager>();
+            gm.LoadEq(this);
+
+            if (slots != null)
+            {
+                for (int i = 0; i < slots.Length; i++)
+                {
+                    Updateslot(i);
+                }
+            }
         }
     }
     private void Awake()
@@ -39,32 +68,84 @@ public class EquipmentInventory : MonoBehaviour
         _eqitems = new Rito.InventorySystem.Item[5];
         gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         //gm.SaveEquipment();
-        if (GameObject.Find("InventoryB").transform != null)
-        {
-            slotHolder = GameObject.Find("InventoryB").transform;
-            gm = GetComponentInParent<GameManager>();
-            gm.LoadEquibment(this);
-        }
-        
+
         if (instance != null)  // 인벤토리 인스턴스가 존재하면
         {
             Destroy(gameObject);  // 중복 생성 방지를 위해 현재 게임 오브젝트를 파괴
             return;  // 종료
         }
         instance = this;  // 인스턴스가 존재하지 않으면 현재 인스턴스를 할당
+        
+        slots = slotHolder.GetComponentsInChildren<ItemSlotUI>();
+        if (slots != null)
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+                slots[i].SetSlotIndex(i);
+                Updateslot(i);
+            }
+        }
+        if (GameObject.Find("InventoryB").transform != null)
+        {
+            slotHolder = GameObject.Find("InventoryB").transform;
+            gm = GetComponentInParent<GameManager>();
+            gm.LoadEq(this);
+        }
+
+
+        Init();
     }
     private void OnDestroy()
     {
-        gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-        gm.SaveEquipment();
+        //gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+
+        //gm.SaveEq(this);
     }
     private void Start() // 장비 슬롯 초기화
     {
-        slots = slotHolder.GetComponentsInChildren<ItemSlotUI>();
-        for (int i = 0; i < slots.Length; i++)
+        StartCoroutine("SaveEveryMinute", 5f);
+    }
+    private void Update()
+    {
+        _ped.position = Input.mousePosition;
+        OnPointerDown();
+    }
+
+    private void Init()
+    {
+        TryGetComponent(out _gr);
+        if (_gr == null)
+            _gr = gameObject.AddComponent<GraphicRaycaster>();
+        // Graphic Raycaster
+        _ped = new PointerEventData(EventSystem.current); // 이 줄을 추가하여 _ped를 초기화합니다.
+        _rrList = new List<RaycastResult>(10);
+    }
+
+
+
+    private T RaycastAndGetFirstComponent<T>() where T : Component
+    {
+        _rrList.Clear();
+
+        _gr.Raycast(_ped, _rrList);
+
+        if (_rrList.Count == 0)
+            return null;
+
+        return _rrList[0].gameObject.GetComponent<T>();
+    }
+    private void OnPointerDown()
+    {
+        if (Input.GetMouseButtonDown(1))
         {
-            Updateslot(i);
+            ItemSlotUI slot = RaycastAndGetFirstComponent<ItemSlotUI>();
+            if (slot != null)
+            {
+                UnEquip(slot.Index);
+
+            }
         }
+
     }
     /// <summary>
     /// 장착해제
@@ -75,6 +156,13 @@ public class EquipmentInventory : MonoBehaviour
         _inventory.Add(_eqitems[index].Data);
         _eqitems[index] = null;
         slots[index].RemoveItem();
+    }
+    private IEnumerator SaveEveryMinute(float minute)
+    {
+        gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        gm.SaveEq(this);
+        yield return new WaitForSeconds(minute);
+        StartCoroutine("SaveEveryMinute", minute);
     }
     /// <summary>
     /// 장비하기. 아이템 데이터를 받고 장비시키며 이미 장비한 아이템이 있으면 그 데이터 돌려주고 없으면 null반환
@@ -174,8 +262,12 @@ public class EquipmentInventory : MonoBehaviour
     }
     public void SetItemIcon(int index, Sprite icon)
     {
-        slots[index].SetItem(icon);
+        if (slots[index] != null)
+        {
+            slots[index].SetItem(icon);
+        }
     }
+
     public void RemoveItem(int index)
     {
         slots[index].RemoveItem();

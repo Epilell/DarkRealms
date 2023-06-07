@@ -42,7 +42,6 @@ namespace Rito.InventorySystem
         #region .
         /// <summary> 슬롯의 인덱스 </summary>
         public int Index { get; private set; }
-
         /// <summary> 슬롯이 아이템을 보유하고 있는지 여부 </summary>
         public bool HasItem => _iconImage.sprite != null;
 
