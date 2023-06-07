@@ -37,13 +37,13 @@ public class PotionEffect : MonoBehaviour
                     GetComponent<AttackEffect>().IncreaseDamage(targetItemData.Value);
                     break;
                 case "armor": // ¹æ¾î·Â Áõ°¡
-                    Debug.Log("armor!");
+                    GetComponent<ArmorEffect>().SetArmor(targetItemData.Value);
                     break;
                 case "cooldown": // ÄðÅ¸ÀÓ °¨¼Ò
                     Debug.Log("cooldown!");
                     break;
                 case "blood": // ÈíÇ÷
-                    Debug.Log("blood!");
+                    GetComponent<BloodEffect>().SetBlood(targetItemData.Value);
                     break;
                 case "immunity": // ¸é¿ª
                     GetComponent<ImmunityEffect>().Immunity(targetItemData.Value);

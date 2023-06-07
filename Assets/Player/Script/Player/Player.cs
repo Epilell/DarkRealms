@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
     public float MaxHP, CurrentHp;
     [Range(0f,1f)]
-    private float ArmorReduction;
+    public float ArmorReduction;
 
     //게임 시작시 데이터 불러오는 용도
     private void UpdateSetting()

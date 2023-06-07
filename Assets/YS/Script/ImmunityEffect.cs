@@ -8,27 +8,20 @@ public class ImmunityEffect : MonoBehaviour
 
     private bool immunityActive;
 
-    public void Immunity(float duration)
-    {
-        if (!immunityActive)
-        {
-            immunityActive = true;
-            Invoke(nameof(EndImmunity), duration); // 지정된 시간 후 효과 종료
-        }
-    }
+    public void Immunity(float duration) { if (!immunityActive) { StartCoroutine(ImmunityCoroutine(duration)); } }
 
-    /*private void Update()
+    private IEnumerator ImmunityCoroutine(float duration)
     {
-        if (immunityActive)
-        {
-            player.ChangeArmorReduction(0.6f);
-        }
-        else { }
-    }*/
+        immunityActive = true;
 
-    // 효과 종료
-    private void EndImmunity()
-    {
+        //float initialArmorReduction = player.ArmorReduction;
+
+        //player.ChangeArmorReduction(50f);
+
+        yield return new WaitForSeconds(duration); // 지속 시간 동안 대기
+
+        //player.ChangeArmorReduction(initialArmorReduction); // 초기값으로 되돌리기
+
         immunityActive = false;
     }
 }
