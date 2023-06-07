@@ -26,6 +26,11 @@ public class MobAI : MonoBehaviour
     private float mobAttackSpeed;
     private float currentCoolDown = 0f;
 
+    public bool IsSlime = false;
+    float distanceToPlayer;
+
+    private CircleCollider2D cc2;
+
     void Awake()
     {
         mobAttack = GetComponent<MobAttack>();
@@ -48,12 +53,13 @@ public class MobAI : MonoBehaviour
         // player를 찾아서 설정합니다.
         player = GameObject.FindGameObjectWithTag("Player").transform;
         StartCoroutine(MobIdleMove());
+
     }
 
     private void FixedUpdate()
     {
         // 현재 객체와 플레이어 사이의 거리 계산
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         if (distanceToPlayer < detectionRange)
         {
@@ -63,7 +69,7 @@ public class MobAI : MonoBehaviour
         {
             isPlayerInRange = false; // 감지 범위 밖에 있다면 isPlayerInRange 변수를 false로 설정
         }
-        AI(distanceToPlayer);
+        AI();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)//근접공격
@@ -109,11 +115,11 @@ public class MobAI : MonoBehaviour
         animator.SetInteger("WalkSpeed", speed);
     }
 
-    private void AI(float distanceToPlayer)
+    private void AI()
     {
         if (mobHP.IsDie == true || mobHP.IsHit == true)
         {
-            return;//사망시 or Hit시 실행X
+            return; //사망시 or Hit시 실행X
         }
         // player가 일정 거리 안에 있고 
         if (isPlayerInRange)

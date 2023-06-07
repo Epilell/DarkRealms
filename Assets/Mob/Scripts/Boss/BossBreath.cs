@@ -35,7 +35,7 @@ public class BossBreath : MonoBehaviour
         BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
         collider.isTrigger = true;
         rb.gravityScale = 0f;
-        collider.size = new Vector2(15f, 4f);
+        collider.size = new Vector2(1f, 15f);
         GetComponent<Animator>().SetBool("BreathAtk",true);
     }
 }

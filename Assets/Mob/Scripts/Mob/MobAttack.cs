@@ -10,12 +10,17 @@ public class MobAttack : MonoBehaviour
     private bool attackChanger = false;
     private bool IsAttack = false;
     private Transform PlayerDirection;
+    public bool isSlime=false;
     public bool Attacking(MobStat mobStat, Transform P_direction)//공격
     {
         PlayerDirection = P_direction;
         MobStat = mobStat;
         if (MobStat.mobProperty == "melee")//근접몹 공격
         {
+            if (isSlime)
+            {
+                StartCoroutine("changeRadius");
+            }
             //attack1 한번 attack2 한번 번갈아가면서 공격
             if (attackChanger)
             {
@@ -69,5 +74,11 @@ public class MobAttack : MonoBehaviour
             GameObject MobBullet = Instantiate(MobStat.bullet, MobStat.firePoint.transform.position, Quaternion.identity);
             MobBullet.GetComponent<MobRangeBullet>().SetStats(MobStat.bulletSpeed, MobStat.mobDamage, null, i);
         }
+    }
+    private IEnumerator changeRadius()
+    {
+        gameObject.GetComponent<CircleCollider2D>().radius = 3f;
+        yield return new WaitForSeconds(1f);
+        gameObject.GetComponent<CircleCollider2D>().radius = 0.5f;
     }
 }

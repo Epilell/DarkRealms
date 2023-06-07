@@ -92,6 +92,7 @@ public class BossPattern : MonoBehaviour
         int pattrenChoicer = Random.Range(1, 5);
         while (bossHP.IsDie==false)
         {
+            
             if (bossHP.CurrentHP<(bossHP.MaxHP*0.5))//보스HP40프로 이하시 패턴 추가 및 딜레이 감소
             {
                 //현재 적의 색상을 color변수에 저장
@@ -120,7 +121,7 @@ public class BossPattern : MonoBehaviour
                 }
                 else if (pattrenChoicer > 1)
                 {
-                    yield return StartCoroutine("CrossPattern()");
+                    //yield return StartCoroutine("CrossPattern()");
                     yield return new WaitForSeconds(CrossDelay);
                     pattrenChoicer = Random.Range(1, 5);
                 }

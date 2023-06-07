@@ -184,6 +184,7 @@ public class EquipmentInventory : MonoBehaviour
                 {
                     _eqitems[index] = itemData.CreateItem();
                     Updateslot(index);
+                    Debug.Log(_eqitems[index].Data.Name);
                     //아이템 장비 효과
                     ItemEffect(_eqitems[index].Data as EquipmentItemData);
                     return null;
