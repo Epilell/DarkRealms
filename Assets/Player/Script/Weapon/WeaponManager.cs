@@ -152,7 +152,7 @@ public class WeaponManager : MonoBehaviour
                     // 2-1-1. 인벤토리에도 무기가 없다면
                     if (EquipmentInventory.instance.EqItems[2] == null)
                     {
-                        Debug.Log("Nothing");
+                        Debug.Log("There's no weapon in Equipment");
                     }
                     // 2-1-2. 인벤토리에 무기가 있다면
                     else
@@ -182,7 +182,7 @@ public class WeaponManager : MonoBehaviour
                 {
                     Debug.Log("2-2");
                     // 2-2-1. 인벤토리에는 무기가 없다면
-                    if (EquipmentInventory.instance.EqItems[2].Data == null)
+                    if (EquipmentInventory.instance.EqItems[2] == null)
                     {
                         Debug.Log("2-2-1");
                         curWeaponName = null;
@@ -243,7 +243,7 @@ public class WeaponManager : MonoBehaviour
                     RemoveWeapon();
                 }
             }
-            #endregion
         }
     }
+    #endregion
 }
