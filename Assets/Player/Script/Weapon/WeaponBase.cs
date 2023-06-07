@@ -1,6 +1,7 @@
 using Rito.InventorySystem;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -87,6 +88,9 @@ public abstract class WeaponBase : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 Attack();
+                string containText = Regex.Match(data.Name, "rifle|shotgun|pistol", RegexOptions.IgnoreCase).Value.ToLower(); // 정규 표현식으로 문자열 찾기
+                string findWord = containText.Substring(0, 1).ToUpper() + containText[1..]; // 첫 번째만 대문자, 나머지는 그대로 소문자
+                FindObjectOfType<SoundManager>().PlaySound(findWord); // 총소리 재생
             }
         }
         else

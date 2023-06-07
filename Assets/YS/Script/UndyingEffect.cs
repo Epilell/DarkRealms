@@ -29,6 +29,5 @@ public class UndyingEffect : MonoBehaviour
     private void EndUndying() // 효과 종료
     {
         undyingActive = false;
-        // player.CurrentHp = maxHealth * 0.35f; // 체력 회복
     }
 }

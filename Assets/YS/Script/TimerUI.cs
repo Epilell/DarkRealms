@@ -8,8 +8,6 @@ public class TimerUI : MonoBehaviour
     public Text timerText; // 타이머UI
     public Button goMainBtn;
 
-    private bool isGameOver = false; // 게임 오버 여부
-
     private void Start()
     {
         goMainBtn.gameObject.SetActive(false);

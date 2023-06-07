@@ -15,6 +15,11 @@ public class PlayerSpawnSystem : MonoBehaviour
 {
     public static PlayerSpawnSystem instance;
 
+    public void Start()
+    {
+        SpawnPlayer();
+    }
+
     [SerializeField]
     private PlayerSpawnData data;
 
