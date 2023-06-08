@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Equipment Data
   m_EditorClassIdentifier: 
   invenitems:
-  - {fileID: 11400000, guid: e73a0198a0431f04a8ff190aae00be09, type: 2}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 11400000, guid: bb5d5f5be134712448c132c1c2d9ee97, type: 2}
   - {fileID: 0}
   - {fileID: 0}
-  count: 0100000000000000000000000000000000000000
+  count: 0000000000000000010000000000000000000000
