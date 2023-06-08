@@ -7,16 +7,37 @@ public class BossSpawner : MonoBehaviour
     [SerializeField]
     private GameObject boss;
     [SerializeField]
+    private GameObject bossSpawningEffect;
+    [SerializeField]
     private GameObject bossSpawnPoint;
     [SerializeField]
     private GameObject bossHPSliderPrefab;
     public Transform canvasTransform;
+    private bool _isSpawn = false;
     private void Awake()
     {
-        StartCoroutine("BossSpawn");
+        //StartCoroutine("BossSpawn");
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+            if (_isSpawn == false)
+            {
+                StartCoroutine("BossSpawn");
+                _isSpawn = true;
+            }
+
+        }
+
+    }
+
     private IEnumerator BossSpawn()
     {
+        yield return new WaitForSeconds(1f);
+        GameObject bossSpawn = Instantiate(bossSpawningEffect, bossSpawnPoint.transform.position, Quaternion.identity) as GameObject;
+        Destroy(bossSpawn, 4f);
+        yield return new WaitForSeconds(4f);
         GameObject clone = Instantiate(boss, bossSpawnPoint.transform.position, Quaternion.identity) as GameObject;
         clone.GetComponent<BossPattern>().SetCanvas(canvasTransform);
         SpawnBossHPSlider(clone);

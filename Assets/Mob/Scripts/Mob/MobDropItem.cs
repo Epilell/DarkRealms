@@ -12,6 +12,7 @@ public class ItemDrop
 }
 public class MobDropItem : MonoBehaviour
 {
+    public bool IsBoss = false;
     private GameObject DropItem;
     public ItemDrop[] itemDropList; // 몬스터가 드롭하는 아이템 정보
 
@@ -20,19 +21,37 @@ public class MobDropItem : MonoBehaviour
         // 드롭 아이템 처리
         foreach (ItemDrop itemDrop in itemDropList)
         {
-            // 드롭 확률을 계산하여 아이템을 드롭할지 결정
-            if (Random.value < itemDrop.dropChance)
+            if (IsBoss)
             {
-                DropItem = itemDrop.item.DropItemPrefab;
-                //mobItemUI.SetActive(true);
-                GameObject itemclon = Instantiate(DropItem, transform.position, Quaternion.identity);//임시아이템드롭
-                ItemContactToInven itemComponent = itemclon.GetComponent<ItemContactToInven>();
-                if (itemComponent != null)
+                // 드롭 확률을 계산하여 아이템을 드롭할지 결정
+                if (Random.value < itemDrop.dropChance)
                 {
-                    itemComponent.itemData = itemDrop.item;
+                    DropItem = itemDrop.item.DropItemPrefab;
+                    //mobItemUI.SetActive(true);
+                    GameObject itemclon = Instantiate(DropItem, transform.position+new Vector3(Random.Range(-3,4), Random.Range(-3,4), 0), Quaternion.identity);//임시아이템드롭
+                    ItemContactToInven itemComponent = itemclon.GetComponent<ItemContactToInven>();
+                    if (itemComponent != null)
+                    {
+                        itemComponent.itemData = itemDrop.item;
 
+                    }
                 }
+            }
+            else
+            {
+                // 드롭 확률을 계산하여 아이템을 드롭할지 결정
+                if (Random.value < itemDrop.dropChance)
+                {
+                    DropItem = itemDrop.item.DropItemPrefab;
+                    //mobItemUI.SetActive(true);
+                    GameObject itemclon = Instantiate(DropItem, transform.position, Quaternion.identity);//임시아이템드롭
+                    ItemContactToInven itemComponent = itemclon.GetComponent<ItemContactToInven>();
+                    if (itemComponent != null)
+                    {
+                        itemComponent.itemData = itemDrop.item;
 
+                    }
+                }
             }
         }
     }

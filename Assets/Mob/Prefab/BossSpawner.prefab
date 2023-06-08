@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4641412873053835146
+--- !u!1 &709441276002958413
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4641412873053835144}
-  - component: {fileID: 4641412873053835145}
-  - component: {fileID: 4641412873053835150}
-  - component: {fileID: 4641412873053835151}
+  - component: {fileID: 709441276002958403}
+  - component: {fileID: 709441276002958402}
+  - component: {fileID: 709441276002958400}
+  - component: {fileID: 709441276002958401}
   m_Layer: 0
-  m_Name: DeadBoss
+  m_Name: BossSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4641412873053835144
+--- !u!4 &709441276002958403
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4641412873053835146}
+  m_GameObject: {fileID: 709441276002958413}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,13 +34,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4641412873053835145
+--- !u!212 &709441276002958402
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4641412873053835146}
+  m_GameObject: {fileID: 709441276002958413}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,46 +75,60 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dc91dcb11a76c3d4abcafc5361c51c23, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 20, y: 20}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4641412873053835150
+--- !u!61 &709441276002958400
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709441276002958413}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &709441276002958401
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4641412873053835146}
+  m_GameObject: {fileID: 709441276002958413}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c2c937f0fc595040b9e5730f78cf9f5, type: 3}
+  m_Script: {fileID: 11500000, guid: f93cbbca78a3f144da80d7d81a4dc25b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4641412873053835151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4641412873053835146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5132ace5481117e47a7e3d6d274bfc55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsBoss: 1
-  itemDropList:
-  - item: {fileID: 11400000, guid: e44506062b1a62e4f9afc1bf9cf480fd, type: 2}
-    dropChance: 1
-  - item: {fileID: 11400000, guid: e7e18c97d59896341a1a487bee626a6d, type: 2}
-    dropChance: 1
-  - item: {fileID: 11400000, guid: c76044d8a642b6341882e805becf92df, type: 2}
-    dropChance: 1
+  boss: {fileID: 2229558517594964397, guid: 444a417015843a34bb27d5549e3adecf, type: 3}
+  bossSpawningEffect: {fileID: 705288258620504164, guid: cf71ae3c45d63784f841da2f14f4df43,
+    type: 3}
+  bossSpawnPoint: {fileID: 0}
+  bossHPSliderPrefab: {fileID: 704872632598038351, guid: fa64c352f6eb71149931918f1965a798,
+    type: 3}
+  canvasTransform: {fileID: 0}
