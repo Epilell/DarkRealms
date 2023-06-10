@@ -12,11 +12,12 @@ public class BossSpawner : MonoBehaviour
     private GameObject bossSpawnPoint;
     [SerializeField]
     private GameObject bossHPSliderPrefab;
-    public Transform canvasTransform;
+    private Transform canvasTransform;
     private bool _isSpawn = false;
     private void Awake()
     {
         //StartCoroutine("BossSpawn");
+        canvasTransform = GameObject.Find("Cacvas").transform;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

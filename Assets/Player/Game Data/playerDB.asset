@@ -12,16 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9406a2cfe8935844d80ed5c1a1dada9f, type: 3}
   m_Name: playerDB
   m_EditorClassIdentifier: 
-  P_Name: 
-  P_MaxHp: 100
-  P_CurrentHp: 100
-  P_Speed: 4
-  P_HelmetArmor: 0
-  P_BodyArmor: 0
-  P_LegArmor: 0
-  Strength_Level: 0
-  Agility_Level: 0
-  Intelligent_Level: 0
-  Str_Exp: 0
-  Agi_Exp: 0
-  Int_Exp: 0
+  maxHP: 100
+  speed: 4

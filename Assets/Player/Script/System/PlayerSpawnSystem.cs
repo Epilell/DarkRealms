@@ -5,9 +5,22 @@ using UnityEngine;
 public class PlayerSpawnSystem : MonoBehaviour
 {
     public static PlayerSpawnSystem instance;
+    public int SpawnPoint;
+
+    [SerializeField]
+    private List<GameObject> SpawnBases = new List<GameObject>();
+    private void SpawnPointSet()
+    {
+        for(int i =0; i < SpawnBases.Count; i++)
+        {
+            data.SpawnPoints[i] = SpawnBases[i].transform.position;
+        }
+    }
+
 
     public void Start()
     {
+        SpawnPointSet();
         SpawnPlayer();
     }
 
@@ -31,7 +44,9 @@ public class PlayerSpawnSystem : MonoBehaviour
     /// </summary>
     public void SpawnPlayer()
     {
-        Instantiate(playerObject, data.SpawnPoints[SetSpawnPoint(data)], playerObject.transform.rotation);
+        SpawnPoint = SetSpawnPoint(data);
+        Debug.Log("PSS = " + SpawnPoint);
+        Instantiate(playerObject, data.SpawnPoints[SpawnPoint], playerObject.transform.rotation);
     }
 
 }

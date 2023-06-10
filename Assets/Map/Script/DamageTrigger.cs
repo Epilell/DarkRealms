@@ -18,8 +18,12 @@ public class DamageTrigger : MonoBehaviour
             if (timer % 40 == 0)
             {
                 Debug.Log("3");
-                GameObject.Find("Test Player").GetComponent<Player>().CurrentHp = GameObject.Find("Test Player").GetComponent<Player>().CurrentHp - 3;
+                //GameObject.Find("Test Player").GetComponent<Player>().CurrentHp = GameObject.Find("Test Player").GetComponent<Player>().CurrentHp - 3;
+                if (other.tag == "Player")
+                {
+                    other.GetComponent<Player>().CurrentHp -= 3f;
 
+                }
             }
 
         }

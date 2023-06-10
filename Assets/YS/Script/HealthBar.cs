@@ -15,6 +15,7 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
         // 체력바 초기화
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
         hpbar.value = (float)currentHp / (float)maxHp;
         hpbar2.value = (float)currentHp / (float)maxHp;
     }

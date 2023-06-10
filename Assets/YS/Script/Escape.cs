@@ -12,7 +12,7 @@ public class Escape : MonoBehaviour
     float fadeTime = 1f; // 페이드 아웃 시간
     public SceneAsset scene;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player")) // 플레이어랑 충돌하면 페이드 아웃
         {

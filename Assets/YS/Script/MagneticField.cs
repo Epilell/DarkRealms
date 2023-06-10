@@ -19,6 +19,7 @@ public class MagneticField : MonoBehaviour
     {
         filter.SetActive(false);
         currentRadius = initialRadius; // 반지름 초기화
+        escape = GameObject.FindWithTag("Escape").transform;
         transform.position = escape.position; // 자기장 중심 위치를 출구 위치로 설정
         damageTimer = 1f; // 초기 피해 입히는 타이머 설정
     }

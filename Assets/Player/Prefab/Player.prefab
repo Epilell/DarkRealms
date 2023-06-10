@@ -91,7 +91,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -334,7 +334,6 @@ GameObject:
   - component: {fileID: 7373820904779604711}
   - component: {fileID: 7373820904779604708}
   - component: {fileID: 7373820904779604710}
-  - component: {fileID: 2700372681134415584}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -516,17 +515,3 @@ MonoBehaviour:
   siegemodedata: {fileID: 11400000, guid: 5a493631c695a964281bb6ee6d8b6467, type: 2}
   evdshotdata: {fileID: 11400000, guid: 4d924b4251aa8144bbedb784f199a948, type: 2}
   evadeshotgun: {fileID: 7373820904634694867}
---- !u!114 &2700372681134415584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7373820904779604715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16c83fa81f4289e44b9fa90dc9670588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 0}
-  playerObject: {fileID: 7373820904779604715}

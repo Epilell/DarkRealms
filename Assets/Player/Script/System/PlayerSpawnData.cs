@@ -8,6 +8,5 @@ public class PlayerSpawnData : ScriptableObject
 {
     private string mapname;
     public string Mapname => mapname;
-
     public List<Vector2> SpawnPoints = new List<Vector2>();
 }

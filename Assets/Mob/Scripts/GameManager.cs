@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
 
     public void SaveEq(EquipmentInventory eqinven)
     {
-        Debug.Log("인벤 세이브");
+        //Debug.Log("인벤 세이브");
         if (eqinven == null)
         {
             Debug.LogError("Inventory is null. Cannot save.");
