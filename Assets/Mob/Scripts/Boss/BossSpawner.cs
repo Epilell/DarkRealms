@@ -17,7 +17,7 @@ public class BossSpawner : MonoBehaviour
     private void Awake()
     {
         //StartCoroutine("BossSpawn");
-        canvasTransform = GameObject.Find("Cacvas").transform;
+        canvasTransform = GameObject.Find("Canvas").transform;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
