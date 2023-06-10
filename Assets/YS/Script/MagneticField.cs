@@ -5,7 +5,7 @@ public class MagneticField : MonoBehaviour
 {
     public Player player;
     public Transform escape; // 출구
-    public GameObject filter;
+    //public GameObject filter;
 
     public float initialRadius = 100; // 초기 자기장 반지름: 나중에 private로 바꿀 거임
     public float decreaseSpeed = 1; // 자기장 감소 속도
@@ -18,7 +18,8 @@ public class MagneticField : MonoBehaviour
 
     private void Start()
     {
-        filter.SetActive(false);
+        //filter.SetActive(false);
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
         currentRadius = initialRadius; // 반지름 초기화
         escape = GameObject.FindWithTag("Escape").transform;
         transform.position = escape.position; // 자기장 중심 위치를 출구 위치로 설정
@@ -54,7 +55,7 @@ public class MagneticField : MonoBehaviour
     {
         if (!isPlayerInsideField) // 플레이어가 자기장 밖이면
         {
-            filter.SetActive(true);
+            //filter.SetActive(true);
 
             damageTimer -= Time.deltaTime; // 타이머 감소
 
@@ -64,6 +65,8 @@ public class MagneticField : MonoBehaviour
                 damageTimer = 1f; // 타이머 재설정
             }
         }
-        else { filter.SetActive(false); }
+        else { 
+            //filter.SetActive(false); 
+        }
     }
 }
