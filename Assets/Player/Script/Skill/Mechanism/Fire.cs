@@ -21,11 +21,15 @@ public class Fire : MonoBehaviour
 
     private void ApplyDamage(Collider2D[] collider, float _damage)
     {
+
         for (int i = 0; i < collider.Length; i++)
         {
-            if (collider[i].gameObject.CompareTag("Mob"))
+            if (collider[i] != null)
             {
-                collider[i].gameObject.GetComponent<MobHP>().TakeDamage(_damage);
+                if (collider[i].gameObject.CompareTag("Mob"))
+                {
+                    collider[i].gameObject.GetComponent<MobHP>().TakeDamage(_damage);
+                }
             }
         }
     }
