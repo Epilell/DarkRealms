@@ -111,8 +111,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5132ace5481117e47a7e3d6d274bfc55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsBoss: 0
   itemDropList:
-  - item: {fileID: 11400000, guid: e44506062b1a62e4f9afc1bf9cf480fd, type: 2}
+  - item: {fileID: 11400000, guid: efa50d32e112059499245d9620067a71, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: efa50d32e112059499245d9620067a71, type: 2}
+    dropChance: 0.8
+  - item: {fileID: 11400000, guid: efa50d32e112059499245d9620067a71, type: 2}
+    dropChance: 0.5
+  - item: {fileID: 11400000, guid: efa50d32e112059499245d9620067a71, type: 2}
+    dropChance: 0.3
+  - item: {fileID: 11400000, guid: 12caffd7323d9be42948293ab938317d, type: 2}
+    dropChance: 0.1
+  - item: {fileID: 11400000, guid: 4400fa9a212fb17498d0f1762de1d504, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: 35771b2b91084af42bbb900c7973b321, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: 676e960bb21776c479f751b16bb47347, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: 0cdd53b9374a1d94d97667225d438af6, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 1
 --- !u!50 &5092047170252660336
 Rigidbody2D:

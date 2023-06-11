@@ -111,6 +111,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5132ace5481117e47a7e3d6d274bfc55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsBoss: 0
   itemDropList:
   - item: {fileID: 11400000, guid: efa50d32e112059499245d9620067a71, type: 2}
     dropChance: 0.5
+  - item: {fileID: 11400000, guid: efa50d32e112059499245d9620067a71, type: 2}
+    dropChance: 0.3
+  - item: {fileID: 11400000, guid: efa50d32e112059499245d9620067a71, type: 2}
+    dropChance: 0.2
+  - item: {fileID: 11400000, guid: efa50d32e112059499245d9620067a71, type: 2}
+    dropChance: 0.1
+  - item: {fileID: 11400000, guid: bb5d5f5be134712448c132c1c2d9ee97, type: 2}
+    dropChance: 0.1
+  - item: {fileID: 11400000, guid: 5eca9d9d83d721b4eaafd9e061d231f3, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: 8a63d730045fe8a41a808e4242fc6e11, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: fd4ebacb556d6ba44b8809f12a6eb701, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: ffd3444bd30d0b9458331071aafbefbe, type: 2}
+    dropChance: 0.001
