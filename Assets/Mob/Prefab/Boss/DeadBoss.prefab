@@ -112,9 +112,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsBoss: 1
   itemDropList:
-  - item: {fileID: 11400000, guid: e44506062b1a62e4f9afc1bf9cf480fd, type: 2}
+  - item: {fileID: 11400000, guid: 70195855eafa8794195faaa8a700babf, type: 2}
+    dropChance: 0.1
+  - item: {fileID: 11400000, guid: fbdfee070f4f11940a71458fb30142a6, type: 2}
+    dropChance: 0.1
+  - item: {fileID: 11400000, guid: 2fd5491f56fc1344b86d381ad9a77ec5, type: 2}
+    dropChance: 0.1
+  - item: {fileID: 11400000, guid: 686b3856d92de624da5977eaaba6dd2c, type: 2}
+    dropChance: 0.1
+  - item: {fileID: 11400000, guid: 926bc16d54511f041ae7cf0f7495459b, type: 2}
     dropChance: 1
-  - item: {fileID: 11400000, guid: e7e18c97d59896341a1a487bee626a6d, type: 2}
+  - item: {fileID: 11400000, guid: 676e960bb21776c479f751b16bb47347, type: 2}
+    dropChance: 0.1
+  - item: {fileID: 11400000, guid: 3916d5cbc09fdb84499e6a64a43f81ce, type: 2}
+    dropChance: 0.1
+  - item: {fileID: 11400000, guid: fd4ebacb556d6ba44b8809f12a6eb701, type: 2}
+    dropChance: 0.1
+  - item: {fileID: 11400000, guid: 9d2a08a2ff077cf4cb8ef81608d4ce6f, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: ffc587874619e86439b7cc2cff21ffa8, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: 3c45d3d618c2d954895bde3227e6be40, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: 1c3d6d8d6d3d823498c3aaf75e6d7b3a, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: 0cdd53b9374a1d94d97667225d438af6, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: 391272604a8171244b1b10011f1118b3, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: ffd3444bd30d0b9458331071aafbefbe, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 1
-  - item: {fileID: 11400000, guid: c76044d8a642b6341882e805becf92df, type: 2}
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: cf8192720404ae3409ea018eb1b52875, type: 2}
+    dropChance: 0.3
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 0.3
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 0.3
