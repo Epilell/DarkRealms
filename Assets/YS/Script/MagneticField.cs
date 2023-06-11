@@ -7,7 +7,7 @@ public class MagneticField : MonoBehaviour
     public Transform escape; // 출구
     //public GameObject filter;
 
-    public float initialRadius = 100; // 초기 자기장 반지름: 나중에 private로 바꿀 거임
+    private float initialRadius = 100; // 초기 자기장 반지름
     public float decreaseSpeed = 1; // 자기장 감소 속도
     private float currentRadius; // 현재 자기장 반지름
 
@@ -24,7 +24,9 @@ public class MagneticField : MonoBehaviour
         escape = GameObject.FindWithTag("Escape").transform;
         transform.position = escape.position; // 자기장 중심 위치를 출구 위치로 설정
         damageTimer = 1f; // 초기 피해 입히는 타이머 설정
-
+/*
+        FindObjectOfType<MagneticField>().escape = Instantiate(route[routenum]).transform;
+        FindObjectOfType<MagneticField>().transform.position = FindObjectOfType<MagneticField>().escape.position;*/
         isPlayerInsideField = true;
 
         StartCoroutine(DecreaseMagneticField());
@@ -32,11 +34,13 @@ public class MagneticField : MonoBehaviour
 
     private IEnumerator DecreaseMagneticField()
     {
-        yield return new WaitForSeconds(300f);
+        yield return new WaitForSeconds(30f); // 5분 대기
+        escape = GameObject.FindWithTag("Escape").transform;
+        transform.position = escape.position; // 자기장 중심 위치를 출구 위치로 설정
 
         while (currentRadius > 0f)
         {
-            currentRadius -= decreaseSpeed * Time.deltaTime / 3; // 자기장 크기 감소
+            currentRadius -= decreaseSpeed * Time.deltaTime / 6f; // 자기장 크기 감소: 3f는 5분 6f는 10분
 
             if (currentRadius <= 0f)
             {

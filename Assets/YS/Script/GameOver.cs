@@ -15,6 +15,11 @@ public class GameOver : MonoBehaviour
 
     public bool isGameOver = false;
 
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+    }
+
     // 코루틴으로 자체 동작에서 TimeUI에서 호출만 하도록 변경
     public void PlayerGameOver()
     {
