@@ -34,9 +34,7 @@ public class MagneticField : MonoBehaviour
 
     private IEnumerator DecreaseMagneticField()
     {
-        yield return new WaitForSeconds(30f); // 5분 대기
-        escape = GameObject.FindWithTag("Escape").transform;
-        transform.position = escape.position; // 자기장 중심 위치를 출구 위치로 설정
+        yield return new WaitForSeconds(300f); // 5분 대기
 
         while (currentRadius > 0f)
         {

@@ -95,6 +95,7 @@ public abstract class DualWeaponBase : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 Attack();
+                FindObjectOfType<SoundManager>().PlaySound("Dual");
             }
         }
         else
