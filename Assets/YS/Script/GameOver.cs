@@ -7,20 +7,16 @@ using Rito.InventorySystem;
 public class GameOver : MonoBehaviour
 {
     public FadeOut fadeOut;
-    public Inventory Inventory;
     public Player player;
-    public Image gameOverImg, screen;
+    public Inventory Inventory;
     public Button goMainBtn;
+    public Image gameOverImg, screen;
     public TextMeshProUGUI goMainBtnTxt;
 
     public bool isGameOver = false;
 
-    private void Start()
-    {
-        player = GameObject.FindWithTag("Player").GetComponent<Player>();
-    }
+    private void Start() { player = GameObject.FindWithTag("Player").GetComponent<Player>(); }
 
-    // 코루틴으로 자체 동작에서 TimeUI에서 호출만 하도록 변경
     public void PlayerGameOver()
     {
         if (isGameOver) return;

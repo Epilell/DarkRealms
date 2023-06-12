@@ -24,15 +24,15 @@ public class HealTrigger : MonoBehaviour
             {
                 Debug.Log("Heal");
 
-                if (GameObject.Find("Test Player").GetComponent<Player>().CurrentHp <= 95)
+                if (GameObject.FindWithTag("Player").GetComponent<Player>().CurrentHp <= 95)
                 {
                     Debug.Log("5");
-                    GameObject.Find("Test Player").GetComponent<Player>().CurrentHp = GameObject.Find("Test Player").GetComponent<Player>().CurrentHp + 5;
+                    GameObject.FindWithTag("Player").GetComponent<Player>().CurrentHp = GameObject.FindWithTag("Player").GetComponent<Player>().CurrentHp + 5;
                 }
-                else if (95 < GameObject.Find("Test Player").GetComponent<Player>().CurrentHp)
+                else if (95 < GameObject.FindWithTag("Player").GetComponent<Player>().CurrentHp)
                 {
-                    GameObject.Find("Test Player").GetComponent<Player>().CurrentHp
-                        = GameObject.Find("Test Player").GetComponent<Player>().CurrentHp + (100 - GameObject.Find("Test Player").GetComponent<Player>().CurrentHp);
+                    GameObject.FindWithTag("Player").GetComponent<Player>().CurrentHp
+                        = GameObject.FindWithTag("Player").GetComponent<Player>().CurrentHp + (100 - GameObject.FindWithTag("Player").GetComponent<Player>().CurrentHp);
                     Debug.Log("N");
                 }
                 else
@@ -40,7 +40,6 @@ public class HealTrigger : MonoBehaviour
                     Debug.Log("already");
                 }
             }
-
         }
     }
 }

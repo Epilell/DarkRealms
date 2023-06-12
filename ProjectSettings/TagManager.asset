@@ -15,6 +15,7 @@ TagManager:
   - Fire Position
   - Warehouse
   - BossMob
+  - Filter
   layers:
   - Default
   - TransparentFX

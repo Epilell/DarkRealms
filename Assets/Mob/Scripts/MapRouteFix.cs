@@ -21,6 +21,10 @@ public class MapRouteFix : MonoBehaviour
         routenum = p_spawn.SpawnPoint;
         Debug.Log("MRF = " + routenum);
         GameObject walls = Instantiate(route[routenum], route[routenum].transform.position, Quaternion.identity);
+        
+        // 아래 두 줄은 자기장 위치를 탈출구로 함 - ys
+        FindObjectOfType<MagneticField>().escape = walls.transform.Find("TestExit");
+        FindObjectOfType<MagneticField>().transform.position = FindObjectOfType<MagneticField>().escape.position;
     }
     // Update is called once per frame
     void Update()
