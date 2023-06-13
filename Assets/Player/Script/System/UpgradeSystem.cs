@@ -203,7 +203,9 @@ namespace Rito.InventorySystem
         private void Start()
         {
             //_targetInventory = GameObject.FindWithTag("Warehouse");
-            _inventory = _targetInventory.GetComponent<Inventory>();
+            //_inventory = _targetInventory.GetComponent<Inventory>();
+
+            _inventory = GameObject.FindWithTag("GameController").GetComponentInChildren<Inventory>();
         }
 
         private void Update()

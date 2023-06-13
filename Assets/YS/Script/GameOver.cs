@@ -67,14 +67,14 @@ public class GameOver : MonoBehaviour
             yield return null; // 한 프레임 대기
         }
 
-        // Time.timeScale = 0;
+        Time.timeScale = 0;
 
         goMainBtn.onClick.AddListener(GoToNextScene); // 버튼 클릭 이벤트에 GoToMainMenu 함수를 추가
     }
 
     private void GoToNextScene()
     {
-        // Time.timeScale = 1;
+        Time.timeScale = 1;
         fadeOut.Fade();
     }
 }

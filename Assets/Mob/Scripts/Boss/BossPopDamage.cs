@@ -34,7 +34,7 @@ public class BossPopDamage : MonoBehaviour
         canDamage = true;
         Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
         CircleCollider2D collider = gameObject.AddComponent<CircleCollider2D>();
-        collider.isTrigger = true;
+        //collider.isTrigger = true;
         rb.gravityScale = 0f;
         collider.offset=new Vector2(0,-3);
         collider.radius = 3f;

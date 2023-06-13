@@ -63,7 +63,9 @@ public class Player : MonoBehaviour
     {
         if((damage - data.GetArmor()) * (1 - ArmorReduction) <= 1 ) { CurrentHp -= 1; }
         else { CurrentHp -= (damage - data.GetArmor()) * (1 - ArmorReduction); }
-        if(CurrentHp <=0) { CurrentHp = 0; IsDead(); Debug.Log(ani.GetBool("IsDead")); }
+        if(CurrentHp <=0) { CurrentHp = 0; IsDead(); Debug.Log(ani.GetBool("IsDead"));
+            StartCoroutine(FindObjectOfType<GameOver>().GameOverCoroutine());
+        }
     }
 
     /// <summary>
