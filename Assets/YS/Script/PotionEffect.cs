@@ -48,9 +48,9 @@ public class PotionEffect : MonoBehaviour
                 case "immunity": // 면역
                     GetComponent<ImmunityEffect>().Immunity(targetItemData.Value);
                     break;
-                case "release": // 이상 해제
+                /*case "release": // 이상 해제
                     Debug.Log("release!");
-                    break;
+                    break;*/
                 case "undying": // 불사
                     GetComponent<UndyingEffect>().Undying(targetItemData.Value);
                     break;

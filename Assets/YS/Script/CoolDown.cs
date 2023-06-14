@@ -36,10 +36,10 @@ public class CoolDown : MonoBehaviour
     void Start()
     {
         // 초기 쿨타임 초기화
-        cooldownTimeQ = skillManager.molotovdata.CoolTime;
-        cooldownTimeE = skillManager.siegemodedata.CoolTime;
-        cooldownTimeSpace = skillManager.dodgedata.CoolTime;
-        cooldownTimeMouseRight = skillManager.evdshotdata.CoolTime;
+        cooldownTimeQ = skillManager.molotovdata.CoolTime; // 10초
+        cooldownTimeE = skillManager.siegemodedata.CoolTime; // 20초
+        cooldownTimeSpace = skillManager.dodgedata.CoolTime; // 3초
+        cooldownTimeMouseRight = skillManager.evdshotdata.CoolTime; // 10초
 
         // 투명하게 초기화
         cooldownImageQ.fillAmount = 0;
@@ -50,11 +50,11 @@ public class CoolDown : MonoBehaviour
 
     void Update()
     {
-        // 각 스킬 사용 UI
-        if (Input.GetKeyDown(KeyCode.Q)) { UseSkill(ref isCooldownQ, ref currentTimeQ, cooldownImageQ, cooldownTimeQ, iconQ, offSpriteQ); }
-        if (Input.GetKeyDown(KeyCode.E)) { UseSkill(ref isCooldownE, ref currentTimeE, cooldownImageE, cooldownTimeE, iconE, offSpriteE); }
-        if (Input.GetKeyDown(KeyCode.Space)) { UseSkill(ref isCooldownSpace, ref currentTimeSpace, cooldownImageSpace, cooldownTimeSpace, iconSpace, offSpriteSpace); }
-        if (Input.GetKeyDown(KeyCode.Mouse1)) { UseSkill(ref isCooldownMouseRight, ref currentTimeMouseRight, cooldownImageMouseRight, cooldownTimeMouseRight, iconMouseRight, offSpriteMouseRight); }
+        // 각 스킬 사용 UI: 스킬 사용이 가능할 때 스킬 키 누르면 작동함
+        if (FindObjectOfType<SkillManager>().molotovdata.CanUse == true) if (Input.GetKeyDown(KeyCode.Q)) { UseSkill(ref isCooldownQ, ref currentTimeQ, cooldownImageQ, cooldownTimeQ, iconQ, offSpriteQ); }
+        if (FindObjectOfType<SkillManager>().siegemodedata.CanUse == true && FindObjectOfType<SkillManager>().siegemodedata.IsActive == true) if (Input.GetKeyDown(KeyCode.E)) { UseSkill(ref isCooldownE, ref currentTimeE, cooldownImageE, cooldownTimeE, iconE, offSpriteE); }
+        if (FindObjectOfType<SkillManager>().dodgedata.CanUse == true) if (Input.GetKeyDown(KeyCode.Space)) { UseSkill(ref isCooldownSpace, ref currentTimeSpace, cooldownImageSpace, cooldownTimeSpace, iconSpace, offSpriteSpace); }
+        if (FindObjectOfType<SkillManager>().evdshotdata.CanUse == true) if (Input.GetKeyDown(KeyCode.Mouse1)) { UseSkill(ref isCooldownMouseRight, ref currentTimeMouseRight, cooldownImageMouseRight, cooldownTimeMouseRight, iconMouseRight, offSpriteMouseRight); }
 
         // 각 쿨다운 업데이트
         UpdateCooldown(ref isCooldownQ, ref currentTimeQ, cooldownImageQ, cooldownTimeQ, iconQ, onSpriteQ);
