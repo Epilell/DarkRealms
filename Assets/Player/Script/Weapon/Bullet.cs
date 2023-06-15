@@ -22,10 +22,12 @@ public class Bullet : MonoBehaviour
         {
             case "Mob":
                 collider.gameObject.GetComponent<MobHP>().TakeDamage(damage);
+                FindObjectOfType<BloodEffect>().Blood(damage);
                 DestroyBullet();
                 break;
             case "BossMob":
                 collider.gameObject.GetComponent<BossHP>().TakeDamage(damage);
+                FindObjectOfType<BloodEffect>().Blood(damage / 2);
                 DestroyBullet();
                 break;
             case "Map":

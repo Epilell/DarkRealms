@@ -9,6 +9,8 @@ public class PotionEffect : MonoBehaviour
     public Player player; // 플레이어 객체
     public List<PortionItemData> portionItemDataList; // 아이템 데이터 목록 리스트
 
+    private void Start() { player = GameObject.FindWithTag("Player").GetComponent<Player>(); }
+
     public void UseEffect(string itemName)
     {
         PortionItemData targetItemData = null; // 원하는 아이템 데이터를 저장할 변수
@@ -26,7 +28,7 @@ public class PotionEffect : MonoBehaviour
         if (targetItemData != null) // 찾은 아이템 데이터가 있다면
         {
             // 아이템 종류 별로 효과 결정: e.g. 이름에 hp가 포함되면 체력 회복 아이템
-            string containWord = Regex.Match(itemName, "hp|power|armor|cooldown|blood|immunity|release|undying", RegexOptions.IgnoreCase).Value.ToLower();
+            string containWord = Regex.Match(itemName, "hp|power|armor|cooldown|blood|immunity|undying", RegexOptions.IgnoreCase).Value.ToLower();
 
             switch (containWord) // 종류 별로 선택
             {
@@ -40,7 +42,7 @@ public class PotionEffect : MonoBehaviour
                     GetComponent<ArmorEffect>().SetArmor(targetItemData.Value);
                     break;
                 case "cooldown": // 쿨타임 감소
-                    Debug.Log("cooldown!");
+                    GetComponent<CoolDownEffect>().SkillCoolDown();
                     break;
                 case "blood": // 흡혈
                     GetComponent<BloodEffect>().SetBlood(targetItemData.Value);
@@ -48,9 +50,6 @@ public class PotionEffect : MonoBehaviour
                 case "immunity": // 면역
                     GetComponent<ImmunityEffect>().Immunity(targetItemData.Value);
                     break;
-                /*case "release": // 이상 해제
-                    Debug.Log("release!");
-                    break;*/
                 case "undying": // 불사
                     GetComponent<UndyingEffect>().Undying(targetItemData.Value);
                     break;
@@ -60,45 +59,3 @@ public class PotionEffect : MonoBehaviour
         else { Debug.Log("사용 불가"); }
     }
 }
-/*
-    - 참고하려고 적어 놓음 -
-
-    public int ID => _id;
-    public string Name => _name;
-    public string Tooltip => _tooltip;
-    public Sprite IconSprite => _iconSprite;
-
-    [SerializeField] private int      _id;
-    [SerializeField] private string   _name;    // 아이템 이름
-    [Multiline]
-    [SerializeField] private string   _tooltip; // 아이템 설명
-    [SerializeField] private Sprite   _iconSprite; // 아이템 아이콘
-    [SerializeField] private GameObject _dropItemPrefab; // 바닥에 떨어질 때 생성할 프리팹
-
-    CountableItemData : ItemData 영역
-    {
-        public int MaxAmount => _maxAmount;
-        [SerializeField] private int _maxAmount = 99;
-    }
-
-    PortionItemData : CountableItemData 영역
-    {
-        효과량(회복량 등)
-
-        public float Value => _value;
-        [SerializeField] private float _value;
-        public override Item CreateItem()
-        {
-            return new PortionItem(this);
-        }
-    }
-
-
-    - 정규 표현식으로 itemName에 포함된 키워드 찾기 -
-
-    Match(검색할 문자열, 찾을 패턴, RegexOptions: 일치 옵션을 제공하는 열거형 값의 비트 조합);
-    RegexOptions.IgnoreCase: 대소문자를 구분 없이 일치 항목을 찾도록 지정
-    .Value.ToLower(); : 문자열을 소문자로 반환 받음
-    Regex.Match(itemName, "hp", RegexOptions.IgnoreCase).Value.ToLower()
-    : itemName에서 "hp"라는 패턴과 대소문자 구분 없이 일치하는 문자열을 찾아서 소문자로 받겠다.
-*/

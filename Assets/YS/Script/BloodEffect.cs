@@ -1,30 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BloodEffect : MonoBehaviour
 {
     public Player player;
-
     public bool isBlood;
 
-    public void Blood(float damage)
-    {
-        if (isBlood)
-        {
-            player.P_Heal(damage / 4);
-        }
-    }
+    private void Start() { player = GameObject.FindWithTag("Player").GetComponent<Player>(); }
 
-    public void SetBlood(float duration)
-    {
-        isBlood = true;
+    public void Blood(float damage) { if (isBlood) { player.P_Heal(damage / 10); } }
 
-        StartCoroutine(ResetBlood(duration));
-    }
+    public void SetBlood(float duration) { StartCoroutine(ResetBlood(duration)); }
 
     private IEnumerator ResetBlood(float duration)
     {
+        isBlood = true;
+
         yield return new WaitForSeconds(duration);
 
         isBlood = false;

@@ -12,12 +12,21 @@ public class CapacityRisk : MonoBehaviour
 
     int capacity; // 용량
 
+    private void Start() { player = GameObject.FindWithTag("Player").GetComponent<Player>(); }
+
     void Update()
     {
         if (inventory._Items != null) { capacity = inventory._Items.Length; } // 용량 받기
-        if (magneticField != null && capacity >= 1 && magneticField.decreaseSpeed <= 5) { magneticField.decreaseSpeed = capacity / 50; } // 용량만큼 자기장 감소 속도 증가
-        /*if (p_data.speed >= 0.5) { player.ChangeSpeedReduction(capacity / 10); } // 용량만큼 이동속도 감소
-        else p_data.speed = 0.5f;*/
+
+        if (magneticField != null && capacity >= 1) // 용량만큼 자기장 축소 빨라짐
+        {
+            float decreaseSpeed = (float)capacity / 100;
+
+            if (decreaseSpeed <= 1.0) { magneticField.decreaseSpeed = 1.0f; }
+            else if (decreaseSpeed <= 5.0) { magneticField.decreaseSpeed = decreaseSpeed; }
+            else { magneticField.decreaseSpeed = 5.0f; }
+        }
+        // 용량만큼 이동속도 감소 추가 예정
         // 몹 스폰 증가??
     }
 }

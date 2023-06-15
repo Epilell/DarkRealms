@@ -5,6 +5,7 @@ public class TimerUI : MonoBehaviour
 {
     private float totalTime = 900.0f; // 타이머의 총 시간: 15분
     private float currentTime; // 현재 시간
+
     public Text timerText; // 타이머UI
     public Button goMainBtn;
 
