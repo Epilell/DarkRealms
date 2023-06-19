@@ -23,8 +23,8 @@ public class EquipmentInventory : MonoBehaviour
 
 
     private ItemSlotUI[] slots;
-    public Transform slotHolder;
-    public GameManager gm;
+    private Transform slotHolder;
+    private GameManager gm;
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -65,9 +65,8 @@ public class EquipmentInventory : MonoBehaviour
     }
     private void Awake()
     {
-        _eqitems = new Rito.InventorySystem.Item[5];
-        gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-        //gm.SaveEquipment();
+        _eqitems = new Rito.InventorySystem.Item[5];//슬롯초기화
+        gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();//게임 매니저 찾기
 
         if (instance != null)  // 인벤토리 인스턴스가 존재하면
         {
@@ -75,25 +74,8 @@ public class EquipmentInventory : MonoBehaviour
             return;  // 종료
         }
         instance = this;  // 인스턴스가 존재하지 않으면 현재 인스턴스를 할당
-        
-        slots = slotHolder.GetComponentsInChildren<ItemSlotUI>();
-        if (slots != null)
-        {
-            for (int i = 0; i < slots.Length; i++)
-            {
-                slots[i].SetSlotIndex(i);
-                Updateslot(i);
-            }
-        }
-        if (GameObject.Find("InventoryB").transform != null)
-        {
-            slotHolder = GameObject.Find("InventoryB").transform;
-            gm = GetComponentInParent<GameManager>();
-            gm.LoadEq(this);
-        }
 
-
-        Init();
+        GraphicInit();
     }
     private void OnDestroy()
     {
@@ -103,6 +85,7 @@ public class EquipmentInventory : MonoBehaviour
     }
     private void Start() // 장비 슬롯 초기화
     {
+        SlotInit();
         StartCoroutine("SaveEveryMinute", 5f);
     }
     private void Update()
@@ -111,7 +94,7 @@ public class EquipmentInventory : MonoBehaviour
         OnPointerDown();
     }
 
-    private void Init()
+    private void GraphicInit()//그래픽 초기화
     {
         TryGetComponent(out _gr);
         if (_gr == null)
@@ -120,8 +103,24 @@ public class EquipmentInventory : MonoBehaviour
         _ped = new PointerEventData(EventSystem.current); // 이 줄을 추가하여 _ped를 초기화합니다.
         _rrList = new List<RaycastResult>(10);
     }
+    private void SlotInit()//슬롯초기화
+    {
+        if (GameObject.Find("InventoryB").transform != null)//슬롯홀더 찾기
+        {
+            slotHolder = GameObject.Find("InventoryB").transform;
+            slots = slotHolder.GetComponentsInChildren<ItemSlotUI>();//slots설정
+            if (slots != null)
+            {
+                for (int i = 0; i < slots.Length; i++)
+                {
+                    slots[i].SetSlotIndex(i);
+                    Updateslot(i);
+                }
+            }
+            gm.LoadEq(this);
+        }
 
-
+    }
 
     private T RaycastAndGetFirstComponent<T>() where T : Component
     {
@@ -141,7 +140,7 @@ public class EquipmentInventory : MonoBehaviour
             ItemSlotUI slot = RaycastAndGetFirstComponent<ItemSlotUI>();
             if (slot != null)
             {
-                UnEquip(slot.Index);
+                _inventory.Add(UnEquip(slot.Index));
 
             }
         }
@@ -151,11 +150,13 @@ public class EquipmentInventory : MonoBehaviour
     /// 장착해제
     /// </summary>
     /// <param name="index"></param>
-    public void UnEquip(int index)
+    public ItemData UnEquip(int index)
     {
-        _inventory.Add(_eqitems[index].Data);
+        //inventory.Add(_eqitems[index].Data);
+        ItemData itemData = _eqitems[index].Data;
         _eqitems[index] = null;
         slots[index].RemoveItem();
+        return itemData;
     }
     private IEnumerator SaveEveryMinute(float minute)
     {

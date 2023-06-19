@@ -217,55 +217,6 @@ namespace Rito.InventorySystem
         *                               Private Methods
         ***********************************************************************/
         #region .
-        /*
-        private void testSave()
-        {
-            if (_isWarehouse == false)
-            {
-                gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-                gm.SaveInven();
-            }
-        }
-        private void testLoad()
-        {
-            if (_isWarehouse == false)
-            {
-                gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-                gm.LoadInven();
-                //gm.Addidb();
-            }
-        }
-        private void LoadInit()
-        {
-            gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-            if (_isWarehouse == false)
-            {
-                _items = new Item[_maxCapacity];
-                //gm.LoadInven();
-                
-            }
-            UpdateAllSlot();
-        }
-        private IEnumerator SaveInvenEveryMinute(float minute)
-        {
-            gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-
-            gm.GetComponent<GameManager>().SaveInven();
-            
-            yield return new WaitForSeconds(minute);
-            StartCoroutine("SaveInvenEveryMinute", minute);
-        }
-        private IEnumerator SaveWareHouseEveryMinute(float minute)
-        {
-            gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-            if (_isWarehouse)
-            {
-                gm.GetComponent<GameManager>().SaveWarehouse(this);
-                
-                yield return new WaitForSeconds(minute);
-                StartCoroutine("SaveWareHouseEveryMinute", minute);
-            }
-        }*/
         private IEnumerator SaveEveryMinute(float minute)
         {
             gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
@@ -808,7 +759,7 @@ namespace Rito.InventorySystem
             }
             else if (_items[index] is EquipmentItem NowEqItem && _isWarehouse == false && index > 999)
             {
-                _eqInven.UnEquip(index);
+                Add(_eqInven.UnEquip(index));
             }
             else
             {
