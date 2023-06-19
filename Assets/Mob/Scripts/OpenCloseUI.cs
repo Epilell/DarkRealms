@@ -8,6 +8,7 @@ public class OpenCloseUI : MonoBehaviour
 {
     [Header("Invens")]
     public GameObject inven;
+    public GameObject eqInven;
     public GameObject ?warehouse;
     [Header("Buttons")]
     public Button ?InvenCloseButton;
@@ -50,12 +51,13 @@ public class OpenCloseUI : MonoBehaviour
     }
     private void Update()
     {
-        if(inven != null)
+        if(inven != null&& eqInven!=null)
         {
             // ≈« ≈∞∏¶ ¥≠∑∂¿ª ∂ß ¿Œ∫•≈‰∏Æ∏¶ ø±¥œ¥Ÿ.
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 inven.SetActive(!inven.activeSelf);
+                eqInven.SetActive(!eqInven.activeSelf);
                 /*Inventory _inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
                 _inventory.SaveInven();
                 _inventory.LoadInven();*/

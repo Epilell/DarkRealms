@@ -19,7 +19,7 @@ public class BossTail : MonoBehaviour
         Invoke("EnableDamage", 0.1f);
         Invoke("DisableDamage", 0.33f);
     }
-    public void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (canDamage)
         {

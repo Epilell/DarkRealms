@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
 
     public void Save(Inventory inven)
     {
-        Debug.Log("인벤 세이브");
+        //Debug.Log("인벤 세이브");
         if (inven == null)
         {
             Debug.LogError("Inventory is null. Cannot save.");
@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
     }
     public void LoadEq(EquipmentInventory eqinven)
     {
-        Debug.Log("인벤 로드");
+        //Debug.Log("인벤 로드");
         if (eqinven == null)
         {
             Debug.LogError("Inventory is null. Cannot load.");

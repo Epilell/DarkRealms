@@ -193,23 +193,6 @@ namespace Rito.InventorySystem
         {
             UpdateAccessibleStatesAll();
             StartCoroutine("SaveEveryMinute", 5f);
-            /*
-            if (_isWarehouse)
-            {
-                _items = new Item[_maxCapacity];
-                gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-                gm.LoadWarehouse(this);
-                
-                StartCoroutine("SaveWareHouseEveryMinute", 5f);
-
-                UpdateAllSlot();
-            }
-            else
-            {
-
-                gm.LoadInven();
-                StartCoroutine("SaveInvenEveryMinute", 5f);
-            }*/
         }
 
         #endregion
@@ -757,9 +740,10 @@ namespace Rito.InventorySystem
                     UpdateSlot(index);
                 }
             }
-            else if (_items[index] is EquipmentItem NowEqItem && _isWarehouse == false && index > 999)
+            else if (_items[index] is EquipmentItem && _isWarehouse == false && index > 998)
             {
-                Add(_eqInven.UnEquip(index));
+                Debug.Log("index = "+index);
+                Add(_eqInven.UnEquip(index));//장비인벤토리의 장비일경우
             }
             else
             {

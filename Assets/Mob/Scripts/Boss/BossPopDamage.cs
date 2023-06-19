@@ -19,7 +19,7 @@ public class BossPopDamage : MonoBehaviour
         Invoke("EnableDamage", 0.125f);
         Invoke("DisableDamage", 2.6f);
     }
-    public void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (canDamage)
         {
@@ -29,12 +29,13 @@ public class BossPopDamage : MonoBehaviour
             }
         }
     }
+
     private void EnableDamage()
     {
         canDamage = true;
         Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
         CircleCollider2D collider = gameObject.AddComponent<CircleCollider2D>();
-        //collider.isTrigger = true;
+        collider.isTrigger = true;
         rb.gravityScale = 0f;
         collider.offset=new Vector2(0,-3);
         collider.radius = 3f;

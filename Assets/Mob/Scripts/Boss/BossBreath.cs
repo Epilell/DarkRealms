@@ -18,7 +18,7 @@ public class BossBreath : MonoBehaviour
     {
         Invoke("EnableDamage", 0.01f);
     }
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (canDamage)
         {

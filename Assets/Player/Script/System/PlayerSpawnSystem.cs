@@ -45,7 +45,7 @@ public class PlayerSpawnSystem : MonoBehaviour
     public void SpawnPlayer()
     {
         SpawnPoint = SetSpawnPoint(data);
-        Debug.Log("PSS = " + SpawnPoint);
+        //Debug.Log("PSS = " + SpawnPoint);
         Instantiate(playerObject, data.SpawnPoints[SpawnPoint], playerObject.transform.rotation);
     }
 

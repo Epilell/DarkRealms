@@ -11,8 +11,11 @@ namespace Rito
     {
         [SerializeField]
         private Transform _targetTr; // 이동될 UI
+        [SerializeField]
+        private Transform _target2; // 이동될 UI2
 
         private Vector2 _beginPoint;
+        private Vector2 _beginPoint2;
         private Vector2 _moveBegin;
 
         private void Awake()
@@ -20,12 +23,17 @@ namespace Rito
             // 이동 대상 UI를 지정하지 않은 경우, 자동으로 부모로 초기화
             if(_targetTr == null)
                 _targetTr = transform.parent;
+            if(_target2 == null)
+            {
+                _target2 = GameObject.Find("EquipmentInventoryUI").transform;
+            }
         }
 
         // 드래그 시작 위치 지정
         void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
         {
             _beginPoint = _targetTr.position;
+            _beginPoint2 = _target2.position;
             _moveBegin = eventData.position;
         }
 
@@ -33,6 +41,7 @@ namespace Rito
         void IDragHandler.OnDrag(PointerEventData eventData)
         {
             _targetTr.position = _beginPoint + (eventData.position - _moveBegin);
+            _target2.position = _beginPoint2 + (eventData.position - _moveBegin);
         }
     }
 }

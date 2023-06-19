@@ -2,14 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rito.InventorySystem;
+using TMPro;
 
 public class ItemContactToInven : MonoBehaviour
 {
     SpriteRenderer sr;
     public Rito.InventorySystem.ItemData itemData;
     bool isDataON = false;
+    [SerializeField] private GameObject DropitemTooltips;
+    private TMP_Text DropItemTooltiptext;
+    private GameObject canvas;
+    private RectTransform rectTransform;
     private void Awake()
     {
+        canvas = GameObject.Find("Canvas");
         sr = this.GetComponent<SpriteRenderer>();
     }
     private void Update()
@@ -23,32 +29,32 @@ public class ItemContactToInven : MonoBehaviour
             sr.sprite = itemData.IconSprite;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag== "Player")
+        if (collision.gameObject.tag == "Player")
         {
             Inventory inventoryComponent = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
             inventoryComponent.Add(this.itemData);
+            MakeDropItemTooltips();
             Destroy(this.gameObject);
         }
-        // 충돌한 오브젝트의 자식 오브젝트들을 확인합니다.
-        foreach (Transform child in collision.transform)
-        {
-            // 자식 오브젝트에서 Inventory 컴포넌트를 가져옵니다.
-            Inventory inventoryComponent = child.GetComponent<Inventory>();
+    }
+    private void MakeDropItemTooltips()
+    {
+        //드롭아이템 툴팁스 생성
+        GameObject clone =Instantiate(DropitemTooltips);
+        //parent("Canvas" 오브젝트)의 자식으로 설정 단, UI는 캔버스의 자식으로 설정되어 있어야 화면에 보임
+        clone.transform.SetParent(canvas.transform);
+        //계층 설정으로 바뀐 크기를 재설정
+        clone.transform.localScale = Vector3.one;
+        //아이템 위치에 맞게 UI생성
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(this.transform.position);
+        clone.GetComponent<RectTransform>().position = screenPosition;
 
-            // Inventory 컴포넌트가 있다면 해당 게임 오브젝트를 사용합니다.
-            if (inventoryComponent != null)
-            {
-                // Inventory 컴포넌트를 사용하는 게임 오브젝트에 대한 작업을 수행합니다.
-                // 예를 들어, 해당 게임 오브젝트의 아이템을 가져오거나 조작할 수 있습니다.
-                inventoryComponent.Add(this.itemData);
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                Debug.Log("인벤토리가 있는 자식 못찾았다!");
-            }
-        }
+
+
+        //텍스트 바꾸기
+        DropItemTooltiptext = clone.GetComponent<TMP_Text>();
+        DropItemTooltiptext.text = itemData.Name;
     }
 }

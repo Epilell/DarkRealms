@@ -343,6 +343,7 @@ namespace Rito.InventorySystem
                 // Enter
                 if (curSlot != null)
                 {
+                    Debug.Log(curSlot.Index);
                     OnCurrentEnter();
                 }
             }
@@ -523,17 +524,6 @@ namespace Rito.InventorySystem
                 UpdateTooltipUI(endDragSlot);
                 return;
             }
-            /*
-            ItemSlotUI otherInvenSlotUI = CanvasRaycastAndGetComponent<ItemSlotUI>();
-            if (otherInvenSlotUI != null)
-            {
-                //다른인벤토리에 추가하고 this 인벤토리에서 삭제
-                InventoryUI otherInven = otherInvenSlotUI.transform.parent.GetComponent<InventoryUI>();
-                Debug.Log("옮기기 성공?");
-                otherInven._Inventory.Add(_inventory.GetItemData(_beginDragSlot.Index), _inventory.GetCurrentAmount(_beginDragSlot.Index));
-                TryRemoveItem_P(_beginDragSlot.Index);
-                Debug.Log("옮기기 성공!");
-            }*/
             // 버리기(커서가 UI 레이캐스트 타겟 위에 있지 않은 경우)
             if (!IsOverUI())
             {

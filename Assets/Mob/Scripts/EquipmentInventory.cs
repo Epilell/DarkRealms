@@ -17,14 +17,12 @@ public class EquipmentInventory : MonoBehaviour
     public Rito.InventorySystem.Item[] EqItems { get => _eqitems; }
 
 
-    private List<RaycastResult> _rrList;
-    private GraphicRaycaster _gr;
-    private PointerEventData _ped;
-
-
     private ItemSlotUI[] slots;
     private Transform slotHolder;
     private GameManager gm;
+
+    //유니티
+    #region .
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -34,35 +32,7 @@ public class EquipmentInventory : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (GameObject.Find("InventoryB") != null)
-        {
-            _eqitems = new Rito.InventorySystem.Item[5];
-            slotHolder = GameObject.Find("InventoryB").transform;
-            slots = slotHolder.GetComponentsInChildren<ItemSlotUI>();
 
-            if (slots != null)
-            {
-                for (int i = 0; i < slots.Length; i++)
-                {
-                    slots[i].SetSlotIndex(i);
-                    Updateslot(i);
-                }
-            }
-
-            gm = GetComponentInParent<GameManager>();
-            gm.LoadEq(this);
-
-            if (slots != null)
-            {
-                for (int i = 0; i < slots.Length; i++)
-                {
-                    Updateslot(i);
-                }
-            }
-        }
-    }
     private void Awake()
     {
         _eqitems = new Rito.InventorySystem.Item[5];//슬롯초기화
@@ -74,8 +44,6 @@ public class EquipmentInventory : MonoBehaviour
             return;  // 종료
         }
         instance = this;  // 인스턴스가 존재하지 않으면 현재 인스턴스를 할당
-
-        GraphicInit();
     }
     private void OnDestroy()
     {
@@ -83,26 +51,24 @@ public class EquipmentInventory : MonoBehaviour
 
         //gm.SaveEq(this);
     }
+
+
     private void Start() // 장비 슬롯 초기화
     {
         SlotInit();
         StartCoroutine("SaveEveryMinute", 5f);
     }
-    private void Update()
+    //유니티 끝.
+    #endregion
+    //초기화
+    #region .
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        _ped.position = Input.mousePosition;
-        OnPointerDown();
+        SlotInit();
     }
 
-    private void GraphicInit()//그래픽 초기화
-    {
-        TryGetComponent(out _gr);
-        if (_gr == null)
-            _gr = gameObject.AddComponent<GraphicRaycaster>();
-        // Graphic Raycaster
-        _ped = new PointerEventData(EventSystem.current); // 이 줄을 추가하여 _ped를 초기화합니다.
-        _rrList = new List<RaycastResult>(10);
-    }
+
+
     private void SlotInit()//슬롯초기화
     {
         if (GameObject.Find("InventoryB").transform != null)//슬롯홀더 찾기
@@ -121,31 +87,22 @@ public class EquipmentInventory : MonoBehaviour
         }
 
     }
+    //초기화 끝.
+    #endregion
+    //저장
+    #region .
 
-    private T RaycastAndGetFirstComponent<T>() where T : Component
+    private IEnumerator SaveEveryMinute(float minute)
     {
-        _rrList.Clear();
-
-        _gr.Raycast(_ped, _rrList);
-
-        if (_rrList.Count == 0)
-            return null;
-
-        return _rrList[0].gameObject.GetComponent<T>();
+        gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        gm.SaveEq(this);
+        yield return new WaitForSeconds(minute);
+        StartCoroutine("SaveEveryMinute", minute);
     }
-    private void OnPointerDown()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            ItemSlotUI slot = RaycastAndGetFirstComponent<ItemSlotUI>();
-            if (slot != null)
-            {
-                _inventory.Add(UnEquip(slot.Index));
-
-            }
-        }
-
-    }
+    //저장 끝.
+    #endregion
+    //데이타 관련
+    #region .
     /// <summary>
     /// 장착해제
     /// </summary>
@@ -158,13 +115,7 @@ public class EquipmentInventory : MonoBehaviour
         slots[index].RemoveItem();
         return itemData;
     }
-    private IEnumerator SaveEveryMinute(float minute)
-    {
-        gm = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-        gm.SaveEq(this);
-        yield return new WaitForSeconds(minute);
-        StartCoroutine("SaveEveryMinute", minute);
-    }
+
     /// <summary>
     /// 장비하기. 아이템 데이터를 받고 장비시키며 이미 장비한 아이템이 있으면 그 데이터 돌려주고 없으면 null반환
     /// </summary>
@@ -175,7 +126,7 @@ public class EquipmentInventory : MonoBehaviour
         if (itemData is EquipmentItemData eqData)
         {
             int index = FindSlot(eqData);
-            if (index == 5)
+            if (index == 5 )
             {
                 return itemData;
             }
@@ -185,7 +136,7 @@ public class EquipmentInventory : MonoBehaviour
                 {
                     _eqitems[index] = itemData.CreateItem();
                     Updateslot(index);
-                    Debug.Log(_eqitems[index].Data.Name);
+                    Debug.Log(_eqitems[index].Data.Name + "EqInven에 추가됨");
                     //아이템 장비 효과
                     ItemEffect(_eqitems[index].Data as EquipmentItemData);
                     return null;
@@ -212,25 +163,25 @@ public class EquipmentInventory : MonoBehaviour
     {
         if (eqdata.itemType == "helmet")
         {
-            return 0;
+            return 0 ;
         }
         else if (eqdata.itemType == "leg")
         {
-            return 1;
+            return 1 ;
         }
         else if (eqdata.itemType == "weapon")
         {
-            return 2;
+            return 2 ;
         }
         else if (eqdata.itemType == "armor")
         {
-            return 3;
+            return 3 ;
         }
         else if (eqdata.itemType == "shoes")
         {
-            return 4;
+            return 4 ;
         }
-        else return 5;
+        else return 5 ;
     }
 
     private void Updateslot(int index)
@@ -299,15 +250,10 @@ public class EquipmentInventory : MonoBehaviour
                     break;
             }
         }
-        else if (eqdata is WeaponItemData wdata)
-        {
-            //playerData.Damage = wdata.Damage;
-            //playerData.Rpm = wdata.Rpm;
-            //playerData.PelletNum = wdata.PelletNum
-        }
         else
         {
             Debug.Log("장비아이템이 아님");
         }
     }
+    #endregion
 }
