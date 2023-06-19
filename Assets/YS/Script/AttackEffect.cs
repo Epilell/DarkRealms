@@ -1,16 +1,14 @@
 using Rito.InventorySystem;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackEffect : MonoBehaviour
 {
-    public WeaponItemData weaponItemData;
+    private WeaponItemData weaponItemData;
 
-    public void IncreaseDamage(float value)
-    {
-        StartCoroutine(DamageCoroutine(value));
-    }
+    private void Start() { weaponItemData = weaponItemData = new WeaponItemData(); }
+
+    public void IncreaseDamage(float value) { StartCoroutine(DamageCoroutine(value)); }
 
     private IEnumerator DamageCoroutine(float dutation)
     {
@@ -23,6 +21,6 @@ public class AttackEffect : MonoBehaviour
         yield return new WaitForSeconds(dutation);
 
         // set
-        //weaponItemData._damage = initialDamage; // 원래대로 복구
+        //weaponItemData._damage = (int)initialDamage; // 원래대로 복구
     }
 }

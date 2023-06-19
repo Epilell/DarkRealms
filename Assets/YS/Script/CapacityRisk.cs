@@ -20,12 +20,14 @@ public class CapacityRisk : MonoBehaviour
 
         if (magneticField != null && capacity >= 1) // 용량만큼 자기장 축소 빨라짐
         {
-            float decreaseSpeed = (float)capacity / 100;
+            float decreaseSpeed = (float)capacity / 45;
 
             if (decreaseSpeed <= 1.0) { magneticField.decreaseSpeed = 1.0f; }
             else if (decreaseSpeed <= 5.0) { magneticField.decreaseSpeed = decreaseSpeed; }
             else { magneticField.decreaseSpeed = 5.0f; }
         }
+
+
         // 용량만큼 이동속도 감소 추가 예정
         // 몹 스폰 증가??
     }
