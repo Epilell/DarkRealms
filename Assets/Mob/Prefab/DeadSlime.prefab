@@ -113,14 +113,14 @@ MonoBehaviour:
   IsBoss: 0
   itemDropList:
   - item: {fileID: 11400000, guid: aa7053d47d0f84c48b65f3a37c9f37f9, type: 2}
-    dropChance: 0.05
-  - item: {fileID: 11400000, guid: 13097410d69cae04b884cf4999bbe7a6, type: 2}
     dropChance: 0.01
-  - item: {fileID: 11400000, guid: b2264bff89fc02141a8d66c1bcae27a4, type: 2}
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 0.01
-  - item: {fileID: 11400000, guid: 686b3856d92de624da5977eaaba6dd2c, type: 2}
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 0.01
-  - item: {fileID: 11400000, guid: 1c3d6d8d6d3d823498c3aaf75e6d7b3a, type: 2}
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 0.01
   - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 1

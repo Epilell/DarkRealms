@@ -114,16 +114,16 @@ MonoBehaviour:
   IsBoss: 0
   itemDropList:
   - item: {fileID: 11400000, guid: 30d88476fc269b449826ed651298156f, type: 2}
-    dropChance: 0.1
-  - item: {fileID: 11400000, guid: c68ff887ae3406142a35fe7f6dbf4f70, type: 2}
     dropChance: 0.01
-  - item: {fileID: 11400000, guid: 96e35357a015d8f4fa19a2e141249f25, type: 2}
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 0.01
-  - item: {fileID: 11400000, guid: 70195855eafa8794195faaa8a700babf, type: 2}
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 0.01
-  - item: {fileID: 11400000, guid: 9d2a08a2ff077cf4cb8ef81608d4ce6f, type: 2}
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 0.001
-  - item: {fileID: 11400000, guid: ffc587874619e86439b7cc2cff21ffa8, type: 2}
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 0.01
   - item: {fileID: 11400000, guid: 4644311dc496b06429200ca793fdf5c3, type: 2}
     dropChance: 0.2

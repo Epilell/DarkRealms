@@ -63,7 +63,10 @@ public class EquipmentInventoryUI : MonoBehaviour
             ItemSlotUI slot = RaycastAndGetFirstComponent<ItemSlotUI>();
             if (slot != null)
             {
-                _inventory.Add(_equipmentInventory.UnEquip(slot.Index));
+                if (_equipmentInventory.EqItems[slot.Index] != null)
+                {
+                    _inventory.Add(_equipmentInventory.UnEquip(slot.Index));
+                }
             }
         }
 
@@ -114,6 +117,7 @@ public class EquipmentInventoryUI : MonoBehaviour
         }
         void OnPrevExit()
         {
+            DeleteTooltips();
             Tooltip.SetActive(false);
             prevSlot.Highlight(false);
         }
@@ -133,6 +137,12 @@ public class EquipmentInventoryUI : MonoBehaviour
             _itemStat.text = "방어력 = "+ adata.Defence.ToString();
             //_itemStat.text += adata.Defence.ToString();
         }
+    }
+    private void DeleteTooltips()
+    {
+        _itemname.text = "아이템 없음";
+        _itemTooltip.text = "";
+        _itemStat.text = "";
     }
     private void GraphicInit()
     {

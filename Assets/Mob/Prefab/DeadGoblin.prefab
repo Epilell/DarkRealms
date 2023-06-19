@@ -121,13 +121,13 @@ MonoBehaviour:
     dropChance: 0.2
   - item: {fileID: 11400000, guid: efa50d32e112059499245d9620067a71, type: 2}
     dropChance: 0.1
-  - item: {fileID: 11400000, guid: bb5d5f5be134712448c132c1c2d9ee97, type: 2}
-    dropChance: 0.1
-  - item: {fileID: 11400000, guid: 5eca9d9d83d721b4eaafd9e061d231f3, type: 2}
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 0.01
-  - item: {fileID: 11400000, guid: 8a63d730045fe8a41a808e4242fc6e11, type: 2}
+  - item: {fileID: 11400000, guid: 30d88476fc269b449826ed651298156f, type: 2}
     dropChance: 0.01
-  - item: {fileID: 11400000, guid: fd4ebacb556d6ba44b8809f12a6eb701, type: 2}
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 0.01
-  - item: {fileID: 11400000, guid: ffd3444bd30d0b9458331071aafbefbe, type: 2}
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    dropChance: 0.01
+  - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 0.001
