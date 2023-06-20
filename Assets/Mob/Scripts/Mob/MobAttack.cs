@@ -11,6 +11,17 @@ public class MobAttack : MonoBehaviour
     private bool IsAttack = false;
     private Transform PlayerDirection;
     public bool isSlime=false;
+
+    public float AtkDelay = 0.5f;
+
+    public Transform pos;
+    public Vector2 boxSize = new Vector2(1,1);
+    private void OnDrawGizmos()
+    {
+        pos = this.transform.GetChild(0);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(pos.position, boxSize);
+    }
     public bool Attacking(MobStat mobStat, Transform P_direction)//공격
     {
         PlayerDirection = P_direction;
@@ -19,13 +30,16 @@ public class MobAttack : MonoBehaviour
         {
             if (isSlime)
             {
-                StartCoroutine("changeRadius");
+                //StartCoroutine("changeRadius");
             }
             //attack1 한번 attack2 한번 번갈아가면서 공격
             if (attackChanger)
             {
                 IsAttack = true;
                 animator.SetTrigger("Attack2");
+                //
+                StartCoroutine(MeleeAttack(mobStat));
+                //
                 attackChanger = false;
                 return IsAttack;
             }
@@ -33,6 +47,9 @@ public class MobAttack : MonoBehaviour
             {
                 IsAttack = true;
                 animator.SetTrigger("Attack1");
+                //
+                StartCoroutine(MeleeAttack(mobStat));
+                //
                 attackChanger = true;
                 return IsAttack;
             }
@@ -73,6 +90,19 @@ public class MobAttack : MonoBehaviour
         {
             GameObject MobBullet = Instantiate(MobStat.bullet, MobStat.firePoint.transform.position, Quaternion.identity);
             MobBullet.GetComponent<MobRangeBullet>().SetStats(MobStat.bulletSpeed, MobStat.mobDamage, null, i);
+        }
+    }
+    private IEnumerator MeleeAttack(MobStat mobStat)
+    {
+        yield return new WaitForSeconds(0.5f);
+        Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
+        foreach (Collider2D collider in collider2Ds)
+        {
+            Debug.Log(collider.tag);
+            if (collider.tag == "Player")
+            {
+                collider.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
+            }
         }
     }
     private IEnumerator changeRadius()

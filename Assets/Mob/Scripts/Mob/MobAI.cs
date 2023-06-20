@@ -16,77 +16,87 @@ public class MobAI : MonoBehaviour
     private float mobAttackRange = 2;
     private float moveSpeed = 1;
 
-    private bool isPlayerInRange = false;
     public int idleSpeed = 1;
     private int xSpeed = 0;
     private int ySpeed = 0;
-    bool flipFlag = false;
     private bool IsAttack = false;
     private string mobProperty;
     private float mobAttackSpeed;
     private float currentCoolDown = 0f;
 
-    public bool IsSlime = false;
+    private Vector3 vec;
+    private float vecX;
     float distanceToPlayer;
-
-    private CircleCollider2D cc2;
 
     void Awake()
     {
+        Init();
+        InitStat();
+        InitRigid();
+    }
+    private void Start()
+    {
+        // player를 찾아서 설정합니다.
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
+    }
+
+    private void FixedUpdate()
+    {
+        vec = this.transform.GetChild(0).localPosition;
+        vecX = vec.x;
+        if (currentCoolDown > 0.0f)//공격속도 설정
+        {
+            currentCoolDown -= Time.deltaTime;
+        }
+
+        if (!mobHP.IsHit)
+        {
+            // 현재 객체와 플레이어 사이의 거리 계산
+            distanceToPlayer = Vector2.Distance(transform.position, player.position);
+            if (distanceToPlayer > detectionRange)//플레이어가 감지범위 밖에 있으면 idle
+            {
+                //idle
+            }
+            else if (distanceToPlayer <= mobAttackRange)//공격범위 안에있으면 공격
+            {
+                //공격
+                Attack();
+            }
+            else//감지범위 안에있으면서 공격범위 밖에있으면 추적
+            {
+                ChasePlayer();
+            }
+
+        }
+    }
+    private void Init()
+    {
         mobAttack = GetComponent<MobAttack>();
-        rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        mobStat = GetComponent<MobStat>();
         mobHP = GetComponent<MobHP>();
+    }
+    private void InitStat()
+    {
+        mobStat = GetComponent<MobStat>();
         //몹의 스텟을 가져옴
         mobProperty = mobStat.MobProperty();
         detectionRange = mobStat.DetectingRange();
         mobAttackRange = mobStat.MobAttackRange();
         moveSpeed = mobStat.MoveSpeed();
         mobAttackSpeed = mobStat.MobAttackSpeed();
-        this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-        this.GetComponent<Rigidbody2D>().gravityScale = 0;
     }
-    private void Start()
+    private void InitRigid()
     {
-        // player를 찾아서 설정합니다.
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        StartCoroutine(MobIdleMove());
+        rigid = GetComponent<Rigidbody2D>();
+        rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+        rigid.gravityScale = 0;
 
     }
 
-    private void FixedUpdate()
-    {
-        // 현재 객체와 플레이어 사이의 거리 계산
-        distanceToPlayer = Vector2.Distance(transform.position, player.position);
-
-        if (distanceToPlayer < detectionRange)
-        {
-            isPlayerInRange = true; // 감지 범위 내에 있다면 isPlayerInRange 변수를 true로 설정
-        }
-        else
-        {
-            isPlayerInRange = false; // 감지 범위 밖에 있다면 isPlayerInRange 변수를 false로 설정
-        }
-        AI();
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)//근접공격
-    {
-        //근접몹이면
-        if (mobProperty == "melee")
-        {
-            if (IsAttack == true && collision.gameObject.CompareTag("Player"))
-            {
-                //플레이어의 HP를 몬스터의 공격력만큼 깎음
-                collision.gameObject.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
-            }
-        }
-    }
     private IEnumerator MobIdleMove()//적 감지 X시 움직임
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         while (distanceToPlayer > detectionRange)
         {
             Think();
@@ -100,8 +110,9 @@ public class MobAI : MonoBehaviour
                 spriteRenderer.flipX = true;
             }
             rigid.velocity = new Vector2(xSpeed, ySpeed);
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(10f);
         }
+        yield return new WaitForSeconds(0.3f);
     }
     private void Think()
     {
@@ -115,93 +126,43 @@ public class MobAI : MonoBehaviour
         animator.SetInteger("WalkSpeed", speed);
     }
 
-    private void AI()
+    private IEnumerator PerformAttack()
     {
-        if (mobHP.IsDie == true || mobHP.IsHit == true)
+        IsAttack = true;
+        mobAttack.Attacking(mobStat, player);//공격하기
+        yield return new WaitForSeconds(1f);
+        IsAttack = false;
+    }
+    private void Attack()
+    {
+        if (!IsAttack && currentCoolDown <= 0f)
         {
-            return; //사망시 or Hit시 실행X
+            currentCoolDown = mobAttackSpeed;
+            StartCoroutine(PerformAttack());
         }
-        // player가 일정 거리 안에 있고 
-        if (isPlayerInRange)
-        {
-            if (distanceToPlayer < mobAttackRange)//공격범위안에 있으면
-            {
-                if (currentCoolDown > 0.0f)//공격속도 설정
-                {
-                    currentCoolDown -= Time.deltaTime;
-                }
-                else
-                {
-                    currentCoolDown = mobAttackSpeed;
-                    mobAttack.Attacking(mobStat, player);//공격하기
-                }
-            }
-            else
-            {
-                animator.SetInteger("WalkSpeed", 1);
-                IsAttack = false;
-                // 플레이어를 따라가기 위해 이동
-                transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+    }
+    private void ChasePlayer()
+    {
+        animator.SetInteger("WalkSpeed", 1);
+        IsAttack = false;
+        // 플레이어를 따라가기 위해 이동
+        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
 
-                if (flipFlag == false && player.position.x < rigid.position.x)
-                {
-                    flipFlag = true;
-                    spriteRenderer.flipX = true;
-                }
-                else if (flipFlag == true && player.position.x > rigid.position.x)
-                {
-                    flipFlag = false;
-                    spriteRenderer.flipX = false;
-                }
+        if (player.position.x < rigid.position.x)
+        {
+            spriteRenderer.flipX = true;
+            if (vecX > 0)
+            {
+                this.transform.GetChild(0).localPosition = new Vector3(-vecX, vec.y, vec.z);
             }
         }
         else
         {
-            IsAttack = false;
-        }
-    }
-    /*
-    private void Attacking()//공격
-    {
-        if (mobProperty == "melee")//근접몹 공격
-        {
-            //attack1 한번 attack2 한번 번갈아가면서 공격
-            if (attackChanger)
+            spriteRenderer.flipX = false;
+            if (vecX < 0)
             {
-                IsAttack = true;
-                animator.SetTrigger("Attack2");
-                attackChanger = false;
-            }
-            else
-            {
-                IsAttack = true;
-                animator.SetTrigger("Attack1");
-                attackChanger = true;
-            }
-        }
-        else if (mobProperty == "range")//원거리몹 공격
-        {
-            if (attackChanger)
-            {
-                animator.SetTrigger("Attack2");
-                //발사하는코드
-                attackChanger = false;
-            }
-            else
-            {
-                animator.SetTrigger("Attack1");
-                //발사하는코드
-                attackChanger = true;
+                this.transform.GetChild(0).localPosition = new Vector3(-vecX, vec.y, vec.z);
             }
         }
     }
-    private void RangeAttack1()
-    {
-        GameObject bullet = Instantiate(mobStat.bullet, firePoint.position, Quaternion.identity);
-    }
-    private void RangeAttack2()
-    {
-
-    }
-    */
 }
