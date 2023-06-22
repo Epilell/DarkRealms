@@ -158,6 +158,23 @@ public class WeaponManager : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            if (SkillManager.Instance.siegemodedata.IsActive)
+            {
+                //Debug.Log("시즈모드 ON");
+                // 1-1. 현재 무기가 없거나 현재 무기가 dual pistol이 아니면
+                if (curWeaponName == null || curWeaponName != "dual pistol")
+                {
+                    //Debug.Log("무기 바꿈");
+                    ChangeSpecialWeapon("dual pistol");
+                }
+            }
+            else
+            {
+                RemoveWeapon();
+            }
+        }
     }
     #endregion
 }

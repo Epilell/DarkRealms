@@ -59,13 +59,11 @@ public abstract class WeaponBase : MonoBehaviour
         if (dx < 0f)
         {
             this.transform.localScale = new Vector3(-1, -1, 1);
-            Player.instance.transform.localScale = new Vector3(-1, 1, 1);
         }
         //2.마우스가 우측에 있을때
         else
         {
             this.transform.localScale = new Vector3(1, 1, 1);
-            Player.instance.transform.localScale = new Vector3(1, 1, 1);
         }
     }
     #endregion

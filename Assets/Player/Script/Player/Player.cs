@@ -144,6 +144,34 @@ public class Player : MonoBehaviour
     //애니메이션
     #region
 
+    private void CalcVec()
+    {
+        Vector3 mousePos, playerPos;
+        //마우스 위치와 플레이어 위치 입력
+        mousePos = Input.mousePosition;
+        playerPos = this.transform.position;
+
+        //마우스의 z값을 카메라 앞으로 위치
+        mousePos.z = playerPos.z - Camera.main.transform.position.z;
+
+        //실제 마우스 위치 입력
+        Vector3 target = Camera.main.ScreenToWorldPoint(mousePos);
+
+        float dx = target.x - playerPos.x;
+
+        //마우스위치에 따라 좌우 반전
+        //1. 마우스가 좌측에 있을때
+        if (dx < 0f)
+        {
+            this.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        //2.마우스가 우측에 있을때
+        else
+        {
+            this.transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
     //캐릭터가 움직이는지
     private void IsMove()
     {
@@ -199,6 +227,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         //<애니메이션 관련>
+        CalcVec();
         IsMove();
 
         //<이동 관련>

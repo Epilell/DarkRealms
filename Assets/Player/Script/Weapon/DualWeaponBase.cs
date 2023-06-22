@@ -62,13 +62,11 @@ public abstract class DualWeaponBase : MonoBehaviour
         {
             weapon1.transform.localScale = new Vector3(-1, -1, 1);
             weapon2.transform.localScale = new Vector3(-1, -1, 1);
-            Player.instance.transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         {
             weapon1.transform.localScale = new Vector3(1, 1, 1);
             weapon2.transform.localScale = new Vector3(1, 1, 1);
-            Player.instance.transform.localScale = new Vector3(1, 1, 1);
         }
     }
     #endregion

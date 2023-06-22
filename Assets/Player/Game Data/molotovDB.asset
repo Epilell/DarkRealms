@@ -22,4 +22,4 @@ MonoBehaviour:
   tickDamage: 5
   maxTime: 5
   radius: 2
-  throwDistance: 3
+  throwDistance: 5

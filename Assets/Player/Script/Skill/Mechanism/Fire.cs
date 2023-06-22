@@ -41,10 +41,6 @@ public class Fire : MonoBehaviour
 
     //unity event
     #region
-    private void Awake()
-    {
-
-    }
 
     private void Start()
     {
