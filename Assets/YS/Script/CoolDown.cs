@@ -55,8 +55,8 @@ public class CoolDown : MonoBehaviour
         // 각 스킬 사용 UI: 스킬 사용이 가능할 때 스킬 키 누르면 작동함
         if (FindObjectOfType<SkillManager>().molotovdata.CanUse == true) if (Input.GetKeyDown(KeyCode.Q)) { UseSkill(ref isCooldownQ, ref currentTimeQ, cooldownImageQ, cooldownTimeQ, iconQ, offSpriteQ); }
         if (FindObjectOfType<SkillManager>().siegemodedata.CanUse == true && FindObjectOfType<SkillManager>().siegemodedata.IsActive == true) if (Input.GetKeyDown(KeyCode.E)) { UseSkill(ref isCooldownE, ref currentTimeE, cooldownImageE, cooldownTimeE, iconE, offSpriteE); }
-        if (FindObjectOfType<SkillManager>().dodgedata.CanUse == true) if (Input.GetKeyDown(KeyCode.Space)) { UseSkill(ref isCooldownSpace, ref currentTimeSpace, cooldownImageSpace, cooldownTimeSpace, iconSpace, offSpriteSpace); }
-        if (FindObjectOfType<SkillManager>().evdshotdata.CanUse == true) if (Input.GetKeyDown(KeyCode.Mouse1)) { UseSkill(ref isCooldownMouseRight, ref currentTimeMouseRight, cooldownImageMouseRight, cooldownTimeMouseRight, iconMouseRight, offSpriteMouseRight); }
+        if (FindObjectOfType<SkillManager>().dodgedata.CanUse == true && !FindObjectOfType<SkillManager>().siegemodedata.IsActive) if (Input.GetKeyDown(KeyCode.Space)) { UseSkill(ref isCooldownSpace, ref currentTimeSpace, cooldownImageSpace, cooldownTimeSpace, iconSpace, offSpriteSpace); }
+        if (FindObjectOfType<SkillManager>().evdshotdata.CanUse == true && !FindObjectOfType<SkillManager>().siegemodedata.IsActive) if (Input.GetKeyDown(KeyCode.Mouse1)) { UseSkill(ref isCooldownMouseRight, ref currentTimeMouseRight, cooldownImageMouseRight, cooldownTimeMouseRight, iconMouseRight, offSpriteMouseRight); }
 
         // 각 쿨다운 업데이트
         UpdateCooldown(ref isCooldownQ, ref currentTimeQ, cooldownImageQ, cooldownTimeQ, iconQ, onSpriteQ);

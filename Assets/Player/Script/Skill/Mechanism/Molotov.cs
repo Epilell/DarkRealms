@@ -22,6 +22,7 @@ public class Molotov : MonoBehaviour
     //È­¿°º´ ÅõÃ´ ÈÄ È­¿° »ý¼º
     private void MakeFire()
     {
+        FindObjectOfType<SoundManager>().PlaySound("Molotov");
         GameObject molotov = Instantiate(data.firePrefab, transform.position, transform.rotation);
         molotov.GetComponent<Fire>().SetStats(data.Damage, data.TickDamage, data.MaxTime, data.Radius);
         Destroy(gameObject);

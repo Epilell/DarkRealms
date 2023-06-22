@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4661530524348987864
 Transform:
   m_ObjectHideFlags: 0
@@ -582,8 +582,6 @@ MonoBehaviour:
   MaxHP: 0
   CurrentHp: 0
   ArmorReduction: 0
-  dx: 0
-  dy: 0
 --- !u!114 &7373820904779604710
 MonoBehaviour:
   m_ObjectHideFlags: 0

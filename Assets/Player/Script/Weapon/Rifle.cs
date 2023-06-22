@@ -13,6 +13,7 @@ public class Rifle : WeaponBase
     public override void Attack()
     {
         float damage = data.Damage;
+        if (FindObjectOfType<AttackEffect>().powerUp) damage = data.Damage * 1.5f;
 
         //ÃÑ¾Ë »ý¼º
         GameObject Bullet;

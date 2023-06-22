@@ -1,26 +1,18 @@
-using Rito.InventorySystem;
 using System.Collections;
 using UnityEngine;
 
 public class AttackEffect : MonoBehaviour
 {
-    private WeaponItemData weaponItemData;
-
-    private void Start() { weaponItemData = weaponItemData = new WeaponItemData(); }
+    public bool powerUp; // 공증
 
     public void IncreaseDamage(float value) { StartCoroutine(DamageCoroutine(value)); }
 
-    private IEnumerator DamageCoroutine(float dutation)
+    private IEnumerator DamageCoroutine(float duration)
     {
-        // get
-        float initialDamage = weaponItemData.Damage;
-
-        //set
-        //weaponItemData._damage *= 2; // 공증
-
-        yield return new WaitForSeconds(dutation);
-
-        // set
-        //weaponItemData._damage = (int)initialDamage; // 원래대로 복구
+        powerUp = true; // 적용
+        
+        yield return new WaitForSeconds(duration);
+        
+        powerUp = false; // 해제
     }
 }

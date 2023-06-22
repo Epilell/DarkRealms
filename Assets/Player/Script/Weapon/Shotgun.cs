@@ -7,6 +7,7 @@ public class Shotgun : WeaponBase
     public override void Attack()
     {
         float damage = data.Damage;
+        if (FindObjectOfType<AttackEffect>().powerUp) damage = data.Damage * 1.5f;
         int pelletNum = data.PelletNum;
 
         GameObject[] Bullet = new GameObject[pelletNum];

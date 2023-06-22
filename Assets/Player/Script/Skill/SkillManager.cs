@@ -232,6 +232,7 @@ public class SkillManager : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space) && (mx != 0 || my != 0))
             {
                 StartCoroutine(Dodge());
+                FindObjectOfType<SoundManager>().PlaySound("Dash");
             }
         }
 
@@ -259,6 +260,7 @@ public class SkillManager : MonoBehaviour
             if(Input.GetMouseButtonDown(1))
             {
                 StartCoroutine(Evdshot());
+                FindObjectOfType<SoundManager>().PlaySound("EvadeShot");
             }
         }
         
