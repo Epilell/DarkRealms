@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     //플레이어블 캐릭터 기본 데이터
     [Header("Player Data")]
     public P_Data data;
+    public static Player instance;
 
     #endregion
 
@@ -101,17 +102,11 @@ public class Player : MonoBehaviour
         //좌우 움직임 속도 대입
         if (Input.GetKey(KeyCode.D) && P_XSpeed >= 0)
         {
-            if(dx >= 0)
-            { P_XSpeed = (Speed) * (1 - SpeedReduction); }
-            else
-            { P_XSpeed = (float)(Speed * 0.9) * (1 - SpeedReduction); }
+            P_XSpeed = (Speed) * (1 - SpeedReduction);
         }
         else if (Input.GetKey(KeyCode.A) && P_XSpeed <= 0)
         {
-            if(dx < 0)
-            { P_XSpeed = -Speed * (1 - SpeedReduction); }
-            else
-            { P_XSpeed = -(float)(Speed * 0.9) * (1 - SpeedReduction); }
+            P_XSpeed = -Speed * (1 - SpeedReduction);
         }
         else
         { P_XSpeed = 0; }
@@ -119,17 +114,11 @@ public class Player : MonoBehaviour
         //상하 움직임 속도 대입
         if (Input.GetKey(KeyCode.W) && P_YSpeed >= 0)
         {
-            if(dy >= 0)
-            { P_YSpeed = Speed * (1 - SpeedReduction); }
-            else
-            { P_YSpeed = (float)(Speed * 0.9) * (1 - SpeedReduction); }
+            P_YSpeed = Speed * (1 - SpeedReduction);
         }
         else if (Input.GetKey(KeyCode.S) && P_YSpeed <= 0)
         {
-            if(dy < 0)
-            { P_YSpeed = -Speed * (1 - SpeedReduction); }
-            else
-            { P_YSpeed = -(float)(Speed * 0.9) * (1 - SpeedReduction); }
+            P_YSpeed = -Speed * (1 - SpeedReduction);
         }
         else
         { P_YSpeed = 0; }
@@ -154,38 +143,6 @@ public class Player : MonoBehaviour
 
     //애니메이션
     #region
-    //마우스 및 플레이어 위치 변수
-    private Vector3 Mouse_Position, P_Position;
-    [HideInInspector]
-    public float dx, dy;
-
-    //방향벡터 계산 함수
-    private void CalcVec()
-    {
-        //마우스 위치와 플레이어 위치 입력
-        Mouse_Position = Input.mousePosition;
-        P_Position = this.transform.position;
-
-        //마우스의 z값을 카메라 앞으로 위치
-        Mouse_Position.z = P_Position.z - Camera.main.transform.position.z;
-
-        //실제 마우스 위치 입력
-        Vector3 target = Camera.main.ScreenToWorldPoint(Mouse_Position);
-
-        //마우스 방향 계산
-        dx = target.x - P_Position.x;
-        dy = target.y - P_Position.y;
-
-        //마우스위치에 따라 좌우 반전
-        if (dx < 0f)
-        { 
-            this.transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else
-        { 
-            this.transform.localScale = new Vector3(1, 1, 1);
-        }
-    }
 
     //캐릭터가 움직이는지
     private void IsMove()
@@ -212,6 +169,9 @@ public class Player : MonoBehaviour
     #region
     private void Awake()
     {
+        //셀프 지정
+        instance = this;
+
         //애니메이터 지정
         ani = GetComponent<Animator>();
         P = GetComponent<Player>();
@@ -239,7 +199,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         //<애니메이션 관련>
-        CalcVec();
         IsMove();
 
         //<이동 관련>

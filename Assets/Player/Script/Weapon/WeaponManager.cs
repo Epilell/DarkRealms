@@ -80,6 +80,7 @@ public class WeaponManager : MonoBehaviour
 
         curWeaponName = null;
     }
+
     #endregion
 
     //Check Method

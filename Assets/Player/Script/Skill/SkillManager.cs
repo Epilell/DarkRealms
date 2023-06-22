@@ -18,7 +18,6 @@ public class SkillManager : MonoBehaviour
     //Private Field
     #region
 
-    private Player player;
     private Animator ani;
     private Rigidbody2D rb;
 
@@ -128,15 +127,15 @@ public class SkillManager : MonoBehaviour
     {
         if (siegemodedata.IsActive)
         {
-            player.ChangeArmorReduction(0f);
-            player.ChangeSpeedReduction(0f);
+            Player.instance.ChangeArmorReduction(0f);
+            Player.instance.ChangeSpeedReduction(0f);
             siegemodedata.IsActive = false;
             siegemodedata.CanUse = false;
         }
         else
         {
-            player.ChangeArmorReduction(siegemodedata.Reductionrate);
-            player.ChangeSpeedReduction(siegemodedata.SpeedReduction);
+            Player.instance.ChangeArmorReduction(siegemodedata.Reductionrate);
+            Player.instance.ChangeSpeedReduction(siegemodedata.SpeedReduction);
             siegemodedata.IsActive = true;
             siegemodedata.CurTime = 0f;
         }
@@ -177,14 +176,14 @@ public class SkillManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         //이펙트, 데미지
-        if (player.dx >= 0)
+        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x >= Player.instance.transform.position.x)
         {
             Instantiate(evdshotdata.effect, this.transform.position + new Vector3(1, 0, 0), this.transform.rotation);
             Collider2D[] col = Physics2D.OverlapCircleAll(this.transform.position + new Vector3(1, 0, 0), 1);
             ApplyEvdshotDamage(col, evdshotdata.Damage);
             rb.AddForce(Vector2.left * 20f, ForceMode2D.Impulse); // 좌측으로
         }
-        else if (player.dx < 0) 
+        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < Player.instance.transform.position.x) 
         {
             Instantiate(evdshotdata.effect, this.transform.position + new Vector3(-1, 0, 0), this.transform.rotation);
             Collider2D[] col = Physics2D.OverlapCircleAll(this.transform.position + new Vector3(-1, 0, 0), 1);
@@ -204,7 +203,6 @@ public class SkillManager : MonoBehaviour
     #region
     private void Awake()
     {
-        player = this.GetComponent<Player>();
         ani = this.GetComponent<Animator>();
         rb = this.GetComponent<Rigidbody2D>();
         Instance = this;

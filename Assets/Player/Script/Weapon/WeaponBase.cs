@@ -12,9 +12,13 @@ public abstract class WeaponBase : MonoBehaviour
     public WeaponItemData data;
 
     public GameObject firePos;
-    public GameObject weapon, weaponImg, bullet;
+    public GameObject weaponImg, bullet;
 
     protected float curTime = 0f, rotateDeg;
+    #endregion
+
+    //Private Field
+    #region
 
     #endregion
 
@@ -36,7 +40,7 @@ public abstract class WeaponBase : MonoBehaviour
         Vector3 mousePos, weaponPos;
         //마우스 위치와 플레이어 위치 입력
         mousePos = Input.mousePosition;
-        weaponPos = this.transform.position;
+        weaponPos = Player.instance.transform.position;
 
         //마우스의 z값을 카메라 앞으로 위치
         mousePos.z = weaponPos.z - Camera.main.transform.position.z;
@@ -44,40 +48,30 @@ public abstract class WeaponBase : MonoBehaviour
         //실제 마우스 위치 입력
         Vector3 target = Camera.main.ScreenToWorldPoint(mousePos);
 
-        //마우스 방향 계산
+        //회전값 계산및 대입
         float dx = target.x - weaponPos.x;
         float dy = target.y - weaponPos.y;
-
         rotateDeg = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
-
-        weapon.transform.rotation = Quaternion.Euler(0f, 0f, rotateDeg);
+        this.transform.rotation = Quaternion.Euler(0f, 0f, rotateDeg);
 
         //마우스위치에 따라 좌우 반전
+        //1. 마우스가 좌측에 있을때
         if (dx < 0f)
         {
-            weapon.transform.localScale = new Vector3(-1, -1, 1);
-            weaponImg.GetComponent<SpriteRenderer>().sortingOrder = -1;
+            this.transform.localScale = new Vector3(-1, -1, 1);
+            Player.instance.transform.localScale = new Vector3(-1, 1, 1);
         }
+        //2.마우스가 우측에 있을때
         else
         {
-            weapon.transform.localScale = new Vector3(1, 1, 1);
-            weaponImg.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            this.transform.localScale = new Vector3(1, 1, 1);
+            Player.instance.transform.localScale = new Vector3(1, 1, 1);
         }
     }
     #endregion
 
     //unity event
     #region
-
-    private void Awake()
-    {
-
-    }
-
-    private void Start()
-    {
-
-    }
 
     // Update is called once per frame
     private void Update()
