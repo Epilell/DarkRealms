@@ -10,7 +10,7 @@ public abstract class DualWeaponBase : MonoBehaviour
 
     public WeaponItemData data;
     public GameObject firePos1, firePos2;
-    public GameObject weapon, weaponImg1, weaponImg2, bullet;
+    public GameObject weapon1, weapon2, weaponImg1, weaponImg2, bullet;
 
     #endregion
 
@@ -40,7 +40,7 @@ public abstract class DualWeaponBase : MonoBehaviour
         Vector3 mousePos, weaponPos;
         //마우스 위치와 플레이어 위치 입력
         mousePos = Input.mousePosition;
-        weaponPos = this.transform.position;
+        weaponPos = Player.instance.transform.position;
 
         //마우스의 z값을 카메라 앞으로 위치
         mousePos.z = weaponPos.z - Camera.main.transform.position.z;
@@ -54,21 +54,21 @@ public abstract class DualWeaponBase : MonoBehaviour
 
         rotateDeg = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
 
-        weapon.transform.rotation = Quaternion.Euler(0f, 0f, rotateDeg);
+        weapon1.transform.rotation = Quaternion.Euler(0f, 0f, rotateDeg);
+        weapon2.transform.rotation = Quaternion.Euler(0f, 0f, rotateDeg);
 
         //마우스위치에 따라 좌우 반전
         if (dx < 0f)
         {
-            
-            weapon.transform.localScale = new Vector3(-1, -1, 1);
-            weaponImg1.GetComponent<SpriteRenderer>().sortingOrder = -1;
-            weaponImg2.GetComponent<SpriteRenderer>().sortingOrder = -1;
+            weapon1.transform.localScale = new Vector3(-1, -1, 1);
+            weapon2.transform.localScale = new Vector3(-1, -1, 1);
+            Player.instance.transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         {
-            weapon.transform.localScale = new Vector3(1, 1, 1);
-            weaponImg1.GetComponent<SpriteRenderer>().sortingOrder = 1;
-            weaponImg2.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            weapon1.transform.localScale = new Vector3(1, 1, 1);
+            weapon2.transform.localScale = new Vector3(1, 1, 1);
+            Player.instance.transform.localScale = new Vector3(1, 1, 1);
         }
     }
     #endregion
