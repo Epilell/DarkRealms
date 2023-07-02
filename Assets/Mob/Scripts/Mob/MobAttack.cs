@@ -17,12 +17,12 @@ public class MobAttack : MonoBehaviour
     public Transform pos;
     private Transform _slimePos;
     public Vector2 boxSize = new Vector2(1,1);
-    private void Awake()
+    private void Start()
     {
         if (this.transform.GetChild(0) != null)
         {
             pos = this.transform.GetChild(0);
-            if (this.transform.GetChild(1) != null&&isSlime)
+            if (isSlime)
             {
                 _slimePos = this.transform.GetChild(1);
             }
