@@ -7,7 +7,6 @@ public class chestItemDrop
 {
     public Rito.InventorySystem.ItemData item; //드롭할 아이템
     public float dropChance; // 드롭 확률 
-
 }
 
 public class ChestTrigger : MonoBehaviour

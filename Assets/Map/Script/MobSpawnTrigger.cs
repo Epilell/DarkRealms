@@ -28,6 +28,7 @@ public class MobSpawnTrigger : MonoBehaviour
                 //Debug.Log("Nope");
                 GameObject mob = Instantiate(Mob, transform.position, transform.rotation);
                 SpawnEnemyHPSlider(mob);
+                //规老版快 涝备阜扁
                 spawn_true = true;
             }
         }

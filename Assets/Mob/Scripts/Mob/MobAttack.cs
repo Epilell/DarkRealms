@@ -15,12 +15,30 @@ public class MobAttack : MonoBehaviour
     public float AtkDelay = 0.5f;
 
     public Transform pos;
+    private Transform _slimePos;
     public Vector2 boxSize = new Vector2(1,1);
-    private void OnDrawGizmos()
+    private void Awake()
+    {
+        if (this.transform.GetChild(0) != null)
+        {
+            pos = this.transform.GetChild(0);
+            if (this.transform.GetChild(1) != null&&isSlime)
+            {
+                _slimePos = this.transform.GetChild(1);
+            }
+        }
+    }
+    protected void OnDrawGizmos()
     {
         pos = this.transform.GetChild(0);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(pos.position, boxSize);
+        if (this.transform.GetChild(1) != null & isSlime)
+        {
+            _slimePos = this.transform.GetChild(1);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(_slimePos.position, new Vector2(1,5));
+        }
     }
     public bool Attacking(MobStat mobStat, Transform P_direction)//АјАн
     {
@@ -92,10 +110,22 @@ public class MobAttack : MonoBehaviour
             MobBullet.GetComponent<MobRangeBullet>().SetStats(MobStat.bulletSpeed, MobStat.mobDamage, null, i);
         }
     }
-    private IEnumerator MeleeAttack(MobStat mobStat)
+    protected IEnumerator MeleeAttack(MobStat mobStat)
     {
         yield return new WaitForSeconds(0.5f);
         Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
+        if (isSlime)
+        {
+            Collider2D[]collider2Ds2 = Physics2D.OverlapBoxAll(_slimePos.position, new Vector2(1,5), 0);
+            foreach (Collider2D collider in collider2Ds2)
+            {
+                Debug.Log(collider.tag);
+                if (collider.tag == "Player")
+                {
+                    collider.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
+                }
+            }
+        }
         foreach (Collider2D collider in collider2Ds)
         {
             Debug.Log(collider.tag);
