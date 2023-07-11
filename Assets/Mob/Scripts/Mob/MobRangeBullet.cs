@@ -7,20 +7,28 @@ public class MobRangeBullet : MonoBehaviour
     private float BulletSpeed;
     private float Damage;
     //private float Distance;
-    Transform PlayerDirection;
+    Vector3 PlayerDirection;
     int BulletNum;
     float DestoryTime = 250f;
 
     //능력치 가져오기
-    public void SetStats(float bulletSpeed, float damage, Transform P_direction, int bulletNum)
+    /// <summary>
+    /// 능력치 설정
+    /// </summary>
+    /// <param name="bulletSpeed">총알 속도</param>
+    /// <param name="damage">데미지</param>
+    /// <param name="P_direction">플레이어 위치</param>
+    /// <param name="bulletNum">불릿의 번호</param>
+    public void SetStats(float bulletSpeed, float damage, Vector3 P_direction, int bulletNum)
     {
         this.BulletSpeed = bulletSpeed;
         this.Damage = damage;
         this.PlayerDirection = P_direction;
+
         this.BulletNum = bulletNum;
         //this.Distance = distance;
     }
-    public void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -49,7 +57,7 @@ public class MobRangeBullet : MonoBehaviour
             DestroyBullet();
         }
         //transform.Translate(direction * BulletSpeed * Time.deltaTime);
-        if (PlayerDirection == null)
+        if (BulletNum != 0)
         {
             if (BulletNum == 1)
             {
@@ -70,7 +78,7 @@ public class MobRangeBullet : MonoBehaviour
         }
         else
         {
-            transform.Translate(PlayerDirection.position * BulletSpeed * Time.deltaTime);
+            transform.Translate(PlayerDirection * BulletSpeed * Time.deltaTime);
         }
     }
 }

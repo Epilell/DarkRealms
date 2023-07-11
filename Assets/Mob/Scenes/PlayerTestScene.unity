@@ -2526,7 +2526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &246665018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2543,11 +2543,11 @@ MonoBehaviour:
     type: 3}
   canvasTransform: {fileID: 1471091125}
   mobList:
-  - {fileID: 3991686891629927195, guid: a2ddf11fe66d80a4da7d11cfb3688eba, type: 3}
+  - {fileID: 834271027276496964, guid: 89128abefdd923c48869e62249ce0baf, type: 3}
   spawnPoint:
   - {fileID: 1030740657}
   spawnDelay: 3
-  MaxSpawn: 10
+  MaxSpawn: 2
 --- !u!4 &246665019
 Transform:
   m_ObjectHideFlags: 0
@@ -9856,7 +9856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1030740657
 Transform:
   m_ObjectHideFlags: 0
@@ -22653,6 +22653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9343bc147aaa24f9028e0e83988c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUp: 0
 --- !u!114 &2136026655
 MonoBehaviour:
   m_ObjectHideFlags: 0

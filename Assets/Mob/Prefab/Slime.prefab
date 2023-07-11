@@ -162,11 +162,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec7f7ccbbba3f0469462ff43cefa94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 3991686891629927192}
-  isSlime: 1
-  AtkDelay: 1
   pos: {fileID: 5166921996056339370}
   boxSize: {x: 5, y: 1}
+  isSlime: 1
+  boxSize2: {x: 1, y: 5}
+  isOrc: 0
+  WhirlWindDuration: 5
 --- !u!114 &3991686891629927199
 MonoBehaviour:
   m_ObjectHideFlags: 0

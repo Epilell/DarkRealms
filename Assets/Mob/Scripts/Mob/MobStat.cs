@@ -5,7 +5,6 @@ using UnityEngine;
 public class MobStat : MonoBehaviour
 {
     public float mobDamage = 5f;
-    public float mobSpeed = 1f;
     public string mobProperty = "melee";
     public float detectionRange = 10f;
     public float mobAttackRange = 1f;
@@ -18,10 +17,6 @@ public class MobStat : MonoBehaviour
     public float MobDamage()
     {
         return mobDamage;
-    }
-    public float MobSpeed()
-    {
-        return mobSpeed;
     }
     public string MobProperty()
     {

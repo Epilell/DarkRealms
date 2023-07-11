@@ -19,8 +19,8 @@ public class MobAI : MonoBehaviour
     public int idleSpeed = 1;
     private int xSpeed = 0;
     private int ySpeed = 0;
+
     private bool IsAttack = false;
-    private string mobProperty;
     private float mobAttackSpeed;
     private float currentCoolDown = 0f;
 
@@ -81,7 +81,6 @@ public class MobAI : MonoBehaviour
     {
         mobStat = GetComponent<MobStat>();
         //몹의 스텟을 가져옴
-        mobProperty = mobStat.MobProperty();
         detectionRange = mobStat.DetectingRange();
         mobAttackRange = mobStat.MobAttackRange();
         moveSpeed = mobStat.MoveSpeed();
@@ -95,36 +94,6 @@ public class MobAI : MonoBehaviour
 
     }
 
-    private IEnumerator MobIdleMove()//적 감지 X시 움직임
-    {
-        while (distanceToPlayer > detectionRange)
-        {
-            Think();
-            //뒤집기
-            if (xSpeed > 0)
-            {
-                spriteRenderer.flipX = false;
-            }
-            else if (xSpeed < 0)
-            {
-                spriteRenderer.flipX = true;
-            }
-            rigid.velocity = new Vector2(xSpeed, ySpeed);
-            yield return new WaitForSeconds(10f);
-        }
-        yield return new WaitForSeconds(0.3f);
-    }
-    private void Think()
-    {
-        xSpeed = Random.Range(-idleSpeed, idleSpeed + 1);
-        ySpeed = Random.Range(-idleSpeed, idleSpeed + 1);
-        int speed = 1;
-        if (ySpeed == 0 && xSpeed == 0)
-        {
-            speed = 0;
-        }
-        animator.SetInteger("WalkSpeed", speed);
-    }
 
     private IEnumerator PerformAttack()
     {
