@@ -9,6 +9,10 @@ public class SoundManager : MonoBehaviour
     public AudioSource bgm;
     public List<AudioSource> sfxSources;
 
+    [Header("AudioClip")] // 오디오 클립(파일)
+    public AudioClip normalAudioClip; // 일반맵
+    public AudioClip bossAudioClip; // 보스맵
+
     [Header("ImgSource")] // 이미지 소스
     public Sprite bgm_on;
     public Sprite bgm_off;
@@ -18,6 +22,7 @@ public class SoundManager : MonoBehaviour
     [Header("IconObj")] // 아이콘 오브젝트
     public Image bgmIcon;
     public Image sfxIcon;
+
 
     public void SetBgmVolume(float volume) // 배경음악 볼륨 조절
     {
@@ -51,5 +56,17 @@ public class SoundManager : MonoBehaviour
 
         if (targetSource != null) { targetSource.Play(); } // 찾으면 실행
         else { }
+    }
+
+    public void ChangeBgm() // 보스맵
+    {
+        bgm.clip = bossAudioClip;
+        bgm.Play();
+    }
+
+    public void ChangeOriginalBgm() // 일반맵
+    {
+        bgm.clip = normalAudioClip;
+        bgm.Play();
     }
 }
