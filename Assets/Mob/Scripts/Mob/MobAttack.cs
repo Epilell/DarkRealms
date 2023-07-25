@@ -30,7 +30,7 @@ public class MobAttack : MonoBehaviour
             }
         }
     }
-    /*
+    
     protected void OnDrawGizmos()
     {
         pos = this.transform.GetChild(0);
@@ -42,7 +42,7 @@ public class MobAttack : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(pos2.position, boxSize2);
         }
-    }*/
+    }
     public bool Attacking(MobStat mobStat, Transform P_direction)//АјАн
     {
         PlayerDirection = P_direction;

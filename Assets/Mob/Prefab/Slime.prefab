@@ -127,7 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobDamage: 9
-  mobSpeed: 1
   mobProperty: melee
   detectionRange: 10
   mobAttackRange: 1.5
@@ -150,6 +149,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 30
   DeadMob: {fileID: 2857771759586819822, guid: 6a9e06f7eb45ee6479d215e65e798614, type: 3}
+  freezingEffect: {fileID: 0}
+  stunEffect: {fileID: 0}
+  burnEffect: {fileID: 0}
+  reducedDefenseEffect: {fileID: 0}
 --- !u!114 &3991686891629927196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140c9ba1aa67cc04490e2c6fd77d9feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 1
   idleSpeed: 1
 --- !u!58 &3991686891629927187
 CircleCollider2D:

@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140c9ba1aa67cc04490e2c6fd77d9feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 1
   idleSpeed: 1
 --- !u!114 &-6029538516910535600
 MonoBehaviour:
@@ -139,10 +140,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec7f7ccbbba3f0469462ff43cefa94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2095844980228031726}
-  isSlime: 0
   pos: {fileID: 7572119907700642791}
   boxSize: {x: 0.5, y: 0.5}
+  isSlime: 0
+  boxSize2: {x: 1, y: 5}
+  isOrc: 0
+  WhirlWindDuration: 5
 --- !u!114 &-2597130842516256581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobDamage: 8
-  mobSpeed: 3
   mobProperty: melee
   detectionRange: 10
   mobAttackRange: 1
@@ -196,7 +198,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 2.7272727, y: 2.7272727}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -14,7 +14,7 @@ public class MobAI : MonoBehaviour
 
     private float detectionRange = 10;
     private float mobAttackRange = 2;
-    private float moveSpeed = 1;
+    public float moveSpeed = 1;
 
     public int idleSpeed = 1;
     private int xSpeed = 0;
@@ -50,7 +50,7 @@ public class MobAI : MonoBehaviour
             currentCoolDown -= Time.deltaTime;
         }
 
-        if (!mobHP.IsHit)
+        if (!mobHP.IsHit||!mobHP.IsStun)
         {
             // 현재 객체와 플레이어 사이의 거리 계산
             distanceToPlayer = Vector2.Distance(transform.position, player.position);
