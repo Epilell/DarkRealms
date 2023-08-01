@@ -97,6 +97,11 @@ public class MobHP : MonoBehaviour
             StartCoroutine("Die");
         }
     }
+    /// <summary>
+    /// 슬로우
+    /// </summary>
+    /// <param name="slowDuration">슬로우 지속시간(기본3f)</param>
+    /// <returns></returns>
     private IEnumerator Slow(float slowDuration = 3f)
     {
         float moveSpeed = mob.moveSpeed;
@@ -117,6 +122,11 @@ public class MobHP : MonoBehaviour
         mob.moveSpeed = moveSpeed;
         Destroy(CCEffect);
     }
+    /// <summary>
+    /// 스턴
+    /// </summary>
+    /// <param name="stunDuration">지속시간(기본1.5f)</param>
+    /// <returns></returns>
     private IEnumerator Stun(float stunDuration = 1.5f)
     {
         isStun = true;
@@ -131,6 +141,12 @@ public class MobHP : MonoBehaviour
         isStun = false;
         Destroy(CCEffect);
     }
+    /// <summary>
+    /// 화상
+    /// </summary>
+    /// <param name="burnDuration">화상 지속시간 (기본3f)</param>
+    /// <param name="burnDamage">화상 데미지 (기본30f)</param>
+    /// <returns></returns>
     private IEnumerator Burn(float burnDuration = 3f, float burnDamage = 30f)
     {
         float dotTime = burnDuration * 2;
@@ -146,6 +162,12 @@ public class MobHP : MonoBehaviour
         }
         Destroy(CCEffect);
     }
+    /// <summary>
+    /// 방깎
+    /// </summary>
+    /// <param name="reducedDefenseDuration">방깎 지속시간(기본3f)</param>
+    /// <param name="ReduedDefensePercent">방깎 퍼센트(기본0.3f>>받는 데미지30%증가)</param>
+    /// <returns></returns>
     private IEnumerator ReducedDefense(float reducedDefenseDuration = 3f, float ReduedDefensePercent = 0.3f)
     {
         isDefDecrease = true;

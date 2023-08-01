@@ -17,5 +17,9 @@ public class BossHPViewer : MonoBehaviour
     private void Update()
     {
         hpSlider.value = bossHP.CurrentHP / bossHP.MaxHP;
+        if (bossHP.CurrentHP < 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

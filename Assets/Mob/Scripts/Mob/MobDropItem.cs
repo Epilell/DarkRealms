@@ -9,6 +9,7 @@ public class ItemDrop
     //public GameObject itemPrefab; // 드롭 아이템 프리팹
     public Rito.InventorySystem.ItemData item; //드롭 아이템
     public float dropChance; // 드롭 확률 (0 ~ 1 사이의 값)
+    public int dropCount = 1;//드롭 아이템 수
 }
 public class MobDropItem : MonoBehaviour
 {
@@ -50,7 +51,7 @@ public class MobDropItem : MonoBehaviour
                     if (itemComponent != null)
                     {
                         itemComponent.itemData = itemDrop.item;
-
+                        itemComponent.itemCount = itemDrop.dropCount;
                     }
                 }
             }

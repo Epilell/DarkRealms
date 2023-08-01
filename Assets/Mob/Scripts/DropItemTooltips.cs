@@ -10,19 +10,29 @@ public class DropItemTooltips : MonoBehaviour
     void Start()
     {
         text = GetComponent<TMP_Text>();
-        Destroy(this.gameObject,3);
+        //Destroy(this.gameObject,3);
     }
 
     // Update is called once per frame
     void Update()
     {
-        ChangeTextAlpha();
+        //ChangeTextAlpha();
+        Color color = text.color;
+        color.a *= 0.999f;
+        text.color = color;
     }
     private IEnumerator ChangeTextAlpha()
     {
         Color color = text.color;
-        color.a = 0.9f;
+        color.a *= 0.9f;
         text.color = color;
         yield return new WaitForSeconds(0.1f);
     }
+    public void CallText()
+    {
+        Color color = text.color;
+        color.a = 1;
+        text.color = color;
+    }
+
 }
