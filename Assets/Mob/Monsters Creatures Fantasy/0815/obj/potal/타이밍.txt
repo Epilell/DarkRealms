@@ -1,0 +1,3 @@
+all 0.16 초 루프
+
+background 투명도 50쯤

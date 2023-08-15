@@ -2543,7 +2543,7 @@ MonoBehaviour:
     type: 3}
   canvasTransform: {fileID: 1471091125}
   mobList:
-  - {fileID: 834271027276496964, guid: 89128abefdd923c48869e62249ce0baf, type: 3}
+  - {fileID: 9155456390019035048, guid: 8457fd26472b2fe42ba4b96fd0d0386a, type: 3}
   spawnPoint:
   - {fileID: 1030740657}
   spawnDelay: 3
@@ -8866,7 +8866,7 @@ Transform:
   - {fileID: 1686046849}
   - {fileID: 2106385324}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &947977314
 GameObject:
@@ -12818,7 +12818,7 @@ PrefabInstance:
     - target: {fileID: 7373820904779604718, guid: f8a946c5a89fbaa4b946c354a96cf67a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7373820904779604718, guid: f8a946c5a89fbaa4b946c354a96cf67a,
         type: 3}

@@ -71,20 +71,25 @@ public class EquipmentInventory : MonoBehaviour
 
     private void SlotInit()//ΩΩ∑‘√ ±‚»≠
     {
-        if (GameObject.Find("InventoryB").transform != null)//ΩΩ∑‘»¶¥ı √£±‚
+        if (GameObject.Find("InventoryB") != null)
         {
-            slotHolder = GameObject.Find("InventoryB").transform;
-            slots = slotHolder.GetComponentsInChildren<ItemSlotUI>();//slotsº≥¡§
-            if (slots != null)
+            if (GameObject.Find("InventoryB").transform != null)//ΩΩ∑‘»¶¥ı √£±‚
             {
-                for (int i = 0; i < slots.Length; i++)
+                slotHolder = GameObject.Find("InventoryB").transform;
+                slots = slotHolder.GetComponentsInChildren<ItemSlotUI>();//slotsº≥¡§
+                if (slots != null)
                 {
-                    slots[i].SetSlotIndex(i);
-                    Updateslot(i);
+                    for (int i = 0; i < slots.Length; i++)
+                    {
+                        slots[i].SetSlotIndex(i);
+                        Updateslot(i);
+                    }
                 }
+                gm.LoadEq(this);
             }
-            gm.LoadEq(this);
+
         }
+
 
     }
     //√ ±‚»≠ ≥°.
