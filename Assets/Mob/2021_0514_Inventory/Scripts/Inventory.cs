@@ -718,6 +718,8 @@ namespace Rito.InventorySystem
                 // 아이템 사용
                 bool succeeded = uItem.Use();
 
+                FindObjectOfType<PotionEffect>().UseEffect(_items[index].Data.Name); // 포션 효과 적용
+
                 if (succeeded)
                 {
                     UpdateSlot(index);

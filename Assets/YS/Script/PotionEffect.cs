@@ -56,6 +56,6 @@ public class PotionEffect : MonoBehaviour
                 default: break;
             }
         }
-        else { Debug.Log("사용 불가"); }
+        else { }
     }
 }

@@ -17,8 +17,5 @@ public class ActiveMenu : MonoBehaviour
             else if (optionMenu.activeSelf == true && sound.alpha == 0 && display.alpha == 0) { optionMenu.SetActive(false); } // 메인 옵션창만 켜져있으면 끄기
             else { }
         }
-
-        if (optionMenu.activeSelf == true || sound.alpha == 1 || display.alpha == 1) { Time.timeScale = 0; } // 설정창이 하나라도 켜져있으면 시간 정지
-        else { Time.timeScale = 1; }
     }
 }

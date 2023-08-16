@@ -28,11 +28,12 @@ public class GameOver : MonoBehaviour
 
         for (int i = 0; i < Inventory._Items.Length; i++) { Inventory.Remove(i); } // 죽으면 인벤토리 내 모든 아이템 제거
 
-        StartCoroutine(GameOverCoroutine());
+        //StartCoroutine(GameOverCoroutine());
     }
 
     public IEnumerator GameOverCoroutine() // 게임 오버 나타낼 코루틴
     {
+        Debug.Log("사망 코루틴 호출!");
         gameOverImg.gameObject.SetActive(true); // 이미지 활성화
         screen.gameObject.SetActive(true); // 이미지 활성화
         goMainBtn.gameObject.SetActive(true); // 버튼 활성화
@@ -74,7 +75,7 @@ public class GameOver : MonoBehaviour
 
     private void GoToNextScene()
     {
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         fadeOut.Fade();
     }
 }
