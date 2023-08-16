@@ -13,15 +13,11 @@ public class MolotovData : AttackSkillData
     //È­¿° ÇÁ¸®ÆÕ
     public GameObject firePrefab;
 
-    public float TickDamage => tickDamage;
-    public float MaxTime => maxTime;
     public float Radius => radius;
-    public float ThrowDistance => throwDistance;
+    public float Distance => distance;
 
-    [SerializeField] private float tickDamage;
-    [SerializeField] private float maxTime;
     [SerializeField] private float radius;
-    [SerializeField] private float throwDistance;
+    [SerializeField] private float distance;
 
     public override void AdditionalInit()
     {

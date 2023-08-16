@@ -11,7 +11,7 @@ public class EquipmentInventory : MonoBehaviour
 {
     public Inventory _inventory;
     public static EquipmentInventory instance;  // 장비 인벤토리 인스턴스
-    public P_Data playerData;
+    public PlayerData playerData;
 
     private Rito.InventorySystem.Item[] _eqitems;
     public Rito.InventorySystem.Item[] EqItems { get => _eqitems; }

@@ -14,18 +14,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //Public Field
+    //Field
     #region
 
     //플레이어블 캐릭터 기본 데이터
     [Header("Player Data")]
-    public P_Data data;
-    public static Player instance;
-
-    #endregion
-
-    //Private Field
-    #region
+    public PlayerData data;
+    public static Player Instance;
 
     private Animator ani;
     private Player P;
@@ -37,35 +32,43 @@ public class Player : MonoBehaviour
     #region
 
     public float MaxHP, CurrentHp;
-    [Range(0f,1f)]
-    public float ArmorReduction;
+    [Range(0f,100f)]
+    public float ArmorReductionBySkill;
 
     //게임 시작시 데이터 불러오는 용도
     private void UpdateSetting()
     {
-        MaxHP = data.maxHP + (data.Strlevel * 10f);
-        Speed = data.speed + (data.Agilevel * 0.1f);
+        MaxHP = data.maxHP + (data.StrLevel * 10f);
+        Speed = data.speed * (1 + (data.AgiLevel * 0.02f));
     }
 
     /// <summary>
     /// 플레이어에게 들어오는 데미지를 amount%만큼 경감
     /// </summary>
-    /// <param name="amount"></param>
-    public void ChangeArmorReduction(float amount)
+    /// <param name="amount">경감량</param>
+    public void ChangeDamageReduction(float amount)
     {
-        ArmorReduction = amount/100;
+        ArmorReductionBySkill = amount;
     }
 
     /// <summary>
     /// 플레이어 체력을 damage만큼 제거
     /// </summary>
-    /// <param name="damage"></param>
+    /// <param name="damage">받는 데미지</param>
     public void P_TakeDamage(float damage)
     {
-        if((damage - data.GetArmor()) * (1 - ArmorReduction) <= 1 ) { CurrentHp -= 1; }
-        else { CurrentHp -= (damage - data.GetArmor()) * (1 - ArmorReduction); }
-        if(CurrentHp <=0) { CurrentHp = 0; IsDead(); Debug.Log(ani.GetBool("IsDead"));
-            StartCoroutine(FindObjectOfType<GameOver>().GameOverCoroutine());
+        if (!SkillManager.Instance.dodgeTS.isActive)
+        {
+            //받는 데미지가 1이하면 1로
+            if (((damage - data.GetArmor()) * (100 - ArmorReductionBySkill)) * (1 - data.ArmorMasteryLevel * 0.02f) <= 1) { CurrentHp -= 1; }
+            //아닌 경우 그대로
+            else { CurrentHp -= ((damage - data.GetArmor()) * (100 - ArmorReductionBySkill)) * (1 - data.ArmorMasteryLevel * 0.02f); }
+            //사망시
+            if (CurrentHp <= 0)
+            {
+                CurrentHp = 0; IsDead(); Debug.Log(ani.GetBool("IsDead"));
+                StartCoroutine(FindObjectOfType<GameOver>().GameOverCoroutine());
+            }
         }
     }
 
@@ -90,10 +93,10 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 플레이어 이동속도를 amount% 만큼 감소
     /// </summary>
-    /// <param name="amount"></param>
+    /// <param name="amount">감소량</param>
     public void ChangeSpeedReduction(float amount)
     {
-        SpeedReduction = amount/100;
+        SpeedReduction = amount;
     }
 
     private void InputSpeed()
@@ -102,11 +105,11 @@ public class Player : MonoBehaviour
         //좌우 움직임 속도 대입
         if (Input.GetKey(KeyCode.D) && P_XSpeed >= 0)
         {
-            P_XSpeed = (Speed) * (1 - SpeedReduction);
+            P_XSpeed = (Speed) * ((100 - SpeedReduction) / 100);
         }
         else if (Input.GetKey(KeyCode.A) && P_XSpeed <= 0)
         {
-            P_XSpeed = -Speed * (1 - SpeedReduction);
+            P_XSpeed = -Speed * ((100 - SpeedReduction) / 100);
         }
         else
         { P_XSpeed = 0; }
@@ -114,30 +117,14 @@ public class Player : MonoBehaviour
         //상하 움직임 속도 대입
         if (Input.GetKey(KeyCode.W) && P_YSpeed >= 0)
         {
-            P_YSpeed = Speed * (1 - SpeedReduction);
+            P_YSpeed = Speed * ((100 - SpeedReduction) / 100);
         }
         else if (Input.GetKey(KeyCode.S) && P_YSpeed <= 0)
         {
-            P_YSpeed = -Speed * (1 - SpeedReduction);
+            P_YSpeed = -Speed * ((100 - SpeedReduction) / 100);
         }
         else
         { P_YSpeed = 0; }
-    }
-    #endregion
-
-    //능력치 레벨
-    #region
-
-    //능력치 레벨업 기능
-    private void UpdateStats()
-    {
-        if(data.Strexp >= 100) { data.Strlevel++; }
-        
-        if(data.Agiexp >= 100) { data.Agilevel++; }
-        
-        if(data.Intexp >= 100) { data.Intlevel++; }
-
-        UpdateSetting();
     }
     #endregion
 
@@ -198,7 +185,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         //셀프 지정
-        instance = this;
+        Instance = this;
 
         //애니메이터 지정
         ani = GetComponent<Animator>();
@@ -232,9 +219,6 @@ public class Player : MonoBehaviour
 
         //<이동 관련>
         InputSpeed();
-
-        //<능력치 관련>
-        UpdateStats();
     }
 
     private void FixedUpdate()

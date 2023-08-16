@@ -5,31 +5,38 @@ using UnityEngine;
 
 public abstract class DualWeaponBase : MonoBehaviour
 {
-    //Public Field
+    //Field
     #region
 
     public WeaponItemData data;
     public GameObject firePos1, firePos2;
     public GameObject weapon1, weapon2, weaponImg1, weaponImg2, bullet;
 
-    #endregion
-
-    //Protected Field
-    #region
-
     protected int order = 1;
     protected float curTime = 0f, rotateDeg;
 
+    //0.1초마다 RPM 증가량
+    [SerializeField]
+    private readonly float IncRpm = 10f;
+    private  float temporalRpm = 0f;
+    private float sec = 0f;
+
     #endregion
 
-    //Public Method
+    //Method
     #region
-    public abstract void Attack();
-
+    
     public void SetStatus(WeaponItemData _data)
     {
         data = _data;
     }
+
+    #endregion
+
+    //Abstract Method
+    #region
+
+    public abstract void Attack();
 
     #endregion
 
@@ -40,7 +47,7 @@ public abstract class DualWeaponBase : MonoBehaviour
         Vector3 mousePos, weaponPos;
         //마우스 위치와 플레이어 위치 입력
         mousePos = Input.mousePosition;
-        weaponPos = Player.instance.transform.position;
+        weaponPos = Player.Instance.transform.position;
 
         //마우스의 z값을 카메라 앞으로 위치
         mousePos.z = weaponPos.z - Camera.main.transform.position.z;
@@ -74,26 +81,29 @@ public abstract class DualWeaponBase : MonoBehaviour
     //unity event
     #region
 
-    private void Awake()
-    {
-
-    }
-
-    private void Start()
-    {
-
-    }
-
     // Update is called once per frame
     private void Update()
     {
         CalcVec();
-        if (curTime >= 60 / data.Rpm)
+        if (SkillManager.Instance.CheckUpgrade(SkillManager.Instance.siegemodeUpgradeList, "Gradual Attack Speed Up"))
+        {
+            if (sec < 0.5f)
+            {
+                sec += Time.deltaTime;
+            }
+            else
+            {
+                temporalRpm += IncRpm;
+                sec = 0f;
+            }
+        }
+
+        if (curTime >= 60 / (data.Rpm + temporalRpm))
         {
             if (Input.GetMouseButton(0))
             {
                 Attack();
-                FindObjectOfType<SoundManager>().PlaySound("Dual");
+                //FindObjectOfType<SoundManager>().PlaySound("Dual");
             }
         }
         else
@@ -101,5 +111,6 @@ public abstract class DualWeaponBase : MonoBehaviour
             curTime += Time.deltaTime;
         }
     }
+
     #endregion
 }

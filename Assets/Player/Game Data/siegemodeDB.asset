@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uC2DC\uC988\uBAA8\uB4DC"
   toolTip: 
-  coolTime: 20
+  coolTime: 2
+  maxStack: 1
   reductionRate: 50
   speedReduction: 100

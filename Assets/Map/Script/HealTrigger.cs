@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealTrigger : MonoBehaviour
 {
-    public P_Data data;
+    public PlayerData data;
     //private float MaxHP;
     private int timer = 0;
 

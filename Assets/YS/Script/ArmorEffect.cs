@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArmorEffect : MonoBehaviour
 {
-    public P_Data p_data;
+    public PlayerData p_data;
 
     private float originalHelmet;
     private float originalBody;

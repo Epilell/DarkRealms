@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class DefenceSkillData : SkillData
 {
-    public float Reductionrate => reductionRate;
+    public float DamageReduction => reductionRate;
 
     [SerializeField] private float reductionRate = 1f;
 

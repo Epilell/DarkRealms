@@ -40,7 +40,7 @@ public abstract class WeaponBase : MonoBehaviour
         Vector3 mousePos, weaponPos;
         //마우스 위치와 플레이어 위치 입력
         mousePos = Input.mousePosition;
-        weaponPos = Player.instance.transform.position;
+        weaponPos = Player.Instance.transform.position;
 
         //마우스의 z값을 카메라 앞으로 위치
         mousePos.z = weaponPos.z - Camera.main.transform.position.z;

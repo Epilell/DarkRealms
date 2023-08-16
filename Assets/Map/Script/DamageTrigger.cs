@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageTrigger : MonoBehaviour
 {
-    public P_Data data;
+    public PlayerData data;
     private int timer = 0;
 
     private void OnTriggerStay2D(Collider2D other)

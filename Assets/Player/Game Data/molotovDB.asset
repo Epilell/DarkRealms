@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uD654\uC5FC\uBCD1"
   toolTip: 
-  coolTime: 10
+  coolTime: 2
+  maxStack: 1
   damage: 20
+  ccType: burn
+  ccDuration: 2
   Molotov: {fileID: 8670179268289057126, guid: 7316bbcfb1198234ab0b3e4b0ef0d13c, type: 3}
-  firePrefab: {fileID: 570492172207745402, guid: a214fac730f6a3f43a59bea1745ad91a,
+  firePrefab: {fileID: 3485669015980642339, guid: a214fac730f6a3f43a59bea1745ad91a,
     type: 3}
-  tickDamage: 5
-  maxTime: 5
   radius: 2
-  throwDistance: 5
+  distance: 3

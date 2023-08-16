@@ -6,7 +6,7 @@ using Rito.InventorySystem;
 public class CapacityRisk : MonoBehaviour
 {
     public Player player;
-    public P_Data p_data;
+    public PlayerData p_data;
     public Inventory inventory;
     public MagneticField magneticField;
 

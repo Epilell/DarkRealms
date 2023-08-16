@@ -108,7 +108,7 @@ public class WeaponManager : MonoBehaviour
         {
             //Debug.Log("장비 인벤토리 있음");
             // 1. 시즈모드가 켜져있다면
-            if (SkillManager.Instance.siegemodedata.IsActive)
+            if (SkillManager.Instance.siegemodeTS.isActive)
             {
                 //Debug.Log("시즈모드 ON");
                 // 1-1. 현재 무기가 없거나 현재 무기가 dual pistol이 아니면
@@ -160,7 +160,7 @@ public class WeaponManager : MonoBehaviour
         }
         else
         {
-            if (SkillManager.Instance.siegemodedata.IsActive)
+            if (SkillManager.Instance.siegemodeTS.isActive)
             {
                 //Debug.Log("시즈모드 ON");
                 // 1-1. 현재 무기가 없거나 현재 무기가 dual pistol이 아니면

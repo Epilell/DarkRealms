@@ -4,70 +4,53 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    private float impactDmg, tickDmg, maxTime, radius;
+    //Field
+    #region
 
-    //초기 불이 붙은 대상 저장
-    private Collider2D[] colliders;
-    //활성화 여부용
-    private bool IsActive = false;
-    //타이머
-    private float timer = 0f;
+    private float Damage, Duration, Radius;
+
+    #endregion
+
+    //Method
+    #region
 
     //화염 능력치 설정
-    public void SetStats(float _impactDmg, float _tickDmg, float _maxTime, float _radius)
+    public void SetFireStats(float _dmg, float _dur, float _ran)
     {
-        impactDmg = _impactDmg; tickDmg = _tickDmg; maxTime = _maxTime; radius = _radius;
+        Damage = _dmg; Duration = _dur; Radius = _ran;
     }
 
-    private void ApplyDamage(Collider2D[] collider, float _damage)
-    {
-
-        for (int i = 0; i < collider.Length; i++)
-        {
-            if (collider[i] != null)
-            {
-                if (collider[i].gameObject.CompareTag("Mob"))
-                {
-                    collider[i].gameObject.GetComponent<MobHP>().TakeDamage(_damage);
-                }
-            }
-        }
-    }
-
+    //불 이펙트 제거
     private void Extinguish()
     {
         Destroy(gameObject);
     }
 
+    #endregion
+
     //unity event
     #region
 
+    //화상 CC기 적용
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Mob"))
+        {
+            collision.GetComponent<MobHP>().TakeCC("burn", Duration, Damage);
+        }
+    }
+
     private void Start()
     {
-        Invoke("Extinguish", maxTime);
+        this.GetComponent<Transform>().localScale *= Radius;
+        Invoke("Extinguish", Duration);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (IsActive == false)
-        {
-            colliders = Physics2D.OverlapCircleAll(transform.position, radius);
-            ApplyDamage(colliders, impactDmg);
-            IsActive = true;
-        }
-        else
-        {
-            if (timer < 0.5f)
-            {
-                timer += Time.deltaTime;
-            }
-            else
-            {
-                ApplyDamage(colliders, tickDmg);
-                timer = 0f;
-            }
-        }
+        
     }
+
     #endregion
 }

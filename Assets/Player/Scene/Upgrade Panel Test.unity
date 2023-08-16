@@ -2044,6 +2044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTr: {fileID: 0}
+  _target2: {fileID: 0}
 --- !u!114 &512144516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2316,7 +2317,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1536362933}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -2346,7 +2347,8 @@ MonoBehaviour:
   m_text: "\uAC15\uD654 \uC2DC\uC2A4\uD15C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 491726f7506f91242ad157abb1a42a0a, type: 2}
-  m_sharedMaterial: {fileID: 8087890265877373469, guid: 491726f7506f91242ad157abb1a42a0a, type: 2}
+  m_sharedMaterial: {fileID: 8087890265877373469, guid: 491726f7506f91242ad157abb1a42a0a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3240,7 +3242,8 @@ MonoBehaviour:
   _showRemovingPopup: 1
   canvas: {fileID: 382786664}
   _contentAreaRT: {fileID: 765924359}
-  _slotUiPrefab: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef, type: 3}
+  _slotUiPrefab: {fileID: 1699345936202001809, guid: 51ca7b8a46d6c1e4bbf10475a4b2e6ef,
+    type: 3}
   _itemTooltip: {fileID: 1412603258}
   _popup: {fileID: 1568632898}
   _trimButton: {fileID: 1425549448}
@@ -3461,13 +3464,13 @@ RectTransform:
   m_Children:
   - {fileID: 474856280}
   - {fileID: 1193307071}
-  m_Father: {fileID: 1536362933}
-  m_RootOrder: 0
+  m_Father: {fileID: 1622326115}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9.8996, y: -28.251099}
-  m_SizeDelta: {x: -21.4489, y: -133.4977}
+  m_AnchoredPosition: {x: 9.911926, y: -28.246704}
+  m_SizeDelta: {x: -21.424181, y: -133.50636}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &829790540
 MonoBehaviour:
@@ -3484,7 +3487,8 @@ MonoBehaviour:
   _targetInventory: {fileID: 0}
   _inventory: {fileID: 0}
   _contentArea: {fileID: 1482811649}
-  _targetPanelPrefab: {fileID: 3636651685158024614, guid: 669cfc2ebd3be0c47b7dabd1f311abb3, type: 3}
+  _targetPanelPrefab: {fileID: 3636651685158024614, guid: 669cfc2ebd3be0c47b7dabd1f311abb3,
+    type: 3}
 --- !u!114 &829790541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7281,7 +7285,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 829790539}
   - {fileID: 610384743}
   m_Father: {fileID: 1622326115}
   m_RootOrder: 0
@@ -7543,8 +7546,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5, y: -12.5}
-  m_SizeDelta: {x: 10, y: 25}
+  m_AnchoredPosition: {x: 5, y: 0}
+  m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1574563672
 MonoBehaviour:
@@ -7977,7 +7980,7 @@ GameObject:
   - component: {fileID: 1622326117}
   - component: {fileID: 1622326116}
   m_Layer: 5
-  m_Name: Outer Panel
+  m_Name: Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7996,13 +7999,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1536362933}
+  - {fileID: 829790539}
   m_Father: {fileID: 382786665}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -578, y: -0.00012207031}
-  m_SizeDelta: {x: -1220.4, y: -42.455}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -580, y: 0}
+  m_SizeDelta: {x: 700, y: 1040}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1622326116
 MonoBehaviour:
