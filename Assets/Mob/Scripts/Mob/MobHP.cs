@@ -18,7 +18,9 @@ public class MobHP : MonoBehaviour
     private MobAI mob;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+
     public GameObject DeadMob;
+    public MobHPViewer hpViewer;
 
     [Header("CCEffectPrefab")]
     [SerializeField]
@@ -54,18 +56,22 @@ public class MobHP : MonoBehaviour
         if (cc == "freezing")
         {
             StartCoroutine(Slow(duration));
+            hpViewer.CC_HPViewer(1, duration);
         }
         if (cc == "stun")
         {
             StartCoroutine(Stun(duration));
+            hpViewer.CC_HPViewer(2, duration);
         }
         if (cc == "burn")
         {
             StartCoroutine(Burn(duration, etc));
+            hpViewer.CC_HPViewer(3, duration);
         }
         if (cc == "reducedDefense")
         {
             StartCoroutine(ReducedDefense(duration));
+            hpViewer.CC_HPViewer(4, duration);
         }
     }
 
