@@ -2526,7 +2526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &246665018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2543,11 +2543,11 @@ MonoBehaviour:
     type: 3}
   canvasTransform: {fileID: 1471091125}
   mobList:
-  - {fileID: 9155456390019035048, guid: 8457fd26472b2fe42ba4b96fd0d0386a, type: 3}
+  - {fileID: 834271027276496964, guid: 89128abefdd923c48869e62249ce0baf, type: 3}
   spawnPoint:
   - {fileID: 1030740657}
   spawnDelay: 3
-  MaxSpawn: 2
+  MaxSpawn: 3
 --- !u!4 &246665019
 Transform:
   m_ObjectHideFlags: 0
@@ -12810,6 +12810,11 @@ PrefabInstance:
       propertyPath: CurrentHp
       value: 99
       objectReference: {fileID: 0}
+    - target: {fileID: 7373820904779604708, guid: f8a946c5a89fbaa4b946c354a96cf67a,
+        type: 3}
+      propertyPath: ArmorReductionBySkill
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7373820904779604710, guid: f8a946c5a89fbaa4b946c354a96cf67a,
         type: 3}
       propertyPath: dodgeData
@@ -15256,7 +15261,7 @@ RectTransform:
   m_GameObject: {fileID: 1522695959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.88928425, y: 0.88928425, z: 0.88928425}
+  m_LocalScale: {x: 2, y: 2, z: 0.88928425}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1177812231}
@@ -15266,7 +15271,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 145.90729, y: -50.793503}
+  m_AnchoredPosition: {x: 319, y: -84.119}
   m_SizeDelta: {x: 247.8, y: 268.237}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1522695961
@@ -15468,7 +15473,7 @@ RectTransform:
   m_GameObject: {fileID: 1523496110}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.39443156, y: 0.39443156, z: 0.39443156}
+  m_LocalScale: {x: 1, y: 1, z: 0.39443156}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 959505072}

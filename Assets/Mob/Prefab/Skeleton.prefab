@@ -204,10 +204,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 50
   DeadMob: {fileID: 965568549241441883, guid: ca1dd13575f099f498e0f39ffb20fac0, type: 3}
-  freezingEffect: {fileID: 0}
-  stunEffect: {fileID: 0}
-  burnEffect: {fileID: 0}
-  reducedDefenseEffect: {fileID: 0}
+  hpViewer: {fileID: 0}
+  freezingEffect: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
+    type: 3}
+  stunEffect: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
+    type: 3}
+  burnEffect: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
+    type: 3}
+  reducedDefenseEffect: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
+    type: 3}
 --- !u!114 &2053941310852753379
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class TimerUI : MonoBehaviour
         if (FindObjectOfType<ActiveMenu>().optionMenu.activeSelf == true || FindObjectOfType<ActiveMenu>().sound.alpha == 1
             || FindObjectOfType<ActiveMenu>().display.alpha == 1 || FindObjectOfType<OpenCloseUI>().inven.activeSelf == true)
         {
-            Time.timeScale = 0.25f;
+            Time.timeScale = 0.0025f;
         }
         else { Time.timeScale = 1; }
 

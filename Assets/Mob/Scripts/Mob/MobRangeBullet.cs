@@ -9,8 +9,11 @@ public class MobRangeBullet : MonoBehaviour
     //private float Distance;
     Vector3 PlayerDirection;
     int BulletNum;
-    float DestoryTime = 250f;
+    float DestoryTime = 150f;
+    private Animator animator;
+    Rigidbody2D rb;
 
+    private bool ishit = false;
     //능력치 가져오기
     /// <summary>
     /// 능력치 설정
@@ -32,94 +35,98 @@ public class MobRangeBullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Player>().P_TakeDamage(Damage);
-            DestroyBullet();
+            if (ishit == false)
+            {
+                ishit = true;
+                collision.gameObject.GetComponent<Player>().P_TakeDamage(Damage);
+            }
+            StartCoroutine(DestroyBullet());
         }
         else if (collision.gameObject.CompareTag("Map"))
         {
-            DestroyBullet();
+            StartCoroutine(DestroyBullet());
         }
         else if (collision.gameObject.CompareTag("BossMob"))
         {
-            DestroyBullet();
+            StartCoroutine(DestroyBullet());
         }
     }
-    private void DestroyBullet()
+
+    private IEnumerator DestroyBullet()
     {
+        //rb.velocity = Vector2.zero;
+        this.transform.position = this.transform.position;
+        //animator.SetBool("broken", true);
+        //사운드삽입
+        yield return new WaitForSeconds(0.01f);
         Destroy(gameObject);
     }
     private void Start()
     {
+        animator = this.GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         if (BulletNum != 0)
         {
 
             if (BulletNum == 1)
             {
-                Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                rb.AddForce(Vector3.up * 2f, ForceMode2D.Impulse);
                 //transform.Translate(Vector3.up * BulletSpeed * Time.deltaTime);
+                rb.AddForce(Vector3.up * 1f, ForceMode2D.Impulse);
+
             }
             else if (BulletNum == 2)
             {
-                //transform.Translate(Vector3.down * BulletSpeed * Time.deltaTime);
-                Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                rb.AddForce(Vector3.down * 2f, ForceMode2D.Impulse);
+                rb.AddForce(Vector3.down * 1f, ForceMode2D.Impulse);
             }
             else if (BulletNum == 3)
             {
-                //transform.Translate(Vector3.right * BulletSpeed * Time.deltaTime);
-                Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                rb.AddForce(Vector3.left * 2f, ForceMode2D.Impulse);
+                rb.AddForce(Vector3.left * 1f, ForceMode2D.Impulse);
             }
             else if (BulletNum == 4)
             {
-                //transform.Translate(Vector3.left * BulletSpeed * Time.deltaTime);
-                Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                rb.AddForce(Vector3.right * 2f, ForceMode2D.Impulse);
+                rb.AddForce(Vector3.right * 1f, ForceMode2D.Impulse);
+            }
+            else if (BulletNum == 9)
+            {
+                StartCoroutine(waitingshot());
             }
         }
-    }
 
+    }
+    private IEnumerator waitingshot()
+    {
+        yield return new WaitForSeconds(1f);
+        rb.angularVelocity = 180;
+        rb.AddForce(PlayerDirection * 2f, ForceMode2D.Impulse);
+    }
     private void FixedUpdate()
     {
         DestoryTime -= 1;
         if (DestoryTime < 0)
         {
-            DestroyBullet();
+            StartCoroutine(DestroyBullet());
         }
-        //transform.Translate(direction * BulletSpeed * Time.deltaTime);
-        /*
-        if (BulletNum != 0)
+        //transform.Translate(Vector3.up * BulletSpeed * Time.deltaTime);
+        
+        if (BulletNum != 0|| BulletNum != 1 || BulletNum != 2 || BulletNum != 3 || BulletNum != 4)
         {
             
-            if (BulletNum == 1)
+            if (BulletNum == 5)
             {
-                Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                rb.AddForce(Vector3.up * 0.3f, ForceMode2D.Impulse);
-                //transform.Translate(Vector3.up * BulletSpeed * Time.deltaTime);
+                transform.Translate(Vector3.up * BulletSpeed * Time.deltaTime);
             }
-            else if (BulletNum == 2)
+            else if (BulletNum == 6)
             {
-                //transform.Translate(Vector3.down * BulletSpeed * Time.deltaTime);
-                Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                rb.AddForce(Vector3.down * 0.3f, ForceMode2D.Impulse);
+                transform.Translate(Vector3.down * BulletSpeed * Time.deltaTime);
             }
-            else if (BulletNum == 3)
+            else if (BulletNum == 7)
             {
-                //transform.Translate(Vector3.right * BulletSpeed * Time.deltaTime);
-                Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                rb.AddForce(Vector3.left * 0.3f, ForceMode2D.Impulse);
+                transform.Translate(Vector3.right * BulletSpeed * Time.deltaTime);
             }
-            else if (BulletNum == 4)
+            else if (BulletNum == 8)
             {
-                //transform.Translate(Vector3.left * BulletSpeed * Time.deltaTime);
-                Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                rb.AddForce(Vector3.right * 0.3f, ForceMode2D.Impulse);
+                transform.Translate(Vector3.left * BulletSpeed * Time.deltaTime);
             }
         }
-        else
-        {
-            //transform.Translate(PlayerDirection * -BulletSpeed * Time.deltaTime);
-        }*/
     }
 }
