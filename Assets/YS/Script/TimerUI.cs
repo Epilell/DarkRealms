@@ -17,15 +17,11 @@ public class TimerUI : MonoBehaviour
 
     private void Update()
     {
-        // 인벤토리, 설정창 중 하나라도 켜져있으면 시간 정지, 스킬 사용 불가
+        // 인벤토리, 설정창 중 하나라도 켜져있으면 시간 느리게, 스킬 사용 불가
         if (FindObjectOfType<ActiveMenu>().optionMenu.activeSelf == true || FindObjectOfType<ActiveMenu>().sound.alpha == 1
             || FindObjectOfType<ActiveMenu>().display.alpha == 1 || FindObjectOfType<OpenCloseUI>().inven.activeSelf == true)
         {
-            Time.timeScale = 0;
-            FindObjectOfType<SkillManager>().molotovdata.CanUse = false;
-            FindObjectOfType<SkillManager>().siegemodedata.CanUse = false;
-            FindObjectOfType<SkillManager>().dodgedata.CanUse = false;
-            FindObjectOfType<SkillManager>().evdshotdata.CanUse = false;
+            Time.timeScale = 0.25f;
         }
         else { Time.timeScale = 1; }
 

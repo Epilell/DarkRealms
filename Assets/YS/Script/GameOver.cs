@@ -19,21 +19,23 @@ public class GameOver : MonoBehaviour
 
     public void PlayerGameOver()
     {
-        if (isGameOver) return;
+        if (isGameOver) return; // 중복 실행되지 않게 함
 
         isGameOver = true;
 
-        player.CurrentHp -= 10000; // 죽음
-        FindObjectOfType<HealthBar>().ChangeHP(); // 체력바 변경
+        FindObjectOfType<Player>().P_TakeDamage(10000); // 플레이어 사망
 
-        for (int i = 0; i < Inventory._Items.Length; i++) { Inventory.Remove(i); } // 죽으면 인벤토리 내 모든 아이템 제거
+        // for (int i = 0; i < Inventory._Items.Length; i++) { Inventory.Remove(i); } // 죽으면 인벤토리 내 모든 아이템 제거
 
-        //StartCoroutine(GameOverCoroutine());
+        StartCoroutine(GameOverCoroutine());
     }
 
     public IEnumerator GameOverCoroutine() // 게임 오버 나타낼 코루틴
     {
-        Debug.Log("사망 코루틴 호출!");
+        if (isGameOver) yield break; // 중복 실행되지 않게 함
+
+        isGameOver = true;
+
         gameOverImg.gameObject.SetActive(true); // 이미지 활성화
         screen.gameObject.SetActive(true); // 이미지 활성화
         goMainBtn.gameObject.SetActive(true); // 버튼 활성화
@@ -70,12 +72,9 @@ public class GameOver : MonoBehaviour
 
         Time.timeScale = 0;
 
-        goMainBtn.onClick.AddListener(GoToNextScene); // 버튼 클릭 이벤트에 GoToMainMenu 함수를 추가
+        //goMainBtn.onClick.AddListener(GoToNextScene); // 버튼 클릭 이벤트에 GoToMainMenu 함수를 추가
+        goMainBtn.onClick.AddListener(() => fadeOut.Fade()); // 람다식으로 변형
     }
 
-    private void GoToNextScene()
-    {
-        //Time.timeScale = 1;
-        fadeOut.Fade();
-    }
+    //private void GoToNextScene() { fadeOut.Fade(); }
 }

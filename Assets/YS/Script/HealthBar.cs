@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,41 +45,11 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-
-    /*private void Start()
-    {
-        Debug.Log("스타트!");
-        // 체력바 초기화
-        GameObject playerObject = GameObject.Find("Player(Clone)");
-        player = FindObjectOfType<PlayerSpawnSystem>().playerObject.GetComponent<Player>();
-        Debug.Log("플레이어:" + player);
-        hpbar.value = (float)currentHp / (float)maxHp;
-        hpbar2.value = (float)currentHp / (float)maxHp;
-        Debug.Log("체력:" + hpbar2.value);
-    }
-
-    private void Update()
-    {
-        maxHp = player.MaxHP;
-        currentHp = player.CurrentHp;
-        Debug.Log("현재 체력:" + currentHp);
-        if (currentHp > maxHp) // 현재 체력이 최대 체력을 넘지 않게
-        {
-            currentHp = maxHp;
-        }
-
-        if (currentHp < 0) // 현재 체력이 0 아래로 내려가지 않게
-        {
-            currentHp = 0;
-        }
-
-        ChangeHP();
-    }*/
-
     public void ChangeHP() // 체력바 갱신
     {
         textObj.text = currentHp.ToString() + "/" + maxHp.ToString(); // 체력 텍스트 갱신
         hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);  // 체력 갱신
+        // hpbar.value = (float)currentHp / (float)maxHp; ← 시간 정지 시에도 작동함
 
         textObj2.text = currentHp.ToString() + "/" + maxHp.ToString(); // 체력 텍스트 갱신
         hpbar2.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);  // 체력 갱신
