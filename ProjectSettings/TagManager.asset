@@ -16,6 +16,7 @@ TagManager:
   - Warehouse
   - BossMob
   - Filter
+  - BossPortal
   layers:
   - Default
   - TransparentFX
