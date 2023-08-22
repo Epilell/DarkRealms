@@ -20,6 +20,7 @@ public class MobAttack : MonoBehaviour
 
     public bool isOrc = false;
     public float WhirlWindDuration = 5.0f;
+    private bool OrcAtkChanger = false;
 
     [Header("MobAttacing")]
     private MobAttacking mobAttacking;
@@ -112,6 +113,10 @@ public class MobAttack : MonoBehaviour
         {
             StartCoroutine(GoblinShamanAtk(mobStat));
         }
+        else if (mobStat.mobProperty == "Orc")
+        {
+            StartCoroutine(OrcAtk(mobStat.mobDamage));
+        }
         else
         {
             Debug.Log("mobStat.mobProperty ¿À·ù!");
@@ -151,10 +156,19 @@ public class MobAttack : MonoBehaviour
     }
     protected IEnumerator MeleeAttack(MobStat mobStat)
     {
+
         yield return new WaitForSeconds(0.5f);
         Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
         if (isSlime)
         {
+            foreach (Collider2D collider in collider2Ds)
+            {
+                Debug.Log(collider.tag);
+                if (collider.tag == "Player")
+                {
+                    collider.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
+                }
+            }
             Collider2D[] collider2Ds2 = Physics2D.OverlapBoxAll(pos2.position, boxSize2, 0);
             foreach (Collider2D collider in collider2Ds2)
             {
@@ -165,19 +179,74 @@ public class MobAttack : MonoBehaviour
                 }
             }
         }
+        /*
         else if (isOrc)
         {
-            animator.SetTrigger("whirlwindReady");
-            StartCoroutine(OrcWhirlWind(mobStat.mobDamage / 10));
-        }
-        foreach (Collider2D collider in collider2Ds)
-        {
-            Debug.Log(collider.tag);
-            if (collider.tag == "Player")
+            if (OrcAtkChanger)
             {
-                collider.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
+                StartCoroutine(OrcAtk(mobStat.mobDamage));
+                yield return new WaitForSeconds(5f);
+                OrcAtkChanger = false;
+            }
+            else
+            {
+                animator.SetTrigger("whirlwindReady");
+                StartCoroutine(OrcWhirlWind(mobStat.mobDamage / 10));
+                yield return new WaitForSeconds(5f);
+            }
+        }*/
+        else
+        {
+            foreach (Collider2D collider in collider2Ds)
+            {
+                Debug.Log(collider.tag);
+                if (collider.tag == "Player")
+                {
+                    collider.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
+                }
             }
         }
+    }
+    private IEnumerator OrcAtk(float damage)
+    {
+        if (OrcAtkChanger)
+        {
+            animator.SetTrigger("Attack1");
+            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
+            foreach (Collider2D collider in collider2Ds)
+            {
+                Debug.Log(collider.tag);
+                if (collider.tag == "Player")
+                {
+                    collider.GetComponent<Player>().P_TakeDamage(damage);
+                }
+            }
+            OrcAtkChanger = false;
+        }
+        else
+        {
+            animator.SetBool("whirlwind", true);
+            while (WhirlWindDuration > 0f)
+            {
+                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos2.position, boxSize, 0);
+                foreach (Collider2D collider in collider2Ds)
+                {
+                    Debug.Log(collider.tag);
+                    if (collider.tag == "Player")
+                    {
+                        collider.GetComponent<Player>().P_TakeDamage(damage);
+                    }
+                }
+                WhirlWindDuration -= Time.deltaTime;
+                yield return new WaitForSeconds(0.2f);
+            }
+
+            animator.SetBool("whirlwind", false);
+
+            yield return new WaitForSeconds(5f);
+            OrcAtkChanger = true;
+        }
+
     }
     private IEnumerator OrcWhirlWind(float damage)
     {
@@ -196,7 +265,11 @@ public class MobAttack : MonoBehaviour
             WhirlWindDuration -= Time.deltaTime;
             yield return new WaitForSeconds(0.2f);
         }
+
         animator.SetBool("whirlwind", false);
+
+        yield return new WaitForSeconds(5f);
+        OrcAtkChanger = true;
     }
     private IEnumerator GoblinShamanAtk(MobStat mobStat)
     {

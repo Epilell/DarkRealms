@@ -104,6 +104,7 @@ public class MobAI : MonoBehaviour
     }
     private void Attack()
     {
+        animator.SetInteger("WalkSpeed", 0);
         if (!IsAttack && currentCoolDown <= 0f)
         {
             currentCoolDown = mobAttackSpeed;

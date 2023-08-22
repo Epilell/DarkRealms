@@ -2543,11 +2543,11 @@ MonoBehaviour:
     type: 3}
   canvasTransform: {fileID: 1471091125}
   mobList:
-  - {fileID: 834271027276496964, guid: 89128abefdd923c48869e62249ce0baf, type: 3}
+  - {fileID: 627486023847324001, guid: ebc41e4ae5626104395009095f06722d, type: 3}
   spawnPoint:
   - {fileID: 1030740657}
   spawnDelay: 3
-  MaxSpawn: 3
+  MaxSpawn: 2
 --- !u!4 &246665019
 Transform:
   m_ObjectHideFlags: 0

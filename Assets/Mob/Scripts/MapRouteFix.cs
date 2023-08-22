@@ -8,15 +8,14 @@ public class MapRouteFix : MonoBehaviour
     public PlayerSpawnSystem p_spawn;
     int routenum = 1;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         p_spawn = GetComponent<PlayerSpawnSystem>();
 
-        StartCoroutine("MakeWall", 2f);
+        MakeWall();
     }
-    private IEnumerator MakeWall()
+    private void MakeWall()
     {
-        yield return new WaitForSeconds(1f);
 
         routenum = p_spawn.SpawnPoint;
         Debug.Log("MRF = " + routenum);

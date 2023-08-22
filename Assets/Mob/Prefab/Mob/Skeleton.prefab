@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4968458598ac39841b0a74efb3c009c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 50
+  maxHP: 250
   DeadMob: {fileID: 965568549241441883, guid: ca1dd13575f099f498e0f39ffb20fac0, type: 3}
   hpViewer: {fileID: 0}
   freezingEffect: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
@@ -228,7 +228,7 @@ MonoBehaviour:
   mobDamage: 10
   mobProperty: melee
   detectionRange: 10
-  mobAttackRange: 1
+  mobAttackRange: 1.5
   moveSpeed: 1
   mobAttackSpeed: 1
   bullet: {fileID: 0}
@@ -322,8 +322,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 1, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.352}
-  m_SizeDelta: {x: 4, y: 4}
+  m_AnchoredPosition: {x: 0.041, y: -0.334}
+  m_SizeDelta: {x: 3, y: 3}
   m_Pivot: {x: 0.4887461, y: 0.4999998}
 --- !u!212 &4984969528624355607
 SpriteRenderer:
@@ -367,7 +367,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c9165a5edb3572e4e809e8d782777cce, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2830189, g: 0.27340692, b: 0.27340692, a: 0.5882353}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0

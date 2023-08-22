@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4968458598ac39841b0a74efb3c009c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 20
+  maxHP: 190
   DeadMob: {fileID: 1951024477771461447, guid: 348c927aa5810f146b9837766492dc8a, type: 3}
   hpViewer: {fileID: 0}
   freezingEffect: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
@@ -281,12 +281,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca966e0b9596db4b9164da762efadda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mobDamage: 5
+  mobDamage: 6
   mobProperty: GoblinShaman
   detectionRange: 10
-  mobAttackRange: 6
-  moveSpeed: 1
-  mobAttackSpeed: 4
+  mobAttackRange: 8
+  moveSpeed: 2
+  mobAttackSpeed: 2
   bullet: {fileID: 5455975780477891010, guid: d76c41bf170d0e8499f47b2cadff2ea6, type: 3}
   firePoint: {fileID: 8475948001200166907}
   bulletSpeed: 1

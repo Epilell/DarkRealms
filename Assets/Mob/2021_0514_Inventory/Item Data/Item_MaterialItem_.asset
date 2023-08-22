@@ -15,7 +15,8 @@ MonoBehaviour:
   _id: 999
   _name: "\uAC15\uD654\uC7AC\uB8CC"
   _tooltip: "\uAC15\uD654\uC7AC\uB8CC\uC784 \uAC15\uD654\uD558\uB294\uB370 \uC4F0\uC148"
-  _iconSprite: {fileID: 21300000, guid: 6f04b426aa4435344896c39b692fbf6e, type: 3}
-  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
+  _iconSprite: {fileID: 21300000, guid: 41ba2dd8c1760f44c8823362347c4dd4, type: 3}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
+    type: 3}
   _maxAmount: 99
   _value: 0

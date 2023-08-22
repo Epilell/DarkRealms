@@ -243,8 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4968458598ac39841b0a74efb3c009c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 45
+  maxHP: 200
   DeadMob: {fileID: 6934557813342266513, guid: 96657a744f9855f449dccd150e5a6062, type: 3}
+  hpViewer: {fileID: 0}
   freezingEffect: {fileID: 0}
   stunEffect: {fileID: 0}
   burnEffect: {fileID: 0}

@@ -210,9 +210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4968458598ac39841b0a74efb3c009c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 20
+  maxHP: 250
   DeadMob: {fileID: 4618168359074757058, guid: 76a626933d3a54f45bc1f16d8b945100, type: 3}
-  hpViewer: {fileID: 0}
+  hpViewer: {fileID: -6495139008623831599, guid: a560c60edbd12d34993049e7be4fb26e,
+    type: 3}
   freezingEffect: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
     type: 3}
   stunEffect: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
@@ -233,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca966e0b9596db4b9164da762efadda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mobDamage: 1
+  mobDamage: 12
   mobProperty: range
   detectionRange: 10
   mobAttackRange: 4
