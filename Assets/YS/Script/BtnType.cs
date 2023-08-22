@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -64,6 +61,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     // 마우스가 버튼 위에 올라갔을 때
     public void OnPointerEnter(PointerEventData eventData)
     {
+        FindObjectOfType<CursorManager>().isCursorChange = true;
         btnScale.localScale = defaultScale * 1.2f; // 버튼의 크기를 1.2배 확장
         // buttonText.color = Color.red; // 버튼의 텍스트 색상 변경
     }
@@ -71,6 +69,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     // 마우스가 버튼에서 벗어났을 때
     public void OnPointerExit(PointerEventData eventData)
     {
+        FindObjectOfType<CursorManager>().isCursorChange = false;
         btnScale.localScale = defaultScale; // 버튼의 크기를 기본 크기로 복구
         // buttonText.color = defaultColor; // 버튼의 텍스트 색상을 기본 색상으로
     }

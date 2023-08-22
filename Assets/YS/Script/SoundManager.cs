@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +21,6 @@ public class SoundManager : MonoBehaviour
     [Header("IconObj")] // 아이콘 오브젝트
     public Image bgmIcon;
     public Image sfxIcon;
-
 
     public void SetBgmVolume(float volume) // 배경음악 볼륨 조절
     {

@@ -9,7 +9,8 @@ public enum BTNType
     Sound,
     Display,
     Back,
-    Quit
+    Quit,
+    Etc
 }
 
 public class MainUI : MonoBehaviour { }

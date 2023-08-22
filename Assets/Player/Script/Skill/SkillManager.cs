@@ -13,9 +13,9 @@ using UnityEngine.UIElements;
 [Serializable]
 public struct Upgrade
 {
-    [SerializeField]private string name;
+    [SerializeField] private string name;
     public string Name => name;
-    [SerializeField]private bool isUpgrade;
+    [SerializeField] private bool isUpgrade;
     public bool IsUpgrade => isUpgrade;
 }
 
@@ -68,6 +68,8 @@ public class SkillManager : MonoBehaviour
     [Header("Object List", order = 3), Space(5)]
     [SerializeField] private GameObject EvadeShotgun;
 
+    public bool isSkillCanUse; // 테스트용 추가
+
     #endregion
 
     //Get Method
@@ -94,7 +96,7 @@ public class SkillManager : MonoBehaviour
     //Check Method
     #region
 
-    private void CheckTime(TimeAndStack _ts , SkillData _data, List<Upgrade> _list)
+    private void CheckTime(TimeAndStack _ts, SkillData _data, List<Upgrade> _list)
     {
         if (CheckUpgrade(_list, "Stack Up"))
         {
@@ -133,9 +135,9 @@ public class SkillManager : MonoBehaviour
     /// <returns></returns>
     public bool CheckUpgrade(List<Upgrade> _list, string _upgradeName)
     {
-        for(int i = 0; i < _list.Count; i++)
+        for (int i = 0; i < _list.Count; i++)
         {
-            if(_list[i].Name == _upgradeName && _list[i].IsUpgrade)
+            if (_list[i].Name == _upgradeName && _list[i].IsUpgrade)
             {
                 return true;
             }
@@ -159,15 +161,15 @@ public class SkillManager : MonoBehaviour
     {
         //초기화
         dodgeTS.curTime = 0; dodgeTS.canUse = false; dodgeTS.curStack--;
-        isDashing = true; 
+        isDashing = true;
 
         //회피중 무적
         //col.enabled = false;
 
         //회피 후 트랩설치
-        if(CheckUpgrade(dodgeUpgradeList, "Trap"))
+        if (CheckUpgrade(dodgeUpgradeList, "Trap"))
         {
-            Instantiate(dodgeData.GetObj(),transform.position, transform.rotation);
+            Instantiate(dodgeData.GetObj(), transform.position, transform.rotation);
         }
         //회피 거리 업그레이드
         if (CheckUpgrade(dodgeUpgradeList, "RangeUp"))
@@ -178,10 +180,10 @@ public class SkillManager : MonoBehaviour
         {
             rb.AddForce(new Vector2(mx, my).normalized * 20f, ForceMode2D.Impulse);
         }
-        
+
         ani.SetBool("IsDash", true);
 
-        yield return new WaitForSeconds(1/6f);
+        yield return new WaitForSeconds(1 / 6f);
 
         //회피후 초기화
         rb.velocity = Vector3.zero;
@@ -211,20 +213,20 @@ public class SkillManager : MonoBehaviour
             TM.data = molotovData;
 
             //데미지 증가 업그레이드
-            if(CheckUpgrade(molotovUpgradeList, "Damage Up"))
+            if (CheckUpgrade(molotovUpgradeList, "Damage Up"))
             {
                 TM.AddTempStats(10, 0);
                 TM.SetRGB(47, 98, 255);
             }
             //범위 증가 업그레이드
-            if(CheckUpgrade(molotovUpgradeList, "Radius Up"))
+            if (CheckUpgrade(molotovUpgradeList, "Radius Up"))
             {
                 TM.AddTempStats(0, 10);
             }
             //투척 개수 증가 업그레이드
-            if(CheckUpgrade(molotovUpgradeList, "More Projectile"))
+            if (CheckUpgrade(molotovUpgradeList, "More Projectile"))
             {
-                
+
             }
 
             //경로 지정
@@ -250,7 +252,7 @@ public class SkillManager : MonoBehaviour
             //투척 개수 증가 업그레이드
             if (CheckUpgrade(molotovUpgradeList, "More Projectile"))
             {
-                
+
             }
 
             //경로 지정
@@ -329,11 +331,11 @@ public class SkillManager : MonoBehaviour
             {
                 case "Mob":
                     colliders[i].GetComponent<MobHP>().TakeDamage(dmg);
-                    if(CheckUpgrade(evdshotUpgradeList, "Armor Break"))
+                    if (CheckUpgrade(evdshotUpgradeList, "Armor Break"))
                     {
                         colliders[i].GetComponent<MobHP>().TakeCC("reducedDefense", 2);
                     }
-                    if(CheckUpgrade(evdshotUpgradeList, "Stun"))
+                    if (CheckUpgrade(evdshotUpgradeList, "Stun"))
                     {
                         colliders[i].GetComponent<MobHP>().TakeCC("stun", 1);
                     }
@@ -360,7 +362,7 @@ public class SkillManager : MonoBehaviour
             Collider2D[] col = Physics2D.OverlapCircleAll(this.transform.position + new Vector3(1, 0, 0), 1);
 
             //회피사격 데미지 업그레이드
-            if(CheckUpgrade(evdshotUpgradeList, "Damage Up"))
+            if (CheckUpgrade(evdshotUpgradeList, "Damage Up"))
             {
                 ApplyEvdshotDamage(col, evdshotData.Damage * 20f);
             }
@@ -368,12 +370,12 @@ public class SkillManager : MonoBehaviour
             {
                 ApplyEvdshotDamage(col, evdshotData.Damage);
             }
-            
+
 
             //회피사격 거리 업그레이드
-            if(CheckUpgrade(evdshotUpgradeList, "Range Up"))
+            if (CheckUpgrade(evdshotUpgradeList, "Range Up"))
             {
-                rb.AddForce(Vector2.left * 30f, ForceMode2D.Impulse); 
+                rb.AddForce(Vector2.left * 30f, ForceMode2D.Impulse);
             }
             else
             {
@@ -381,7 +383,7 @@ public class SkillManager : MonoBehaviour
             }
         }
         // 우측으로
-        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < Player.Instance.transform.position.x) 
+        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < Player.Instance.transform.position.x)
         {
             Instantiate(evdshotData.effect, this.transform.position + new Vector3(-1, 0, 0), this.transform.rotation);
             Collider2D[] col = Physics2D.OverlapCircleAll(this.transform.position + new Vector3(-1, 0, 0), 1);
@@ -436,63 +438,64 @@ public class SkillManager : MonoBehaviour
         GetMousePos();
         GetMouseVec();
 
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
 
-        //회피
-        CheckTime(dodgeTS, dodgeData, dodgeUpgradeList);
-        if (siegemodeTS.isActive == false && dodgeTS.canUse == true && isDashing == false)
+        if (isSkillCanUse)
         {
-            if(Input.GetKeyDown(KeyCode.Space) && (mx != 0 || my != 0))
+            //회피
+            CheckTime(dodgeTS, dodgeData, dodgeUpgradeList);
+            if (siegemodeTS.isActive == false && dodgeTS.canUse == true && isDashing == false)
             {
-                StartCoroutine(Dodge());
-                FindObjectOfType<SoundManager>().PlaySound("Dash");
-            }
-        }
-
-        //화염병
-        CheckTime(molotovTS, molotovData, molotovUpgradeList);
-        if (molotovTS.canUse == true)
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                ThrowMolotov();
-            }
-        }
-
-        //시즈모드
-        CheckTime(siegemodeTS, siegemodeData, siegemodeUpgradeList);
-        if (siegemodeTS.canUse == true)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (siegemodeTS.isActive)
+                if (Input.GetKeyDown(KeyCode.Space) && (mx != 0 || my != 0))
                 {
-                    StartCoroutine(DeactivateSiegeMode());
-
-                }
-                else
-                {
-                    StartCoroutine(ActivateSiegeMode());
+                    StartCoroutine(Dodge());
+                    FindObjectOfType<SoundManager>().PlaySound("Dash");
                 }
             }
-        }
 
-        //회피사격
-        CheckTime(evdshotTS, evdshotData, evdshotUpgradeList);
-        if (siegemodeTS.isActive == false && evdshotTS.canUse == true)
-        {
-            if(Input.GetMouseButtonDown(1))
+            //화염병
+            CheckTime(molotovTS, molotovData, molotovUpgradeList);
+            if (molotovTS.canUse == true)
             {
-                StartCoroutine(Evdshot());
-                FindObjectOfType<SoundManager>().PlaySound("EvadeShot");
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    ThrowMolotov();
+                }
+            }
+
+            //시즈모드
+            CheckTime(siegemodeTS, siegemodeData, siegemodeUpgradeList);
+            if (siegemodeTS.canUse == true)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (siegemodeTS.isActive)
+                    {
+                        StartCoroutine(DeactivateSiegeMode());
+
+                    }
+                    else
+                    {
+                        StartCoroutine(ActivateSiegeMode());
+                    }
+                }
+            }
+
+            //회피사격
+            CheckTime(evdshotTS, evdshotData, evdshotUpgradeList);
+            if (siegemodeTS.isActive == false && evdshotTS.canUse == true)
+            {
+                if (Input.GetMouseButtonDown(1))
+                {
+                    StartCoroutine(Evdshot());
+                    FindObjectOfType<SoundManager>().PlaySound("EvadeShot");
+                }
             }
         }
-        
-
-        
+        else { }
     }
     #endregion
 }

@@ -32,7 +32,7 @@ public class CoolDown : MonoBehaviour
     private float cooldownTimeQ, cooldownTimeE, cooldownTimeSpace, cooldownTimeMouseRight; // 각 스킬의 쿨다운 시간
     private float currentTimeQ, currentTimeE, currentTimeSpace, currentTimeMouseRight; // 각각의 남은 쿨다운 시간
     private bool isCooldownQ, isCooldownE, isCooldownSpace, isCooldownMouseRight; // 각각의 쿨다운 상태
-    
+
     public bool isSkillUse;
 
     void Start()
@@ -52,25 +52,28 @@ public class CoolDown : MonoBehaviour
 
     void Update()
     {
-        // 각 스킬 사용 UI: 스킬 사용이 가능할 때 스킬 키 누르면 작동함
-        if (FindObjectOfType<SkillManager>().molotovTS.canUse == true) if (Input.GetKeyDown(KeyCode.Q)) { UseSkill(ref isCooldownQ, ref currentTimeQ, cooldownImageQ, cooldownTimeQ, iconQ, offSpriteQ); }
-        if (FindObjectOfType<SkillManager>().siegemodeTS.canUse == true && FindObjectOfType<SkillManager>().siegemodeTS.isActive == true) if (Input.GetKeyDown(KeyCode.E)) { UseSkill(ref isCooldownE, ref currentTimeE, cooldownImageE, cooldownTimeE, iconE, offSpriteE); }
-        if (FindObjectOfType<SkillManager>().dodgeTS.canUse == true && !FindObjectOfType<SkillManager>().siegemodeTS.isActive) if (Input.GetKeyDown(KeyCode.Space)) { UseSkill(ref isCooldownSpace, ref currentTimeSpace, cooldownImageSpace, cooldownTimeSpace, iconSpace, offSpriteSpace); }
-        if (FindObjectOfType<SkillManager>().evdshotTS.canUse == true && !FindObjectOfType<SkillManager>().siegemodeTS.isActive) if (Input.GetKeyDown(KeyCode.Mouse1)) { UseSkill(ref isCooldownMouseRight, ref currentTimeMouseRight, cooldownImageMouseRight, cooldownTimeMouseRight, iconMouseRight, offSpriteMouseRight); }
-
-        // 각 쿨다운 업데이트
-        UpdateCooldown(ref isCooldownQ, ref currentTimeQ, cooldownImageQ, cooldownTimeQ, iconQ, onSpriteQ);
-        UpdateCooldown(ref isCooldownE, ref currentTimeE, cooldownImageE, cooldownTimeE, iconE, onSpriteE);
-        UpdateCooldown(ref isCooldownSpace, ref currentTimeSpace, cooldownImageSpace, cooldownTimeSpace, iconSpace, onSpriteSpace);
-        UpdateCooldown(ref isCooldownMouseRight, ref currentTimeMouseRight, cooldownImageMouseRight, cooldownTimeMouseRight, iconMouseRight, onSpriteMouseRight);
-
-        if (isSkillUse == true) // 전체 쿨타임 초기화
+        if (FindObjectOfType<SkillManager>().isSkillCanUse) // 인벤토리, 설정창 중 하나라도 켜져있으면 쿨다운 UI 작동 중지
         {
-            isSkillUse = false;
-            isCooldownQ = false; cooldownImageQ.fillAmount = 0; iconQ.sprite = onSpriteQ;
-            isCooldownE = false; cooldownImageE.fillAmount = 0; iconE.sprite = onSpriteE;
-            isCooldownSpace = false; cooldownImageSpace.fillAmount = 0; iconSpace.sprite = onSpriteSpace;
-            isCooldownMouseRight = false; cooldownImageMouseRight.fillAmount = 0; iconMouseRight.sprite = onSpriteMouseRight;
+            // 각 스킬 사용 UI: 스킬 사용이 가능할 때 스킬 키 누르면 작동함
+            if (FindObjectOfType<SkillManager>().molotovTS.canUse == true) if (Input.GetKeyDown(KeyCode.Q)) { UseSkill(ref isCooldownQ, ref currentTimeQ, cooldownImageQ, cooldownTimeQ, iconQ, offSpriteQ); }
+            if (FindObjectOfType<SkillManager>().siegemodeTS.canUse == true && FindObjectOfType<SkillManager>().siegemodeTS.isActive == true) if (Input.GetKeyDown(KeyCode.E)) { UseSkill(ref isCooldownE, ref currentTimeE, cooldownImageE, cooldownTimeE, iconE, offSpriteE); }
+            if (FindObjectOfType<SkillManager>().dodgeTS.canUse == true && !FindObjectOfType<SkillManager>().siegemodeTS.isActive) if (Input.GetKeyDown(KeyCode.Space)) { UseSkill(ref isCooldownSpace, ref currentTimeSpace, cooldownImageSpace, cooldownTimeSpace, iconSpace, offSpriteSpace); }
+            if (FindObjectOfType<SkillManager>().evdshotTS.canUse == true && !FindObjectOfType<SkillManager>().siegemodeTS.isActive) if (Input.GetKeyDown(KeyCode.Mouse1)) { UseSkill(ref isCooldownMouseRight, ref currentTimeMouseRight, cooldownImageMouseRight, cooldownTimeMouseRight, iconMouseRight, offSpriteMouseRight); }
+
+            // 각 쿨다운 업데이트
+            UpdateCooldown(ref isCooldownQ, ref currentTimeQ, cooldownImageQ, cooldownTimeQ, iconQ, onSpriteQ);
+            UpdateCooldown(ref isCooldownE, ref currentTimeE, cooldownImageE, cooldownTimeE, iconE, onSpriteE);
+            UpdateCooldown(ref isCooldownSpace, ref currentTimeSpace, cooldownImageSpace, cooldownTimeSpace, iconSpace, onSpriteSpace);
+            UpdateCooldown(ref isCooldownMouseRight, ref currentTimeMouseRight, cooldownImageMouseRight, cooldownTimeMouseRight, iconMouseRight, onSpriteMouseRight);
+
+            if (isSkillUse == true) // 전체 쿨타임 초기화
+            {
+                isSkillUse = false;
+                isCooldownQ = false; cooldownImageQ.fillAmount = 0; iconQ.sprite = onSpriteQ;
+                isCooldownE = false; cooldownImageE.fillAmount = 0; iconE.sprite = onSpriteE;
+                isCooldownSpace = false; cooldownImageSpace.fillAmount = 0; iconSpace.sprite = onSpriteSpace;
+                isCooldownMouseRight = false; cooldownImageMouseRight.fillAmount = 0; iconMouseRight.sprite = onSpriteMouseRight;
+            }
         }
     }
 

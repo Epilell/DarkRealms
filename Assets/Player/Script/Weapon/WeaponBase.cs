@@ -77,7 +77,8 @@ public abstract class WeaponBase : MonoBehaviour
         CalcVec();
         if (curTime >= 60 / data.Rpm)
         {
-            if (Input.GetMouseButton(0))
+            if (!(FindObjectOfType<ActiveMenu>().optionMenu.activeSelf == true || FindObjectOfType<ActiveMenu>().sound.alpha == 1
+            || FindObjectOfType<ActiveMenu>().display.alpha == 1 || FindObjectOfType<OpenCloseUI>().inven.activeSelf == true) && Input.GetMouseButton(0))
             {
                 Attack();
                 string containText = Regex.Match(data.Name, "rifle|shotgun|pistol", RegexOptions.IgnoreCase).Value.ToLower(); // 정규 표현식으로 문자열 찾기

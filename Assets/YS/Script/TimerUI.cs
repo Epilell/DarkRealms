@@ -22,8 +22,13 @@ public class TimerUI : MonoBehaviour
             || FindObjectOfType<ActiveMenu>().display.alpha == 1 || FindObjectOfType<OpenCloseUI>().inven.activeSelf == true)
         {
             Time.timeScale = 0.0025f;
+            FindObjectOfType<SkillManager>().isSkillCanUse = false;
         }
-        else { Time.timeScale = 1; }
+        else
+        {
+            Time.timeScale = 1;
+            FindObjectOfType<SkillManager>().isSkillCanUse = true;
+        }
 
         if (GetComponent<GameOver>().isGameOver) // 게임 오버 상태인 경우 Update() 실행하지 않음
             return;
