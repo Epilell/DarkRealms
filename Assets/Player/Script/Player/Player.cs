@@ -60,9 +60,9 @@ public class Player : MonoBehaviour
         if (!SkillManager.Instance.dodgeTS.isActive)
         {
             //받는 데미지가 1이하면 1로
-            if (((damage - data.GetArmor()) * (100 - ArmorReductionBySkill)) * (1 - data.ArmorMasteryLevel * 0.02f) <= 1) { CurrentHp -= 1; }
+            if (((damage - data.GetArmor()) * (1 - ArmorReductionBySkill/100)) * (1 - data.ArmorMasteryLevel * 0.02f) <= 1) { CurrentHp -= 1; }
             //아닌 경우 그대로
-            else { CurrentHp -= ((damage - data.GetArmor()) * (100 - ArmorReductionBySkill)) * (1 - data.ArmorMasteryLevel * 0.02f); }
+            else { CurrentHp -= ((damage - data.GetArmor()) * (1 - ArmorReductionBySkill/100)) * (1 - data.ArmorMasteryLevel * 0.02f); }
             //사망시
             if (CurrentHp <= 0)
             {
