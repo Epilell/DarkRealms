@@ -38,11 +38,13 @@ public class OnClickBack : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         // 마우스 포인터가 버튼 위에 있으면 버튼 크기를 1.2배로
         btnScale.localScale = defaultScale * 1.2f;
+        FindObjectOfType<CursorManager>().isCursorChange = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         // 마우스 포인터가 버튼을 벗어나면 버튼의 크기를 원래대로 함
         btnScale.localScale = defaultScale;
+        FindObjectOfType<CursorManager>().isCursorChange = true;
     }
 }

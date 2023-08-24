@@ -6,7 +6,7 @@ using TMPro;
 public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public BTNType currentType; // 버튼의 종류를 나타내는 열거형 변수
-    public CanvasGroup mainGroup, optionGroup, soundGroup, displayGroup; // 각각의 화면을 나타내는 CanvasGroup 컴포넌트
+    public CanvasGroup mainGroup, optionGroup, soundGroup, displayGroup, onGroup, offGroup; // 각각의 화면을 나타내는 CanvasGroup 컴포넌트
     public Transform btnScale; // 버튼의 크기를 조절할 Transform 컴포넌트
     Vector3 defaultScale; // 버튼의 기본 크기를 저장할 변수
     // public TextMeshProUGUI buttonText; // 버튼의 텍스트 컴포넌트
@@ -32,10 +32,6 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case BTNType.Display: // 디스플레이 버튼을 눌렀을 때
                 CanvasGroupOn(displayGroup); // 디스플레이 화면을 켜고
-                CanvasGroupOff(optionGroup); // 옵션 화면을 끈다
-                break;
-            case BTNType.Back: // 뒤로 가기 버튼을 눌렀을 때
-                CanvasGroupOn(mainGroup); // 메인 화면을 켜고
                 CanvasGroupOff(optionGroup); // 옵션 화면을 끈다
                 break;
             case BTNType.Quit: // 종료 버튼을 눌렀을 때

@@ -306,7 +306,7 @@ RectTransform:
   m_GameObject: {fileID: 499289308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2000252171}
@@ -1186,7 +1186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 486478250}
+  img: {fileID: 0}
   scene: {fileID: 102900000, guid: e770657210d2ca7478d6a90c4543bdcb, type: 3}
+  isStart: 0
 --- !u!1 &2056536103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,7 +1215,7 @@ RectTransform:
   m_GameObject: {fileID: 2056536103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1933149937}
@@ -1308,6 +1310,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgm: {fileID: 0}
   sfxSources: []
+  normalAudioClip: {fileID: 0}
+  bossAudioClip: {fileID: 0}
   bgm_on: {fileID: 0}
   bgm_off: {fileID: 0}
   sfx_on: {fileID: 0}
