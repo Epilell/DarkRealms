@@ -12,7 +12,7 @@ public class MobHP : MonoBehaviour
     private bool isStun = false;//스턴 유무
 
     private bool isDefDecrease = false;
-    private float DefDcreasePercent=0.3f;
+    private float DefDcreasePercent = 0.3f;
 
     //private MobDropItem dropItem;
     private MobAI mob;
@@ -24,7 +24,7 @@ public class MobHP : MonoBehaviour
 
     [Header("CCEffectPrefab")]
     [SerializeField]
-    private GameObject freezingEffect;
+    private List<GameObject> freezingEffect;
     [SerializeField]
     private GameObject stunEffect;
     [SerializeField]
@@ -46,13 +46,14 @@ public class MobHP : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         //dropItem = GetComponent<MobDropItem>();
     }
+
     /// <summary>
     /// CC가 있는 기술시 호출
     /// </summary>
     /// <param name="cc">freezing(빙결 슬로우), stun(스턴), burn(화상), reducedDefense(방깎)</param>
     /// <param name="duration">지속시간</param>
-    public void TakeCC(string cc, float duration = 2f,float etc=30f)
-    {        
+    public void TakeCC(string cc, float duration = 2f, float etc = 30f)
+    {
         if (cc == "freezing")
         {
             StartCoroutine(Slow(duration));
@@ -113,9 +114,9 @@ public class MobHP : MonoBehaviour
         float moveSpeed = mob.moveSpeed;
         mob.moveSpeed *= 0.6f;
 
-        GameObject CCEffect = Instantiate(freezingEffect, this.transform.position, Quaternion.identity) as GameObject;
-        CCEffect.transform.SetParent(this.gameObject.transform);
-
+        //GameObject CCEffect = Instantiate(freezingEffect, this.transform.position, Quaternion.identity) as GameObject;
+        //CCEffect.transform.SetParent(this.gameObject.transform);
+        StartCoroutine( SlowEffectSpawn(slowDuration));
         Color color = spriteRenderer.color;
         color.g = 0.8f;
         color.r = 0.8f;
@@ -126,7 +127,21 @@ public class MobHP : MonoBehaviour
         color.r = 1.0f;
         spriteRenderer.color = color;
         mob.moveSpeed = moveSpeed;
-        Destroy(CCEffect);
+    }
+    private IEnumerator SlowEffectSpawn(float slowDuration = 3f)
+    {
+        for (int i = 0; i < slowDuration*2; i++)
+        {
+            GameObject CCEffect = Instantiate(freezingEffect[i], this.transform.position+new Vector3(0,-0.5f,5), Quaternion.identity) as GameObject;
+            Destroy(CCEffect, 3f);
+            /*SpriteRenderer sr = CCEffect.GetComponent<SpriteRenderer>();
+            Color color = sr.color;
+            color.a = 0.8f;
+            color.r = 0.8f;
+            sr.color = color;*/
+            CCEffect.GetComponent<DecreaseAlpha>().SetUp(slowDuration);
+            yield return new WaitForSeconds(0.5f);
+        }
     }
     /// <summary>
     /// 스턴

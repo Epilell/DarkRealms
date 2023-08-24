@@ -65,26 +65,30 @@ public class MobRangeBullet : MonoBehaviour
     {
         animator = this.GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        if (BulletNum == 0)
+        {
+            rb.AddForce(PlayerDirection.normalized * 1f, ForceMode2D.Impulse);
+        }
         if (BulletNum != 0)
         {
 
             if (BulletNum == 1)
             {
                 //transform.Translate(Vector3.up * BulletSpeed * Time.deltaTime);
-                rb.AddForce(Vector3.up * 1f, ForceMode2D.Impulse);
+                rb.AddForce(Vector3.up.normalized * 1f, ForceMode2D.Impulse);
 
             }
             else if (BulletNum == 2)
             {
-                rb.AddForce(Vector3.down * 1f, ForceMode2D.Impulse);
+                rb.AddForce(Vector3.down.normalized * 1f, ForceMode2D.Impulse);
             }
             else if (BulletNum == 3)
             {
-                rb.AddForce(Vector3.left * 1f, ForceMode2D.Impulse);
+                rb.AddForce(Vector3.left.normalized * 1f, ForceMode2D.Impulse);
             }
             else if (BulletNum == 4)
             {
-                rb.AddForce(Vector3.right * 1f, ForceMode2D.Impulse);
+                rb.AddForce(Vector3.right.normalized * 1f, ForceMode2D.Impulse);
             }
             else if (BulletNum == 9)
             {
@@ -97,7 +101,7 @@ public class MobRangeBullet : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         rb.angularVelocity = 180;
-        rb.AddForce(PlayerDirection * 2f, ForceMode2D.Impulse);
+        rb.AddForce(PlayerDirection.normalized * 1f, ForceMode2D.Impulse);
     }
     private void FixedUpdate()
     {
@@ -113,20 +117,21 @@ public class MobRangeBullet : MonoBehaviour
             
             if (BulletNum == 5)
             {
-                transform.Translate(Vector3.up * BulletSpeed * Time.deltaTime);
+                transform.Translate(Vector3.up.normalized * BulletSpeed * Time.deltaTime);
             }
             else if (BulletNum == 6)
             {
-                transform.Translate(Vector3.down * BulletSpeed * Time.deltaTime);
+                transform.Translate(Vector3.down.normalized * BulletSpeed * Time.deltaTime);
             }
             else if (BulletNum == 7)
             {
-                transform.Translate(Vector3.right * BulletSpeed * Time.deltaTime);
+                transform.Translate(Vector3.right.normalized * BulletSpeed * Time.deltaTime);
             }
             else if (BulletNum == 8)
             {
-                transform.Translate(Vector3.left * BulletSpeed * Time.deltaTime);
+                transform.Translate(Vector3.left.normalized * BulletSpeed * Time.deltaTime);
             }
         }
+
     }
 }

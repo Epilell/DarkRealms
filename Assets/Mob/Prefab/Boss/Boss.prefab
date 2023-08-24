@@ -220,7 +220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2229558517594964397}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.36, y: -3.35, z: 0}
+  m_LocalPosition: {x: -15.36, y: -3.35, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a928a61edb931584e878717d2af4ac24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 800
+  maxHP: 2000
   DeadMob: {fileID: 4641412873053835146, guid: a6c4617ccd967eb458e0b4b4b8115b2e, type: 3}
   Stat: {fileID: 11400000, guid: 685a4d127f69b8c459cbf59b23374e5f, type: 2}
   CanDamage: 1

@@ -3,7 +3,16 @@ guid: 5ff34a603d009a6409e0764378d4731a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - CC_HPbar_viewer1: {instanceID: 0}
+  - CC_HPbar_viewer2: {instanceID: 0}
+  - CC_HPbar_viewer3: {instanceID: 0}
+  - CC_HPbar_viewer4: {instanceID: 0}
+  - slowImg: {fileID: 21300000, guid: cb20889596112d543b6b92ddd97be3b7, type: 3}
+  - stunImg: {fileID: 21300000, guid: a10f70bbd08400c4fbbf2b1cb499db34, type: 3}
+  - burnImg: {fileID: 21300000, guid: 8a743ac879c629740b469a3f445514fe, type: 3}
+  - reducedDefenseImg: {fileID: 21300000, guid: 81713fbd0fcf68241a3f0f9df540b0b6,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

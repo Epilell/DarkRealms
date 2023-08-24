@@ -17,9 +17,9 @@ public class TrapMobSpawner : MonoBehaviour
     [SerializeField]
     private float spawnDelay = 0.5f;
     [SerializeField]
-    private List<GameObject> Wall;
+    private List<GameObject> Walls;
     [SerializeField]
-    private List<GameObject> WallPoint;
+    private Vector2 wallSize=new Vector2(1f,5f);
 
     private bool isPlayerOn = false;
 
@@ -34,9 +34,20 @@ public class TrapMobSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.transform.childCount == 1&&isPlayerOn)
+        if (this.transform.childCount == Walls.Count&&isPlayerOn)
         {
-            Destroy(this.gameObject);
+            for(int i = 0; i < Walls.Count; i++)
+            {
+                Animator animatorf = Walls[i].GetComponent<Animator>();
+                animatorf.SetBool("On", false);
+
+                BoxCollider2D boxCollider = Walls[i].GetComponent<BoxCollider2D>();
+                if (boxCollider != null)
+                {
+                    Destroy(boxCollider);
+                }
+            }
+            //Destroy(this.gameObject);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,10 +62,19 @@ public class TrapMobSpawner : MonoBehaviour
     }
     private void closeMap()
     {
-        for(int i = 0; i < WallPoint.Count; i++)
+        for(int i = 0; i < Walls.Count; i++)
         {
-            GameObject wallClone = Instantiate(Wall[i], WallPoint[i].transform.position, Quaternion.identity) as GameObject;
-            wallClone.transform.SetParent(this.transform.GetChild(0).transform);
+            //GameObject wallClone = Instantiate(Wall, WallPoint[i].transform.position, Quaternion.identity) as GameObject;
+            //wallClone.transform.SetParent(this.transform.GetChild(0).transform);
+            Animator animatort = Walls[i].GetComponent<Animator>();
+            animatort.SetBool("On", true);        
+            
+            // BoxCollider2D 컴포넌트 추가
+            BoxCollider2D boxCollider = Walls[i].AddComponent<BoxCollider2D>();
+
+            // BoxCollider2D 사이즈 설정
+            Vector2 colliderSize = wallSize; // 원하는 사이즈로 변경
+            boxCollider.size = colliderSize;
         }
     }
     private IEnumerator SpawnMob()

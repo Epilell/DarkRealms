@@ -201,10 +201,10 @@ MonoBehaviour:
   CC_HPbar_viewer2: {fileID: 776867933507611711}
   CC_HPbar_viewer3: {fileID: 4048201474064896751}
   CC_HPbar_viewer4: {fileID: 8308638019339911495}
-  slowImg: {fileID: 0}
-  stunImg: {fileID: 0}
-  burnImg: {fileID: 0}
-  reducedDefenseImg: {fileID: 0}
+  slowImg: {fileID: 21300000, guid: cb20889596112d543b6b92ddd97be3b7, type: 3}
+  stunImg: {fileID: 21300000, guid: a10f70bbd08400c4fbbf2b1cb499db34, type: 3}
+  burnImg: {fileID: 21300000, guid: 8a743ac879c629740b469a3f445514fe, type: 3}
+  reducedDefenseImg: {fileID: 21300000, guid: 81713fbd0fcf68241a3f0f9df540b0b6, type: 3}
 --- !u!1 &704872633302264407
 GameObject:
   m_ObjectHideFlags: 0

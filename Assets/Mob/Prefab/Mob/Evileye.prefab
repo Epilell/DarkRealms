@@ -214,14 +214,16 @@ MonoBehaviour:
   DeadMob: {fileID: 4618168359074757058, guid: 76a626933d3a54f45bc1f16d8b945100, type: 3}
   hpViewer: {fileID: -6495139008623831599, guid: a560c60edbd12d34993049e7be4fb26e,
     type: 3}
-  freezingEffect: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
-    type: 3}
-  stunEffect: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
-    type: 3}
-  burnEffect: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
-    type: 3}
-  reducedDefenseEffect: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
-    type: 3}
+  freezingEffect:
+  - {fileID: 3990481298555803876, guid: 8f189510131ddea4d939f9b94b113df2, type: 3}
+  - {fileID: 130604791822789806, guid: 99d4fb594f2651343a76f7ec8dafab45, type: 3}
+  - {fileID: 4566393218948993019, guid: e6982d0c995507544a695c2a79520700, type: 3}
+  - {fileID: 3990481298555803876, guid: 8f189510131ddea4d939f9b94b113df2, type: 3}
+  - {fileID: 130604791822789806, guid: 99d4fb594f2651343a76f7ec8dafab45, type: 3}
+  - {fileID: 4566393218948993019, guid: e6982d0c995507544a695c2a79520700, type: 3}
+  stunEffect: {fileID: 0}
+  burnEffect: {fileID: 0}
+  reducedDefenseEffect: {fileID: 0}
 --- !u!114 &9155456390019035040
 MonoBehaviour:
   m_ObjectHideFlags: 0

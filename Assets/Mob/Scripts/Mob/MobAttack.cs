@@ -128,7 +128,7 @@ public class MobAttack : MonoBehaviour
         MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, playerPos, 0);
         Rigidbody2D rb = MobBullet.GetComponent<Rigidbody2D>();
         rb.angularVelocity = 180;
-        //rb.AddForce(playerPos * 1f, ForceMode2D.Impulse);
+        //rb.AddForce(playerPos * 0.3f, ForceMode2D.Impulse);
     }
     private void RangeAttack2(MobStat mobStat)
     {
@@ -150,7 +150,7 @@ public class MobAttack : MonoBehaviour
             MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, playerPos, i);
             Rigidbody2D rb = MobBullet.GetComponent<Rigidbody2D>();
             rb.angularVelocity = 180;
-            rb.AddForce(playerPos * 0.3f, ForceMode2D.Impulse);
+            rb.AddForce(playerPos.normalized * 1f, ForceMode2D.Impulse);
             rb.velocity = playerPos * -1f;
         }
     }

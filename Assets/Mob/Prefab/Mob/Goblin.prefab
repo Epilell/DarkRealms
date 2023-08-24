@@ -246,7 +246,10 @@ MonoBehaviour:
   maxHP: 200
   DeadMob: {fileID: 6934557813342266513, guid: 96657a744f9855f449dccd150e5a6062, type: 3}
   hpViewer: {fileID: 0}
-  freezingEffect: {fileID: 0}
+  freezingEffect:
+  - {fileID: 3990481298555803876, guid: 8f189510131ddea4d939f9b94b113df2, type: 3}
+  - {fileID: 130604791822789806, guid: 99d4fb594f2651343a76f7ec8dafab45, type: 3}
+  - {fileID: 4566393218948993019, guid: e6982d0c995507544a695c2a79520700, type: 3}
   stunEffect: {fileID: 0}
   burnEffect: {fileID: 0}
   reducedDefenseEffect: {fileID: 0}

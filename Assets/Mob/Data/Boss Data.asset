@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf03b8da131d194488e84e23092701d2, type: 3}
   m_Name: Boss Data
   m_EditorClassIdentifier: 
-  bossMaxHP: 800
-  bossDamageSmall: 10
-  bossDamageMiddle: 25
-  bossDamageStrong: 40
+  bossMaxHP: 1600
+  bossDamageSmall: 30
+  bossDamageMiddle: 70
+  bossDamageStrong: 150

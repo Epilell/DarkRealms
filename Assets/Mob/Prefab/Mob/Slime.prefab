@@ -151,7 +151,10 @@ MonoBehaviour:
   maxHP: 250
   DeadMob: {fileID: 2857771759586819822, guid: 6a9e06f7eb45ee6479d215e65e798614, type: 3}
   hpViewer: {fileID: 0}
-  freezingEffect: {fileID: 0}
+  freezingEffect:
+  - {fileID: 3990481298555803876, guid: 8f189510131ddea4d939f9b94b113df2, type: 3}
+  - {fileID: 130604791822789806, guid: 99d4fb594f2651343a76f7ec8dafab45, type: 3}
+  - {fileID: 4566393218948993019, guid: e6982d0c995507544a695c2a79520700, type: 3}
   stunEffect: {fileID: 0}
   burnEffect: {fileID: 0}
   reducedDefenseEffect: {fileID: 0}
@@ -311,8 +314,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5670247434505841770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: -0.14, z: 10}
-  m_LocalScale: {x: 3.1895823, y: 1.3177153, z: 1}
+  m_LocalPosition: {x: 0.068, y: -0.789, z: 10}
+  m_LocalScale: {x: 2, y: 1.3177153, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3991686891629927198}
@@ -359,14 +362,14 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 066a49c65646675448973b1647bf938a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c9165a5edb3572e4e809e8d782777cce, type: 3}
+  m_Color: {r: 0.3018868, g: 0.28593805, b: 0.28593805, a: 0.654902}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 0.55, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

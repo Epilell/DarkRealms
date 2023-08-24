@@ -5,7 +5,7 @@ using UnityEngine;
 public class SliderPositionAutoSetter : MonoBehaviour
 {
     [SerializeField]
-    private Vector3 distance = Vector3.down * 20.0f;
+    private Vector3 distance = Vector3.down * 2000.0f;
     private Transform targetTransform;
     private RectTransform rectTransform; // UI 위치 정보 제어
 
@@ -33,6 +33,6 @@ public class SliderPositionAutoSetter : MonoBehaviour
         //오브젝트의 월드 좌표를 기준으로 화면에서 좌표 값 구현
         Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetTransform.position);
         //화면 내에서 좌표 + distance만큼 떨어진 위치를 Slider Ui 위치로 지정
-        rectTransform.position = screenPosition - distance;
+        rectTransform.position = screenPosition - 4*distance;
     }
 }
