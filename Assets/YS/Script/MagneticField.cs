@@ -7,11 +7,11 @@ public class MagneticField : MonoBehaviour
     public Transform escape; // 출구
     public GameObject filter;
 
-    private float initialRadius = 100; // 초기 자기장 반지름
-    public float decreaseSpeed = 1; // 자기장 감소 속도
-    private float currentRadius; // 현재 자기장 반지름
-
     public float damage = 5; // 피해량
+    public float decreaseSpeed = 1; // 자기장 감소 속도
+
+    private float initialRadius = 100; // 초기 자기장 반지름
+    private float currentRadius; // 현재 자기장 반지름
     private float damageTimer; // 타이머
 
     private bool isPlayerInsideField; // 플레이어가 자기장 내부에 있는지 여부
@@ -21,10 +21,10 @@ public class MagneticField : MonoBehaviour
         isPlayerInsideField = true;
 
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        
+
         filter = GameObject.FindWithTag("Filter");
         filter.SetActive(false);
-        
+
         currentRadius = initialRadius; // 반지름 초기화
 
         damageTimer = 1f; // 초기 피해 입히는 타이머 설정
@@ -67,8 +67,6 @@ public class MagneticField : MonoBehaviour
                 damageTimer = 1f; // 타이머 재설정
             }
         }
-        else { 
-            filter.SetActive(false); 
-        }
+        else filter.SetActive(false);
     }
 }

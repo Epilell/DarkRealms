@@ -9,6 +9,7 @@ public class GameOver : MonoBehaviour
     public FadeOut fadeOut;
     public Player player;
     public Inventory Inventory;
+
     public Button goMainBtn;
     public Image gameOverImg, screen;
     public TextMeshProUGUI goMainBtnTxt;
@@ -25,8 +26,6 @@ public class GameOver : MonoBehaviour
 
         FindObjectOfType<Player>().P_TakeDamage(10000); // 플레이어 사망
 
-        // for (int i = 0; i < Inventory._Items.Length; i++) { Inventory.Remove(i); } // 죽으면 인벤토리 내 모든 아이템 제거
-
         StartCoroutine(GameOverCoroutine());
     }
 
@@ -35,6 +34,8 @@ public class GameOver : MonoBehaviour
         if (isGameOver) yield break; // 중복 실행되지 않게 함
 
         isGameOver = true;
+
+        for (int i = 0; i < Inventory._Items.Length; i++) { Inventory.Remove(i); } // 죽으면 인벤토리 내 모든 아이템 제거
 
         gameOverImg.gameObject.SetActive(true); // 이미지 활성화
         screen.gameObject.SetActive(true); // 이미지 활성화
@@ -48,7 +49,7 @@ public class GameOver : MonoBehaviour
 
         // 시간 초기화
         float time = 0f;
-        float fadeTime = 2.4f;
+        float fadeTime = 2.5f;
 
         // 페이드 아웃
         while (gameOverAlpha.a < 1f)
@@ -70,10 +71,8 @@ public class GameOver : MonoBehaviour
             yield return null; // 한 프레임 대기
         }
 
-        Time.timeScale = 0;
-
         //goMainBtn.onClick.AddListener(GoToNextScene); // 버튼 클릭 이벤트에 GoToMainMenu 함수를 추가
-        goMainBtn.onClick.AddListener(() => fadeOut.Fade()); // 람다식으로 변형
+        goMainBtn.onClick.AddListener(() => fadeOut.Fade()); // line 76, 80을 람다식으로 변형
     }
 
     //private void GoToNextScene() { fadeOut.Fade(); }

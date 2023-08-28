@@ -30,8 +30,7 @@ public class TimerUI : MonoBehaviour
             FindObjectOfType<SkillManager>().isSkillCanUse = true;
         }
 
-        if (GetComponent<GameOver>().isGameOver) // 게임 오버 상태인 경우 Update() 실행하지 않음
-            return;
+        if (GetComponent<GameOver>().isGameOver) return; // 게임 오버 상태인 경우 Update() 실행하지 않음
 
         currentTime -= Time.deltaTime;
 

@@ -4,10 +4,11 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Slider hpbar, hpbar2; // 체력바
-    public float maxHp;
-    public float currentHp;
     public Text textObj, textObj2; // 체력 텍스트
     public Player player; // 플레이어 객체
+
+    public float maxHp;
+    public float currentHp;
 
     private void Start()
     {
@@ -48,10 +49,10 @@ public class HealthBar : MonoBehaviour
     public void ChangeHP() // 체력바 갱신
     {
         textObj.text = currentHp.ToString() + "/" + maxHp.ToString(); // 체력 텍스트 갱신
-        hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);  // 체력 갱신
-        // hpbar.value = (float)currentHp / (float)maxHp; ← 시간 정지 시에도 작동함
+        hpbar.value = (float)currentHp / (float)maxHp; // 체력 갱신
+        // hpbar.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);
 
-        textObj2.text = currentHp.ToString() + "/" + maxHp.ToString(); // 체력 텍스트 갱신
-        hpbar2.value = Mathf.Lerp(hpbar.value, (float)currentHp / (float)maxHp, Time.deltaTime * 100);  // 체력 갱신
+        textObj2.text = currentHp.ToString() + "/" + maxHp.ToString();
+        hpbar2.value = (float)currentHp / (float)maxHp;
     }
 }

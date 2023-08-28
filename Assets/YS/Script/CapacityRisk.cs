@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Rito.InventorySystem;
 
@@ -10,25 +8,44 @@ public class CapacityRisk : MonoBehaviour
     public Inventory inventory;
     public MagneticField magneticField;
 
-    int capacity; // 용량
+    private int previousCapacity = 0, currentCapacity = 0; // 이전 프레임에서의 인벤토리 용량 기록
 
-    private void Start() { player = GameObject.FindWithTag("Player").GetComponent<Player>(); }
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        
+        if (inventory != null && inventory._Items != null) // 게임 시작할 때 초기 용량 받기
+            for (int i = 0; i < inventory._Items.Length; i++) if (inventory._Items[i] != null && inventory._Items[i].Data != null) previousCapacity += 1;
+
+        ChangeMagneticSpeed(previousCapacity);
+    }
 
     void Update()
     {
-        if (inventory._Items != null) { capacity = inventory._Items.Length; } // 용량 받기
+        currentCapacity = 0;
 
-        if (magneticField != null && capacity >= 1) // 용량만큼 자기장 축소 빨라짐
+        if (inventory != null && inventory._Items != null) // 현재 용량 받기
+            for (int i = 0; i < inventory._Items.Length; i++) if (inventory._Items[i] != null && inventory._Items[i].Data != null) currentCapacity += 1;
+
+        if (currentCapacity != previousCapacity) // 슬롯 용량 바뀔 때
         {
-            float decreaseSpeed = (float)capacity / 45;
-
-            if (decreaseSpeed <= 1.0) { magneticField.decreaseSpeed = 1.0f; }
-            else if (decreaseSpeed <= 5.0) { magneticField.decreaseSpeed = decreaseSpeed; }
-            else { magneticField.decreaseSpeed = 5.0f; }
+            previousCapacity = currentCapacity; // 현재 용량을 이전 용량으로 업데이트
+            ChangeMagneticSpeed(currentCapacity);
         }
 
+        // 용량만큼 이동속도 감소
+        // 몹 스폰 증가
+    }
 
-        // 용량만큼 이동속도 감소 추가 예정
-        // 몹 스폰 증가??
+    private void ChangeMagneticSpeed(float capacity)
+    {
+        if (magneticField != null)
+        {
+            float changeSpeed = (float)capacity / inventory.Capacity; // 현재 아이템 슬롯 / 전체 아이템 슬롯 ← 이 부분은 나중에 amount로 계산해도 됨
+
+            if (changeSpeed == 1.0f) magneticField.decreaseSpeed = 5.0f;  // 인벤토리 꽉 찬 상태
+            else if (changeSpeed == 0.0f) magneticField.decreaseSpeed = 1.0f;  // 인벤토리 비움 상태
+            else magneticField.decreaseSpeed = 1.0f + changeSpeed * 4.0f;  // 인벤토리 용량에 따라 변화
+        }
     }
 }
