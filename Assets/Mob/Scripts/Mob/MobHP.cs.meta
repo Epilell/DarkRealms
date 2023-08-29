@@ -3,7 +3,13 @@ guid: 4968458598ac39841b0a74efb3c009c7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - DeadMob: {instanceID: 0}
+  - hpViewer: {instanceID: 0}
+  - stunEffect: {instanceID: 0}
+  - burnEffect: {fileID: 7901567622655120002, guid: ab0ed2218f81a8c4cb9f6794392fcefd,
+      type: 3}
+  - reducedDefenseEffect: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

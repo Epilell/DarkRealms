@@ -14,6 +14,11 @@ public class BossHP : MonoBehaviour
     public GameObject DeadMob;
     public BossStat Stat;
     public bool CanDamage=true;
+    public GameObject escapePortal;
+
+    private GameObject mainCamera;
+    private Camera camera;
+    private Transform cameraTransform;
 
     //적의 체력 정보를 외부 클래스에서 확인할 수 있도록 프로퍼티 생성
     public float MaxHP => maxHP;
@@ -49,7 +54,7 @@ public class BossHP : MonoBehaviour
         {
             isDie = true;
             //적 사망
-            StartCoroutine("Die");
+            StartCoroutine(Die());
         }
     }
     private IEnumerator Die()
@@ -57,11 +62,28 @@ public class BossHP : MonoBehaviour
         // 몬스터가 죽을 때의 처리
         animator.SetTrigger("IsDead");
         gameObject.transform.position += new Vector3(0, -3.5f, 0);
+
+        StartCoroutine(returnCamera());
         yield return new WaitForSeconds(6.0f);
+        Instantiate(escapePortal, transform.position+ new Vector3(0,0,-2), Quaternion.identity);
         Destroy(gameObject);
         Instantiate(DeadMob, transform.position, Quaternion.identity); // 시체 생성
         //dropItem.ItemDrop();//아이템 드롭
 
+    }
+    private IEnumerator returnCamera()
+    {
+        mainCamera = GameObject.Find("Main Camera");
+        camera = mainCamera.GetComponent<Camera>();
+        cameraTransform = mainCamera.transform;
+
+        for (int i = 100; i >= 50; i--)
+        {
+            camera.orthographicSize = i / 10;
+
+            cameraTransform.localPosition = new Vector3(0, (i / 10) - 5, -10f);
+            yield return new WaitForSeconds(0.02f);
+        }
     }
     private IEnumerator HitAlphaAnimation()
     {

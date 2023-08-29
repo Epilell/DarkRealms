@@ -173,9 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pos: {fileID: 5677124070964865259}
-  boxSize: {x: 2, y: 2.5}
+  boxSize: {x: 3, y: 2.5}
   isSlime: 0
-  boxSize2: {x: 2, y: 1}
+  boxSize2: {x: 6, y: 2}
   isOrc: 1
   WhirlWindDuration: 5
 --- !u!114 &627486023847323928
@@ -198,7 +198,8 @@ MonoBehaviour:
   - {fileID: 130604791822789806, guid: 99d4fb594f2651343a76f7ec8dafab45, type: 3}
   - {fileID: 4566393218948993019, guid: e6982d0c995507544a695c2a79520700, type: 3}
   stunEffect: {fileID: 0}
-  burnEffect: {fileID: 0}
+  burnEffect: {fileID: 7901567622655120002, guid: ab0ed2218f81a8c4cb9f6794392fcefd,
+    type: 3}
   reducedDefenseEffect: {fileID: 0}
 --- !u!114 &627486023847324007
 MonoBehaviour:
@@ -245,7 +246,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 1.2}
+  m_Size: {x: 1, y: 1.3}
   m_EdgeRadius: 0
 --- !u!50 &627486023847324005
 Rigidbody2D:
@@ -376,7 +377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9044605485798676100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: -0.9, z: 0}
+  m_LocalPosition: {x: 0.784, y: -0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

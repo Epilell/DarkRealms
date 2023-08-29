@@ -3,7 +3,11 @@ guid: a928a61edb931584e878717d2af4ac24
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - DeadMob: {instanceID: 0}
+  - Stat: {instanceID: 0}
+  - escapePortal: {fileID: 1103586040244895553, guid: 1f06dfeaaee13b04eb47d1566082910c,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -52,11 +52,17 @@ public class BossPattern : MonoBehaviour
     private int CurrentSpawn = 0;
     [SerializeField]
     private float detectionRange = 20;
-    private bool _onAttackRange=false;
+    private bool _onAttackRange = false;
+
+
+    private GameObject mainCamera;
+    private Camera camera;
+    private Transform cameraTransform;
+
     private void FixedUpdate()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        if (distanceToPlayer< detectionRange)
+        if (distanceToPlayer < detectionRange)
         {
             if (!_onAttackRange)
             {
@@ -74,7 +80,17 @@ public class BossPattern : MonoBehaviour
     {
         // player를 찾아서 설정합니다.
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        /*
+        mainCamera = GameObject.Find("Main Camera");
+        camera= mainCamera.GetComponent<Camera>();
+
+        camera.orthographicSize = 10;
+
+        cameraTransform = mainCamera.transform;
+
+        cameraTransform.localPosition = new Vector3(0, 5, -10);*/
     }
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -90,10 +106,10 @@ public class BossPattern : MonoBehaviour
     private IEnumerator BossPattrenStart()
     {
         int pattrenChoicer = Random.Range(1, 5);
-        while (bossHP.IsDie==false)
+        while (bossHP.IsDie == false)
         {
-            
-            if (bossHP.CurrentHP<(bossHP.MaxHP*0.5))//보스HP40프로 이하시 패턴 추가 및 딜레이 감소
+
+            if (bossHP.CurrentHP < (bossHP.MaxHP * 0.5))//보스HP40프로 이하시 패턴 추가 및 딜레이 감소
             {
                 //현재 적의 색상을 color변수에 저장
                 Color color = spriteRenderer.color;
@@ -132,25 +148,25 @@ public class BossPattern : MonoBehaviour
                     pattrenChoicer = Random.Range(1, 5);
                 }
             }
-            
+
             else
             {
                 if (pattrenChoicer > 4)
                 {
                     yield return StartCoroutine("TailPattern");
-                    yield return new WaitForSeconds(TailDelay+2f);
+                    yield return new WaitForSeconds(TailDelay + 2f);
                     pattrenChoicer = Random.Range(1, 5);
                 }
                 else if (pattrenChoicer > 2)
                 {
                     yield return StartCoroutine("PopOutPattern");
-                    yield return new WaitForSeconds(PopDelay+2f);
+                    yield return new WaitForSeconds(PopDelay + 2f);
                     pattrenChoicer = Random.Range(1, 5);
                 }
                 else
                 {
                     yield return StartCoroutine("BreathPattern");
-                    yield return new WaitForSeconds(BreathDelay+4f);
+                    yield return new WaitForSeconds(BreathDelay + 4f);
                     pattrenChoicer = Random.Range(1, 5);
                 }
             }
@@ -160,14 +176,20 @@ public class BossPattern : MonoBehaviour
     {
         //애니메이션 브레스공격모션으로 바꾸고
         GetComponent<Animator>().SetTrigger("Breath_Ready");
-        GetComponent<Animator>().SetBool("Breath_Atk",true);
-        yield return new WaitForSeconds(3.7f);
+        GetComponent<Animator>().SetBool("Breath_Atk", true);
+        yield return new WaitForSeconds(3.75f);
         //브레스 공격 소환
-        Instantiate(Breath, BreathPoint.transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(5f);
+        GameObject _breath = Instantiate(Breath, BreathPoint.transform.position, Quaternion.identity);
+        //SpriteRenderer sr = _breath.GetComponent<SpriteRenderer>();
+        for (int i = -50; i <= 50; i++)
+        {
+            _breath.transform.rotation = Quaternion.Euler(new Vector3(0, 0, i));
+            yield return new WaitForSeconds(0.08f);
+        }
         GetComponent<Animator>().SetBool("Breath_Atk", false);
+        Destroy(_breath);
         GetComponent<Animator>().SetTrigger("Breath_Out");
-        yield return new WaitForSeconds(0.1f);
+
     }
     private IEnumerator TailPattern()//바닥에서 튀어나오는 꼬리 공격
     {

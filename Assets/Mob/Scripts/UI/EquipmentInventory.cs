@@ -170,7 +170,7 @@ public class EquipmentInventory : MonoBehaviour
         {
             return 0 ;
         }
-        else if (eqdata.itemType == "leg")
+        else if (eqdata.itemType == "glove")
         {
             return 1 ;
         }

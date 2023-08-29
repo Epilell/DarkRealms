@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 3
   _name: helmet3
-  _tooltip: "\uBAA9\uAE4C\uC9C0 \uB2E8\uB2E8\uD788 \uBCF4\uD638\uD574 \uC900\uB2E4"
-  _iconSprite: {fileID: 21300000, guid: b94ad5f749b860f40b997e8cd19426ff, type: 3}
-  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
+  _tooltip: "\uAC00\uC8FD\uC73C\uB85C \uB9CC\uB4E4\uC5B4\uC9C4 \uD5EC\uBA67\uC774\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: b006334bbd8467d4e9604505bc8e8b1b, type: 3}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
+    type: 3}
   _maxDurability: 100
   itemType: helmet
   _defence: 35

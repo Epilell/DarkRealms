@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 35
   _name: shoes5
-  _tooltip: "\uD2B9\uC218 \uC7AC\uC9C8\uB85C \uC81C\uC791\uD55C \uC804\uD22C\uD654\uB2E4"
-  _iconSprite: {fileID: 21300000, guid: 968d0524eb4c2804aaa4cd8b37b9a2ff, type: 3}
-  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
+  _tooltip: "\uAC15\uB825\uD55C \uC131\uB2A5\uC744\uAC00\uC9C4 \uC804\uD22C\uD654\uC774\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: e935dd74c5412dd428cbf1899f3177dc, type: 3}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
+    type: 3}
   _maxDurability: 100
   itemType: shoes
   _defence: 57
-  _nextArmorData: {fileID: 11400000, guid: 91bd84445209e92479df38124821ddb9, type: 2}
+  _nextArmorData: {fileID: 0}
   _requirements: []

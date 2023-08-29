@@ -10,10 +10,7 @@ public class BossBreath : MonoBehaviour
     {
         this.Damage = damage;
     }
-    private void Awake()
-    {
-        Destroy(gameObject, 5f);
-    }
+
     private void Start()
     {
         Invoke("EnableDamage", 0.01f);
@@ -24,18 +21,18 @@ public class BossBreath : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                collision.gameObject.GetComponent<Player>().P_TakeDamage(Damage);
+                collision.gameObject.GetComponent<Player>().P_TakeDamage(Damage*4f);
             }
         }
     }
     private void EnableDamage()
     {
         canDamage = true;
-        Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
+        /*Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
         BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
         collider.isTrigger = true;
         rb.gravityScale = 0f;
-        collider.size = new Vector2(1f, 15f);
+        collider.size = new Vector2(1f, 15f);*/
         GetComponent<Animator>().SetBool("BreathAtk",true);
     }
 }

@@ -14,6 +14,11 @@ public class BossSpawner : MonoBehaviour
     private GameObject bossHPSliderPrefab;
     private Transform canvasTransform;
     private bool _isSpawn = false;
+
+    private GameObject mainCamera;
+    private Camera camera;
+    private Transform cameraTransform;
+
     private void Awake()
     {
         //StartCoroutine("BossSpawn");
@@ -25,12 +30,27 @@ public class BossSpawner : MonoBehaviour
         {
             if (_isSpawn == false)
             {
-                StartCoroutine("BossSpawn");
+                StartCoroutine(CameraGrow());
+                StartCoroutine(BossSpawn());
                 _isSpawn = true;
             }
 
         }
 
+    }
+    private IEnumerator CameraGrow()
+    {
+        mainCamera = GameObject.Find("Main Camera");
+        camera = mainCamera.GetComponent<Camera>();
+        cameraTransform = mainCamera.transform;
+
+        for (int i = 50; i <= 100; i++)
+        {
+            camera.orthographicSize = i/10;
+
+            cameraTransform.localPosition = new Vector3(0, (i/10)-5, -30f);
+            yield return new WaitForSeconds(0.02f);
+        }
     }
 
     private IEnumerator BossSpawn()

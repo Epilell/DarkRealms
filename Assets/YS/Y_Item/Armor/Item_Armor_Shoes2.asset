@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 32
   _name: shoes2
-  _tooltip: "\uC880 \uB354 \uBC1C\uC804\uD55C \uC2E0\uBC1C\uC774\uB2E4"
-  _iconSprite: {fileID: 21300000, guid: a58b433ec44720142b2579d31ec02a52, type: 3}
-  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
+  _tooltip: "\uBF08\uB85C \uB9CC\uB4E4\uC5B4\uC9C4 \uC2E0\uBC1C\uC774\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: d6ee6e6a3b0ac41429a90da187100b5b, type: 3}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
+    type: 3}
   _maxDurability: 100
   itemType: shoes
   _defence: 23

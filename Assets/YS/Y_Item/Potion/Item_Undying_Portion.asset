@@ -15,7 +15,8 @@ MonoBehaviour:
   _id: 116
   _name: undying_potion
   _tooltip: "\uBD88\uC0AC \uD6A8\uACFC\uB97C \uC9C0\uB2CC\uB2E4"
-  _iconSprite: {fileID: 21300000, guid: 9b67af84893f98d42b8ba9be68eb0b9a, type: 3}
-  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
+  _iconSprite: {fileID: 21300000, guid: 90ae90a0479eb404ba6252bea453f5a6, type: 3}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
+    type: 3}
   _maxAmount: 99
   _value: 5

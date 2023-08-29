@@ -6,9 +6,11 @@ public class Statue : MonoBehaviour
 {
     public float interactionDistance = 2.0f; // 플레이어와 상호작용 가능한 거리
     private Animator animator; // 애니메이터 컴포넌트
-
-    public GameObject arrow;//목표를 향하는 화살표
-    private SpriteRenderer sr;
+    [Header("돌릴 포인트")]
+    public GameObject ArrowPoint;//목표를 향하는 화살표
+    [Header("SpriteRenderer쓸 화살표")]
+    public GameObject arrow;
+    private SpriteRenderer srA;
 
     private GameObject escapeTarget;//탈출구 포탈 게임오브젝트
     private GameObject bossTarget;//보스룸 포탈 게임오브젝트
@@ -32,11 +34,11 @@ public class Statue : MonoBehaviour
             direction = bossTarget.transform.position - transform.position;
         }
         //화살표 방향설정
-        sr = arrow.GetComponent<SpriteRenderer>();
+        srA = arrow.GetComponent<SpriteRenderer>();
         StartCoroutine(colorChanger());
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         //arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle-90f));
+        ArrowPoint.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle-90f));
     }
 
     private void Update()
@@ -61,16 +63,16 @@ public class Statue : MonoBehaviour
         if (alpha == 0)
         {
             yield return new WaitForSeconds(0.01f);
-            Color c = sr.color;
+            Color c = srA.color;
             c.a = alpha;
-            sr.color = c;
+            srA.color = c;
         }
         else
         {
             yield return new WaitForSeconds(1.8f);
-            Color c = sr.color;
+            Color c = srA.color;
             c.a = alpha;
-            sr.color = c;
+            srA.color = c;
         }
 
     }

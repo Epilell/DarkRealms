@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Item_Armor_Knee2
   m_EditorClassIdentifier: 
   _id: 22
-  _name: knee2
-  _tooltip: "\uB354 \uD06C\uACE0 \uB2E8\uB2E8\uD55C \uBCF4\uD638\uB300\uB2E4"
-  _iconSprite: {fileID: 21300000, guid: 38a83ec4d2d76e542ba5b5fe7f3f616c, type: 3}
-  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
+  _name: glove2
+  _tooltip: "\uBF08\uB85C \uB9CC\uB4E4\uC5B4\uC9C4 \uC7A5\uAC11\uC774\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: 4bbc8bcd589acd643905025d65e4d225, type: 3}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
+    type: 3}
   _maxDurability: 100
-  itemType: leg
+  itemType: glove
   _defence: 25
   _nextArmorData: {fileID: 11400000, guid: 6e9b7360f3bfc4d4b856e1f639656662, type: 2}
   _requirements: []

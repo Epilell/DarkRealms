@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 13
   _name: armor3
-  _tooltip: "\uCCA0\uD310\uC744 \uB367\uB304 \uAC11\uC637\uC774\uB2E4"
-  _iconSprite: {fileID: 21300000, guid: 245a848f12de5f447ad351446783fec8, type: 3}
-  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34, type: 3}
+  _tooltip: "\uAC00\uC8FD\uC73C\uB85C \uB9CC\uB4E4\uC5B4\uC9C4 \uBC29\uC5B4\uAD6C\uC774\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: b78542ec74f495a4da7ef17e4c80ed30, type: 3}
+  _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
+    type: 3}
   _maxDurability: 100
   itemType: armor
   _defence: 35
