@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
     [Header("AudioSource")] // 오디오 소스
     public AudioSource bgm;
     public List<AudioSource> sfxSources;
+    public List<AudioSource> mobSources;
 
     [Header("AudioClip")] // 오디오 클립(파일)
     public AudioClip normalAudioClip; // 일반맵
@@ -44,6 +45,23 @@ public class SoundManager : MonoBehaviour
         AudioSource targetSource = null; // 대상 효과음 소스
 
         foreach (AudioSource audioSource in sfxSources) // 일치하는 거 찾기
+        {
+            if (audioSource.name == sourceName)
+            {
+                targetSource = audioSource;
+                break;
+            }
+        }
+
+        if (targetSource != null) { targetSource.Play(); } // 찾으면 실행
+        else { }
+    }
+
+    public void MobSound(string sourceName) // 몬스터 효과음 재생
+    {
+        AudioSource targetSource = null; // 대상 효과음 소스
+
+        foreach (AudioSource audioSource in mobSources) // 일치하는 거 찾기
         {
             if (audioSource.name == sourceName)
             {

@@ -1,18 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class FadeIn : MonoBehaviour
 {
     public Image panel;  // 페이드 인에 사용할 이미지 컴포넌트
-    float time = 0f;  // 페이드 인 실행 시간
+    float time = 0f;
     float fadeTime = 1f;
 
-    private void Start()
-    {
-        StartCoroutine(FadeInCoroutine()); // 코루틴 시작
-    }
+    private void Start() { StartCoroutine(FadeInCoroutine()); }
 
     public IEnumerator FadeInCoroutine()
     {

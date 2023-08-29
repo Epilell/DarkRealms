@@ -15835,6 +15835,7 @@ MonoBehaviour:
   bgm: {fileID: 0}
   sfxSources:
   - {fileID: 1034809184}
+  mobSources: []
   normalAudioClip: {fileID: 0}
   bossAudioClip: {fileID: 0}
   bgm_on: {fileID: 0}
@@ -17065,9 +17066,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3808c2473f82a204bb06f627e3b7aec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scene: {fileID: 102900000, guid: 63184fb1cf936ec49bbb3a341d7e0300, type: 3}
   panel: {fileID: 1996553344}
   startImg: {fileID: 0}
-  scene: {fileID: 102900000, guid: 63184fb1cf936ec49bbb3a341d7e0300, type: 3}
 --- !u!1 &1776724683
 GameObject:
   m_ObjectHideFlags: 0
@@ -19304,7 +19305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -301,8 +301,8 @@ RectTransform:
   - {fileID: 1993998156}
   - {fileID: 1937512681}
   - {fileID: 2056509348}
-  - {fileID: 2002834435}
   - {fileID: 345829712}
+  - {fileID: 2002834435}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1337,7 +1337,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 62474731}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4458,6 +4458,7 @@ MonoBehaviour:
   sfxSources:
   - {fileID: 321131273}
   - {fileID: 766146412}
+  mobSources: []
   normalAudioClip: {fileID: 0}
   bossAudioClip: {fileID: 0}
   bgm_on: {fileID: 21300000, guid: 078176a793aa6aa4aa4127602003707d, type: 3}
@@ -6710,7 +6711,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 62474731}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: -0.01, y: -0.01}
   m_AnchorMax: {x: 1.01, y: 1.01}

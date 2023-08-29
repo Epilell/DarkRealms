@@ -35,6 +35,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 CanvasGroupOff(optionGroup); // 옵션 화면을 끈다
                 break;
             case BTNType.Quit: // 종료 버튼을 눌렀을 때
+                Debug.Log("게임 종료"); // 테스트 로그 출력
                 Application.Quit(); // 어플리케이션을 종료
                 break;
         }
