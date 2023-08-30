@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c5fa999a2672684a87d35c81d20eb01, type: 3}
+  m_Name: Skill Upgrade Data
+  m_EditorClassIdentifier: 
+  Upgradablelist:
+  - skillName: Dodge
+    upgradeList:
+    - name: Stack Up
+      isUpgrade: 0
+    - name: Trap
+      isUpgrade: 0
+    - name: Range Up
+      isUpgrade: 0
+  - skillName: Molotov
+    upgradeList:
+    - name: Stack Up
+      isUpgrade: 0
+    - name: More Projectile
+      isUpgrade: 0
+    - name: Damage Up
+      isUpgrade: 0
+    - name: Radius Up
+      isUpgrade: 0
+  - skillName: Siege Mode
+    upgradeList:
+    - name: Armor Up
+      isUpgrade: 0
+    - name: Can Move
+      isUpgrade: 0
+    - name: Gradual Attack Speed Up
+      isUpgrade: 0
+  - skillName: Evade Shot
+    upgradeList:
+    - name: Stack Up
+      isUpgrade: 0
+    - name: Armor Break
+      isUpgrade: 0
+    - name: Stun
+      isUpgrade: 0
+    - name: Damage Up
+      isUpgrade: 0
+    - name: Range Up
+      isUpgrade: 0
+  ApplyUpgradeList: []

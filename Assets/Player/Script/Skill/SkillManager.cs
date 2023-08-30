@@ -8,18 +8,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 /// <summary>
-/// 업그레이드 리스트 요소
-/// </summary>
-[Serializable]
-public struct Upgrade
-{
-    [SerializeField] private string name;
-    public string Name => name;
-    [SerializeField] private bool isUpgrade;
-    public bool IsUpgrade => isUpgrade;
-}
-
-/// <summary>
 /// 시간 및 스택 체크
 /// </summary>
 public class TimeAndStack
@@ -45,8 +33,8 @@ public class SkillManager : MonoBehaviour
 
     private Animator ani;
     private Rigidbody2D rb;
-    private Collider2D col;
 
+    //마우스 위치, 방향벡터
     private Vector3 mousePos, mouseVec;
 
     //플레이어 이동 방향 값
@@ -61,14 +49,16 @@ public class SkillManager : MonoBehaviour
     public TimeAndStack dodgeTS = new(); public TimeAndStack molotovTS = new();
     public TimeAndStack siegemodeTS = new(); public TimeAndStack evdshotTS = new();
 
+    //스킬 업그레이드 리스트
     [Header("Skill Upgrade List", order = 2), Space(5)]
-    public List<Upgrade> dodgeUpgradeList = new(); public List<Upgrade> molotovUpgradeList = new();
-    public List<Upgrade> siegemodeUpgradeList = new(); public List<Upgrade> evdshotUpgradeList = new();
+    public SkillUpgradeList SkillUpgradeData;
 
-    [Header("Object List", order = 3), Space(5)]
-    [SerializeField] private GameObject EvadeShotgun;
+    //스킬 히트박스 리스트
+    [Header("Hitbox List", order = 3), Space(5)]
+    public Transform EvadeshotHitbox;
+    public Vector2 EvadeshotHitboxSize;
 
-    public bool isSkillCanUse; // 테스트용 추가
+    public bool isSkillCanUse = true; // 테스트용 추가
 
     #endregion
 
@@ -96,9 +86,9 @@ public class SkillManager : MonoBehaviour
     //Check Method
     #region
 
-    private void CheckTime(TimeAndStack _ts, SkillData _data, List<Upgrade> _list)
+    private void CheckTime(TimeAndStack _ts, SkillData _data, String _skillName)
     {
-        if (CheckUpgrade(_list, "Stack Up"))
+        if (CheckUpgrade(_skillName, "Stack Up"))
         {
             _ts.temporalStack = 1;
         }
@@ -130,16 +120,20 @@ public class SkillManager : MonoBehaviour
     /// <summary>
     /// 해당 스킬에 특정 업그레이드를 했는지 확인
     /// </summary>
-    /// <param name="_list">해당 스킬 업그레이드 리스트</param>
+    /// <param name="_skillName">Dodge, Molotov, Siege Mode, Evade Shot</param>
     /// <param name="_upgradeName">업그레이드 이름</param>
     /// <returns></returns>
-    public bool CheckUpgrade(List<Upgrade> _list, string _upgradeName)
+    public bool CheckUpgrade(string _skillName, string _upgradeName)
     {
-        for (int i = 0; i < _list.Count; i++)
+        foreach(SkillList _target in SkillUpgradeData.ApplyUpgradeList)
         {
-            if (_list[i].Name == _upgradeName && _list[i].IsUpgrade)
+            if(_target.SkillName == _skillName)
             {
-                return true;
+                SkillUpgrade upgrade = _target.UpgradeList.Find(u => u.Name == _upgradeName);
+                if(upgrade != null)
+                {
+                    return upgrade.IsUpgrade;
+                }
             }
         }
         return false;
@@ -167,12 +161,12 @@ public class SkillManager : MonoBehaviour
         //col.enabled = false;
 
         //회피 후 트랩설치
-        if (CheckUpgrade(dodgeUpgradeList, "Trap"))
+        if (CheckUpgrade("Dodge", "Trap"))
         {
             Instantiate(dodgeData.GetObj(), transform.position, transform.rotation);
         }
         //회피 거리 업그레이드
-        if (CheckUpgrade(dodgeUpgradeList, "RangeUp"))
+        if (CheckUpgrade("Dodge", "Range Up"))
         {
             rb.AddForce(new Vector2(mx, my).normalized * (20f + dodgeForce), ForceMode2D.Impulse);
         }
@@ -181,7 +175,8 @@ public class SkillManager : MonoBehaviour
             rb.AddForce(new Vector2(mx, my).normalized * 20f, ForceMode2D.Impulse);
         }
 
-        ani.SetBool("IsDash", true);
+        //애니메이션 재생
+        ani.SetTrigger("IsDash");
 
         yield return new WaitForSeconds(1 / 6f);
 
@@ -199,64 +194,120 @@ public class SkillManager : MonoBehaviour
     #region
 
     //화염병 던지기
-    private void ThrowMolotov()
+    private void ThrowMolotov(Vector3 _pos, Vector3 _vec)
     {
         //초기화
         molotovTS.curTime = 0; molotovTS.canUse = false; molotovTS.curStack--;
 
         //화염병 생성
         GameObject Molotov;
-        if (Vector3.Distance(mousePos, transform.position) > molotovData.Distance)
+
+        //최대 투척 사거리 일때
+        if (Vector3.Distance(_pos, transform.position) > molotovData.Distance)
         {
-            Molotov = Instantiate(molotovData.Molotov, transform.position, transform.rotation);
-            Molotov TM = Molotov.GetComponent<Molotov>();
-            TM.data = molotovData;
-
-            //데미지 증가 업그레이드
-            if (CheckUpgrade(molotovUpgradeList, "Damage Up"))
+            //투척 개수 업그레이드 O
+            if(CheckUpgrade("Molotov", "More Projectile"))
             {
-                TM.AddTempStats(10, 0);
-                TM.SetRGB(47, 98, 255);
-            }
-            //범위 증가 업그레이드
-            if (CheckUpgrade(molotovUpgradeList, "Radius Up"))
-            {
-                TM.AddTempStats(0, 10);
-            }
-            //투척 개수 증가 업그레이드
-            if (CheckUpgrade(molotovUpgradeList, "More Projectile"))
-            {
+                for (int i = 0; i < 3; i++)
+                {
+                    Molotov = Instantiate(molotovData.Molotov, transform.position, transform.rotation);
+                    Molotov TM = Molotov.GetComponent<Molotov>();
+                    TM.data = molotovData;
 
-            }
+                    //데미지 증가 업그레이드
+                    if (CheckUpgrade("Molotov", "Damage Up"))
+                    {
+                        TM.AddTempStats(10, 0);
+                        TM.SetColor(new(73/255f, 122/255f, 231/255f, 255/255f));
+                    }
 
-            //경로 지정
-            TM.SetCourse(transform.position + (mouseVec * molotovData.Distance));
+                    //범위 증가 업그레이드
+                    if (CheckUpgrade("Molotov", "Radius Up"))
+                    {
+                        TM.AddTempStats(0, 10);
+                    }
+
+                    //경로 지정
+                    TM.SetCourse(transform.position + ((_vec * molotovData.Distance) + _vec * (1 + 2 * i)));
+                }
+            }
+            //투척 개수 업그레이드 X
+            else
+            {
+                Molotov = Instantiate(molotovData.Molotov, transform.position, transform.rotation);
+                Molotov TM = Molotov.GetComponent<Molotov>();
+                TM.data = molotovData;
+
+                //데미지 증가 업그레이드
+                if (CheckUpgrade("Molotov", "Damage Up"))
+                {
+                    TM.AddTempStats(10, 0);
+                    TM.SetColor(new(73 / 255f, 122 / 255f, 231 / 255f, 255 / 255f));
+                }
+
+                //범위 증가 업그레이드
+                if (CheckUpgrade("Molotov", "Radius Up"))
+                {
+                    TM.AddTempStats(0, 10);
+                }
+
+                //경로 지정
+                TM.SetCourse(transform.position + (_vec * molotovData.Distance));
+            }
+            
         }
+        //마우스 위치에 투척할 때
         else
         {
-            Molotov = Instantiate(molotovData.Molotov, transform.position, transform.rotation);
-            Molotov TM = Molotov.GetComponent<Molotov>();
-            TM.data = molotovData;
-
-            //데미지 증가 업그레이드
-            if (CheckUpgrade(molotovUpgradeList, "Damage Up"))
+            //투척 개수 업그레이드 O
+            if (CheckUpgrade("Molotov", "More Projectile"))
             {
-                TM.AddTempStats(10, 0);
-                TM.SetRGB(47, 98, 255);
-            }
-            //범위 증가 업그레이드
-            if (CheckUpgrade(molotovUpgradeList, "Radius Up"))
-            {
-                TM.AddTempStats(0, 10);
-            }
-            //투척 개수 증가 업그레이드
-            if (CheckUpgrade(molotovUpgradeList, "More Projectile"))
-            {
+                for(int i = 0; i < 3; i++)
+                {
+                    Molotov = Instantiate(molotovData.Molotov, transform.position, transform.rotation);
+                    Molotov TM = Molotov.GetComponent<Molotov>();
+                    TM.data = molotovData;
 
-            }
+                    //데미지 증가 업그레이드
+                    if (CheckUpgrade("Molotov", "Damage Up"))
+                    {
+                        TM.AddTempStats(10, 0);
+                        TM.SetColor(new(73 / 255f, 122 / 255f, 231 / 255f, 255 / 255f));
+                    }
 
-            //경로 지정
-            TM.SetCourse(mousePos);
+                    //범위 증가 업그레이드
+                    if (CheckUpgrade("Molotov", "Radius Up"))
+                    {
+                        TM.AddTempStats(0, 10);
+                    }
+
+                    //경로 지정
+                    TM.SetCourse(_pos + _vec * (1 + 2 * i));
+                }
+            }
+            //투척 개수 업그레이드 X
+            else
+            {
+                Molotov = Instantiate(molotovData.Molotov, transform.position, transform.rotation);
+                Molotov TM = Molotov.GetComponent<Molotov>();
+                TM.data = molotovData;
+
+                //데미지 증가 업그레이드
+                if (CheckUpgrade("Molotov", "Damage Up"))
+                {
+                    TM.AddTempStats(10, 0);
+                    TM.SetColor(new(73 / 255f, 122 / 255f, 231 / 255f, 255 / 255f));
+                }
+
+                //범위 증가 업그레이드
+                if (CheckUpgrade("Molotov", "Radius Up"))
+                {
+                    TM.AddTempStats(0, 10);
+                }
+
+                //경로 지정
+                TM.SetCourse(_pos);
+            }
         }
     }
 
@@ -276,7 +327,7 @@ public class SkillManager : MonoBehaviour
         //적용 목록
 
         //사용중 방어력 증가 업그레이드
-        if (CheckUpgrade(siegemodeUpgradeList, "Armor Up"))
+        if (CheckUpgrade("Siege Mode", "Armor Up"))
         {
             Player.Instance.ChangeDamageReduction(siegemodeData.DamageReduction + 20f > 100 ? 100 : siegemodeData.DamageReduction + 20f);
         }
@@ -286,7 +337,7 @@ public class SkillManager : MonoBehaviour
         }
 
         //사용중 이동 가능 업그레이드
-        if (CheckUpgrade(siegemodeUpgradeList, "Can Move"))
+        if (CheckUpgrade("Siege Mode", "Can Move"))
         {
             Player.Instance.ChangeSpeedReduction(siegemodeData.SpeedReduction - 20 < 0 ? 0 : siegemodeData.SpeedReduction - 20);
         }
@@ -321,27 +372,27 @@ public class SkillManager : MonoBehaviour
     #region
 
     /// <summary> 대상에게 데미지 적용 (Collider2D[], float) </summary>
-    /// <param name="colliders">적용 대상</param>
+    /// <param name="col">적용 대상</param>
     /// <param name="dmg">적용 데미지</param>
-    private void ApplyEvdshotDamage(Collider2D[] colliders, float dmg)
+    private void ApplyEvdshotDamage(Collider2D[] col, float dmg)
     {
-        for (int i = 0; i < colliders.Length; i++)
+        foreach (Collider2D target in col)
         {
-            switch (colliders[i].tag)
+            switch (target.tag)
             {
                 case "Mob":
-                    colliders[i].GetComponent<MobHP>().TakeDamage(dmg);
-                    if (CheckUpgrade(evdshotUpgradeList, "Armor Break"))
+                    target.GetComponent<MobHP>().TakeDamage(dmg);
+                    if (CheckUpgrade("Evade Shot", "Armor Break"))
                     {
-                        colliders[i].GetComponent<MobHP>().TakeCC("reducedDefense", 2);
+                        target.GetComponent<MobHP>().TakeCC("reducedDefense", 2);
                     }
-                    if (CheckUpgrade(evdshotUpgradeList, "Stun"))
+                    if (CheckUpgrade("Evade Shot", "Stun"))
                     {
-                        colliders[i].GetComponent<MobHP>().TakeCC("stun", 1);
+                        target.GetComponent<MobHP>().TakeCC("stun", 1);
                     }
                     break;
                 case "BossMob":
-                    colliders[i].GetComponent<BossHP>().TakeDamage(dmg);
+                    target.GetComponent<BossHP>().TakeDamage(dmg);
                     break;
             }
         }
@@ -352,28 +403,33 @@ public class SkillManager : MonoBehaviour
     private IEnumerator Evdshot()
     {
         evdshotTS.curTime = 0f; evdshotTS.canUse = false; evdshotTS.curStack--;
-        yield return new WaitForSeconds(0.2f);
+
+        ani.SetTrigger("IsEvadeshot");
+
+        yield return new WaitForSecondsRealtime(0.5f);
 
         //이펙트, 데미지
         // 좌측으로
         if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x >= Player.Instance.transform.position.x)
         {
-            Instantiate(evdshotData.effect, this.transform.position + new Vector3(1, 0, 0), this.transform.rotation);
-            Collider2D[] col = Physics2D.OverlapCircleAll(this.transform.position + new Vector3(1, 0, 0), 1);
+            Instantiate(evdshotData.Effect, EvadeshotHitbox.position , EvadeshotHitbox.rotation);
+            Collider2D[] col = Physics2D.OverlapBoxAll(EvadeshotHitbox.position, EvadeshotHitboxSize, 0);
 
             //회피사격 데미지 업그레이드
-            if (CheckUpgrade(evdshotUpgradeList, "Damage Up"))
+            //적용
+            if (CheckUpgrade("Evade Shot", "Damage Up"))
             {
                 ApplyEvdshotDamage(col, evdshotData.Damage * 20f);
             }
+            //미적용
             else
             {
                 ApplyEvdshotDamage(col, evdshotData.Damage);
             }
 
 
-            //회피사격 거리 업그레이드
-            if (CheckUpgrade(evdshotUpgradeList, "Range Up"))
+            //회피사격 이동거리 업그레이드
+            if (CheckUpgrade("Evade Shot", "Range Up"))
             {
                 rb.AddForce(Vector2.left * 30f, ForceMode2D.Impulse);
             }
@@ -385,12 +441,13 @@ public class SkillManager : MonoBehaviour
         // 우측으로
         else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < Player.Instance.transform.position.x)
         {
-            Instantiate(evdshotData.effect, this.transform.position + new Vector3(-1, 0, 0), this.transform.rotation);
-            Collider2D[] col = Physics2D.OverlapCircleAll(this.transform.position + new Vector3(-1, 0, 0), 1);
+            GameObject efc = Instantiate(evdshotData.Effect, EvadeshotHitbox.position, EvadeshotHitbox.rotation);
+            efc.GetComponent<SpriteRenderer>().flipX = true;
+            Collider2D[] col = Physics2D.OverlapBoxAll(EvadeshotHitbox.position, EvadeshotHitboxSize, 0);
 
             //회피사격 데미지 업그레이드
             //적용
-            if (CheckUpgrade(evdshotUpgradeList, "Damage Up"))
+            if (CheckUpgrade("Evade Shot", "Damage Up"))
             {
                 ApplyEvdshotDamage(col, evdshotData.Damage * 20f);
             }
@@ -402,7 +459,7 @@ public class SkillManager : MonoBehaviour
 
             //회피사격 이동 거리 업그레이드
             //적용
-            if (CheckUpgrade(evdshotUpgradeList, "Range Up"))
+            if (CheckUpgrade("Evade Shot", "Range Up"))
             {
                 rb.AddForce(Vector2.right * 30f, ForceMode2D.Impulse);
             }
@@ -446,7 +503,7 @@ public class SkillManager : MonoBehaviour
         if (isSkillCanUse)
         {
             //회피
-            CheckTime(dodgeTS, dodgeData, dodgeUpgradeList);
+            CheckTime(dodgeTS, dodgeData, "Dodge");
             if (siegemodeTS.isActive == false && dodgeTS.canUse == true && isDashing == false)
             {
                 if (Input.GetKeyDown(KeyCode.Space) && (mx != 0 || my != 0))
@@ -457,17 +514,17 @@ public class SkillManager : MonoBehaviour
             }
 
             //화염병
-            CheckTime(molotovTS, molotovData, molotovUpgradeList);
+            CheckTime(molotovTS, molotovData, "Molotov");
             if (molotovTS.canUse == true)
             {
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    ThrowMolotov();
+                    ThrowMolotov(mousePos, mouseVec);
                 }
             }
 
             //시즈모드
-            CheckTime(siegemodeTS, siegemodeData, siegemodeUpgradeList);
+            CheckTime(siegemodeTS, siegemodeData, "Siege Mode");
             if (siegemodeTS.canUse == true)
             {
                 if (Input.GetKeyDown(KeyCode.E))
@@ -485,7 +542,7 @@ public class SkillManager : MonoBehaviour
             }
 
             //회피사격
-            CheckTime(evdshotTS, evdshotData, evdshotUpgradeList);
+            CheckTime(evdshotTS, evdshotData, "Evade Shot");
             if (siegemodeTS.isActive == false && evdshotTS.canUse == true)
             {
                 if (Input.GetMouseButtonDown(1))
@@ -496,6 +553,14 @@ public class SkillManager : MonoBehaviour
             }
         }
         else { }
+    }
+
+    //스킬 히트박스 영역 생성
+    private void OnDrawGizmos()
+    {
+        //회피사격 히트박스
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(EvadeshotHitbox.position, EvadeshotHitboxSize);
     }
     #endregion
 }

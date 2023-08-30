@@ -14,13 +14,18 @@ public class Fire : MonoBehaviour
     //Method
     #region
 
-    //화염 능력치 설정
-    public void SetFireStats(float _dmg, float _dur, float _ran)
+    /// <summary>
+    /// 화염 능력치 설정
+    /// </summary>
+    /// <param name="_dmg">데미지</param>
+    /// <param name="_dur">지속시간</param>
+    /// <param name="_rad">범위</param>
+    public void SetFireStats(float _dmg, float _dur, float _rad)
     {
-        Damage = _dmg; Duration = _dur; Radius = _ran;
+        Damage = _dmg; Duration = _dur; Radius = _rad;
     }
 
-    //불 이펙트 제거
+    //화염 제거
     private void Extinguish()
     {
         Destroy(gameObject);
@@ -31,7 +36,7 @@ public class Fire : MonoBehaviour
     //unity event
     #region
 
-    //화상 CC기 적용
+    //화상 상태이상 적용
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Mob"))
@@ -45,12 +50,5 @@ public class Fire : MonoBehaviour
         this.GetComponent<Transform>().localScale *= Radius;
         Invoke("Extinguish", Duration);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     #endregion
 }

@@ -13,8 +13,7 @@ public class Molotov : MonoBehaviour
     //화염병 데이터
     public MolotovData data;
 
-    //화염 색상
-    private float r = 255, g = 255, b = 255;
+    private Color color = new(1f, 1f, 1f, 1f);
 
     //화염병 이동 변수
     private Vector3 targetPos;
@@ -40,17 +39,6 @@ public class Molotov : MonoBehaviour
     }
 
     /// <summary>
-    /// 화염의 색상을 변경
-    /// </summary>
-    /// <param name="_r">R</param>
-    /// <param name="_g">G</param>
-    /// <param name="_b">B</param>
-    public void SetRGB(float _r, float _g, float _b)
-    {
-        r = _r; g = _g; b = _b;
-    }
-
-    /// <summary>
     /// 인게임 임시 스탯 적용
     /// </summary>
     /// <param name="_dmg">_dmg%만큼 데미지 증가(합)</param>
@@ -60,16 +48,25 @@ public class Molotov : MonoBehaviour
         tDamage += _dmg; tRadius += _rad;
     }
 
+    /// <summary>
+    /// 화염 색상 변경
+    /// </summary>
+    /// <param name="_color">RGBA</param>
+    public void SetColor(Color _color)
+    {
+        color = _color;
+    }
+
     //화염병 투척 후 화염 생성
     private void MakeFire()
     {
         //FindObjectOfType<SoundManager>().PlaySound("Molotov");
         GameObject fire = Instantiate(data.firePrefab, transform.position, transform.rotation);
-        fire.GetComponent<SpriteRenderer>().material.color = new Color(r, g, b);
+        fire.GetComponent<Renderer>().material.color = color;
         fire.GetComponent<Fire>().SetFireStats
-            (data.Damage * (1 + tDamage / 100) <= 0 ? data.Damage : data.Damage * (1 + tDamage / 100), 
-            data.CCDuration, 
-            data.Radius * (1 + tRadius/100) <= 0 ? data.Radius : data.Radius * (1 + tRadius / 100));
+            (data.Damage * (1 + tDamage / 100) <= 0 ? data.Damage : data.Damage * (1 + tDamage / 100),  // 데미지
+            data.CCDuration,                                                                            // 상태이상 지속시간
+            data.Radius * (1 + tRadius / 100) <= 0 ? data.Radius : data.Radius * (1 + tRadius / 100));   // 화염 범위                                                                                   // 화염 색상
         Destroy(gameObject);
     }
 

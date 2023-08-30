@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3485669015980642351}
   - component: {fileID: 1477525634408606614}
   m_Layer: 0
-  m_Name: Fire
+  m_Name: fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

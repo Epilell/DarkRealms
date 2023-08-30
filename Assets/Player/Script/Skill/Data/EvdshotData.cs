@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EvadeShot", menuName = "Skill/Attack/EvadeShot")]
 public class EvdshotData : AttackSkillData
 {
-    public GameObject effect;
+    public GameObject Effect;
 
     public override void AdditionalInit()
     {

@@ -85,7 +85,7 @@ public abstract class DualWeaponBase : MonoBehaviour
     private void Update()
     {
         CalcVec();
-        if (SkillManager.Instance.CheckUpgrade(SkillManager.Instance.siegemodeUpgradeList, "Gradual Attack Speed Up"))
+        if (SkillManager.Instance.CheckUpgrade("Siege Mode", "Gradual Attack Speed Up"))
         {
             if (sec < 0.5f)
             {
