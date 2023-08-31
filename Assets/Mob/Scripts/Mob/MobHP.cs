@@ -26,6 +26,8 @@ public class MobHP : MonoBehaviour
     [SerializeField]
     private List<GameObject> freezingEffect;
     [SerializeField]
+    private GameObject freezEffect;
+    [SerializeField]
     private GameObject stunEffect;
     [SerializeField]
     private GameObject burnEffect;
@@ -116,6 +118,9 @@ public class MobHP : MonoBehaviour
 
         //GameObject CCEffect = Instantiate(freezingEffect, this.transform.position, Quaternion.identity) as GameObject;
         //CCEffect.transform.SetParent(this.gameObject.transform);
+        GameObject CCEffects = Instantiate(freezEffect, this.transform.position, Quaternion.identity) as GameObject;
+        CCEffects.transform.SetParent(this.transform);
+        Destroy(CCEffects, slowDuration);
         StartCoroutine( SlowEffectSpawn(slowDuration));
         Color color = spriteRenderer.color;
         color.g = 0.8f;
@@ -130,6 +135,8 @@ public class MobHP : MonoBehaviour
     }
     private IEnumerator SlowEffectSpawn(float slowDuration = 3f)
     {
+
+
         for (int i = 0; i < slowDuration*2; i++)
         {
             GameObject CCEffect = Instantiate(freezingEffect[i], this.transform.position+new Vector3(0,-0.5f,5), Quaternion.identity) as GameObject;

@@ -158,7 +158,8 @@ MonoBehaviour:
   stunEffect: {fileID: 0}
   burnEffect: {fileID: 7901567622655120002, guid: ab0ed2218f81a8c4cb9f6794392fcefd,
     type: 3}
-  reducedDefenseEffect: {fileID: 0}
+  reducedDefenseEffect: {fileID: 940634692748767880, guid: 8c0455151d87b21458838189f21e92c0,
+    type: 3}
 --- !u!114 &3991686891629927196
 MonoBehaviour:
   m_ObjectHideFlags: 0
