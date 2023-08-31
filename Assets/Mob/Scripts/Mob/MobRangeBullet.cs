@@ -67,7 +67,7 @@ public class MobRangeBullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (BulletNum == 0)
         {
-            rb.AddForce(PlayerDirection.normalized * 1f, ForceMode2D.Impulse);
+            rb.AddForce(PlayerDirection.normalized * 7f, ForceMode2D.Impulse);
         }
         if (BulletNum != 0)
         {

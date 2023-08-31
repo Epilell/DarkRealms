@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2857771759586819821}
   m_Layer: 0
   m_Name: DeadSlime
-  m_TagString: Untagged
+  m_TagString: DeadMob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

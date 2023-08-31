@@ -12577,7 +12577,7 @@ RectTransform:
   m_GameObject: {fileID: 1305127985}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.39443156}
+  m_LocalScale: {x: 1, y: 1, z: 0.39443156}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1084142721}
@@ -17424,7 +17424,7 @@ RectTransform:
   m_GameObject: {fileID: 1804843972}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.39443156}
+  m_LocalScale: {x: 1, y: 1, z: 0.39443156}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1716879495}
@@ -17459,7 +17459,7 @@ MonoBehaviour:
   _verticalSlotCount: 7
   _slotMargin: 4
   _contentAreaPadding: 8
-  _slotSize: 98
+  _slotSize: 90
   _showTooltip: 1
   _showHighlight: 1
   _showRemovingPopup: 1

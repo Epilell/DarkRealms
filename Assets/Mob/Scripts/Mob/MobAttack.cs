@@ -117,6 +117,11 @@ public class MobAttack : MonoBehaviour
         {
             StartCoroutine(OrcAtk(mobStat.mobDamage));
         }
+        else if (mobStat.mobProperty == "DoppleGanger")
+        {
+            animator.SetTrigger("Attack1");
+            RangeAttack1(mobStat);
+        }
         else
         {
             Debug.Log("mobStat.mobProperty ¿À·ù!");
@@ -206,6 +211,11 @@ public class MobAttack : MonoBehaviour
                 }
             }
         }
+    }
+    private IEnumerator DoppelAtk()
+    {
+        yield return new WaitForSeconds(0.5f);
+
     }
     private IEnumerator OrcAtk(float damage)
     {

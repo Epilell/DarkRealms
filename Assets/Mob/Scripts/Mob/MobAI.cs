@@ -99,7 +99,7 @@ public class MobAI : MonoBehaviour
     {
         IsAttack = true;
         mobAttack.Attacking(mobStat, player);//공격하기
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         IsAttack = false;
     }
     private void Attack()
