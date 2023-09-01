@@ -13,6 +13,8 @@ public class Molotov : MonoBehaviour
     //화염병 데이터
     public MolotovData data;
 
+    private Animator ani;
+
     private Color color = new(1f, 1f, 1f, 1f);
 
     //화염병 이동 변수
@@ -61,7 +63,7 @@ public class Molotov : MonoBehaviour
     private void MakeFire()
     {
         //FindObjectOfType<SoundManager>().PlaySound("Molotov");
-        GameObject fire = Instantiate(data.firePrefab, transform.position, transform.rotation);
+        GameObject fire = Instantiate(data.firePrefab, transform.position, new Quaternion(0,0,0,0));
         fire.GetComponent<Renderer>().material.color = color;
         fire.GetComponent<Fire>().SetFireStats
             (data.Damage * (1 + tDamage / 100) <= 0 ? data.Damage : data.Damage * (1 + tDamage / 100),  // 데미지
@@ -70,10 +72,22 @@ public class Molotov : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private IEnumerator TransitionIntoFire()
+    {
+        ani.SetTrigger("IsExplode");
+        yield return new WaitForSecondsRealtime(0.167f);
+        MakeFire();
+    }
+
     #endregion
 
     //Unity Event
     #region
+
+    private void Awake()
+    {
+        ani = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -81,7 +95,7 @@ public class Molotov : MonoBehaviour
         float distance = Vector3.Distance(targetPos, transform.position);
         completePercentage = (elapsedTime / (distance / meterPerSec));
         transform.position = Vector3.Lerp(transform.position, targetPos, completePercentage);
-        if (transform.position == targetPos) { MakeFire(); }
+        if (transform.position == targetPos) { StartCoroutine(TransitionIntoFire()); }
     }
 
     #endregion

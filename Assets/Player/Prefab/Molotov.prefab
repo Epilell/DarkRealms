@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8670179268289057144}
   - component: {fileID: 8670179268289057145}
+  - component: {fileID: 3364322248917231669}
   - component: {fileID: 993691326641377952}
   m_Layer: 0
-  m_Name: molotov
+  m_Name: Molotov
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8670179268289057126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.37, y: 2.9086, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.35855, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,17 +75,38 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 758716035, guid: 4ac9d1a82507d834087e0505c9d656e1, type: 3}
+  m_Sprite: {fileID: 1177892431, guid: 2dfed7ad686e112419b5d9861092fda6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.5555556, y: 0.6111111}
+  m_Size: {x: 0.07, y: 0.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3364322248917231669
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8670179268289057126}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 368cfdf762e4d7b40ae00fcaf12b71e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &993691326641377952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,4 +120,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 130865fbfad2982468ccb48fccd2c4a4, type: 2}
-  explosionRange: {fileID: 570492172207745402, guid: a214fac730f6a3f43a59bea1745ad91a, type: 3}
