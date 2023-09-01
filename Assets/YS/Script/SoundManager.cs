@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
     [Header("AudioSource")] // 오디오 소스
     public AudioSource bgm;
+    public AudioSource portalBgm;
     public List<AudioSource> sfxSources;
     public List<AudioSource> mobSources;
 
@@ -22,6 +24,45 @@ public class SoundManager : MonoBehaviour
     [Header("IconObj")] // 아이콘 오브젝트
     public Image bgmIcon;
     public Image sfxIcon;
+
+    [Header("Player")] // 플레이어
+    public Player player;
+
+    [Header("Portal")] // 포탈
+    public Transform portal;
+
+    private bool isPlaying = false;
+
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "InGame")
+        {
+            player = GameObject.FindWithTag("Player").GetComponent<Player>();
+            portal = FindObjectOfType<MagneticField>().escape;
+            portalBgm.volume = 0;
+        }
+    }
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "InGame")
+        {
+            float distance = Vector3.Distance(portal.transform.position, player.transform.position); // 포탈과 플레이어의 거리 계산
+
+            if (distance <= 20 && !isPlaying) // 거리가 20안이면 음악 재생
+            {
+                portalBgm.Play();
+                isPlaying = true;
+            }
+            else if (distance > 20 && isPlaying) // 밖이면 중지
+            {
+                portalBgm.Stop();
+                isPlaying = false;
+            }
+            Debug.Log("거리: " + distance);
+            if (isPlaying) portalBgm.volume = Mathf.Lerp(1, 0, distance / 20); // 거리에 따라 가까워질수록 볼륨업
+        }
+    }
 
     public void SetBgmVolume(float volume) // 배경음악 볼륨 조절
     {
