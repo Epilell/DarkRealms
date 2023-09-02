@@ -29,6 +29,7 @@ public class Fire : MonoBehaviour
     private void Extinguish()
     {
         Destroy(gameObject);
+        FindObjectOfType<SoundManager>().StopSound("Molotov");
     }
 
     #endregion

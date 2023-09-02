@@ -49,7 +49,7 @@ public class SoundManager : MonoBehaviour
         {
             float distance = Vector3.Distance(portal.transform.position, player.transform.position); // 포탈과 플레이어의 거리 계산
 
-            if (distance <= 20 && !isPlaying) // 거리가 20안이면 음악 재생
+            if (distance <= 20 && !isPlaying) // 거리가 20 안이면 음악 재생
             {
                 portalBgm.Play();
                 isPlaying = true;
@@ -59,8 +59,8 @@ public class SoundManager : MonoBehaviour
                 portalBgm.Stop();
                 isPlaying = false;
             }
-            Debug.Log("거리: " + distance);
-            if (isPlaying) portalBgm.volume = Mathf.Lerp(1, 0, distance / 20); // 거리에 따라 가까워질수록 볼륨업
+
+            if (isPlaying) portalBgm.volume = Mathf.Lerp(0.7f, 0, distance / 20); // 거리에 비례해 가까워질수록 볼륨업
         }
     }
 
@@ -95,6 +95,23 @@ public class SoundManager : MonoBehaviour
         }
 
         if (targetSource != null) { targetSource.Play(); } // 찾으면 실행
+        else { }
+    }
+
+    public void StopSound(string sourceName) // 효과음 재생
+    {
+        AudioSource targetSource = null; // 대상 효과음 소스
+
+        foreach (AudioSource audioSource in sfxSources) // 일치하는 거 찾기
+        {
+            if (audioSource.name == sourceName)
+            {
+                targetSource = audioSource;
+                break;
+            }
+        }
+
+        if (targetSource != null) { targetSource.Stop(); } // 찾으면 실행
         else { }
     }
 

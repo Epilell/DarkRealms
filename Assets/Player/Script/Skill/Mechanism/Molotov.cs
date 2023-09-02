@@ -62,7 +62,7 @@ public class Molotov : MonoBehaviour
     //È­¿°º´ ÅõÃ´ ÈÄ È­¿° »ý¼º
     private void MakeFire()
     {
-        //FindObjectOfType<SoundManager>().PlaySound("Molotov");
+        FindObjectOfType<SoundManager>().PlaySound("Molotov");
         GameObject fire = Instantiate(data.firePrefab, transform.position, new Quaternion(0,0,0,0));
         fire.GetComponent<Renderer>().material.color = color;
         fire.GetComponent<Fire>().SetFireStats

@@ -407,6 +407,7 @@ public class SkillManager : MonoBehaviour
         ani.SetTrigger("IsEvadeshot");
 
         yield return new WaitForSecondsRealtime(0.5f);
+        FindObjectOfType<SoundManager>().PlaySound("EvadeShot");
 
         //이펙트, 데미지
         // 좌측으로
@@ -548,7 +549,6 @@ public class SkillManager : MonoBehaviour
                 if (Input.GetMouseButtonDown(1))
                 {
                     StartCoroutine(Evdshot());
-                    FindObjectOfType<SoundManager>().PlaySound("EvadeShot");
                 }
             }
         }
