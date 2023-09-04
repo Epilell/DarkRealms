@@ -11,6 +11,7 @@ public class MobAI : MonoBehaviour
     private MobAttack mobAttack;
     private MobStat mobStat;
     private MobHP mobHP;
+    private SoundManager sm;
 
     private float detectionRange = 10;
     private float mobAttackRange = 2;
@@ -20,13 +21,14 @@ public class MobAI : MonoBehaviour
     private int xSpeed = 0;
     private int ySpeed = 0;
 
-    private bool IsAttack = false;
+    public bool IsAttack = false;
     private float mobAttackSpeed;
     private float currentCoolDown = 0f;
 
     private Vector3 vec;
     private float vecX;
     float distanceToPlayer;
+
 
     void Awake()
     {
@@ -38,6 +40,7 @@ public class MobAI : MonoBehaviour
     {
         // player를 찾아서 설정합니다.
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        sm = GameObject.Find("SoundManager").GetComponent<SoundManager>();
 
     }
 
@@ -99,6 +102,7 @@ public class MobAI : MonoBehaviour
     {
         IsAttack = true;
         mobAttack.Attacking(mobStat, player);//공격하기
+        //sm.MobSound("Shotgun");//소스필요함
         yield return new WaitForSeconds(0.5f);
         IsAttack = false;
     }

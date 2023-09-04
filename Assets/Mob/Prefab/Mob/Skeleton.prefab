@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5722186894600703350}
   - component: {fileID: 2053941310852753379}
   - component: {fileID: 5117305462692921335}
+  - component: {fileID: -8360023889616825631}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Mob
@@ -209,6 +210,7 @@ MonoBehaviour:
   - {fileID: 3990481298555803876, guid: 8f189510131ddea4d939f9b94b113df2, type: 3}
   - {fileID: 130604791822789806, guid: 99d4fb594f2651343a76f7ec8dafab45, type: 3}
   - {fileID: 4566393218948993019, guid: e6982d0c995507544a695c2a79520700, type: 3}
+  freezEffect: {fileID: 0}
   stunEffect: {fileID: 0}
   burnEffect: {fileID: 7901567622655120002, guid: ab0ed2218f81a8c4cb9f6794392fcefd,
     type: 3}
@@ -253,6 +255,23 @@ MonoBehaviour:
   boxSize2: {x: 1, y: 5}
   isOrc: 0
   WhirlWindDuration: 5
+--- !u!114 &-8360023889616825631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2655877666149952692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51cde3f62c622c40992a5b7f8c329cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footprint1: {fileID: 3408301423874688817, guid: 708c478b82465a0408bb97b730a5f917,
+    type: 3}
+  footprint2: {fileID: 8466329786955158466, guid: 808b71c0fdcaae24e89cbef921149462,
+    type: 3}
+  footPrintPos: {fileID: 7153494336791870736}
 --- !u!1 &5482685243945026994
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,8 +333,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7153494336791870736}
   m_LocalRotation: {x: 0.008726558, y: 0, z: 0, w: 0.999962}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 9.97}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6751768753535695163}
@@ -323,8 +342,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 1, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0222, y: -0.354}
-  m_SizeDelta: {x: 3.2741, y: 2.0864}
+  m_AnchoredPosition: {x: 0.045, y: -0.341}
+  m_SizeDelta: {x: 3.2614, y: 0.2748}
   m_Pivot: {x: 0.4887461, y: 0.4999998}
 --- !u!212 &4984969528624355607
 SpriteRenderer:

@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c9165a5edb3572e4e809e8d782777cce, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0.56078434}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: -6134293155277744470}
   - component: {fileID: 1108551234668841202}
   - component: {fileID: -6944665875627280484}
+  - component: {fileID: -711330410609095124}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Mob
@@ -250,6 +251,7 @@ MonoBehaviour:
   - {fileID: 3990481298555803876, guid: 8f189510131ddea4d939f9b94b113df2, type: 3}
   - {fileID: 130604791822789806, guid: 99d4fb594f2651343a76f7ec8dafab45, type: 3}
   - {fileID: 4566393218948993019, guid: e6982d0c995507544a695c2a79520700, type: 3}
+  freezEffect: {fileID: 0}
   stunEffect: {fileID: 0}
   burnEffect: {fileID: 7901567622655120002, guid: ab0ed2218f81a8c4cb9f6794392fcefd,
     type: 3}
@@ -323,6 +325,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-711330410609095124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095844980228031725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51cde3f62c622c40992a5b7f8c329cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footprint1: {fileID: 3408301423874688817, guid: 708c478b82465a0408bb97b730a5f917,
+    type: 3}
+  footprint2: {fileID: 8466329786955158466, guid: 808b71c0fdcaae24e89cbef921149462,
+    type: 3}
+  footPrintPos: {fileID: 636213625204847469}
 --- !u!1 &5185481538908590526
 GameObject:
   m_ObjectHideFlags: 0

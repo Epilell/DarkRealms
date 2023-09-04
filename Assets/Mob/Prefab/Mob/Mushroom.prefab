@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 1222942721631816764}
   - component: {fileID: 1222942721631816765}
   - component: {fileID: 1222942721631816766}
+  - component: {fileID: 3210413323391744088}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Mob
@@ -297,6 +298,7 @@ MonoBehaviour:
   - {fileID: 3990481298555803876, guid: 8f189510131ddea4d939f9b94b113df2, type: 3}
   - {fileID: 130604791822789806, guid: 99d4fb594f2651343a76f7ec8dafab45, type: 3}
   - {fileID: 4566393218948993019, guid: e6982d0c995507544a695c2a79520700, type: 3}
+  freezEffect: {fileID: 0}
   stunEffect: {fileID: 0}
   burnEffect: {fileID: 7901567622655120002, guid: ab0ed2218f81a8c4cb9f6794392fcefd,
     type: 3}
@@ -323,6 +325,23 @@ MonoBehaviour:
   bullet: {fileID: 0}
   firePoint: {fileID: 0}
   bulletSpeed: 0
+--- !u!114 &3210413323391744088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222942721631817668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51cde3f62c622c40992a5b7f8c329cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footprint1: {fileID: 3408301423874688817, guid: 708c478b82465a0408bb97b730a5f917,
+    type: 3}
+  footprint2: {fileID: 8466329786955158466, guid: 808b71c0fdcaae24e89cbef921149462,
+    type: 3}
+  footPrintPos: {fileID: 275776621694667244}
 --- !u!1 &5359485760033210506
 GameObject:
   m_ObjectHideFlags: 0
