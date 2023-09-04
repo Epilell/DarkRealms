@@ -69,6 +69,7 @@ public class Player : MonoBehaviour
                 CurrentHp = 0; IsDead(); Debug.Log(ani.GetBool("IsDead"));
                 StartCoroutine(FindObjectOfType<GameOver>().GameOverCoroutine());
             }
+            //««∞› ¿Ã∆Â∆Æ
             UIHitEffect.Instance.TriggerHitEffect();
         }
     }

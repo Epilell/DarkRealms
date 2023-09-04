@@ -10,8 +10,8 @@ public class UIHitEffect : MonoBehaviour
     public static UIHitEffect Instance;
 
     [SerializeField]
-    private Color BaseColor = new Color(255 / 255f, 0 / 255f, 0 / 255f, 0 / 255f),
-                  AlignColor = new Color(255 / 255f, 0 / 255f, 0 / 255f, 80 / 255f);
+    private Color BaseColor = new(255 / 255f, 0 / 255f, 0 / 255f, 0 / 255f),
+                  AlignColor = new(255 / 255f, 0 / 255f, 0 / 255f, 80 / 255f);
     private Image Img;
     private float MaxHP;
     private bool isTakingDamage = false; // 추가된 변수
@@ -57,23 +57,16 @@ public class UIHitEffect : MonoBehaviour
 
     //Unity Event
     #region
-    private void Start()
+    private void Awake()
     {
-        if(Instance == null)
-        {
-            Instance = this;
-        }
-        MaxHP = Player.Instance.MaxHP;
+        Instance = this;
         Img = this.GetComponent<Image>();
     }
 
     private void Update()
     {
+        MaxHP = Player.Instance.MaxHP;
         AdjustUIHitColor();
-        /*if (Input.GetKeyDown(KeyCode.K))
-        {
-            Player.Instance.P_TakeDamage(10);
-        }*/
     }
 
     #endregion
