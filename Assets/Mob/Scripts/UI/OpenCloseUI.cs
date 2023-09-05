@@ -19,6 +19,8 @@ public class OpenCloseUI : MonoBehaviour
     [Header("Tester")]
     public GameObject Tester;
     public GameObject Upgrade;
+
+    private bool firstOff=true;
     void Start()
     {
         //closeButton = GetComponent<Button>(); // 버튼을 참조합니다
@@ -53,6 +55,12 @@ public class OpenCloseUI : MonoBehaviour
     {
         if(inven != null&& eqInven!=null)
         {
+            if (firstOff)
+            {
+                firstOff = false;
+                inven.SetActive(false);
+                eqInven.SetActive(false);
+            }
             // 탭 키를 눌렀을 때 인벤토리를 엽니다.
             if (Input.GetKeyDown(KeyCode.Tab))
             {

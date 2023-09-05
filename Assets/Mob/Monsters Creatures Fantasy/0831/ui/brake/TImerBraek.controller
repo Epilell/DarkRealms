@@ -105,20 +105,8 @@ AnimatorController:
   m_Name: TImerBraek
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: 4
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: 7
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: 10
-    m_Type: 9
+  - m_Name: phase
+    m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -173,10 +161,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -851771177162383954}
-    m_Position: {x: 260, y: -200, z: 0}
+    m_Position: {x: 470, y: -100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6426328076110756226}
-    m_Position: {x: 330, y: -110, z: 0}
+    m_Position: {x: 510, y: -200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8919332383692802042}
     m_Position: {x: 350, y: -10, z: 0}

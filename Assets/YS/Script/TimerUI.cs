@@ -11,7 +11,7 @@ public class TimerUI : MonoBehaviour
     /// <summary>
     /// 남은 시간 phase(자기장 데미지에 적용될수도?)
     /// </summary>
-    public int phase=1;
+    public int phase = 1;
 
     public Text timerText; // 타이머UI
     public Button goMainBtn;
@@ -23,7 +23,7 @@ public class TimerUI : MonoBehaviour
     private List<GameObject> lefts;
     [SerializeField]
     private List<GameObject> rights;
-
+    Image img;
 
     private void Start()
     {
@@ -71,64 +71,98 @@ public class TimerUI : MonoBehaviour
     }
     private void UpdateFallenUI()
     {
-        if (currentTime < totalTime - timing&& phase==1)
+        if (currentTime < totalTime - timing && phase == 1)
         {
-            timerAnimator.SetInteger("phase", 2);
+            PhaseChanger(phase);
             phase = 2;
         }
-        else if (currentTime < totalTime - (timing * 2)&& phase==2)
+        else if (currentTime < totalTime - (timing * phase) && phase == 2)
         {
-            timerAnimator.SetInteger("phase", 3);
+            PhaseChanger(phase);
             phase = 3;
         }
-        else if (currentTime < totalTime - (timing * 3)&& phase==3)
+        else if (currentTime < totalTime - (timing * phase) && phase == 3)
         {
-            timerAnimator.SetInteger("phase", 4);
+            PhaseChanger(phase);
             phase = 4;
         }
-        else if (currentTime < totalTime - (timing * 4)&& phase==4)
+        else if (currentTime < totalTime - (timing * phase) && phase == 4)
         {
-            timerAnimator.SetInteger("phase", 5);
+            PhaseChanger(phase);
             phase = 5;
         }
-        else if (currentTime < totalTime - (timing * 5)&&phase ==5)
+        else if (currentTime < totalTime - (timing * phase) && phase == 5)
         {
-            timerAnimator.SetInteger("phase", 6);
+            PhaseChanger(phase);
             phase = 6;
         }
-        else if (currentTime < totalTime - (timing * 6) && phase == 6)
+        else if (currentTime < totalTime - (timing * phase) && phase == 6)
         {
-            timerAnimator.SetInteger("phase", 7);
+            PhaseChanger(phase);
             phase = 7;
         }
-        else if (currentTime < totalTime - (timing * 7) && phase ==7)
+        else if (currentTime < totalTime - (timing * phase) && phase == 7)
         {
-            timerAnimator.SetInteger("phase", 8);
+            PhaseChanger(phase);
             phase = 8;
         }
-        else if (currentTime < totalTime - (timing * 8) && phase ==8)
+        else if (currentTime < totalTime - (timing * phase) && phase == 8)
         {
-            timerAnimator.SetInteger("phase", 9);
+            PhaseChanger(phase);
             phase = 9;
         }
-        else if (currentTime < totalTime - (timing * 9) && phase ==9)
+        else if (currentTime < totalTime - (timing * phase) && phase == 9)
         {
-            timerAnimator.SetInteger("phase", 10);
+            PhaseChanger(phase);
             phase = 10;
         }
-        else if (currentTime < totalTime - (timing * 10) && phase ==10)
+        else if (currentTime < totalTime - (timing * phase) && phase == 10)
         {
-            timerAnimator.SetInteger("phase", 11);
+            PhaseChanger(phase);
             phase = 11;
         }
-        else if (currentTime < totalTime - (timing * 11) && phase ==11)
+        else if (currentTime < totalTime - (timing * phase) && phase == 11)
         {
-            timerAnimator.SetInteger("phase", 12);
+            PhaseChanger(phase);
             phase = 12;
         }
-        else if (currentTime < totalTime - (timing * 12) && phase ==12)
+        else if (currentTime < totalTime - (timing * 11.95f) && phase == 12)
         {
             //시간이 끝났을 경우
+            Animating(phase - 1);
+            UIImageAlphaChanger(TimerUIobj, 0f);
+            phase = 13;
         }
+    }
+    private void PhaseChanger(int PhaseNum)
+    {
+        timerAnimator.SetInteger("phase", PhaseNum + 1);
+        Animating(PhaseNum - 1);
+        StartCoroutine(RemoveBreak(PhaseNum - 1));
+
+    }
+    private void Animating(int num)
+    {
+        UIImageAlphaChanger(lefts[num], 1f);
+        UIImageAlphaChanger(rights[num], 1f);
+        lefts[num].GetComponent<Animator>().SetBool("On", true);
+        rights[num].GetComponent<Animator>().SetBool("On", true);
+    }
+    private void UIImageAlphaChanger(GameObject obj, float alpha)
+    {
+        img = obj.GetComponent<Image>();
+        Color color = img.color;
+        color.a = alpha;
+        img.color = color;
+    }
+    private IEnumerator RemoveBreak(int num)
+    {
+        yield return new WaitForSeconds(1f);
+        lefts[0].SetActive(false);
+        rights[0].SetActive(false);/*
+        UIImageAlphaChanger(lefts[num], 0f);
+        UIImageAlphaChanger(rights[num], 0f);
+        Destroy(lefts[num]);*/
+
     }
 }
