@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoad : MonoBehaviour
 {
     public Slider progressbar; // 로딩바로 사용할 슬라이더
-    // public Text loadText;
+    public Text loadText;
     public SceneAsset scene; // 씬 가져오기
     public FadeOut fadeOut; // 페이드 아웃 스크립트
 
@@ -28,21 +28,21 @@ public class SceneLoad : MonoBehaviour
 
             if (progressbar.value < 0.9f) // 로딩 바가 90% 미만일 때
             {
-                progressbar.value = Mathf.MoveTowards(progressbar.value, 0.9f, Time.deltaTime); // 로딩 바 증가
+                progressbar.value = Mathf.MoveTowards(progressbar.value, 0.9f, Time.deltaTime * 0.5f); // 로딩 바 증가
             }
             else if (operation.progress >= 0.9f) // 씬 로드가 90% 이상일 때
             {
-                progressbar.value = Mathf.MoveTowards(progressbar.value, 1f, Time.deltaTime); // 로딩 바 증가
+                progressbar.value = Mathf.MoveTowards(progressbar.value, 1f, Time.deltaTime * 0.5f); // 로딩 바 증가
             }
 
             if (progressbar.value >= 1f) // 로딩 바가 100%일 때
             {
-                // loadText.text = "Press Spacebar"; // 로딩 텍스트 변경
+                loadText.text = "Press Spacebar"; // 로딩 텍스트 변경
             }
 
             if (Input.GetKeyDown(KeyCode.Space) && progressbar.value >= 1f && operation.progress >= 0.9f) // 로딩이 완료되었을 때 스페이스바를 누르면
             {
-                // loadText.text = ""; // 로딩 텍스트 숨기기
+                loadText.text = ""; // 로딩 텍스트 숨기기
                 yield return StartCoroutine(fadeOut.FadeFlow()); // 페이드 아웃 실행
                 operation.allowSceneActivation = true; // 씬 전환 허용
             }

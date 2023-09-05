@@ -58,7 +58,8 @@ public class SkillManager : MonoBehaviour
     public Transform EvadeshotHitbox;
     public Vector2 EvadeshotHitboxSize;
 
-    public bool isSkillCanUse = true; // 테스트용 추가
+    private Coroutine siegeModeCoroutine; // 시즈모드 수정용
+    public bool isSkillCanUse = true; // 인벤, 옵션창 전용 추가
 
     #endregion
 
@@ -317,12 +318,15 @@ public class SkillManager : MonoBehaviour
     #region
 
     private float siegemodeDuration = 5f;
-
+    
     //시즈모드 활성화
     private IEnumerator ActivateSiegeMode()
     {
         //초기화
         siegemodeTS.isActive = true; siegemodeTS.curTime = 0f; siegemodeTS.curStack--;
+
+        FindObjectOfType<CoolDown>().siegeActive = true;
+        StartCoroutine(FindObjectOfType<CoolDown>().SiegeCool(siegemodeDuration));
 
         //적용 목록
 
@@ -355,14 +359,20 @@ public class SkillManager : MonoBehaviour
     //시즈모드 비활성화
     private IEnumerator DeactivateSiegeMode()
     {
-        StopCoroutine(ActivateSiegeMode());
+        if (siegeModeCoroutine != null)
+        {
+            StopCoroutine(siegeModeCoroutine);
+            siegeModeCoroutine = null;
+        }
+
+        FindObjectOfType<CoolDown>().siegeActive = false;
 
         //적용 목록
         Player.Instance.ChangeDamageReduction(0f); Player.Instance.ChangeSpeedReduction(0f);
 
         //초기화
         siegemodeTS.isActive = false; siegemodeTS.canUse = false;
-
+        
         yield return null;
     }
 
@@ -510,6 +520,7 @@ public class SkillManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space) && (mx != 0 || my != 0))
                 {
                     StartCoroutine(Dodge());
+                    FindObjectOfType<CoolDown>().dodgeActive = true;
                     FindObjectOfType<SoundManager>().PlaySound("Dash");
                 }
             }
@@ -521,6 +532,7 @@ public class SkillManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     ThrowMolotov(mousePos, mouseVec);
+                    FindObjectOfType<CoolDown>().molotovActive = true;
                 }
             }
 
@@ -533,11 +545,11 @@ public class SkillManager : MonoBehaviour
                     if (siegemodeTS.isActive)
                     {
                         StartCoroutine(DeactivateSiegeMode());
-
                     }
                     else
                     {
-                        StartCoroutine(ActivateSiegeMode());
+                        siegeModeCoroutine = StartCoroutine(ActivateSiegeMode());
+                        FindObjectOfType<CoolDown>().siegeCoolDown = true;
                     }
                 }
             }
@@ -549,6 +561,7 @@ public class SkillManager : MonoBehaviour
                 if (Input.GetMouseButtonDown(1))
                 {
                     StartCoroutine(Evdshot());
+                    FindObjectOfType<CoolDown>().evdshotActive = true;
                 }
             }
         }
