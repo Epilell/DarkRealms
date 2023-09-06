@@ -14,6 +14,7 @@ public class BossPortal : MonoBehaviour
         {
             player = collision.gameObject;
             StartCoroutine(moveToBossRoom());
+            FindObjectOfType<SoundManager>().ChangeBossBgm();
         }
     }
     private IEnumerator moveToBossRoom()
