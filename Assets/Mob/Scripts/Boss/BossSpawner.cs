@@ -44,6 +44,9 @@ public class BossSpawner : MonoBehaviour
         camera = mainCamera.GetComponent<Camera>();
         cameraTransform = mainCamera.transform;
 
+        StartCoroutine(FindObjectOfType<FadeOut>().BossFadeInOut()); // 여기서 코루틴 만들면 할당할 오브젝트 많아서 FadeOut에서 생성 후 호출함
+        yield return new WaitForSeconds(1f); // 1초 대기 후 카메라 시점 변환
+
         for (int i = 50; i <= 100; i++)
         {
             camera.orthographicSize = i/10;
