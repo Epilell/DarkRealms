@@ -132,7 +132,7 @@ public class SoundManager : MonoBehaviour
         else { }
     }
 
-    public void ChangeBgm() // º¸½º¸Ê
+    public void ChangeBossBgm() // º¸½º¸Ê
     {
         bgm.clip = bossAudioClip;
         bgm.Play();

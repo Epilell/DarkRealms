@@ -9,6 +9,7 @@ public class GameOver : MonoBehaviour
     public FadeOut fadeOut;
     public Player player;
     public Inventory Inventory;
+    public GameObject UIHitEffect;
 
     public Button goMainBtn;
     public Image gameOverImg, screen;
@@ -22,8 +23,6 @@ public class GameOver : MonoBehaviour
     {
         if (isGameOver) return; // 중복 실행되지 않게 함
 
-        isGameOver = true;
-
         FindObjectOfType<Player>().P_TakeDamage(10000); // 플레이어 사망
 
         StartCoroutine(GameOverCoroutine());
@@ -34,6 +33,8 @@ public class GameOver : MonoBehaviour
         if (isGameOver) yield break; // 중복 실행되지 않게 함
 
         isGameOver = true;
+
+        UIHitEffect.SetActive(false);
 
         for (int i = 0; i < Inventory._Items.Length; i++) { Inventory.Remove(i); } // 죽으면 인벤토리 내 모든 아이템 제거
 

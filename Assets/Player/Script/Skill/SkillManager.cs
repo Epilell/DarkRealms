@@ -511,7 +511,7 @@ public class SkillManager : MonoBehaviour
             Instance = this;
         }
 
-        if (isSkillCanUse)
+        if (isSkillCanUse&& !FindObjectOfType<GameOver>().isGameOver)
         {
             //È¸ÇÇ
             CheckTime(dodgeTS, dodgeData, "Dodge");
