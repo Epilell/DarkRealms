@@ -91,7 +91,7 @@ namespace Rito.InventorySystem
                         }
                         else
                         {
-                            RT.localPosition = new Vector2(0, -280 * (num - 1));
+                            RT.localPosition = new Vector2(0, -130 * (num - 1));
                         }
                         RT.gameObject.SetActive(true);
                         //RT.gameObject.name = $"Upgrade List [{i}]";
@@ -104,11 +104,11 @@ namespace Rito.InventorySystem
                             UI._afterImage.sprite = data.NextArmorData.IconSprite;
                             if(data.Requirements.Count != 0)
                             {
-                                UI._requirements.text += data.Requirements[0].Num + " X " + data.Requirements[0].Data.Name;
+                                UI._requirements.text += data.Requirements[0].Num; //+ " X " + data.Requirements[0].Data.Name;
                             }
                             else
                             {
-                                UI._requirements.text += " X ";
+                                UI._requirements.text += " 0 ";
                             }
                             
 
@@ -127,11 +127,11 @@ namespace Rito.InventorySystem
                             UI._afterImage.sprite = data.NextWeaponData.IconSprite;
                             if (data.Requirements.Count != 0)
                             {
-                                UI._requirements.text += data.Requirements[0].Num + " X " + data.Requirements[0].Data.Name;
+                                UI._requirements.text += data.Requirements[0].Num;//+ " X " + data.Requirements[0].Data.Name;
                             }
                             else
                             {
-                                UI._requirements.text += " X ";
+                                UI._requirements.text += " 0 ";
                             }
 
                             //해당 패널의 업그레이드 버튼에 기능 할당

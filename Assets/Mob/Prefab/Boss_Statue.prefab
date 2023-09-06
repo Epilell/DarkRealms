@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2872641635867683532}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.33, y: 0.33, z: -1}
+  m_LocalPosition: {x: -1.33, y: 0.33, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -194,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4963672953576843820}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.49, y: 2.22, z: 0}
+  m_LocalPosition: {x: -0.49, y: 2.22, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -378,6 +378,7 @@ MonoBehaviour:
   interactionDistance: 5
   ArrowPoint: {fileID: 2872641635867683532}
   arrow: {fileID: 4963672953576843820}
+  pressF: {fileID: 3206035354476816470, guid: 8a647d32494e9864fb3bd446028f303b, type: 3}
   isEscape: 0
 --- !u!61 &788185092755245141
 BoxCollider2D:

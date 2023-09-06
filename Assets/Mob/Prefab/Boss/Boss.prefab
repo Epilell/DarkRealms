@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a928a61edb931584e878717d2af4ac24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 3000
+  maxHP: 10000
   DeadMob: {fileID: 4641412873053835146, guid: a6c4617ccd967eb458e0b4b4b8115b2e, type: 3}
   Stat: {fileID: 11400000, guid: 685a4d127f69b8c459cbf59b23374e5f, type: 2}
   CanDamage: 1

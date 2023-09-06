@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Item_MaterialItem_
   m_EditorClassIdentifier: 
   _id: 999
-  _name: "\uAC15\uD654\uC7AC\uB8CC"
-  _tooltip: "\uAC15\uD654\uC758 \uC7AC\uB8CC"
+  _name: Material
+  _tooltip: "\uC544\uC774\uD15C \uAC15\uD654\uC5D0 \uC0AC\uC6A9\uB418\uB294 \uC7AC\uB8CC\n"
   _iconSprite: {fileID: 21300000, guid: f52ed5a6cf1d0cd42bd370b5eb1757b9, type: 3}
   _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
     type: 3}

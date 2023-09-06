@@ -245,7 +245,7 @@ MonoBehaviour:
   mobAttackRange: 4
   moveSpeed: 1.25
   mobAttackSpeed: 0.7
-  bullet: {fileID: 5455975780477891010, guid: d76c41bf170d0e8499f47b2cadff2ea6, type: 3}
+  bullet: {fileID: 4257595019007925384, guid: d0afdf9744653be449a4b71b0d974ed1, type: 3}
   firePoint: {fileID: 9155456390123417963}
   bulletSpeed: 1
 --- !u!61 &9155456390019035055
@@ -309,6 +309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   idleSpeed: 1
+  IsAttack: 0
 --- !u!114 &9155456390019035052
 MonoBehaviour:
   m_ObjectHideFlags: 0

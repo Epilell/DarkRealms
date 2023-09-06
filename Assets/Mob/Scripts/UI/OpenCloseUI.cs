@@ -93,9 +93,11 @@ public class OpenCloseUI : MonoBehaviour
     public void OpenWarehouseUI()
     {
         warehouse.SetActive(true);
+        Upgrade.SetActive(false);
     }
     public void OpenCloseUpgrade()
     {
         Upgrade.SetActive(!Upgrade.activeSelf);
+        warehouse.SetActive(false);
     }
 }

@@ -258,6 +258,7 @@ public class BossPattern : MonoBehaviour
                 //Instantiate(mobList[i], spawnPoint[i].position, Quaternion.identity);
                 GameObject clone = Instantiate(mobList[i], spawnPoint[i].position, Quaternion.identity) as GameObject;
                 SpawnEnemyHPSlider(clone);
+                clone.transform.SetParent(this.gameObject.transform);
                 yield return new WaitForSeconds(_spawnDelay);
             }
         }

@@ -11,7 +11,10 @@ public class Statue : MonoBehaviour
     [Header("SpriteRenderer쓸 화살표")]
     public GameObject arrow;
     private SpriteRenderer srA;
-
+    [Header("안내창")]
+    [SerializeField]
+    private GameObject pressF;
+    private bool once=true;
     private GameObject escapeTarget;//탈출구 포탈 게임오브젝트
     private GameObject bossTarget;//보스룸 포탈 게임오브젝트
     private Vector3 direction;//target좌표
@@ -40,12 +43,23 @@ public class Statue : MonoBehaviour
         //arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         ArrowPoint.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle-90f));
     }
-
+    private RectTransform rectTransform;
+    private Vector3 distance = Vector3.down * 2000.0f;
     private void Update()
     {
         // 플레이어와의 거리 계산
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-
+        if (distanceToPlayer <= interactionDistance&& once)
+        {
+            GameObject clone = Instantiate(pressF,this.transform.position, Quaternion.identity) as GameObject;
+            //Slider UI 프로젝트를 parent("Canvas" 오브젝트)의 자식으로 설정 단, UI는 캔버스의 자식으로 설정되어 있어야 화면에 보임
+            clone.transform.SetParent(GameObject.Find("Canvas").transform);
+            Vector3 screenPosition = Camera.main.WorldToScreenPoint(this.transform.position);
+            //계층 설정으로 바뀐 크기를 재설정
+            clone.transform.localScale = Vector3.one;
+            rectTransform.position = screenPosition - 4 * distance;
+            once = false;
+        }
         // F 키를 누르면 애니메이션 실행
         if (distanceToPlayer <= interactionDistance && Input.GetKeyDown(KeyCode.F))
         {

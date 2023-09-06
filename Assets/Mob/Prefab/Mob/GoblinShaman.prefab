@@ -375,7 +375,7 @@ MonoBehaviour:
   mobAttackRange: 8
   moveSpeed: 2
   mobAttackSpeed: 2
-  bullet: {fileID: 5455975780477891010, guid: d76c41bf170d0e8499f47b2cadff2ea6, type: 3}
+  bullet: {fileID: 5539105469542329757, guid: 1d9525fd8a8170847abfc3bea7a5c637, type: 3}
   firePoint: {fileID: 8475948001200166907}
   bulletSpeed: 1
 --- !u!114 &8475948001146510820
@@ -392,6 +392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   idleSpeed: 1
+  IsAttack: 0
 --- !u!114 &8475948001146510821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,7 +427,10 @@ MonoBehaviour:
     type: 3}
   footprint2: {fileID: 8466329786955158466, guid: 808b71c0fdcaae24e89cbef921149462,
     type: 3}
+  footPrintSize: 1
   footPrintPos: {fileID: 395487961694484398}
+  footPrintDelay: 0.3
+  footvecCV: {x: 0, y: -0.3, z: -4}
 --- !u!1 &8475948001200166907
 GameObject:
   m_ObjectHideFlags: 0

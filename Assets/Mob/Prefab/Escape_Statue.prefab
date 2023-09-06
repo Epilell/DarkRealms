@@ -125,6 +125,7 @@ MonoBehaviour:
   interactionDistance: 5
   ArrowPoint: {fileID: 7457487926248536827}
   arrow: {fileID: 5351766792945263805}
+  pressF: {fileID: 3206035354476816470, guid: 8a647d32494e9864fb3bd446028f303b, type: 3}
   isEscape: 1
 --- !u!61 &5385402375203511800
 BoxCollider2D:
