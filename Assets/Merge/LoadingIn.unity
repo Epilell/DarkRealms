@@ -530,8 +530,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressbar: {fileID: 4824740764829965212}
   loadText: {fileID: 785859745}
-  scene: {fileID: 102900000, guid: e770657210d2ca7478d6a90c4543bdcb, type: 3}
   fadeOut: {fileID: 521395597}
+  scene: InGame
 --- !u!4 &1594124626
 Transform:
   m_ObjectHideFlags: 0
@@ -612,6 +612,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 280320483278011634, guid: 16d34b33ef7ff8748afc79afc286c11d,
+        type: 3}
+      propertyPath: scene
+      value: InGame
+      objectReference: {fileID: 0}
     - target: {fileID: 4690228356662048473, guid: 16d34b33ef7ff8748afc79afc286c11d,
         type: 3}
       propertyPath: m_AnchorMax.y

@@ -72,9 +72,10 @@ public class GameOver : MonoBehaviour
             yield return null; // 한 프레임 대기
         }
 
-        //goMainBtn.onClick.AddListener(GoToNextScene); // 버튼 클릭 이벤트에 GoToMainMenu 함수를 추가
-        goMainBtn.onClick.AddListener(() => fadeOut.Fade()); // line 76, 80을 람다식으로 변형
+        goMainBtn.onClick.AddListener(() =>
+        {
+            FindObjectOfType<SoundManager>().PlaySound("Play");
+            fadeOut.Fade();
+        }); 
     }
-
-    //private void GoToNextScene() { fadeOut.Fade(); }
 }

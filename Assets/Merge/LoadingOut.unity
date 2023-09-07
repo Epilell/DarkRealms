@@ -154,8 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressbar: {fileID: 1504774902}
   loadText: {fileID: 2004957055}
-  scene: {fileID: 102900000, guid: 28fba96e96d2fe94ba8a65c913649dc9, type: 3}
   fadeOut: {fileID: 1303665260}
+  scene: LoadingOut
 --- !u!4 &579625017
 Transform:
   m_ObjectHideFlags: 0
@@ -615,9 +615,8 @@ PrefabInstance:
     - target: {fileID: 280320483278011634, guid: 16d34b33ef7ff8748afc79afc286c11d,
         type: 3}
       propertyPath: scene
-      value: 
-      objectReference: {fileID: 102900000, guid: 28fba96e96d2fe94ba8a65c913649dc9,
-        type: 3}
+      value: MainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 4690228356662048473, guid: 16d34b33ef7ff8748afc79afc286c11d,
         type: 3}
       propertyPath: m_AnchorMax.y

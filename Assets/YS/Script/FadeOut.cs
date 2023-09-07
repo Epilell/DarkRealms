@@ -6,7 +6,7 @@ using UnityEditor;
 
 public class FadeOut : MonoBehaviour
 {
-    public SceneAsset scene; // 씬 가져오기
+    public string scene; // 씬 가져오기
     public Image panel; // 페이드 아웃에 사용할 이미지
     public Image startImg; // Start 전용 이미지
 
@@ -17,7 +17,7 @@ public class FadeOut : MonoBehaviour
 
     public IEnumerator FadeFlow() // 페이드 아웃 코루틴 함수
     {
-        if (scene.name == "LoadingIn") // 메인 메뉴에서 Start 버튼을 누르면 추가 실행
+        if (scene == "LoadingIn") // 메인 메뉴에서 Start 버튼을 누르면 추가 실행
         {
             startImg.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.8f);
@@ -35,7 +35,7 @@ public class FadeOut : MonoBehaviour
             yield return null; // 한 프레임 대기
         }
 
-        SceneManager.LoadScene(scene.name); // 씬 전환
+        SceneManager.LoadScene(scene); // 씬 전환
     }
 
     public IEnumerator BossFadeInOut() // 보스 스폰 전용

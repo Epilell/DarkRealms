@@ -15331,7 +15331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3808c2473f82a204bb06f627e3b7aec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: {fileID: 102900000, guid: 63184fb1cf936ec49bbb3a341d7e0300, type: 3}
+  scene: LoadingOut
   panel: {fileID: 1996553344}
   startImg: {fileID: 0}
 --- !u!1 &1776724683

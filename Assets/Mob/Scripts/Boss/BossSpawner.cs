@@ -19,6 +19,8 @@ public class BossSpawner : MonoBehaviour
     private Camera camera;
     private Transform cameraTransform;
 
+    public FollowObject followObject;
+
     private void Awake()
     {
         //StartCoroutine("BossSpawn");
@@ -54,6 +56,8 @@ public class BossSpawner : MonoBehaviour
             cameraTransform.localPosition = new Vector3(0, (i/10)-5, -30f);
             yield return new WaitForSeconds(0.02f);
         }
+
+        followObject.cameraSizeUp = true; // 카메라 시점 변환 완료
     }
 
     private IEnumerator BossSpawn()
