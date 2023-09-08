@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995229938149511981}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.589, y: 0.072, z: 0}
+  m_LocalPosition: {x: 0.392, y: 0.052, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104,7 +104,7 @@ SpriteRenderer:
   m_SortingLayerID: -727751137
   m_SortingLayer: 4
   m_SortingOrder: -2
-  m_Sprite: {fileID: -290042310, guid: d62d5ab2dab317b4287ebc8755e63aa8, type: 3}
+  m_Sprite: {fileID: -542557906, guid: ba5fd0a69ce3f2e489e0b9e9dc07ec9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -140,7 +140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2870430458247665569}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1594, y: 0.0158, z: 0}
+  m_LocalPosition: {x: 0.426, y: 0.024, z: 0}
   m_LocalScale: {x: 1, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -188,8 +188,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -727751137
   m_SortingLayer: 4
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 583216135, guid: af4d689b580a1484b822f4496b742a26, type: 3}
+  m_SortingOrder: -3
+  m_Sprite: {fileID: -766201544, guid: 50305623e842102499cc0323c5b60832, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 4503873022299110522}
   - component: {fileID: 2546702659610081803}
   m_Layer: 6
-  m_Name: rifle
+  m_Name: Rifle
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

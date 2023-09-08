@@ -7,7 +7,7 @@ public class DualPistol : DualWeaponBase
     public override void Attack()
     {
         float damage = data.Damage;
-        //if (FindObjectOfType<AttackEffect>().powerUp) damage = data.Damage * 1.5f;
+        if (FindObjectOfType<AttackEffect>().powerUp) damage = data.Damage * 1.5f;
 
         if (order == 1)
         {
