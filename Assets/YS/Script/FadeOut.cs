@@ -10,7 +10,7 @@ public class FadeOut : MonoBehaviour
     public Image panel; // 페이드 아웃에 사용할 이미지
     public Image startImg; // Start 전용 이미지
 
-    float time = 0f; // 경과 시간
+    float time; // 경과 시간
     float fadeTime = 1f; // 페이드 아웃 시간
 
     public void Fade() { StartCoroutine(FadeFlow()); }
@@ -38,8 +38,10 @@ public class FadeOut : MonoBehaviour
         SceneManager.LoadScene(scene); // 씬 전환
     }
 
-    public IEnumerator BossFadeInOut() // 보스 스폰 전용
+    public IEnumerator BossFadeInOut() // 보스 전용
     {
+        time = 0f;
+
         panel.gameObject.SetActive(true); // 이미지 활성화
         Color alpha = panel.color; // 색상값
 

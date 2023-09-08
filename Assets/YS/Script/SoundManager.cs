@@ -10,9 +10,9 @@ public class SoundManager : MonoBehaviour
     public AudioSource portalBgm;
     public List<AudioSource> sfxSources;
     public List<AudioSource> mobSources;
+    public List<AudioSource> bossSources;
 
     [Header("AudioClip")] // 오디오 클립(파일)
-    public AudioClip normalAudioClip; // 일반맵
     public AudioClip bossAudioClip; // 보스맵
 
     [Header("ImgSource")] // 이미지 소스
@@ -60,7 +60,7 @@ public class SoundManager : MonoBehaviour
                 isPlaying = false;
             }
 
-            if (isPlaying) portalBgm.volume = Mathf.Lerp(0.7f, 0, distance / 20); // 거리에 비례해 가까워질수록 볼륨업
+            if (isPlaying) portalBgm.volume = Mathf.Lerp(1, 0, distance / 20); // 거리에 비례해 가까워질수록 볼륨업
         }
     }
 
@@ -79,6 +79,9 @@ public class SoundManager : MonoBehaviour
             if (efSource.volume <= 0) { sfxIcon.sprite = sfx_off; } // 볼륨이 0이면 OFF로 이미지 변경
             else { sfxIcon.sprite = sfx_on; }
         }
+        foreach (AudioSource efSource in mobSources) efSource.volume = volume;
+        foreach (AudioSource efSource in bossSources) efSource.volume = volume;
+
     }
 
     public void PlaySound(string sourceName) // 효과음 재생
@@ -98,7 +101,7 @@ public class SoundManager : MonoBehaviour
         else { }
     }
 
-    public void StopSound(string sourceName) // 효과음 재생
+    public void StopSound(string sourceName) // 효과음 정지
     {
         AudioSource targetSource = null; // 대상 효과음 소스
 
@@ -111,7 +114,7 @@ public class SoundManager : MonoBehaviour
             }
         }
 
-        if (targetSource != null) { targetSource.Stop(); } // 찾으면 실행
+        if (targetSource != null) { targetSource.Stop(); } // 찾으면 정지
         else { }
     }
 
@@ -132,15 +135,26 @@ public class SoundManager : MonoBehaviour
         else { }
     }
 
+    public void BossPlaySound(string sourceName) // 보스 효과음 재생
+    {
+        AudioSource targetSource = null; // 대상 효과음 소스
+
+        foreach (AudioSource audioSource in bossSources) // 일치하는 거 찾기
+        {
+            if (audioSource.name == sourceName)
+            {
+                targetSource = audioSource;
+                break;
+            }
+        }
+
+        if (targetSource != null) { targetSource.Play(); } // 찾으면 실행
+        else { }
+    }
+
     public void ChangeBossBgm() // 보스맵
     {
         bgm.clip = bossAudioClip;
-        bgm.Play();
-    }
-
-    public void ChangeOriginalBgm() // 일반맵
-    {
-        bgm.clip = normalAudioClip;
         bgm.Play();
     }
 }

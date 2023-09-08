@@ -34,8 +34,6 @@ public class GameOver : MonoBehaviour
 
         isGameOver = true;
 
-        //UIHitEffect.SetActive(false); // 사망 시 피격 효과 안 보임
-
         for (int i = 0; i < Inventory._Items.Length; i++) { Inventory.Remove(i); } // 죽으면 인벤토리 내 모든 아이템 제거
 
         gameOverImg.gameObject.SetActive(true); // 이미지 활성화
