@@ -183,6 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   idleSpeed: 1
+  IsAttack: 0
 --- !u!222 &7253027290683981753
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -237,6 +238,7 @@ MonoBehaviour:
   bullet: {fileID: 0}
   firePoint: {fileID: 0}
   bulletSpeed: 0
+  HPbar_correction: 4.3
 --- !u!114 &5117305462692921335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,7 +273,10 @@ MonoBehaviour:
     type: 3}
   footprint2: {fileID: 8466329786955158466, guid: 808b71c0fdcaae24e89cbef921149462,
     type: 3}
+  footPrintSize: 1
   footPrintPos: {fileID: 7153494336791870736}
+  footPrintDelay: 0.3
+  footvecCV: {x: 0, y: -0.3, z: -4}
 --- !u!1 &5482685243945026994
 GameObject:
   m_ObjectHideFlags: 0

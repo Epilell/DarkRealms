@@ -117,7 +117,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095844980228031725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -214,6 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   idleSpeed: 1
+  IsAttack: 0
 --- !u!114 &-6029538516910535600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +279,7 @@ MonoBehaviour:
   bullet: {fileID: 0}
   firePoint: {fileID: 0}
   bulletSpeed: 0
+  HPbar_correction: 4.3
 --- !u!61 &1108551234668841202
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -341,7 +343,10 @@ MonoBehaviour:
     type: 3}
   footprint2: {fileID: 8466329786955158466, guid: 808b71c0fdcaae24e89cbef921149462,
     type: 3}
+  footPrintSize: 1
   footPrintPos: {fileID: 636213625204847469}
+  footPrintDelay: 0.3
+  footvecCV: {x: 0, y: -0.3, z: -4}
 --- !u!1 &5185481538908590526
 GameObject:
   m_ObjectHideFlags: 0

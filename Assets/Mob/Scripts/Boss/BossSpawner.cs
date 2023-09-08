@@ -33,7 +33,6 @@ public class BossSpawner : MonoBehaviour
             if (_isSpawn == false)
             {
                 StartCoroutine(CameraGrow());
-                StartCoroutine(BossSpawn());
                 _isSpawn = true;
             }
 
@@ -58,6 +57,8 @@ public class BossSpawner : MonoBehaviour
         }
 
         followObject.cameraSizeUp = true; // 카메라 시점 변환 완료
+
+        StartCoroutine(BossSpawn());
     }
 
     private IEnumerator BossSpawn()

@@ -17,7 +17,7 @@ public class BossTail : MonoBehaviour
     private void Start()
     {
         Invoke("EnableDamage", 0.1f);
-        Invoke("DisableDamage", 0.33f);
+        Invoke("DisableDamage", 1f);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -36,11 +36,11 @@ public class BossTail : MonoBehaviour
         BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
         collider.isTrigger = true;
         rb.gravityScale = 0f;
-        collider.size = new Vector2(7,10);
+        collider.size = new Vector2(3,4);
         //GetComponent<Animator>().SetTrigger("TailAtk");
     }
     private void DisableDamage()
     {
-        canDamage = false; ;
+        canDamage = false;
     }
 }

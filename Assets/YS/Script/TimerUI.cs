@@ -158,8 +158,8 @@ public class TimerUI : MonoBehaviour
     private IEnumerator RemoveBreak(int num)
     {
         yield return new WaitForSeconds(1f);
-        lefts[0].SetActive(false);
-        rights[0].SetActive(false);/*
+        lefts[num].SetActive(false);
+        rights[num].SetActive(false);/*
         UIImageAlphaChanger(lefts[num], 0f);
         UIImageAlphaChanger(rights[num], 0f);
         Destroy(lefts[num]);*/

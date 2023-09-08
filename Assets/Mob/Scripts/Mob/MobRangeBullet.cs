@@ -7,7 +7,7 @@ public class MobRangeBullet : MonoBehaviour
     private float BulletSpeed;
     private float Damage;
     //private float Distance;
-    Vector3 PlayerDirection;
+    GameObject Player;
     int BulletNum;
     float DestoryTime = 150f;
     private Animator animator;
@@ -22,11 +22,11 @@ public class MobRangeBullet : MonoBehaviour
     /// <param name="damage">데미지</param>
     /// <param name="P_direction">플레이어 위치</param>
     /// <param name="bulletNum">불릿의 번호</param>
-    public void SetStats(float bulletSpeed, float damage, Vector3 P_direction, int bulletNum)
+    public void SetStats(float bulletSpeed, float damage, GameObject _player, int bulletNum)
     {
         this.BulletSpeed = bulletSpeed;
         this.Damage = damage;
-        this.PlayerDirection = P_direction;
+        this.Player = _player;
 
         this.BulletNum = bulletNum;
         //this.Distance = distance;
@@ -67,7 +67,10 @@ public class MobRangeBullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (BulletNum == 0)
         {
-            rb.AddForce(PlayerDirection.normalized * 7f, ForceMode2D.Impulse);
+            Vector3 pd = Player.transform.position;
+            Vector3 dr = pd - transform.position;
+            rb.AddRelativeForce(dr.normalized * 7f, ForceMode2D.Impulse);
+            Debug.Log("num==0");
         }
         if (BulletNum != 0)
         {
@@ -75,33 +78,33 @@ public class MobRangeBullet : MonoBehaviour
             if (BulletNum == 1)
             {
                 //transform.Translate(Vector3.up * BulletSpeed * Time.deltaTime);
-                rb.AddForce(Vector3.up.normalized * 1f, ForceMode2D.Impulse);
-
+                rb.AddRelativeForce(Vector3.up.normalized , ForceMode2D.Impulse);
             }
             else if (BulletNum == 2)
             {
-                rb.AddForce(Vector3.down.normalized * 1f, ForceMode2D.Impulse);
+                rb.AddRelativeForce(Vector3.down.normalized * 1f, ForceMode2D.Impulse);
             }
             else if (BulletNum == 3)
             {
-                rb.AddForce(Vector3.left.normalized * 1f, ForceMode2D.Impulse);
+                rb.AddRelativeForce(Vector3.left.normalized * 1f, ForceMode2D.Impulse);
             }
             else if (BulletNum == 4)
             {
-                rb.AddForce(Vector3.right.normalized * 1f, ForceMode2D.Impulse);
+                rb.AddRelativeForce(Vector3.right.normalized * 1f, ForceMode2D.Impulse);
             }
             else if (BulletNum == 9)
             {
                 StartCoroutine(waitingshot());
             }
         }
-
     }
     private IEnumerator waitingshot()
     {
         yield return new WaitForSeconds(1f);
         rb.angularVelocity = 180;
-        rb.AddForce(PlayerDirection.normalized * 1f, ForceMode2D.Impulse);
+        Vector3 pd = Player.transform.position;
+        Vector3 dr = pd - transform.position;
+        rb.AddRelativeForce(dr.normalized * 4f, ForceMode2D.Impulse);
     }
     private void FixedUpdate()
     {
@@ -114,7 +117,6 @@ public class MobRangeBullet : MonoBehaviour
         
         if (BulletNum != 0|| BulletNum != 1 || BulletNum != 2 || BulletNum != 3 || BulletNum != 4)
         {
-            
             if (BulletNum == 5)
             {
                 transform.Translate(Vector3.up.normalized * BulletSpeed * Time.deltaTime);

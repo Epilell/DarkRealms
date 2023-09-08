@@ -9,6 +9,8 @@ public class MobSpawnTrigger : MonoBehaviour
     [SerializeField]
     private Transform canvasTransform;
     public GameObject Mob;
+    private MobStat mobStat;
+    private float HPbarcorrection;
 
     bool spawn_true;
     private void Awake()
@@ -18,6 +20,8 @@ public class MobSpawnTrigger : MonoBehaviour
     private void Start()
     {
         spawn_true = false;
+        mobStat = Mob.GetComponent<MobStat>();
+        HPbarcorrection = mobStat.HPbar_correction;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -46,7 +50,7 @@ public class MobSpawnTrigger : MonoBehaviour
         sliderClone.transform.localScale = Vector3.one;
 
         //Slider UI가 쫓아다닐 대상을 본인으로 설정
-        sliderClone.GetComponent<SliderPositionAutoSetter>().Setup(enemy.transform);
+        sliderClone.GetComponent<SliderPositionAutoSetter>().Setup(enemy.transform, HPbarcorrection);
         //Slider UI에 자신의 체력 정보를 표시하도록 설정
         sliderClone.GetComponent<MobHPViewer>().Setup(enemy.GetComponent<MobHP>());
     }

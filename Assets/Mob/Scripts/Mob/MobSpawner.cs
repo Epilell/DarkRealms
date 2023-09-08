@@ -27,6 +27,7 @@ public class MobSpawner : MonoBehaviour
     public int MaxSpawn = 3;
     private int CurrentSpawn = 1;
 
+    private float HpBarCor;
     private void Awake()
     {
         //적 리스트 메모리 할당
@@ -49,14 +50,15 @@ public class MobSpawner : MonoBehaviour
                 // i번째 몬스터를 i번째 spawnPoint에 생성
                 //Instantiate(mobList[i], spawnPoint[i].position, Quaternion.identity);
                 GameObject clone = Instantiate(mobList[i], spawnPoint[i].position, Quaternion.identity) as GameObject;
-                SpawnEnemyHPSlider(clone);
+                HpBarCor=clone.GetComponent<MobStat>().HPbar_correction;
+                SpawnEnemyHPSlider(clone, HpBarCor);
                 yield return new WaitForSeconds(spawnDelay);
             }
         }
     }
 
 
-    protected virtual void SpawnEnemyHPSlider(GameObject enemy)
+    protected virtual void SpawnEnemyHPSlider(GameObject enemy,float cor)
     {
         //적 체력을 나타내는 Slider UI 생성
         GameObject sliderClone = Instantiate(mobHPSliderPrefab);
@@ -68,7 +70,7 @@ public class MobSpawner : MonoBehaviour
         sliderClone.transform.localScale = Vector3.one;
 
         //Slider UI가 쫓아다닐 대상을 본인으로 설정
-        sliderClone.GetComponent<SliderPositionAutoSetter>().Setup(enemy.transform);
+        sliderClone.GetComponent<SliderPositionAutoSetter>().Setup(enemy.transform, cor);
         //Slider UI에 자신의 체력 정보를 표시하도록 설정
         sliderClone.GetComponent<MobHPViewer>().Setup(enemy.GetComponent<MobHP>());
     }

@@ -141,7 +141,7 @@ public class EquipmentInventory : MonoBehaviour
                 {
                     _eqitems[index] = itemData.CreateItem();
                     Updateslot(index);
-                    Debug.Log(_eqitems[index].Data.Name + "EqInven에 추가됨");
+                    //Debug.Log(_eqitems[index].Data.Name + "EqInven에 추가됨");
                     //아이템 장비 효과
                     ItemEffect(_eqitems[index].Data as EquipmentItemData);
                     return null;
@@ -257,7 +257,7 @@ public class EquipmentInventory : MonoBehaviour
         }
         else
         {
-            Debug.Log("장비아이템이 아님");
+            //Debug.Log("장비아이템이 아님");
         }
     }
     #endregion

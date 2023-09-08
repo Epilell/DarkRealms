@@ -17,11 +17,15 @@ public class BossBreath : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
+
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
         if (canDamage)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                collision.gameObject.GetComponent<Player>().P_TakeDamage(Damage*4f);
+                collision.gameObject.GetComponent<Player>().P_TakeDamage(Damage /5f);
             }
         }
     }

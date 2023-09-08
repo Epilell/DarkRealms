@@ -7,7 +7,7 @@ public class MobAI : MonoBehaviour
     Rigidbody2D rigid;
     private Animator animator;
     SpriteRenderer spriteRenderer;
-    private Transform player;
+    private GameObject player;
     private MobAttack mobAttack;
     private MobStat mobStat;
     private MobHP mobHP;
@@ -39,7 +39,7 @@ public class MobAI : MonoBehaviour
     private void Start()
     {
         // player를 찾아서 설정합니다.
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
         sm = GameObject.Find("SoundManager").GetComponent<SoundManager>();
 
     }
@@ -56,7 +56,7 @@ public class MobAI : MonoBehaviour
         if (!mobHP.IsHit||!mobHP.IsStun)
         {
             // 현재 객체와 플레이어 사이의 거리 계산
-            distanceToPlayer = Vector2.Distance(transform.position, player.position);
+            distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
             if (distanceToPlayer > detectionRange)//플레이어가 감지범위 밖에 있으면 idle
             {
                 //idle
@@ -120,9 +120,9 @@ public class MobAI : MonoBehaviour
         animator.SetInteger("WalkSpeed", 1);
         IsAttack = false;
         // 플레이어를 따라가기 위해 이동
-        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
 
-        if (player.position.x < rigid.position.x)
+        if (player.transform.position.x < rigid.position.x)
         {
             spriteRenderer.flipX = true;
             if (vecX > 0)

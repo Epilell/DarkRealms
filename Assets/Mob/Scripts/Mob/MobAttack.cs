@@ -9,7 +9,7 @@ public class MobAttack : MonoBehaviour
     private int pattrenChoicer;
     private bool IsAttack = false;
     private Transform PlayerDirection;
-    private Vector3 playerPos;
+    private GameObject player;
 
     public Transform pos;
     public Vector2 boxSize = new Vector2(1, 1);
@@ -22,8 +22,6 @@ public class MobAttack : MonoBehaviour
     public float WhirlWindDuration = 5.0f;
     private bool OrcAtkChanger = false;
 
-    [Header("MobAttacing")]
-    private MobAttacking mobAttacking;
 
     private void Start()
     {
@@ -50,10 +48,11 @@ public class MobAttack : MonoBehaviour
             Gizmos.DrawWireCube(pos2.position, boxSize2);
         }
     }
-    public void Attacking(MobStat mobStat, Transform P_direction)//공격
+    public void Attacking(MobStat mobStat, GameObject _player)//공격
     {
-        PlayerDirection = P_direction;
-        playerPos = P_direction.position;
+        player = GameObject.FindWithTag("Player");
+        //Debug.Log(player.transform.position);
+        PlayerDirection = player.transform;
         animator = GetComponent<Animator>();
         if (mobStat.mobProperty == "melee")//근접몹 공격
         {
@@ -130,21 +129,18 @@ public class MobAttack : MonoBehaviour
     private void RangeAttack1(MobStat mobStat)
     {
         GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position, Quaternion.identity);
-        MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, playerPos, 0);
+        MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, player, 0);
         Rigidbody2D rb = MobBullet.GetComponent<Rigidbody2D>();
         rb.angularVelocity = 180;
-        //rb.AddForce(playerPos * 0.3f, ForceMode2D.Impulse);
     }
     private void RangeAttack2(MobStat mobStat)
     {
         for (int i = 1; i < 5; i++)
         {
             GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position, Quaternion.identity);
-            MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, playerPos, i);
+            MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, player, i);
             Rigidbody2D rb = MobBullet.GetComponent<Rigidbody2D>();
-            rb.angularVelocity = 180;/*
-            rb.AddForce(playerPos * 0.3f, ForceMode2D.Impulse) ;*/
-            //rb.velocity = playerPos * -1f;
+            rb.angularVelocity = 180;
         }
     }
     private void RangeAttack3(MobStat mobStat)
@@ -152,11 +148,13 @@ public class MobAttack : MonoBehaviour
         for (int i = 5; i < 9; i++)
         {
             GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position, Quaternion.identity);
-            MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, playerPos, i);
+            MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, player, i);
             Rigidbody2D rb = MobBullet.GetComponent<Rigidbody2D>();
             rb.angularVelocity = 180;
-            rb.AddForce(playerPos.normalized * 1f, ForceMode2D.Impulse);
-            rb.velocity = playerPos * -1f;
+            Vector3 pd = player.transform.position;
+            Vector3 dr = pd - transform.position;
+            rb.AddRelativeForce(dr, ForceMode2D.Impulse);
+            //rb.velocity = player.transform.position * -1f;
         }
     }
     protected IEnumerator MeleeAttack(MobStat mobStat)
@@ -293,7 +291,7 @@ public class MobAttack : MonoBehaviour
             for (int i = 0; i < 5; i++)
             {
                 GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position, Quaternion.identity);
-                MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, playerPos, 9);
+                MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, player, 9);
                 yield return new WaitForSeconds(1f);
             }
 
