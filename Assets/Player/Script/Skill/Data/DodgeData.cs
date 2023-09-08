@@ -6,12 +6,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Dodge", menuName = "Skill/Utillity/Dodge")]
 public class DodgeData : UtillitySkillData
 {
-    [Header("Upgrade GameObject")]
-    [SerializeField] private GameObject obj;
+    [Header("Upgrade GameObject", order = 1), Space(5)]
+    [SerializeField] private GameObject BearTrap;
 
-    public GameObject GetObj()
+    [Header("Effect GameObject", order = 2), Space(5)]
+    [SerializeField] private GameObject DashEffect;
+
+    public GameObject GetBearTrap()
     {
-        return obj;
+        return BearTrap;
+    }
+
+    public GameObject GetDodgeEffect()
+    {
+        return DashEffect;
     }
 
     public override void AdditionalInit()

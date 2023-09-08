@@ -3,7 +3,10 @@ guid: 7b91df5c2713a1847959698ab51590ea
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - BearTrap: {fileID: 3475710844463592168, guid: a8f22b1f1d0a6994daf910c5d1068329,
+      type: 3}
+  - DashEffect: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

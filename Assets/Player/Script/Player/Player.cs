@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
@@ -10,6 +11,16 @@ using UnityEngine;
 
 
 ----------------------------------------*/
+
+/// <summary>
+/// 플레이어 상태
+/// </summary>
+public enum PlayerState
+{
+    Normal, 
+    Danger, //남은 체력이 30% 이하
+    Dead    //남은 체력이 없음
+}
 
 public class Player : MonoBehaviour
 {
@@ -22,15 +33,16 @@ public class Player : MonoBehaviour
     public static Player Instance;
 
     private Animator ani;
-    private Player P;
     private GameObject weaponCase;
 
     #endregion
 
-    //체력관련
+    //체력
     #region
 
     public float MaxHP, CurrentHp;
+    private PlayerState CurrentPlayerState;
+
     [Range(0f,100f)]
     public float ArmorReductionBySkill;
 
@@ -56,20 +68,15 @@ public class Player : MonoBehaviour
     /// <param name="damage">받는 데미지</param>
     public void P_TakeDamage(float damage)
     {
-        if (!SkillManager.Instance.dodgeTS.isActive)
+        if (!SkillManager.Instance.dodgeTS.isActive && CurrentPlayerState != PlayerState.Dead)
         {
             //받는 데미지가 1이하면 1로
             if (((damage - data.GetArmor()) * (1 - ArmorReductionBySkill/100)) * (1 - data.ArmorMasteryLevel * 0.02f) <= 1) { CurrentHp -= 1; }
             //아닌 경우 그대로
             else { CurrentHp -= ((damage - data.GetArmor()) * (1 - ArmorReductionBySkill/100)) * (1 - data.ArmorMasteryLevel * 0.02f); }
-            //사망시
-            if (CurrentHp <= 0)
-            {
-                CurrentHp = 0; IsDead(); Debug.Log(ani.GetBool("IsDead"));
-                StartCoroutine(FindObjectOfType<GameOver>().GameOverCoroutine());
-            }
+
             //피격 이펙트
-            UIHitEffect.Instance.TriggerHitEffect();
+            UIHitEffect.Instance.IsDamaged();
         }
     }
 
@@ -82,9 +89,40 @@ public class Player : MonoBehaviour
         CurrentHp += amount;
         if(CurrentHp > MaxHP) { CurrentHp = MaxHP; }
     }
+
+    /// <summary>
+    /// 플레이어의 상태를 반환
+    /// </summary>
+    /// <returns>0 : Normal, 1 : Danger, 2 : Dead</returns>
+    public int GetPlayerstate()
+    {
+        return (int)CurrentPlayerState;
+    }
+
+    private void CheckPlayerState()
+    {
+        //사망시
+        if (CurrentHp <= 0)
+        {
+            CurrentHp = 0; IsDead();
+            CurrentPlayerState = PlayerState.Dead;  //플레이어 상태 변경
+            StartCoroutine(FindObjectOfType<GameOver>().GameOverCoroutine());
+        }
+        //체력이 30% 이하일때
+        else if (CurrentHp < MaxHP * 0.3f)
+        {
+            CurrentPlayerState = PlayerState.Danger;
+        }
+        //체력이 30% 이상일때
+        else
+        {
+            CurrentPlayerState = PlayerState.Normal;
+        }
+    }
+
     #endregion
 
-    //이동관련
+    //이동
     #region
     // 플레이어 이동시 대입할 변수
     private float Speed, P_XSpeed, P_YSpeed;
@@ -174,7 +212,7 @@ public class Player : MonoBehaviour
         if (ani.GetBool("IsDead") == false) 
         {
             ani.SetBool("IsDead", true);
-            P.enabled = false;
+            Instance.enabled = false;
             weaponCase.SetActive(false);
         }
     }
@@ -190,12 +228,12 @@ public class Player : MonoBehaviour
 
         //애니메이터 지정
         ani = GetComponent<Animator>();
-        P = GetComponent<Player>();
-        weaponCase = transform.Find("Weapon Case").gameObject;
-        
 
-        P.enabled = true;
+        //무기 지정
+        weaponCase = transform.Find("Weapon Case").gameObject;
         weaponCase.SetActive(true);
+
+        Instance.enabled = true;
 
         UpdateSetting();
 
@@ -214,12 +252,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //<애니메이션 관련>
+        //애니메이션
         CalcVec();
         IsMove();
 
-        //<이동 관련>
+        //이동
         InputSpeed();
+
+        //체력
+        CheckPlayerState();
     }
 
     private void FixedUpdate()
