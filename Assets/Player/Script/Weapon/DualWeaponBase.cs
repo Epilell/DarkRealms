@@ -10,7 +10,7 @@ public abstract class DualWeaponBase : MonoBehaviour
 
     public WeaponItemData data;
     public GameObject firePos1, firePos2;
-    public GameObject weapon1, weapon2, weaponImg1, weaponImg2, bullet;
+    public GameObject weapon1, weapon2, bullet;
 
     protected int order = 1;
     protected float curTime = 0f, rotateDeg;

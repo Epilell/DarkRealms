@@ -16,4 +16,7 @@ MonoBehaviour:
   toolTip: 
   coolTime: 3
   maxStack: 1
-  obj: {fileID: 3475710844463592168, guid: a8f22b1f1d0a6994daf910c5d1068329, type: 3}
+  BearTrap: {fileID: 3475710844463592168, guid: a8f22b1f1d0a6994daf910c5d1068329,
+    type: 3}
+  DashEffect: {fileID: 7932093268726052936, guid: 51ea5f968675e3b4a89acf1203608c8e,
+    type: 3}

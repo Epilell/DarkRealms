@@ -54,8 +54,12 @@ public class SkillManager : MonoBehaviour
 
     //스킬 히트박스 리스트
     [Header("Hitbox List", order = 3), Space(5)]
-    public Transform EvadeshotHitbox;
-    public Vector2 EvadeshotHitboxSize;
+    public Transform EvadeshotHitbox; //회피 사격 히트박스
+    public Vector2 EvadeshotHitboxSize; //회피 사격 공격 크기
+
+    //스킬 이펙트 리스트
+    [Header("Effect List", order = 4), Space(5)]
+    public Transform DodgeEffect; //대쉬 이펙트 생성 위치
 
     private Coroutine siegeModeCoroutine; // 시즈모드 수정용
     public bool isSkillCanUse = true; // 인벤, 옵션창 전용 추가
@@ -85,6 +89,22 @@ public class SkillManager : MonoBehaviour
 
     //Check Method
     #region
+
+    /// <summary>
+    /// 플레이어 좌우 반전 확인
+    /// </summary>
+    /// <returns>오른쪽 T, 왼쪽 F</returns>
+    private bool IsFlip()
+    {
+        if(Camera.main.ScreenToWorldPoint(Input.mousePosition).x >= Player.Instance.transform.position.x)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     private void CheckTime(TimeAndStack _ts, SkillData _data, String _skillName)
     {
@@ -163,7 +183,7 @@ public class SkillManager : MonoBehaviour
         //회피 후 트랩설치
         if (CheckUpgrade("Dodge", "Trap"))
         {
-            Instantiate(dodgeData.GetObj(), transform.position, transform.rotation);
+            Instantiate(dodgeData.GetBearTrap(), transform.position, transform.rotation);
         }
         //회피 거리 업그레이드
         if (CheckUpgrade("Dodge", "Range Up"))
@@ -177,6 +197,20 @@ public class SkillManager : MonoBehaviour
 
         //애니메이션 재생
         ani.SetTrigger("IsDash");
+
+        //이펙트 생성
+        //오른쪽
+        if (IsFlip())
+        {
+            Instantiate(dodgeData.GetDodgeEffect(), DodgeEffect.position, DodgeEffect.rotation);
+        }
+        //왼쪽
+        else
+        {
+            GameObject eft = Instantiate(dodgeData.GetDodgeEffect(), DodgeEffect.position, DodgeEffect.rotation);
+            eft.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        
 
         yield return new WaitForSeconds(1 / 6f);
 
@@ -321,8 +355,13 @@ public class SkillManager : MonoBehaviour
     //시즈모드 활성화
     private IEnumerator ActivateSiegeMode()
     {
+        ani.SetTrigger("IsDualPrecision");
+
+        yield return new WaitForSecondsRealtime(0.7f);
+
         //초기화
         siegemodeTS.isActive = true; siegemodeTS.curTime = 0f; siegemodeTS.curStack--;
+        
 
         FindObjectOfType<CoolDown>().siegeActive = true;
         StartCoroutine(FindObjectOfType<CoolDown>().SiegeCool(siegemodeDuration));
@@ -419,10 +458,10 @@ public class SkillManager : MonoBehaviour
         FindObjectOfType<SoundManager>().PlaySound("EvadeShot");
 
         //이펙트, 데미지
-        // 좌측으로
-        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x >= Player.Instance.transform.position.x)
+        // 오른쪽 사격
+        if (IsFlip())
         {
-            Instantiate(evdshotData.Effect, EvadeshotHitbox.position , EvadeshotHitbox.rotation);
+            Instantiate(evdshotData.Effect, EvadeshotHitbox.position, EvadeshotHitbox.rotation);
             Collider2D[] col = Physics2D.OverlapBoxAll(EvadeshotHitbox.position, EvadeshotHitboxSize, 0);
 
             //회피사격 데미지 업그레이드
@@ -437,7 +476,6 @@ public class SkillManager : MonoBehaviour
                 ApplyEvdshotDamage(col, evdshotData.Damage);
             }
 
-
             //회피사격 이동거리 업그레이드
             if (CheckUpgrade("Evade Shot", "Range Up"))
             {
@@ -448,8 +486,8 @@ public class SkillManager : MonoBehaviour
                 rb.AddForce(Vector2.left * 20f, ForceMode2D.Impulse);
             }
         }
-        // 우측으로
-        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < Player.Instance.transform.position.x)
+        // 왼쪽 사격
+        else
         {
             GameObject efc = Instantiate(evdshotData.Effect, EvadeshotHitbox.position, EvadeshotHitbox.rotation);
             efc.GetComponent<SpriteRenderer>().flipX = true;
@@ -510,7 +548,8 @@ public class SkillManager : MonoBehaviour
             Instance = this;
         }
 
-        if (isSkillCanUse&& !FindObjectOfType<GameOver>().isGameOver)
+        //스킬  
+        if (isSkillCanUse && !FindObjectOfType<GameOver>().isGameOver)
         {
             //회피
             CheckTime(dodgeTS, dodgeData, "Dodge");
@@ -567,12 +606,16 @@ public class SkillManager : MonoBehaviour
         else { }
     }
 
-    //스킬 히트박스 영역 생성
+    //스킬 히트박스 및 이펙트 생성
     private void OnDrawGizmos()
     {
-        //회피사격 히트박스
+        //히트박스
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(EvadeshotHitbox.position, EvadeshotHitboxSize);
+        Gizmos.DrawWireCube(EvadeshotHitbox.position, EvadeshotHitboxSize); //회피 사격
+
+        //이펙트
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(DodgeEffect.position, new Vector2(0.2f, 0.2f)); //회피 이펙트
     }
     #endregion
 }
