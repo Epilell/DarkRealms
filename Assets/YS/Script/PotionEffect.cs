@@ -30,6 +30,8 @@ public class PotionEffect : MonoBehaviour
             // 아이템 종류 별로 효과 결정: e.g. 이름에 hp가 포함되면 체력 회복 아이템
             string containWord = Regex.Match(itemName, "hp|power|armor|cooldown|blood|immunity|undying", RegexOptions.IgnoreCase).Value.ToLower();
 
+            FindObjectOfType<SoundManager>().PlaySound("Potion");
+
             switch (containWord) // 종류 별로 선택
             {
                 case "hp": // 회복

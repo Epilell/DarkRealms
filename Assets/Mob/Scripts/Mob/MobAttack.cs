@@ -54,6 +54,7 @@ public class MobAttack : MonoBehaviour
         //Debug.Log(player.transform.position);
         PlayerDirection = player.transform;
         animator = GetComponent<Animator>();
+        FindObjectOfType<SoundManager>().MobSound(gameObject.name.Replace("(Clone)", "")); // 몹 공격 사운드 재생 (테스트)
         if (mobStat.mobProperty == "melee")//근접몹 공격
         {
             //attack1 한번 attack2 한번 번갈아가면서 공격

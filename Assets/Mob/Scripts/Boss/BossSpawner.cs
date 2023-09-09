@@ -56,7 +56,7 @@ public class BossSpawner : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
         }
 
-        followObject.cameraSizeUp = true; // 카메라 시점 변환 완료
+        followObject.cameraChangeUp = true; // 카메라 시점 변환 완료
 
         StartCoroutine(BossSpawn());
     }
@@ -65,6 +65,7 @@ public class BossSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         GameObject bossSpawn = Instantiate(bossSpawningEffect, bossSpawnPoint.transform.position, Quaternion.identity) as GameObject;
+        FindObjectOfType<SoundManager>().BossPlaySound("Roar");
         Destroy(bossSpawn, 4f);
         yield return new WaitForSeconds(4f);
         GameObject clone = Instantiate(boss, bossSpawnPoint.transform.position, Quaternion.identity) as GameObject;

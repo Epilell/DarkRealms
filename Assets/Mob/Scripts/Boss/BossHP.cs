@@ -55,6 +55,7 @@ public class BossHP : MonoBehaviour
             isDie = true;
             //적 사망
             StartCoroutine(Die());
+            FindObjectOfType<SoundManager>().BossPlaySound("Die");
         }
     }
     private IEnumerator Die()
@@ -77,6 +78,9 @@ public class BossHP : MonoBehaviour
         camera = mainCamera.GetComponent<Camera>();
         cameraTransform = mainCamera.transform;
 
+        StartCoroutine(FindObjectOfType<FadeOut>().BossFadeInOut());
+        yield return new WaitForSeconds(1f);
+
         for (int i = 100; i >= 50; i--)
         {
             camera.orthographicSize = i / 10;
@@ -84,6 +88,8 @@ public class BossHP : MonoBehaviour
             cameraTransform.localPosition = new Vector3(0, (i / 10) - 5, -10f);
             yield return new WaitForSeconds(0.02f);
         }
+
+        FindObjectOfType<BossSpawner>().followObject.cameraChangeDown = true; // 카메라 시점 복구
     }
     private IEnumerator HitAlphaAnimation()
     {

@@ -183,12 +183,14 @@ public class BossPattern : MonoBehaviour
         GetComponent<Animator>().SetBool("Breath_Atk", true);
         yield return new WaitForSeconds(4f);
         //브레스 공격 소환
+        FindObjectOfType<SoundManager>().BossPlaySound("Breath");
         GameObject _breath = Instantiate(Breath, BreathPoint.transform.position, Quaternion.identity);
         //SpriteRenderer sr = _breath.GetComponent<SpriteRenderer>();
         for (int i = -50; i <= 50; i++)
         {
             _breath.transform.rotation = Quaternion.Euler(new Vector3(0, 0, i));
-            yield return new WaitForSeconds(0.08f);
+            //yield return new WaitForSeconds(0.08f);
+            yield return new WaitForSeconds(0.0345f);
         }
         GetComponent<Animator>().SetBool("Breath_Atk", false);
         Destroy(_breath);
@@ -201,10 +203,13 @@ public class BossPattern : MonoBehaviour
         GetComponent<Animator>().SetTrigger("TailAttack");
         //플레이어 위치에 꼬리 공격 3개 정도 소환(몇초뒤 Destroy걸어놓기)
         Instantiate(TailAtk, player.transform.position + Vector3.left, Quaternion.identity);
+        FindObjectOfType<SoundManager>().BossPlaySound("Tail");
         yield return new WaitForSeconds(0.5f);
         Instantiate(TailAtk, player.transform.position + Vector3.right, Quaternion.identity);
+        FindObjectOfType<SoundManager>().BossPlaySound("Tail");
         yield return new WaitForSeconds(0.5f);
         Instantiate(TailAtk, player.transform.position + Vector3.up, Quaternion.identity);
+        FindObjectOfType<SoundManager>().BossPlaySound("Tail");
         yield return new WaitForSeconds(0.1f);
     }
     private IEnumerator PopOutPattern()//보스가 바닥에서 튀어나오는 공격
@@ -218,6 +223,7 @@ public class BossPattern : MonoBehaviour
         //튀어나오기 공격 범위 표시 소환, 2초뒤 공격
         yield return new WaitForSeconds(2f);
         Instantiate(PopOutAtk, player.transform.position-new Vector3(0,-7,0), Quaternion.identity);
+        FindObjectOfType<SoundManager>().BossPlaySound("PopOut");
         PopOutAtk.GetComponent<BossPopDamage>().SetStats(bossStat.BossDamageMiddle);
         //튀어나오기 소환 이후 Boss gameObject.SetActive(true)하기
         yield return new WaitForSeconds(4.2f);

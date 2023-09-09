@@ -69,6 +69,8 @@ namespace Rito.InventorySystem
         /// </summary>
         public bool _isWarehouse = false;
 
+        public GameObject portalPrefab;
+
         #endregion
         /***********************************************************************
         *                               Private Fields
@@ -705,7 +707,7 @@ namespace Rito.InventorySystem
                 UpdateSlot(indexA, indexB);
             }
         }
-
+        
         /// <summary> 해당 슬롯의 아이템 사용 </summary>
         public void Use(int index)
         {
@@ -718,7 +720,21 @@ namespace Rito.InventorySystem
                 // 아이템 사용
                 bool succeeded = uItem.Use();
 
-                FindObjectOfType<PotionEffect>().UseEffect(_items[index].Data.Name); // 포션 효과 적용
+                if (_items[index].Data.Name.Contains("potion"))
+                {
+                    FindObjectOfType<PotionEffect>().UseEffect(_items[index].Data.Name); // 포션 효과 적용
+                }
+
+                /*if (_items[index].Data.Name.Contains("portal"))
+                {
+                    GameObject player = GameObject.FindWithTag("Player");
+
+                    if (player != null)
+                    {
+                        Vector3 newPosition = new Vector3(player.transform.position.x - 20, player.transform.position.y, player.transform.position.z); // 위치 계산 후
+                        Instantiate(portalPrefab, newPosition, Quaternion.identity); // 생성
+                    }
+                }*/
 
                 if (succeeded)
                 {
@@ -726,7 +742,7 @@ namespace Rito.InventorySystem
                 }
             }
             //장비아이템이고 인벤토리인경우
-            else if (_items[index] is EquipmentItem eItem && _isWarehouse == false&& index<999)
+            else if (_items[index] is EquipmentItem eItem && _isWarehouse == false && index < 999)
             {
                 ItemData idata = _eqInven.Add(eItem.Data);//장비하기
 
@@ -744,7 +760,7 @@ namespace Rito.InventorySystem
             }
             else if (_items[index] is EquipmentItem && _isWarehouse == false && index > 998)
             {
-                Debug.Log("index = "+index);
+                Debug.Log("index = " + index);
                 Add(_eqInven.UnEquip(index));//장비인벤토리의 장비일경우
             }
             else
