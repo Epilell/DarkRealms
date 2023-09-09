@@ -25,6 +25,8 @@ public class TimerUI : MonoBehaviour
     private List<GameObject> rights;
     Image img;
 
+    public bool isAbandonment;
+
     private void Start()
     {
         goMainBtn.gameObject.SetActive(false);
@@ -40,6 +42,7 @@ public class TimerUI : MonoBehaviour
         {
             Time.timeScale = 0.0025f;
             FindObjectOfType<SkillManager>().isSkillCanUse = false;
+            if(isAbandonment) { Time.timeScale = 1; }
         }
         else
         {
