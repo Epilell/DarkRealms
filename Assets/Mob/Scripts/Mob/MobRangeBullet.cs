@@ -12,6 +12,8 @@ public class MobRangeBullet : MonoBehaviour
     float DestoryTime = 150f;
     private Animator animator;
     Rigidbody2D rb;
+    [SerializeField]
+    GameObject brokenbullet;
 
     private bool ishit = false;
     //능력치 가져오기
@@ -57,8 +59,11 @@ public class MobRangeBullet : MonoBehaviour
         //rb.velocity = Vector2.zero;
         this.transform.position = this.transform.position;
         //animator.SetBool("broken", true);
+        GameObject _brokenBullet = Instantiate(brokenbullet, transform.position, Quaternion.identity);
+        Destroy(_brokenBullet, 1f);
         //사운드삽입
         yield return new WaitForSeconds(0.01f);
+        
         Destroy(gameObject);
     }
     private void Start()

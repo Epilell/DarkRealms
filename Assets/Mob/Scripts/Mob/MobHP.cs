@@ -212,7 +212,7 @@ public class MobHP : MonoBehaviour
     {
         // 몬스터가 죽을 때의 처리
         animator.SetBool("IsDead", true);
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
         Instantiate(DeadMob, transform.position, Quaternion.identity); // 시체 생성
         //dropItem.ItemDrop();//아이템 드롭
