@@ -22,6 +22,8 @@ public class PlayerSpawnSystem : MonoBehaviour
     {
         SpawnPointSet();
         SpawnPlayer();
+
+        //Debug.Log(SpawnPoint);
     }
 
     [SerializeField]

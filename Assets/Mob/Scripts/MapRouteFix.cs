@@ -6,9 +6,9 @@ public class MapRouteFix : MonoBehaviour
 {
     public List<GameObject> route;
     public PlayerSpawnSystem p_spawn;
-    int routenum = 1;
+    int routenum;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         p_spawn = GetComponent<PlayerSpawnSystem>();
 
