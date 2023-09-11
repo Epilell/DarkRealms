@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 0.55, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8508616575458104809
@@ -159,7 +159,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 4edb4d53c129c244eb23faf0ebc3c761, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -203,3 +203,6 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 4644311dc496b06429200ca793fdf5c3, type: 2}
     dropChance: 0.1
     dropCount: 1
+  - item: {fileID: 11400000, guid: df43add3c35245a41bd52de03aa823d5, type: 2}
+    dropChance: 0.5
+    dropCount: 25

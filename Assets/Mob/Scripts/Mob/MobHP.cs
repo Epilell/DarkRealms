@@ -103,7 +103,7 @@ public class MobHP : MonoBehaviour
         {
             isDie = true;
             //적 사망
-            StartCoroutine("Die");
+            StartCoroutine(Die());
         }
     }
     /// <summary>
@@ -210,9 +210,10 @@ public class MobHP : MonoBehaviour
     }
     private IEnumerator Die()
     {
+        animator.SetInteger("WalkSpeed", 0);
         // 몬스터가 죽을 때의 처리
-        animator.SetBool("IsDead", true);
-        yield return new WaitForSeconds(2f);
+        animator.SetTrigger("IsDead");
+        yield return new WaitForSeconds(1.2f);
         Destroy(gameObject);
         Instantiate(DeadMob, transform.position, Quaternion.identity); // 시체 생성
         //dropItem.ItemDrop();//아이템 드롭

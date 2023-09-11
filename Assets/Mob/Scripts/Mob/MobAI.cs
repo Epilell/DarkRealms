@@ -52,8 +52,7 @@ public class MobAI : MonoBehaviour
         {
             currentCoolDown -= Time.deltaTime;
         }
-
-        if (!mobHP.IsHit||!mobHP.IsStun)
+        if (!mobHP.IsHit || !mobHP.IsStun || mobHP.IsDie == false)
         {
             // 현재 객체와 플레이어 사이의 거리 계산
             distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
@@ -117,26 +116,30 @@ public class MobAI : MonoBehaviour
     }
     private void ChasePlayer()
     {
-        animator.SetInteger("WalkSpeed", 1);
-        IsAttack = false;
-        // 플레이어를 따라가기 위해 이동
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        if (mobHP.IsDie == false)
+        {
+            animator.SetInteger("WalkSpeed", 1);
+            IsAttack = false;
+            // 플레이어를 따라가기 위해 이동
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
 
-        if (player.transform.position.x < rigid.position.x)
-        {
-            spriteRenderer.flipX = true;
-            if (vecX > 0)
+            if (player.transform.position.x < rigid.position.x)
             {
-                this.transform.GetChild(0).localPosition = new Vector3(-vecX, vec.y, vec.z);
+                spriteRenderer.flipX = true;
+                if (vecX > 0)
+                {
+                    this.transform.GetChild(0).localPosition = new Vector3(-vecX, vec.y, vec.z);
+                }
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
+                if (vecX < 0)
+                {
+                    this.transform.GetChild(0).localPosition = new Vector3(-vecX, vec.y, vec.z);
+                }
             }
         }
-        else
-        {
-            spriteRenderer.flipX = false;
-            if (vecX < 0)
-            {
-                this.transform.GetChild(0).localPosition = new Vector3(-vecX, vec.y, vec.z);
-            }
-        }
+
     }
 }

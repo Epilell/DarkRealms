@@ -66,8 +66,8 @@ public class BossHP : MonoBehaviour
 
         StartCoroutine(returnCamera());
         yield return new WaitForSeconds(6.0f);
-        Instantiate(escapePortal, transform.position+ new Vector3(0,0,-2), Quaternion.identity);
-        Destroy(gameObject);
+        Instantiate(escapePortal, transform.position+ new Vector3(0,-10,-2), Quaternion.identity);
+        Destroy(gameObject,0.01f);
         Instantiate(DeadMob, transform.position, Quaternion.identity); // 시체 생성
         //dropItem.ItemDrop();//아이템 드롭
 

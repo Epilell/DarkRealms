@@ -19,4 +19,4 @@ MonoBehaviour:
   _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
     type: 3}
   _maxAmount: 99
-  _value: 50
+  _value: 27

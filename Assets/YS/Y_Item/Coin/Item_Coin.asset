@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _name: coin
-  _tooltip: "\uC21C\uAE08 100%\uC758 \uB3D9\uC804\uC774\uB2E4"
-  _iconSprite: {fileID: 21300000, guid: a5682fa11881a0b4689f0bcd5c0dccce, type: 3}
+  _tooltip: "\uC21C\uAE08 75%\uC758 18k \uAE08"
+  _iconSprite: {fileID: 21300000, guid: 9df692986190cb5408a3f296521ca8fe, type: 3}
   _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
     type: 3}
   _maxAmount: 3000
