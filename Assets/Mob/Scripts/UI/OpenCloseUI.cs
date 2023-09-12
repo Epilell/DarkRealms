@@ -10,6 +10,7 @@ public class OpenCloseUI : MonoBehaviour
     public GameObject inven;
     public GameObject eqInven;
     public GameObject ?warehouse;
+    public GameObject map;
     [Header("Buttons")]
     public Button ?InvenCloseButton;
     public Button ?WarehouseOpenButton;
@@ -71,6 +72,10 @@ public class OpenCloseUI : MonoBehaviour
                 _inventory.LoadInven();*/
                 InventoryUI _inventoryUI = inven.GetComponent<InventoryUI>();
                 _inventoryUI.UpdateAllSlotFilters();
+            }
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                map.SetActive(!map.activeSelf);
             }
         }
         if (Tester != null)
