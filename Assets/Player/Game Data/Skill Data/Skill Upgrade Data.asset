@@ -14,14 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Upgradablelist:
   - skillName: Dodge
+    icon: {fileID: 2014446704, guid: 608e068bc06c94b4f83ce67a990566b3, type: 3}
     upgradeList:
     - name: Stack Up
       isUpgrade: 0
-    - name: Trap
-      isUpgrade: 0
     - name: Range Up
       isUpgrade: 0
+    - name: Trap
+      isUpgrade: 0
   - skillName: Molotov
+    icon: {fileID: 251188848, guid: d8f32dbcf90b19e4ebf7186ecde06c41, type: 3}
     upgradeList:
     - name: Stack Up
       isUpgrade: 0
@@ -32,6 +34,7 @@ MonoBehaviour:
     - name: Radius Up
       isUpgrade: 0
   - skillName: Siege Mode
+    icon: {fileID: 292354957, guid: 3813e9ac75dffc44cb5b9fe216948042, type: 3}
     upgradeList:
     - name: Armor Up
       isUpgrade: 0
@@ -40,6 +43,7 @@ MonoBehaviour:
     - name: Gradual Attack Speed Up
       isUpgrade: 0
   - skillName: Evade Shot
+    icon: {fileID: 292354957, guid: 3813e9ac75dffc44cb5b9fe216948042, type: 3}
     upgradeList:
     - name: Stack Up
       isUpgrade: 0

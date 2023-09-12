@@ -14,7 +14,7 @@ public class DualPistol : DualWeaponBase
             GameObject Bullet;
             Bullet = Instantiate(bullet, firePos1.transform.position, Quaternion.Euler(0f, 0f, rotateDeg - 90f));
 
-            Bullet.GetComponent<Bullet>().SetStats(damage);
+            Bullet.GetComponent<Bullet>().SetStats(damage,0.25f);
             order++;
         }
         else
@@ -22,7 +22,7 @@ public class DualPistol : DualWeaponBase
             GameObject Bullet;
             Bullet = Instantiate(bullet, firePos2.transform.position, Quaternion.Euler(0f, 0f, rotateDeg - 90f));
 
-            Bullet.GetComponent<Bullet>().SetStats(damage);
+            Bullet.GetComponent<Bullet>().SetStats(damage, 0.25f);
             order--;
         }
         curTime = 0f;

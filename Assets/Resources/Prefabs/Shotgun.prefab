@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4197239847445860703}
   - component: {fileID: 4197239847445860702}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: weaponImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4197239847491347883}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Fire Position
   m_TagString: Fire Position
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5101767274100709288}
   - component: {fileID: 340873833120929259}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Shotgun
   m_TagString: Weapon
   m_Icon: {fileID: 0}

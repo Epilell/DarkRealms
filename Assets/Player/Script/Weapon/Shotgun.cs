@@ -30,7 +30,7 @@ public class Shotgun : WeaponBase
             Bullet[i] = Instantiate(bullet, firePos.transform.position, Quaternion.Euler(0f, 0f, rotateDeg - 90f + deg));
 
             //총알 데이터 입력
-            Bullet[i].GetComponent<Bullet>().SetStats(damage);
+            Bullet[i].GetComponent<Bullet>().SetStats(damage, 0.1f);
             deg += 5f;
         }
 

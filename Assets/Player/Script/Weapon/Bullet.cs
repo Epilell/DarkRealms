@@ -9,10 +9,12 @@ public class Bullet : MonoBehaviour
 
     private float damage;
 
+    private float destroyTime;
+
     //능력치 가져오기
-    public void SetStats(float _damage)
+    public void SetStats(float _damage, float _time)
     {
-        this.damage = _damage;
+        this.damage = _damage; this.destroyTime = _time;
     }
 
     //------------------------------<공격>-------------------------------------
@@ -36,12 +38,13 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    //충돌 시 총알 제거
     public void OnCollisionEnter2D(Collision2D collision)
     {
         DestroyBullet();
     }
 
-    //총알 삭제
+    //총알 제거
     private void DestroyBullet()
     {
         Destroy(gameObject);
@@ -50,11 +53,11 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Invoke("DestroyBullet", 2f);
     }
 
     private void Start()
     {
+        Invoke("DestroyBullet", destroyTime);
         rb.velocity = transform.up * 30;
     }
 }

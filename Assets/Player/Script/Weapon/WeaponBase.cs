@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public abstract class WeaponBase : MonoBehaviour
 {
-    //Public Field
+    //Field
     #region
     public WeaponItemData data;
 
@@ -15,14 +15,10 @@ public abstract class WeaponBase : MonoBehaviour
     public GameObject weaponImg, bullet;
 
     protected float curTime = 0f, rotateDeg;
-    #endregion
-
-    //Private Field
-    #region
 
     #endregion
 
-    //Public Method
+    //Method
     #region
     public abstract void Attack();
 

@@ -313,7 +313,7 @@ MonoBehaviour:
     ChooseMainCamera: 0
   position: {x: -1.384, y: 1.022}
   TransformIsDirty: 0
-  needUpdate: 1
+  needUpdate: 0
   ContactFilter:
     useTriggers: 0
     useLayerMask: 1

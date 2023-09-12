@@ -51,5 +51,12 @@ public class Fire : MonoBehaviour
         this.GetComponent<Transform>().localScale *= Radius;
         Invoke("Extinguish", Duration);
     }
+
+    private void OnDrawGizmos()
+    {
+        CircleCollider2D Hitbox = this.GetComponent<CircleCollider2D>();
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere((Vector2)this.transform.position + Hitbox.offset, Hitbox.radius);
+    }
     #endregion
 }

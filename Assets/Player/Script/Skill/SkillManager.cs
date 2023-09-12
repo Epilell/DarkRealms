@@ -145,7 +145,7 @@ public class SkillManager : MonoBehaviour
     /// <returns></returns>
     public bool CheckUpgrade(string _skillName, string _upgradeName)
     {
-        foreach(SkillList _target in SkillUpgradeData.ApplyUpgradeList)
+        foreach(Skill _target in SkillUpgradeData.ApplyUpgradeList)
         {
             if(_target.SkillName == _skillName)
             {
@@ -355,16 +355,17 @@ public class SkillManager : MonoBehaviour
     //시즈모드 활성화
     private IEnumerator ActivateSiegeMode()
     {
+        Player.Instance.ChangeSpeedReduction(siegemodeData.SpeedReduction);
         ani.SetTrigger("IsDualPrecision");
 
         yield return new WaitForSecondsRealtime(0.7f);
 
         //초기화
         siegemodeTS.isActive = true; siegemodeTS.curTime = 0f; siegemodeTS.curStack--;
-        
 
+        //스킬 쿨다운 UI
         FindObjectOfType<CoolDown>().siegeActive = true;
-        StartCoroutine(FindObjectOfType<CoolDown>().SiegeCool(siegemodeDuration));
+        StartCoroutine(FindObjectOfType<CoolDown>().SiegeCool(siegemodeDuration));  
 
         //적용 목록
 
@@ -382,10 +383,6 @@ public class SkillManager : MonoBehaviour
         if (CheckUpgrade("Siege Mode", "Can Move"))
         {
             Player.Instance.ChangeSpeedReduction(siegemodeData.SpeedReduction - 20 < 0 ? 0 : siegemodeData.SpeedReduction - 20);
-        }
-        else
-        {
-            Player.Instance.ChangeSpeedReduction(siegemodeData.SpeedReduction);
         }
 
         yield return new WaitForSecondsRealtime(siegemodeDuration);

@@ -20,7 +20,7 @@ public class Rifle : WeaponBase
         Bullet = Instantiate(bullet, firePos.transform.position, Quaternion.Euler(0f, 0f, rotateDeg - 90f));
 
         //총알 데이터 입력
-        Bullet.GetComponent<Bullet>().SetStats(damage);
+        Bullet.GetComponent<Bullet>().SetStats(damage, 0.4f);
         //발사시간 초기화
         curTime = 0f;
     }

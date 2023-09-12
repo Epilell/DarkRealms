@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 792537413739411018}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Fire Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 792537413873806220}
   - component: {fileID: 792537413873806221}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: dual pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 792537414269104851}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Fire Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -19,7 +19,7 @@ public class Molotov : MonoBehaviour
 
     //화염병 이동 변수
     private Vector3 targetPos;
-    private float meterPerSec = 0.1f;
+    private float meterPerSec = 0.3f;
     private float elapsedTime = 0f;
     private float completePercentage = 0f;
 

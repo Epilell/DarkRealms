@@ -16,6 +16,7 @@ public class SkillUpgradeSelectionSystem : MonoBehaviour
     [SerializeField] private SkillUpgradeList data;
     [SerializeField] private int numberToChoose;
     [SerializeField] private List<Button> upgradeButtons;
+    [SerializeField] private List<Image> upgradeImage;
     #endregion
 
     //Check Method
@@ -61,7 +62,8 @@ public class SkillUpgradeSelectionSystem : MonoBehaviour
 
     //Method
     #region
-
+    
+    //업그레이드 버튼 초기화
     private void ResetAllButtonsFunction()
     {
         foreach (Button button in upgradeButtons)
@@ -80,10 +82,15 @@ public class SkillUpgradeSelectionSystem : MonoBehaviour
     /// <param name="_column">업그레이드 번호</param>
     private void UpdateText(int _count, int _raw, int _column)
     {
-        string skillName = data.Upgradablelist[_raw].SkillName;
+        //스킬 이미지 설정
+        upgradeImage[_count].sprite = data.Upgradablelist[_raw].Icon;
+
+        //스킬 업그레이드 내용 할당
         string upgradeName = data.Upgradablelist[_raw].UpgradeList[_column].Name;
         TextMeshProUGUI targetText = upgradeButtons[_count].GetComponentInChildren<TextMeshProUGUI>();
-        targetText.text = "Skill Name : " + skillName + "\n" + "Upgrade Name : " + upgradeName;
+        targetText.text = "Upgrade Name : " + upgradeName;
+
+        //스킬 업그레이드 기능 버튼에 할당
         upgradeButtons[_count].onClick.AddListener(() => ApplyUpgrade(_raw,_column));
     }
     
@@ -117,7 +124,7 @@ public class SkillUpgradeSelectionSystem : MonoBehaviour
                 Name = data.Upgradablelist[_raw].UpgradeList[_column].Name,
                 IsUpgrade = true
             };
-            SkillList newList = new()
+            Skill newList = new()
             {
                 SkillName = data.Upgradablelist[_raw].SkillName,
                 UpgradeList = new()

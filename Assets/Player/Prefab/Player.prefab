@@ -210,13 +210,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7406224990740794857}
   - component: {fileID: 8147324133261776154}
-  m_Layer: 23
+  m_Layer: 0
   m_Name: MinimapImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7406224990740794857
 Transform:
   m_ObjectHideFlags: 0
@@ -293,7 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7373820902893358486}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Center
   m_TagString: Center
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 7373820903467189823}
   - component: {fileID: 7373820903467189821}
   - component: {fileID: 7373820903467189820}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Weapon Case
   m_TagString: Weapon Case
   m_Icon: {fileID: 0}
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 7373820904779604711}
   - component: {fileID: 7373820904779604708}
   - component: {fileID: 7373820904779604710}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -742,7 +742,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 856165155484625684}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: EvadeShot HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
