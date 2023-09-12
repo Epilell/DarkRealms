@@ -13,10 +13,13 @@ public class SkillUpgradeSelectionSystem : MonoBehaviour
     //Field
     #region
 
-    [SerializeField] private SkillUpgradeList data;
-    [SerializeField] private int numberToChoose;
-    [SerializeField] private List<Button> upgradeButtons;
-    [SerializeField] private List<Image> upgradeImage;
+    [TextArea(1, 5), Space(5)]
+    public string describe;
+
+    [SerializeField, Space(5)] private SkillUpgradeList data;
+    [SerializeField, Space(5)] private int numberToChoose;
+    [SerializeField, Space(5)] private List<Button> upgradeButtons;
+    [SerializeField, Space(5)] private List<Image> upgradeImage;
     #endregion
 
     //Check Method

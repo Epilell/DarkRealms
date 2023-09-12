@@ -34,16 +34,23 @@ public class Player : MonoBehaviour
     private Animator ani;
     private GameObject weaponCase;
 
-    #endregion
-
-    //체력
-    #region
-
+    //체력, 상태 변화에 사용할 변수
     public float MaxHP, CurrentHp;
     private PlayerState CurrentPlayerState;
 
-    [Range(0f,100f)]
-    public float ArmorReductionBySkill;
+    [Range(0f, 100f)]
+    public float DamageReductionBySkill;
+
+    // 플레이어 이동시 사용할 변수
+    private float Speed, P_XSpeed, P_YSpeed;
+
+    [Range(0f, 1f)]
+    private float SpeedReduction;
+
+    #endregion
+
+    //Method
+    #region
 
     //게임 시작시 데이터 불러오는 용도
     private void UpdateSetting()
@@ -58,7 +65,7 @@ public class Player : MonoBehaviour
     /// <param name="amount">경감량</param>
     public void ChangeDamageReduction(float amount)
     {
-        ArmorReductionBySkill = amount;
+        DamageReductionBySkill = amount;
     }
 
     /// <summary>
@@ -70,9 +77,9 @@ public class Player : MonoBehaviour
         if (!SkillManager.Instance.dodgeTS.isActive && CurrentPlayerState != PlayerState.Dead)
         {
             //받는 데미지가 1이하면 1로
-            if (((damage - data.GetArmor()) * (1 - ArmorReductionBySkill/100)) * (1 - data.ArmorMasteryLevel * 0.02f) <= 1) { CurrentHp -= 1; }
+            if (((damage - data.GetArmor()) * (1 - DamageReductionBySkill/100)) * (1 - data.ArmorMasteryLevel * 0.02f) <= 1) { CurrentHp -= 1; }
             //아닌 경우 그대로
-            else { CurrentHp -= ((damage - data.GetArmor()) * (1 - ArmorReductionBySkill/100)) * (1 - data.ArmorMasteryLevel * 0.02f); }
+            else { CurrentHp -= ((damage - data.GetArmor()) * (1 - DamageReductionBySkill/100)) * (1 - data.ArmorMasteryLevel * 0.02f); }
 
             //피격 이펙트
             UIHitEffect.Instance.IsDamaged();
@@ -119,15 +126,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    #endregion
-
     //이동
-    #region
-    // 플레이어 이동시 대입할 변수
-    private float Speed, P_XSpeed, P_YSpeed;
-    [Range(0f,1f)]
-    private float SpeedReduction;
-
     /// <summary>
     /// 플레이어 이동속도를 amount% 만큼 감소
     /// </summary>

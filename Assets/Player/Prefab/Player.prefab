@@ -616,7 +616,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -727751137
   m_SortingLayer: 4
-  m_SortingOrder: 3
+  m_SortingOrder: 0
   m_Sprite: {fileID: -1809383232, guid: f3e313d389ef1694d9f0cae2542a0a90, type: 3}
   m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
   m_FlipX: 0
@@ -711,7 +711,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: a14c936c6adc0d34794da2330d8ae96d, type: 2}
   MaxHP: 0
   CurrentHp: 0
-  ArmorReductionBySkill: 0
+  DamageReductionBySkill: 0
 --- !u!114 &7373820904779604710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,6 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67cabe4dfd03e904994ac041c5edba87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponCase: {fileID: 7373820903467189822}
   dodgeData: {fileID: 11400000, guid: b27a4d9c9f105e84c9b74c7323a844d6, type: 2}
   molotovData: {fileID: 11400000, guid: 130865fbfad2982468ccb48fccd2c4a4, type: 2}
   siegemodeData: {fileID: 11400000, guid: 5a493631c695a964281bb6ee6d8b6467, type: 2}

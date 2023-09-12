@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   toolTip: 
-  coolTime: 3
+  coolTime: 4
   maxStack: 1
   BearTrap: {fileID: 3475710844463592168, guid: a8f22b1f1d0a6994daf910c5d1068329,
     type: 3}

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uD68C\uD53C\uC0AC\uACA9"
   toolTip: 
-  coolTime: 2
+  coolTime: 10
   maxStack: 1
-  damage: 20
+  damage: 50
   ccType: 
   ccDuration: 0
   Effect: {fileID: 4514743416485415695, guid: 9b7f97ca484e47a408fd633a8547bcbb, type: 3}

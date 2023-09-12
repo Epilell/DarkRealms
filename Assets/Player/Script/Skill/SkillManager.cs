@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -32,6 +33,9 @@ public class SkillManager : MonoBehaviour
 
     private Animator ani;
     private Rigidbody2D rb;
+
+    [SerializeField]
+    private GameObject WeaponCase;
 
     //마우스 위치, 방향벡터
     private Vector3 mousePos, mouseVec;
@@ -175,10 +179,7 @@ public class SkillManager : MonoBehaviour
     {
         //초기화
         dodgeTS.curTime = 0; dodgeTS.canUse = false; dodgeTS.curStack--;
-        isDashing = true;
-
-        //회피중 무적
-        //col.enabled = false;
+        isDashing = true; WeaponCase.SetActive(false);
 
         //회피 후 트랩설치
         if (CheckUpgrade("Dodge", "Trap"))
@@ -210,16 +211,14 @@ public class SkillManager : MonoBehaviour
             GameObject eft = Instantiate(dodgeData.GetDodgeEffect(), DodgeEffect.position, DodgeEffect.rotation);
             eft.GetComponent<SpriteRenderer>().flipX = true;
         }
-        
 
         yield return new WaitForSeconds(1 / 6f);
+
+        WeaponCase.SetActive(true);
 
         //회피후 초기화
         rb.velocity = Vector3.zero;
         isDashing = false;
-
-        //회피후 무적 해제
-        //col.enabled = true;
     }
 
     #endregion
@@ -355,20 +354,23 @@ public class SkillManager : MonoBehaviour
     //시즈모드 활성화
     private IEnumerator ActivateSiegeMode()
     {
-        Player.Instance.ChangeSpeedReduction(siegemodeData.SpeedReduction);
+        //초기화
+        siegemodeTS.canUse = false; siegemodeTS.isActive = true; WeaponCase.SetActive(false);
+
+        Player.Instance.ChangeSpeedReduction(100f);
         ani.SetTrigger("IsDualPrecision");
 
         yield return new WaitForSecondsRealtime(0.7f);
 
+
         //초기화
-        siegemodeTS.isActive = true; siegemodeTS.curTime = 0f; siegemodeTS.curStack--;
+        WeaponCase.SetActive(true); siegemodeTS.canUse = true; siegemodeTS.curTime = 0f; siegemodeTS.curStack--;
 
         //스킬 쿨다운 UI
         FindObjectOfType<CoolDown>().siegeActive = true;
-        StartCoroutine(FindObjectOfType<CoolDown>().SiegeCool(siegemodeDuration));  
+        StartCoroutine(FindObjectOfType<CoolDown>().SiegeCool(siegemodeDuration));
 
         //적용 목록
-
         //사용중 방어력 증가 업그레이드
         if (CheckUpgrade("Siege Mode", "Armor Up"))
         {
@@ -382,16 +384,30 @@ public class SkillManager : MonoBehaviour
         //사용중 이동 가능 업그레이드
         if (CheckUpgrade("Siege Mode", "Can Move"))
         {
-            Player.Instance.ChangeSpeedReduction(siegemodeData.SpeedReduction - 20 < 0 ? 0 : siegemodeData.SpeedReduction - 20);
+            Player.Instance.ChangeSpeedReduction(80f);
+        }
+        else
+        {
+            Player.Instance.ChangeSpeedReduction(100f);
         }
 
         yield return new WaitForSecondsRealtime(siegemodeDuration);
 
-        StartCoroutine(DeactivateSiegeMode());
+        //지속 시간 이후
+        //스킬 쿨다운 UI
+        FindObjectOfType<CoolDown>().siegeActive = false;
+
+        //적용 목록
+        Player.Instance.ChangeDamageReduction(0f);
+        Player.Instance.ChangeSpeedReduction(0f);
+
+        //초기화
+        siegemodeTS.isActive = false;
+
         yield return null;
     }
 
-    //시즈모드 비활성화
+    //시즈모드 도중 비활성화
     private IEnumerator DeactivateSiegeMode()
     {
         if (siegeModeCoroutine != null)
@@ -400,13 +416,15 @@ public class SkillManager : MonoBehaviour
             siegeModeCoroutine = null;
         }
 
+        //스킬 쿨다운 UI
         FindObjectOfType<CoolDown>().siegeActive = false;
 
         //적용 목록
-        Player.Instance.ChangeDamageReduction(0f); Player.Instance.ChangeSpeedReduction(0f);
+        Player.Instance.ChangeDamageReduction(0f);
+        Player.Instance.ChangeSpeedReduction(0f);
 
         //초기화
-        siegemodeTS.isActive = false; siegemodeTS.canUse = false;
+        siegemodeTS.isActive = false;
         
         yield return null;
     }
@@ -447,8 +465,13 @@ public class SkillManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator Evdshot()
     {
-        evdshotTS.curTime = 0f; evdshotTS.canUse = false; evdshotTS.curStack--;
+        //초기화
+        evdshotTS.curTime = 0f; evdshotTS.canUse = false; evdshotTS.curStack--; WeaponCase.SetActive(false);
 
+        //속도 제어
+        Player.Instance.ChangeSpeedReduction(100f);
+
+        //애니메이션 적용
         ani.SetTrigger("IsEvadeshot");
 
         yield return new WaitForSecondsRealtime(0.5f);
@@ -516,7 +539,12 @@ public class SkillManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.1f);
-        rb.velocity = Vector2.zero;
+
+        //속도 초기화
+        Player.Instance.ChangeSpeedReduction(0f);
+
+        //초기화
+        rb.velocity = Vector2.zero; WeaponCase.SetActive(false);
     }
 
     #endregion
@@ -572,7 +600,10 @@ public class SkillManager : MonoBehaviour
             }
 
             //시즈모드
-            CheckTime(siegemodeTS, siegemodeData, "Siege Mode");
+            if(siegemodeTS.isActive == false)
+            {
+                CheckTime(siegemodeTS, siegemodeData, "Siege Mode");
+            }
             if (siegemodeTS.canUse == true)
             {
                 if (Input.GetKeyDown(KeyCode.E))

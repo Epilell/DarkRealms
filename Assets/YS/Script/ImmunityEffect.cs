@@ -16,7 +16,7 @@ public class ImmunityEffect : MonoBehaviour
     {
         immunityActive = true;
 
-        float initialArmorReduction = player.ArmorReductionBySkill;
+        float initialArmorReduction = player.DamageReductionBySkill;
 
         player.ChangeDamageReduction(initialArmorReduction * 100 + 50f);
 

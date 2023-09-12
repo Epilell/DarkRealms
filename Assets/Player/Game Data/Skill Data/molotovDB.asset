@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uD654\uC5FC\uBCD1"
   toolTip: 
-  coolTime: 2
+  coolTime: 6
   maxStack: 1
-  damage: 20
+  damage: 50
   ccType: burn
   ccDuration: 2
   Molotov: {fileID: 8670179268289057126, guid: 7316bbcfb1198234ab0b3e4b0ef0d13c, type: 3}
