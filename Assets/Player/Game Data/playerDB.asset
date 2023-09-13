@@ -14,3 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 100
   speed: 4
+  Stats:
+  - name: "\uD798"
+    level: 0
+  - name: "\uBBFC\uCCA9"
+    level: 0
+  - name: "\uC9C0\uB2A5"
+    level: 0
+  - name: "\uAC11\uC637 \uC219\uB828\uB3C4"
+    level: 0

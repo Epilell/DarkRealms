@@ -120,7 +120,7 @@ public class SkillManager : MonoBehaviour
         {
             if (_ts.curStack < _data.MaxStack + _ts.temporalStack)
             {
-                if (_ts.curTime < _data.CoolTime * (1 - Player.Instance.data.IntLevel * 0.02f))
+                if (_ts.curTime < _data.CoolTime * (1 - Player.Instance.data.Stats[2].Level * 0.02f))
                 {
                     _ts.curTime += Time.deltaTime;
                 }
