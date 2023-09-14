@@ -17,9 +17,11 @@ public class OpenCloseUI : MonoBehaviour
     public Button ?WarehouseCloseButton;
     public Button? UpgradeOpenButton;
     public Button? UpgradeCloseButton;
+    public Button? StatUpgradeButton;
     [Header("Tester")]
     public GameObject Tester;
     public GameObject Upgrade;
+    public GameObject StatUpgrade;
 
     private bool firstOff=true;
     void Start()
@@ -49,6 +51,17 @@ public class OpenCloseUI : MonoBehaviour
             if (UpgradeCloseButton != null)
             {
                 UpgradeCloseButton.onClick.AddListener(OpenCloseUpgrade);
+            }
+        }
+        if(StatUpgrade != null)
+        {
+            if (StatUpgradeButton != null)
+            {
+                StatUpgradeButton.onClick.AddListener(OpenCloseStat);
+            }
+            if (StatUpgradeButton != null)
+            {
+                StatUpgradeButton.onClick.AddListener(OpenCloseStat);
             }
         }
     }
@@ -99,10 +112,18 @@ public class OpenCloseUI : MonoBehaviour
     {
         warehouse.SetActive(true);
         Upgrade.SetActive(false);
+        StatUpgrade.SetActive(false);
     }
     public void OpenCloseUpgrade()
     {
         Upgrade.SetActive(!Upgrade.activeSelf);
         warehouse.SetActive(false);
+        StatUpgrade.SetActive(false);
+    }
+    public void OpenCloseStat()
+    {
+        StatUpgrade.SetActive(true);
+        warehouse.SetActive(false);
+        Upgrade.SetActive(false);
     }
 }
