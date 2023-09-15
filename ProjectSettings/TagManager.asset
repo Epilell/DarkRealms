@@ -18,6 +18,7 @@ TagManager:
   - Filter
   - BossPortal
   - Bullet
+  - BreakObj
   layers:
   - Default
   - TransparentFX

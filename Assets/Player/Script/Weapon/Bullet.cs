@@ -35,6 +35,10 @@ public class Bullet : MonoBehaviour
             case "Map":
                 DestroyBullet();
                 break;
+            case "BreakObj":
+                collider.GetComponent<BreakAbleObject>().BulletHit();
+                DestroyBullet();
+                break;
         }
     }
 

@@ -21,14 +21,11 @@ public class BreakAbleObject : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    public void BulletHit()
     {
-        if(collision.gameObject.tag == "Bullet")
-        {
-            Destroy(collision.gameObject);
-            animator.SetTrigger("On");
-            StartCoroutine(Break());
-        }
+        animator.SetTrigger("On");
+        StartCoroutine(Break());
     }
 
     private IEnumerator Break()
