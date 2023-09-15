@@ -15,7 +15,7 @@ public class CoinSystem : MonoBehaviour
         {
             for (int i = 0; i < inventory._Items.Length; i++)
             {
-                if (inventory._Items[i] != null && inventory._Items[i].Data != null && inventory._Items[i].Data.Name == "Coin")
+                if (inventory._Items[i] != null && inventory._Items[i].Data != null && inventory._Items[i].Data.Name == "coin")
                 {
                     totalCoin += inventory.GetCurrentAmount(i);
                 }

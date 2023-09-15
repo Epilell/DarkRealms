@@ -31,7 +31,7 @@ public class GameOver : MonoBehaviour
 
         isGameOver = true;
 
-        // for (int i = 0; i < Inventory._Items.Length; i++) { Inventory.Remove(i); } // 죽으면 인벤토리 내 모든 아이템 제거
+        for (int i = 0; i < Inventory._Items.Length; i++) { Inventory.Remove(i); } // 죽으면 인벤토리 내 모든 아이템 제거
 
         gameOverImg.gameObject.SetActive(true); // 이미지 활성화
         goMainBtn.gameObject.SetActive(true); // 버튼 활성화

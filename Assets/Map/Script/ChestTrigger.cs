@@ -28,6 +28,7 @@ public class ChestTrigger : MonoBehaviour
         {
             if (thisImg.sprite != change_img)
             {
+                FindObjectOfType<SoundManager>().PlaySound("BoxOpen");
                 Debug.Log("Item drop");
                 // 드롭 아이템 처리
                 foreach (ItemDrop itemDrop in itemDropList)
