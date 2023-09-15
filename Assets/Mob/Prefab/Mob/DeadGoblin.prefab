@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: 1400002288684528572, guid: cbd77a78256671c4c9cf1492e8ce39b1,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBoss: 0
+  IsObj: 0
   itemDropList:
   - item: {fileID: 11400000, guid: efa50d32e112059499245d9620067a71, type: 2}
     dropChance: 0.1

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Statue : MonoBehaviour
 {
-    public float interactionDistance = 2.0f; // 플레이어와 상호작용 가능한 거리
+    public float interactionDistance = 4.0f; // 플레이어와 상호작용 가능한 거리
     private Animator animator; // 애니메이터 컴포넌트
     [Header("돌릴 포인트")]
     public GameObject ArrowPoint;//목표를 향하는 화살표
@@ -62,12 +62,16 @@ public class Statue : MonoBehaviour
             once = false;
         }*/
         // F 키를 누르면 애니메이션 실행
-        if (distanceToPlayer <= interactionDistance&& isOn==false) //&& Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            animator.SetBool("On", true); // "Interact"라는 트리거 이름 사용 
-            StartCoroutine(colorChanger(1f));
-            isOn = true;
+            if (distanceToPlayer <= interactionDistance && isOn == false) //&& Input.GetKeyDown(KeyCode.F))
+            {
+                animator.SetBool("On", true); // "Interact"라는 트리거 이름 사용 
+                StartCoroutine(colorChanger(1f));
+                isOn = true;
+            }
         }
+
         if (distanceToPlayer > interactionDistance&& isOn==true)
         {
             animator.SetBool("On", false);
