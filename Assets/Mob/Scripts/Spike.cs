@@ -43,6 +43,7 @@ public class Spike : MonoBehaviour
     }
     private IEnumerator SpikeAtk()
     {
+        FindObjectOfType<SoundManager>().PlaySound("Trap");
         animator.SetTrigger("On");
         yield return new WaitForSeconds(0.5f);
         Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);

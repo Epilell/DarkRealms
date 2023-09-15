@@ -8,27 +8,16 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    //Public Field
-    #region
+    //Field
+    #region .
 
     [SerializeField]
     public string curWeaponName = null;
 
     #endregion
 
-    //Private Field
-    #region
-
-    #endregion
-
-    //Public Method
-    #region
-
-    #endregion
-
-    //Private Method
-    #region
-
+    //Method
+    #region .
     /// <summary>
     /// 인벤토리에서 무기를 변경하는 경우
     /// </summary>
@@ -80,7 +69,6 @@ public class WeaponManager : MonoBehaviour
 
         curWeaponName = null;
     }
-
     #endregion
 
     //Check Method

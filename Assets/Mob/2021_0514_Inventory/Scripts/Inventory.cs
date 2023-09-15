@@ -90,6 +90,7 @@ namespace Rito.InventorySystem
         private InventoryUI _inventoryUI; // 연결된 인벤토리 UI
         [SerializeField]
         private EquipmentInventory _eqInven;
+        public EquipmentInventory EqInven => _eqInven;
         public GameManager gm;
 
         [SerializeField]
