@@ -544,7 +544,7 @@ public class SkillManager : MonoBehaviour
         Player.Instance.ChangeSpeedReduction(0f);
 
         //√ ±‚»≠
-        rb.velocity = Vector2.zero; WeaponCase.SetActive(false);
+        rb.velocity = Vector2.zero; WeaponCase.SetActive(true);
     }
 
     #endregion
