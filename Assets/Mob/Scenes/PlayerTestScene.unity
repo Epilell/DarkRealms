@@ -3383,7 +3383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &246665018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3400,7 +3400,7 @@ MonoBehaviour:
     type: 3}
   canvasTransform: {fileID: 1471091125}
   mobList:
-  - {fileID: 9155456390019035048, guid: 8457fd26472b2fe42ba4b96fd0d0386a, type: 3}
+  - {fileID: 627486023847324001, guid: ebc41e4ae5626104395009095f06722d, type: 3}
   spawnPoint:
   - {fileID: 1030740657}
   spawnDelay: 3

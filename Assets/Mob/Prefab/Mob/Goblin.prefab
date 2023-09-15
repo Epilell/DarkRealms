@@ -274,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobDamage: 8
   mobProperty: melee
-  detectionRange: 4
+  detectionRange: 7
   mobAttackRange: 1
   moveSpeed: 3
   mobAttackSpeed: 0.7

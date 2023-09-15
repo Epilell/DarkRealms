@@ -16,7 +16,7 @@ public class MobFootPrint : MonoBehaviour
     [SerializeField]
     private GameObject footPrintPos;
     [SerializeField]
-    private float footPrintDelay = 0.3f;
+    private float footPrintDelay = 1f;
     private Vector3 footvec;
     [SerializeField]
     private Vector3 footvecCV= new Vector3(0,-0.3f,-4);

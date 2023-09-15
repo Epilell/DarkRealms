@@ -233,7 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobDamage: 10
   mobProperty: melee
-  detectionRange: 4
+  detectionRange: 7
   mobAttackRange: 1.5
   moveSpeed: 1
   mobAttackSpeed: 1
@@ -275,10 +275,10 @@ MonoBehaviour:
     type: 3}
   footprint2: {fileID: 8466329786955158466, guid: 808b71c0fdcaae24e89cbef921149462,
     type: 3}
-  footPrintSize: 1
+  footPrintSize: 1.75
   footPrintPos: {fileID: 7153494336791870736}
-  footPrintDelay: 0.3
-  footvecCV: {x: 0, y: -0.3, z: -4}
+  footPrintDelay: 1
+  footvecCV: {x: 0, y: -0.5, z: -4}
 --- !u!108 &7224186122164900983
 Light:
   m_ObjectHideFlags: 0

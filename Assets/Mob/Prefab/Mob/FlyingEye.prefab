@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobDamage: 6
   mobProperty: range
-  detectionRange: 4
+  detectionRange: 7
   mobAttackRange: 4
   moveSpeed: 1.5
   mobAttackSpeed: 3

@@ -246,7 +246,7 @@ public class MobAttack : MonoBehaviour
                         collider.GetComponent<Player>().P_TakeDamage(damage);
                     }
                 }
-                WhirlWindDuration -= Time.deltaTime;
+                WhirlWindDuration -= 0.2f;
                 yield return new WaitForSeconds(0.2f);
             }
 
@@ -284,8 +284,15 @@ public class MobAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         float distanceToPlayer = Vector2.Distance(transform.position, PlayerDirection.position);
-        float minimumDistance = 2f;
-        if (distanceToPlayer > minimumDistance)//플레이어가 최소 공격범위 밖에 있으면 패턴1사용
+        float minimumDistance = 3f;
+
+        if(distanceToPlayer < minimumDistance)//플레이어가 최소 공격범위 안에있으면 패턴2 사용
+        {
+            animator.SetTrigger("Attack2");
+            IsAttack = false;
+            StartCoroutine(MeleeAttack(mobStat));
+        }
+        else //플레이어가 최소 공격범위 밖에 있으면 패턴1사용
         {
             IsAttack = false;
             animator.SetBool("attack1", true);
@@ -297,12 +304,6 @@ public class MobAttack : MonoBehaviour
             }
 
             animator.SetBool("attack1", false);
-        }
-        else //플레이어가 최소 공격범위 안에있으면 패턴2 사용
-        {
-            animator.SetTrigger("Attack2");
-            IsAttack = false;
-            StartCoroutine(MeleeAttack(mobStat));
         }
     }
 }

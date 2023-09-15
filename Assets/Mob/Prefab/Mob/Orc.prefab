@@ -221,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobDamage: 15
   mobProperty: Orc
-  detectionRange: 4
+  detectionRange: 7
   mobAttackRange: 2
   moveSpeed: 0.4
   mobAttackSpeed: 3
