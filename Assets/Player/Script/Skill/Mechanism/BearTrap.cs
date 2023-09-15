@@ -5,11 +5,9 @@ using UnityEngine;
 public class BearTrap : MonoBehaviour
 {
     //Field
-    #region
-
-    private readonly BearTrapData data;
+    #region .
+    [SerializeField] private BearTrapData data;
     private Animator animator;
-
     #endregion
 
     //Private Method
@@ -35,11 +33,12 @@ public class BearTrap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Mob"))
+        if (collision.CompareTag("Mob") && collision != null)
         {
             MobHP target = collision.gameObject.GetComponent<MobHP>();
+
             //target에게 대미지와 CC를 적용
-            target.TakeDamage(data.Damage); target.TakeCC(data.CCType, data.CCDuration);
+            target.TakeDamage(data.Damage); target.TakeCC("stun", data.CCDuration);
             StartCoroutine(PlayAndDestroy());
         }
     }

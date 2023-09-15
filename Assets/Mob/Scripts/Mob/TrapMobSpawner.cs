@@ -22,7 +22,8 @@ public class TrapMobSpawner : MonoBehaviour
     private Vector2 wallSize=new Vector2(1f,5f);
 
     private bool isPlayerOn = false;
-
+    [SerializeField]
+    private SkillUpgradeSelectionSystem selectionSystem;
     //몹은 플레이어 위치 주위로 낙하
     //결계로 주위 막힘
     // Start is called before the first frame update
@@ -45,6 +46,7 @@ public class TrapMobSpawner : MonoBehaviour
                 if (boxCollider != null)
                 {
                     Destroy(boxCollider);
+                    selectionSystem.OnOffPanel();
                 }
             }
             //Destroy(this.gameObject);

@@ -14,6 +14,7 @@ public class ItemDrop
 public class MobDropItem : MonoBehaviour
 {
     public bool IsBoss = false;
+    public bool IsObj = false;
     private GameObject DropItem;
     public ItemDrop[] itemDropList; // 몬스터가 드롭하는 아이템 정보
 
@@ -35,6 +36,20 @@ public class MobDropItem : MonoBehaviour
                     {
                         itemComponent.itemData = itemDrop.item;
 
+                    }
+                }
+            }
+            else if (IsObj)
+            {
+                if (Random.value < itemDrop.dropChance)
+                {
+                    DropItem = itemDrop.item.DropItemPrefab;
+                    GameObject itemclon = Instantiate(DropItem, transform.position, Quaternion.identity);//임시아이템드롭
+                    ItemContactToInven itemComponent = itemclon.GetComponent<ItemContactToInven>();
+                    if (itemComponent != null)
+                    {
+                        itemComponent.itemData = itemDrop.item;
+                        itemComponent.itemCount = itemDrop.dropCount;
                     }
                 }
             }

@@ -51,6 +51,7 @@ public class MobHP : MonoBehaviour
 
     /// <summary>
     /// CC가 있는 기술시 호출
+    /// freezing(빙결 슬로우), stun(스턴), burn(화상), reducedDefense(방깎)
     /// </summary>
     /// <param name="cc">freezing(빙결 슬로우), stun(스턴), burn(화상), reducedDefense(방깎)</param>
     /// <param name="duration">지속시간</param>
