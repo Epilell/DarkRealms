@@ -1,12 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using TMPro;
 
 public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public BTNType currentType; // 버튼의 종류를 나타내는 열거형 변수
-    public CanvasGroup mainGroup, optionGroup, soundGroup, displayGroup, onGroup, offGroup; // 각각의 화면을 나타내는 CanvasGroup 컴포넌트
+    public CanvasGroup mainGroup, optionGroup, soundGroup, displayGroup; // 각각의 화면을 나타내는 CanvasGroup 컴포넌트
     public Transform btnScale; // 버튼의 크기를 조절할 Transform 컴포넌트
     Vector3 defaultScale; // 버튼의 기본 크기를 저장할 변수
     // public TextMeshProUGUI buttonText; // 버튼의 텍스트 컴포넌트

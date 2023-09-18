@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class FadeOut : MonoBehaviour
 {
@@ -17,7 +16,7 @@ public class FadeOut : MonoBehaviour
 
     public IEnumerator FadeFlow() // 페이드 아웃 코루틴 함수
     {
-        if (scene == "LoadingIn") // 메인 메뉴에서 Start 버튼을 누르면 추가 실행
+        if (this.gameObject.name == "StartBtn") // 메인 메뉴에서 Start 버튼을 누르면 추가 실행
         {
             startImg.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.8f);
