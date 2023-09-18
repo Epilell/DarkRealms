@@ -297,7 +297,7 @@ MonoBehaviour:
     type: 3}
   footPrintSize: 1
   footPrintPos: {fileID: 7631627143318033317}
-  footPrintDelay: 0.3
+  footPrintDelay: 1
   footvecCV: {x: 0, y: -0.3, z: -4}
 --- !u!1 &2012190346348074156
 GameObject:

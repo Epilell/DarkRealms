@@ -21,6 +21,7 @@ public class MobAI : MonoBehaviour
     private int xSpeed = 0;
     private int ySpeed = 0;
 
+    public bool canMove = false;
     public bool IsAttack = false;
     private float mobAttackSpeed;
     private float currentCoolDown = 0f;
@@ -29,6 +30,8 @@ public class MobAI : MonoBehaviour
     private float vecX;
     float distanceToPlayer;
 
+
+    private int spawndelay = 100;
 
     void Awake()
     {
@@ -46,13 +49,18 @@ public class MobAI : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (spawndelay > 0)
+        {
+            spawndelay--;
+            return;
+        }
         vec = this.transform.GetChild(0).localPosition;
         vecX = vec.x;
         if (currentCoolDown > 0.0f)//공격속도 설정
         {
             currentCoolDown -= Time.deltaTime;
         }
-        if (!mobHP.IsHit || !mobHP.IsStun || mobHP.IsDie == false)
+        if (!mobHP.IsHit && !mobHP.IsStun && mobHP.IsDie == false&&IsAttack==false)
         {
             // 현재 객체와 플레이어 사이의 거리 계산
             distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
@@ -102,11 +110,12 @@ public class MobAI : MonoBehaviour
         IsAttack = true;
         mobAttack.Attacking(mobStat, player);//공격하기
         //sm.MobSound("Shotgun");//소스필요함
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         IsAttack = false;
     }
     private void Attack()
     {
+        canMove = false;
         animator.SetInteger("WalkSpeed", 0);
         if (!IsAttack && currentCoolDown <= 0f)
         {
@@ -116,7 +125,7 @@ public class MobAI : MonoBehaviour
     }
     private void ChasePlayer()
     {
-        if (mobHP.IsDie == false)
+        if (mobHP.IsDie == false && (IsAttack == false || canMove == true))
         {
             animator.SetInteger("WalkSpeed", 1);
             IsAttack = false;

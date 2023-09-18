@@ -7,7 +7,7 @@ public class MobAttack : MonoBehaviour
     private Animator animator;
     private bool attackChanger = false;
     private int pattrenChoicer;
-    private bool IsAttack = false;
+    private bool IsAttack = true;
     private Transform PlayerDirection;
     private GameObject player;
 
@@ -60,7 +60,7 @@ public class MobAttack : MonoBehaviour
             //attack1 한번 attack2 한번 번갈아가면서 공격
             if (attackChanger)
             {
-                IsAttack = true;
+                IsAttack = false;
                 animator.SetTrigger("Attack2");
                 //
                 StartCoroutine(MeleeAttack(mobStat));
@@ -69,7 +69,7 @@ public class MobAttack : MonoBehaviour
             }
             else
             {
-                IsAttack = true;
+                IsAttack = false;
                 animator.SetTrigger("Attack1");
                 //
                 StartCoroutine(MeleeAttack(mobStat));
@@ -82,7 +82,7 @@ public class MobAttack : MonoBehaviour
             pattrenChoicer = Random.Range(1, 6);
             if (pattrenChoicer > 4)
             {
-                animator.SetTrigger("Attack2");
+                animator.SetTrigger("Attack1");
                 IsAttack = false;
                 RangeAttack2(mobStat);
                 pattrenChoicer = Random.Range(1, 6);
@@ -96,7 +96,7 @@ public class MobAttack : MonoBehaviour
             }
             else if (pattrenChoicer > 2)
             {
-                animator.SetTrigger("Attack2");
+                animator.SetTrigger("Attack1");
                 IsAttack = false;
                 RangeAttack3(mobStat);
                 pattrenChoicer = Random.Range(1, 6);
@@ -127,6 +127,10 @@ public class MobAttack : MonoBehaviour
             Debug.Log("mobStat.mobProperty 오류!");
         }
     }
+    /// <summary>
+    /// 즉시발사
+    /// </summary>
+    /// <param name="mobStat"></param>
     private void RangeAttack1(MobStat mobStat)
     {
         GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position, Quaternion.identity);
@@ -134,16 +138,24 @@ public class MobAttack : MonoBehaviour
         Rigidbody2D rb = MobBullet.GetComponent<Rigidbody2D>();
         rb.angularVelocity = 180;
     }
+    /// <summary>
+    /// 상하좌우
+    /// </summary>
+    /// <param name="mobStat"></param>
     private void RangeAttack2(MobStat mobStat)
     {
         for (int i = 1; i < 5; i++)
         {
             GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position, Quaternion.identity);
-            MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, player, i);
+            MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed+5f, mobStat.mobDamage, player, i);
             Rigidbody2D rb = MobBullet.GetComponent<Rigidbody2D>();
             rb.angularVelocity = 180;
         }
     }
+    /// <summary>
+    /// 4개 회전
+    /// </summary>
+    /// <param name="mobStat"></param>
     private void RangeAttack3(MobStat mobStat)
     {
         for (int i = 5; i < 9; i++)
@@ -160,28 +172,43 @@ public class MobAttack : MonoBehaviour
     }
     protected IEnumerator MeleeAttack(MobStat mobStat)
     {
-
         yield return new WaitForSeconds(0.5f);
         Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
-        if (isSlime)
+        if (isSlime)//atk2
         {
-            foreach (Collider2D collider in collider2Ds)
+            if (attackChanger)
             {
-                Debug.Log(collider.tag);
-                if (collider.tag == "Player")
+                collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
+                foreach (Collider2D collider in collider2Ds)
                 {
-                    collider.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
+                    Debug.Log(collider.tag);
+                    if (collider.tag == "Player")
+                    {
+                        collider.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
+                    }
+                }
+                Collider2D[] collider2Ds2 = Physics2D.OverlapBoxAll(pos2.position, boxSize2, 0);
+                foreach (Collider2D collider in collider2Ds2)
+                {
+                    Debug.Log(collider.tag);
+                    if (collider.tag == "Player")
+                    {
+                        collider.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
+                    }
                 }
             }
-            Collider2D[] collider2Ds2 = Physics2D.OverlapBoxAll(pos2.position, boxSize2, 0);
-            foreach (Collider2D collider in collider2Ds2)
+            else//atk1
             {
-                Debug.Log(collider.tag);
-                if (collider.tag == "Player")
-                {
-                    collider.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
-                }
+                yield return new WaitForSeconds(0.5f);
+                SlimeAtk1 slimeAtk1 = transform.Find("SlimeAtk1").gameObject.GetComponent<SlimeAtk1>();
+                slimeAtk1.atkOn = true;
+                SlimeAtk1 slimeAtk2 = transform.Find("SlimeAtk2").gameObject.GetComponent<SlimeAtk1>();
+                slimeAtk2.atkOn = true;
+                yield return new WaitForSeconds(0.5f);
+                slimeAtk1.atkOn = false;
+                slimeAtk2.atkOn = false;
             }
+
         }
         /*
         else if (isOrc)
@@ -234,6 +261,8 @@ public class MobAttack : MonoBehaviour
         }
         else
         {
+            MobAI ai = GetComponent<MobAI>();
+            ai.canMove = true;
             animator.SetBool("whirlwind", true);
             while (WhirlWindDuration > 0f)
             {
@@ -282,9 +311,8 @@ public class MobAttack : MonoBehaviour
     }
     private IEnumerator GoblinShamanAtk(MobStat mobStat)
     {
-        yield return new WaitForSeconds(2f);
         float distanceToPlayer = Vector2.Distance(transform.position, PlayerDirection.position);
-        float minimumDistance = 3f;
+        float minimumDistance = 2f;
 
         if(distanceToPlayer < minimumDistance)//플레이어가 최소 공격범위 안에있으면 패턴2 사용
         {
@@ -294,16 +322,21 @@ public class MobAttack : MonoBehaviour
         }
         else //플레이어가 최소 공격범위 밖에 있으면 패턴1사용
         {
+            MobAI ai = GetComponent<MobAI>();
+            ai.canMove = false;
             IsAttack = false;
             animator.SetBool("attack1", true);
             for (int i = 0; i < 5; i++)
             {
-                GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position, Quaternion.identity);
+                GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position+new Vector3(i-2.5f,0,0), Quaternion.identity);
                 MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, player, 9);
                 yield return new WaitForSeconds(1f);
             }
 
+            ai.canMove = true;
             animator.SetBool("attack1", false);
+            yield return new WaitForSeconds(4f);
+            ai.canMove = true;
         }
     }
 }
