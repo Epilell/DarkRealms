@@ -38,10 +38,12 @@ public class FireTrap : MonoBehaviour
         {
             canDamage = true;
             animator.SetBool("On",true);
+            FindObjectOfType<SoundManager>().isFire = true;
             light.intensity = 5;
             yield return new WaitForSeconds(Duration);
             canDamage = false;
             animator.SetBool("On",false);
+            FindObjectOfType<SoundManager>().isFire = false;
             light.intensity = 0;
             yield return new WaitForSeconds(Duration);
         }
