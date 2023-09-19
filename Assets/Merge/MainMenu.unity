@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 62474729}
   - component: {fileID: 62474728}
   - component: {fileID: 62474732}
+  - component: {fileID: 62474737}
   - component: {fileID: 62474735}
   - component: {fileID: 62474733}
   - component: {fileID: 62474736}
@@ -289,6 +290,24 @@ MonoBehaviour:
   aim: {fileID: 0}
   hand: {fileID: 2800000, guid: 5ee5c513c1a468948aa136ca70212001, type: 3}
   isCursorChange: 0
+--- !u!114 &62474737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62474727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d899ec181372d40a726747ded0506c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionMenu: {fileID: 0}
+  main: {fileID: 806074643}
+  option: {fileID: 651003892}
+  sound: {fileID: 1271646883}
+  display: {fileID: 603378303}
+  warning: {fileID: 0}
 --- !u!1 &65805705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,8 +1731,6 @@ MonoBehaviour:
   optionGroup: {fileID: 651003892}
   soundGroup: {fileID: 0}
   displayGroup: {fileID: 0}
-  onGroup: {fileID: 0}
-  offGroup: {fileID: 0}
   btnScale: {fileID: 369566709}
 --- !u!114 &369566711
 MonoBehaviour:
@@ -2317,8 +2334,6 @@ MonoBehaviour:
   optionGroup: {fileID: 651003892}
   soundGroup: {fileID: 1271646883}
   displayGroup: {fileID: 0}
-  onGroup: {fileID: 0}
-  offGroup: {fileID: 0}
   btnScale: {fileID: 605316506}
 --- !u!114 &605316508
 MonoBehaviour:
@@ -2620,8 +2635,6 @@ MonoBehaviour:
   optionGroup: {fileID: 651003892}
   soundGroup: {fileID: 1271646883}
   displayGroup: {fileID: 603378303}
-  onGroup: {fileID: 0}
-  offGroup: {fileID: 0}
   btnScale: {fileID: 634466001}
 --- !u!114 &634466003
 MonoBehaviour:
@@ -2898,8 +2911,6 @@ MonoBehaviour:
   optionGroup: {fileID: 651003892}
   soundGroup: {fileID: 1271646883}
   displayGroup: {fileID: 603378303}
-  onGroup: {fileID: 0}
-  offGroup: {fileID: 0}
   btnScale: {fileID: 710530579}
 --- !u!114 &710530581
 MonoBehaviour:
@@ -4458,6 +4469,9 @@ MonoBehaviour:
   sfxIcon: {fileID: 925771324}
   player: {fileID: 0}
   portal: {fileID: 0}
+  fireTrapList: []
+  fireTrapParentObject: {fileID: 0}
+  isFire: 0
 --- !u!4 &1251038286
 Transform:
   m_ObjectHideFlags: 0
@@ -6787,8 +6801,6 @@ MonoBehaviour:
   optionGroup: {fileID: 651003892}
   soundGroup: {fileID: 1271646883}
   displayGroup: {fileID: 603378303}
-  onGroup: {fileID: 0}
-  offGroup: {fileID: 0}
   btnScale: {fileID: 2134051559}
 --- !u!114 &2134051561
 MonoBehaviour:

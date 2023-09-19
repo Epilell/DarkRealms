@@ -36,7 +36,7 @@ public class SoundManager : MonoBehaviour
     public GameObject fireTrapParentObject;
 
     GameObject closestFire = null; // 가장 가까운 불꽃
-    float minDistance = float.MaxValue; // 거리값 저장
+    float minDistance; // 거리값 저장
 
     private bool isPortalPlaying = false, isFireTrapPlaying = false;
     public bool isFire = false;
@@ -75,7 +75,41 @@ public class SoundManager : MonoBehaviour
 
             if (isPortalPlaying) portalBgm.volume = Mathf.Lerp(1, 0, distance / 20); // 거리에 비례해 가까워질수록 볼륨업
 
-           
+            // 불꽃 함정
+            minDistance = float.MaxValue;
+
+            foreach (GameObject fireTrap in fireTrapList)
+            {
+                float distance2 = Vector3.Distance(fireTrap.transform.position, player.transform.position);
+
+                if (distance2 < minDistance)
+                {
+                    minDistance = distance2;
+                    closestFire = fireTrap;
+                }
+            }
+
+            if (closestFire != null)
+            {
+                if (isFire)
+                {
+                    if (minDistance <= 10 && !isFireTrapPlaying)
+                    {
+                        FindObjectOfType<SoundManager>().PlaySound("FireTrap");
+                        isFireTrapPlaying = true;
+                    }
+                    else if (minDistance > 10 && isFireTrapPlaying)
+                    {
+                        FindObjectOfType<SoundManager>().StopSound("FireTrap");
+                        isFireTrapPlaying = false;
+                    }
+                }
+                else
+                {
+                    FindObjectOfType<SoundManager>().StopSound("FireTrap");
+                    isFireTrapPlaying = false;
+                }
+            }
         }
     }
 

@@ -27,7 +27,7 @@ public class FollowObject : MonoBehaviour
 
             // 우측 아래로 좌표값 이동
             screenPoint.x += 10f / Screen.width;
-            screenPoint.y -= 40f / Screen.height;
+            screenPoint.y -= 30f / Screen.height;
 
             // 위에서 계산한 screenPoint 값을 RectTransform의 anchorMin과 anchorMax에 모두 적용.
             // anchorMin과 anchorMax가 같은 값일 경우 해당 점을 기준으로 UI 위치 변경
