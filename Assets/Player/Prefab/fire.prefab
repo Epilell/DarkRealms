@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3485669015980642350}
   - component: {fileID: 3485669015980642337}
-  - component: {fileID: 3485669015980642336}
+  - component: {fileID: 1014538273428014379}
   - component: {fileID: 3485669015980642351}
   - component: {fileID: 1477525634408606614}
   - component: {fileID: -2383563745687261275}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a08afca1e3840924bad2d7d06b12a574, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cbf4629cc793ac4438688050ed9efcd8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3485669015980642336
+--- !u!95 &1014538273428014379
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -125,7 +125,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: -0.14}
   serializedVersion: 2
-  m_Radius: 0.83
+  m_Radius: 2
 --- !u!114 &1477525634408606614
 MonoBehaviour:
   m_ObjectHideFlags: 0

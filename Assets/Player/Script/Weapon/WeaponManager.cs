@@ -34,7 +34,8 @@ public class WeaponManager : MonoBehaviour
         GameObject prefab = Resources.Load<GameObject>("Prefabs/" + RemoveNumber(data.Name));
         GameObject Instance = Instantiate(prefab, this.transform);
         Instance.name = data.Name;
-        Instance.GetComponent<WeaponBase>().SetStatus(EquipmentInventory.instance.EqItems[2].Data as WeaponItemData);
+        Instance.GetComponent<WeaponBase>().SetStatus(EquipmentInventory.instance.EqItems[2].Data as WeaponItemData
+            , data. IconSprite);
     }
 
     /// <summary>

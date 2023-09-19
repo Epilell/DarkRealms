@@ -39,6 +39,9 @@ public class Bullet : MonoBehaviour
                 collider.GetComponent<BreakAbleObject>().BulletHit();
                 DestroyBullet();
                 break;
+            case "null":
+                DestroyBullet();
+                break;
         }
     }
 

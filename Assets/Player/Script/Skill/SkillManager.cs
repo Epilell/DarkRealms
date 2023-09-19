@@ -64,6 +64,7 @@ public class SkillManager : MonoBehaviour
     //스킬 이펙트 리스트
     [Header("Effect List", order = 4), Space(5)]
     public Transform DodgeEffect; //대쉬 이펙트 생성 위치
+    public Transform DodgeTrapPosition; //대쉬 트랩 생성위치
 
     private Coroutine siegeModeCoroutine; // 시즈모드 수정용
     public bool isSkillCanUse = true; // 인벤, 옵션창 전용 추가
@@ -178,13 +179,13 @@ public class SkillManager : MonoBehaviour
     private IEnumerator Dodge()
     {
         //초기화
-        dodgeTS.curTime = 0; dodgeTS.canUse = false; dodgeTS.curStack--;
+        dodgeTS.curTime = 0; dodgeTS.canUse = false; dodgeTS.curStack--; dodgeTS.isActive = true;
         isDashing = true; WeaponCase.SetActive(false);
 
         //회피 후 트랩설치
         if (CheckUpgrade("Dodge", "Trap"))
         {
-            Instantiate(dodgeData.GetBearTrap(), transform.position, transform.rotation);
+            Instantiate(dodgeData.GetBearTrap(), DodgeTrapPosition.position, transform.rotation);
         }
         //회피 거리 업그레이드
         if (CheckUpgrade("Dodge", "Range Up"))
@@ -217,7 +218,7 @@ public class SkillManager : MonoBehaviour
         WeaponCase.SetActive(true);
 
         //회피후 초기화
-        rb.velocity = Vector3.zero;
+        rb.velocity = Vector3.zero; dodgeTS.isActive = false;
         isDashing = false;
     }
 
@@ -644,6 +645,8 @@ public class SkillManager : MonoBehaviour
         //이펙트
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(DodgeEffect.position, new Vector2(0.2f, 0.2f)); //회피 이펙트
+        Gizmos.DrawWireSphere(DodgeTrapPosition.position, 0.1f); //트랩 생성 위치
+        
     }
     #endregion
 }

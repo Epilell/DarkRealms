@@ -22,9 +22,10 @@ public abstract class WeaponBase : MonoBehaviour
     #region
     public abstract void Attack();
 
-    public void SetStatus(WeaponItemData _data)
+    public void SetStatus(WeaponItemData _data, Sprite _weaponImg)
     {
-        data = _data;
+        data = _data; 
+        weaponImg.GetComponent<SpriteRenderer>().sprite = _weaponImg;
     }
 
     #endregion

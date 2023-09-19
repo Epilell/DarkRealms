@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: 55
   _name: shotgun5
   _tooltip: "\uAC15\uB825\uD55C \uD604\uB300\uC2DD \uC0F7\uAC74\uC774\uB2E4"
-  _iconSprite: {fileID: 21300000, guid: 62a78435924580143a9a97cb675ad36f, type: 3}
+  _iconSprite: {fileID: 284619702, guid: de9e20a5b56c5374cb7ab0d8275b2841, type: 3}
   _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
     type: 3}
   _maxDurability: 100

@@ -16,7 +16,7 @@ public class BearTrap : MonoBehaviour
     //애니메이션을 플레이하고 1초후 오브젝트 삭제
     private IEnumerator PlayAndDestroy()
     {
-        animator.Play("Bear Trap");
+        animator.Play("Active");
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
@@ -38,7 +38,7 @@ public class BearTrap : MonoBehaviour
             MobHP target = collision.gameObject.GetComponent<MobHP>();
 
             //target에게 대미지와 CC를 적용
-            target.TakeDamage(data.Damage); target.TakeCC("stun", data.CCDuration);
+            target.TakeDamage(data.Damage);
             StartCoroutine(PlayAndDestroy());
         }
     }

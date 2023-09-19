@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: 61
   _name: pistol1
   _tooltip: "\uD3C9\uBC94\uD55C \uAD8C\uCD1D\uC774\uB2E4"
-  _iconSprite: {fileID: 21300000, guid: 0c663b9921beb3845add0d194735ebef, type: 3}
+  _iconSprite: {fileID: 1331933545, guid: 4d33b3dd3e457a34c82d171eefa08d5b, type: 3}
   _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
     type: 3}
   _maxDurability: 100
