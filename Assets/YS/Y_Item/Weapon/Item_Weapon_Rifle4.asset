@@ -20,7 +20,7 @@ MonoBehaviour:
     type: 3}
   _maxDurability: 100
   itemType: weapon
-  _damage: 160
+  _damage: 140
   _rpm: 65
   _pelletNum: 1
   _nextWeaponData: {fileID: 11400000, guid: 391272604a8171244b1b10011f1118b3, type: 2}

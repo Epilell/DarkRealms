@@ -120,12 +120,12 @@ TextureImporter:
       name: slv2_0
       rect:
         serializedVersion: 2
-        x: 144
-        y: 168
-        width: 112
-        height: 40
+        x: 113
+        y: 106
+        width: 170
+        height: 170
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

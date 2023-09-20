@@ -120,12 +120,12 @@ TextureImporter:
       name: rlv4_0
       rect:
         serializedVersion: 2
-        x: 134
-        y: 166
+        x: 136
+        y: 121
         width: 150
-        height: 44
+        height: 150
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
