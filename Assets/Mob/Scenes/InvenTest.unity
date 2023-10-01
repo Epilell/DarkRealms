@@ -5023,7 +5023,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6122,8 +6122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3808c2473f82a204bb06f627e3b7aec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scene: 
   panel: {fileID: 205972216}
-  scene: {fileID: 102900000, guid: 63184fb1cf936ec49bbb3a341d7e0300, type: 3}
+  startImg: {fileID: 0}
 --- !u!114 &605576087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9322,7 +9323,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12061,7 +12062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1114554774
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12121,8 +12122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3808c2473f82a204bb06f627e3b7aec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scene: 
   panel: {fileID: 205972216}
-  scene: {fileID: 102900000, guid: 63184fb1cf936ec49bbb3a341d7e0300, type: 3}
+  startImg: {fileID: 0}
 --- !u!114 &1114554777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12149,8 +12151,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionMenu: {fileID: 904127615}
+  main: {fileID: 0}
+  option: {fileID: 0}
   sound: {fileID: 1556150514}
   display: {fileID: 1021242426}
+  warning: {fileID: 0}
 --- !u!114 &1114554779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12166,13 +12171,16 @@ MonoBehaviour:
   inven: {fileID: 834145577}
   eqInven: {fileID: 1598862204}
   warehouse: {fileID: 0}
+  map: {fileID: 0}
   InvenCloseButton: {fileID: 1534111275}
   WarehouseOpenButton: {fileID: 0}
   WarehouseCloseButton: {fileID: 0}
   UpgradeOpenButton: {fileID: 0}
   UpgradeCloseButton: {fileID: 0}
+  StatUpgradeButton: {fileID: 0}
   Tester: {fileID: 0}
   Upgrade: {fileID: 0}
+  StatUpgrade: {fileID: 0}
 --- !u!114 &1114554780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12204,7 +12212,13 @@ MonoBehaviour:
   cooldownImageE: {fileID: 2039313041}
   cooldownImageSpace: {fileID: 968609187}
   cooldownImageMouseRight: {fileID: 1693825736}
+  siegeBar: {fileID: 0}
   isSkillUse: 0
+  molotovActive: 0
+  siegeActive: 0
+  dodgeActive: 0
+  evdshotActive: 0
+  siegeCoolDown: 0
 --- !u!114 &1114554781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12219,11 +12233,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpbar: {fileID: 1593016978}
   hpbar2: {fileID: 1454685387}
-  maxHp: 100
-  currentHp: 100
   textObj: {fileID: 2101263396}
   textObj2: {fileID: 1319212923}
   player: {fileID: 7373820904779604708, guid: f8a946c5a89fbaa4b946c354a96cf67a, type: 3}
+  maxHp: 100
+  currentHp: 100
 --- !u!114 &1114554782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15766,10 +15780,9 @@ MonoBehaviour:
   fadeOut: {fileID: 605576086}
   player: {fileID: 7373820904779604708, guid: f8a946c5a89fbaa4b946c354a96cf67a, type: 3}
   Inventory: {fileID: 1613041279}
+  UIHitEffect: {fileID: 0}
   goMainBtn: {fileID: 605576087}
   gameOverImg: {fileID: 799514503}
-  screen: {fileID: 1017455954}
-  goMainBtnTxt: {fileID: 1066673682}
   isGameOver: 0
 --- !u!114 &1475739648
 MonoBehaviour:
@@ -15783,8 +15796,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a09cd1397e3964a9a5ffdf0636dc0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phase: 1
   timerText: {fileID: 1144851280}
   goMainBtn: {fileID: 605576087}
+  TimerUIobj: {fileID: 0}
+  map: {fileID: 0}
+  lefts: []
+  rights: []
+  isAbandonment: 0
 --- !u!1 &1475782444
 GameObject:
   m_ObjectHideFlags: 0
@@ -15987,7 +16006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1506212283
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17328,6 +17347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isWarehouse: 0
+  portalPrefab: {fileID: 0}
   _initalCapacity: 42
   _maxCapacity: 64
   _inventoryUI: {fileID: 834145578}
@@ -17869,7 +17889,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -19898,8 +19918,8 @@ RectTransform:
   m_Father: {fileID: 1979406913}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -19971,13 +19991,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgm: {fileID: 804828886}
+  portalBgm: {fileID: 0}
+  fireTrapSound: {fileID: 0}
   sfxSources:
   - {fileID: 1373820303}
   - {fileID: 1752254700}
   - {fileID: 2056816420}
   - {fileID: 1327285394}
   - {fileID: 589708193}
-  normalAudioClip: {fileID: 0}
+  mobSources: []
+  bossSources: []
   bossAudioClip: {fileID: 0}
   bgm_on: {fileID: 21300000, guid: 078176a793aa6aa4aa4127602003707d, type: 3}
   bgm_off: {fileID: 21300000, guid: cfacda740c2f45c46a37c6f01034469f, type: 3}
@@ -19985,6 +20008,11 @@ MonoBehaviour:
   sfx_off: {fileID: 21300000, guid: da7743643f93c9f40ab85015fb9bd8d6, type: 3}
   bgmIcon: {fileID: 0}
   sfxIcon: {fileID: 0}
+  player: {fileID: 0}
+  portal: {fileID: 0}
+  fireTrapList: []
+  fireTrapParentObject: {fileID: 0}
+  isFire: 0
 --- !u!4 &1894300476
 Transform:
   m_ObjectHideFlags: 0
@@ -20034,7 +20062,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -20753,8 +20781,8 @@ RectTransform:
   m_Father: {fileID: 1065161805}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
