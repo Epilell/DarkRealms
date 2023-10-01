@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     [Header("AudioSource")] // 오디오 소스
     public AudioSource bgm;
     public AudioSource portalBgm;
+    public AudioSource fireTrapSound;
     public List<AudioSource> sfxSources;
     public List<AudioSource> mobSources;
     public List<AudioSource> bossSources;
@@ -88,27 +89,29 @@ public class SoundManager : MonoBehaviour
                     closestFire = fireTrap;
                 }
             }
-
+            Debug.Log(minDistance);
             if (closestFire != null)
             {
                 if (isFire)
                 {
                     if (minDistance <= 10 && !isFireTrapPlaying)
                     {
-                        FindObjectOfType<SoundManager>().PlaySound("FireTrap");
+                        fireTrapSound.Play();
                         isFireTrapPlaying = true;
                     }
                     else if (minDistance > 10 && isFireTrapPlaying)
                     {
-                        FindObjectOfType<SoundManager>().StopSound("FireTrap");
+                        fireTrapSound.Stop();
                         isFireTrapPlaying = false;
                     }
                 }
                 else
                 {
-                    FindObjectOfType<SoundManager>().StopSound("FireTrap");
+                    fireTrapSound.Stop();
                     isFireTrapPlaying = false;
                 }
+
+                if (isFireTrapPlaying) fireTrapSound.volume = Mathf.Lerp(1, 0, minDistance / 10);
             }
         }
     }
