@@ -745,7 +745,7 @@ MonoBehaviour:
   EvadeshotHitboxSize: {x: 0.66, y: 1.32}
   DodgeEffect: {fileID: 2500529747492085238}
   DodgeTrapPosition: {fileID: 422529980112072730}
-  isSkillCanUse: 0
+  isSkillCanUse: 1
 --- !u!95 &5627963602540646736
 Animator:
   serializedVersion: 5

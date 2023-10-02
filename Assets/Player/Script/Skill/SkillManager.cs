@@ -612,11 +612,11 @@ public class SkillManager : MonoBehaviour
                     if (siegemodeTS.isActive)
                     {
                         StartCoroutine(DeactivateSiegeMode());
+                        FindObjectOfType<CoolDown>().siegeCoolDown = true;
                     }
                     else
                     {
                         siegeModeCoroutine = StartCoroutine(ActivateSiegeMode());
-                        FindObjectOfType<CoolDown>().siegeCoolDown = true;
                     }
                 }
             }
