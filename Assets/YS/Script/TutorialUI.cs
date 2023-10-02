@@ -1,17 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public enum btnType
-{
-    Left,
-    Right
-}
 
 public class TutorialUI : MonoBehaviour
 {
-    public btnType btnType;
-
     public GameObject tutorialObj, mainMenuObj;
     public CanvasGroup main, option, inventory, map;
 
@@ -21,58 +12,70 @@ public class TutorialUI : MonoBehaviour
     {
         tutorialObj.SetActive(true);
         mainMenuObj.SetActive(false);
-        /*switch (btnType)
-        {
-            case btnType.Left:
-                if (main.alpha == 0 && option.alpha == 1 && inventory.alpha == 0 && map.alpha == 0)
-                {
-                    CanvasGroupOn(main);
-                    CanvasGroupOff(option);
-                }
-                else if (main.alpha == 0 && option.alpha == 0 && inventory.alpha == 1 && map.alpha == 0)
-                {
-                    CanvasGroupOn(option);
-                    CanvasGroupOff(inventory);
-                }
-                else if (main.alpha == 0 && option.alpha == 0 && inventory.alpha == 0 && map.alpha == 1)
-                {
-                    CanvasGroupOn(inventory);
-                    CanvasGroupOff(map);
-                }
-                else { }
-                break;
-            case btnType.Right:
-                if (main.alpha == 1 && option.alpha == 0 && inventory.alpha == 0 && map.alpha == 0)
-                {
-                    CanvasGroupOn(option);
-                    CanvasGroupOff(main);
-                }
-                else if (main.alpha == 0 && option.alpha == 1 && inventory.alpha == 0 && map.alpha == 0)
-                {
-                    CanvasGroupOn(inventory);
-                    CanvasGroupOff(option);
-                }
-                else if (main.alpha == 0 && option.alpha == 0 && inventory.alpha == 1 && map.alpha == 0)
-                {
-                    CanvasGroupOn(map);
-                    CanvasGroupOff(inventory);
-                }
-                else { }
-                break;
-        }*/
     }
 
     public void OnCloseClick()
     {
         tutorialObj.SetActive(false);
         mainMenuObj.SetActive(true);
+
         main.alpha = 1;
         option.alpha = 0;
         inventory.alpha = 0;
         map.alpha = 0;
     }
 
-        private void Update()
+    public void OnLeftClick()
+    {
+        if (main.alpha == 0 && option.alpha == 1 && inventory.alpha == 0 && map.alpha == 0)
+        {
+            CanvasGroupOn(main);
+            CanvasGroupOff(option);
+        }
+        else if (main.alpha == 0 && option.alpha == 0 && inventory.alpha == 1 && map.alpha == 0)
+        {
+            CanvasGroupOn(option);
+            CanvasGroupOff(inventory);
+        }
+        else if (main.alpha == 0 && option.alpha == 0 && inventory.alpha == 0 && map.alpha == 1)
+        {
+            CanvasGroupOn(inventory);
+            CanvasGroupOff(map);
+        }
+        else if (main.alpha == 1 && option.alpha == 0 && inventory.alpha == 0 && map.alpha == 0)
+        {
+            CanvasGroupOn(map);
+            CanvasGroupOff(main);
+        }
+        else { }
+    }
+
+    public void OnRightClick()
+    {
+        if (main.alpha == 1 && option.alpha == 0 && inventory.alpha == 0 && map.alpha == 0)
+        {
+            CanvasGroupOn(option);
+            CanvasGroupOff(main);
+        }
+        else if (main.alpha == 0 && option.alpha == 1 && inventory.alpha == 0 && map.alpha == 0)
+        {
+            CanvasGroupOn(inventory);
+            CanvasGroupOff(option);
+        }
+        else if (main.alpha == 0 && option.alpha == 0 && inventory.alpha == 1 && map.alpha == 0)
+        {
+            CanvasGroupOn(map);
+            CanvasGroupOff(inventory);
+        }
+        else if (main.alpha == 0 && option.alpha == 0 && inventory.alpha == 0 && map.alpha == 1)
+        {
+            CanvasGroupOn(main);
+            CanvasGroupOff(map);
+        }
+        else { }
+    }
+
+    private void Update()
     {
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
@@ -93,12 +96,16 @@ public class TutorialUI : MonoBehaviour
                     CanvasGroupOn(inventory);
                     CanvasGroupOff(map);
                 }
+                else if (main.alpha == 1 && option.alpha == 0 && inventory.alpha == 0 && map.alpha == 0)
+                {
+                    CanvasGroupOn(map);
+                    CanvasGroupOff(main);
+                }
                 else { }
             }
 
             if (Input.GetKeyDown(KeyCode.D))
             {
-
                 if (main.alpha == 1 && option.alpha == 0 && inventory.alpha == 0 && map.alpha == 0)
                 {
                     CanvasGroupOn(option);
@@ -113,6 +120,11 @@ public class TutorialUI : MonoBehaviour
                 {
                     CanvasGroupOn(map);
                     CanvasGroupOff(inventory);
+                }
+                else if (main.alpha == 0 && option.alpha == 0 && inventory.alpha == 0 && map.alpha == 1)
+                {
+                    CanvasGroupOn(main);
+                    CanvasGroupOff(map);
                 }
                 else { }
             }
