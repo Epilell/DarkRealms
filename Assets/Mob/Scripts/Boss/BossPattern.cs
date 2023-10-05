@@ -189,8 +189,7 @@ public class BossPattern : MonoBehaviour
         for (int i = -50; i <= 50; i++)
         {
             _breath.transform.rotation = Quaternion.Euler(new Vector3(0, 0, i));
-            //yield return new WaitForSeconds(0.08f);
-            yield return new WaitForSeconds(0.0345f);
+            yield return new WaitForSeconds(0.03f);
         }
         GetComponent<Animator>().SetBool("Breath_Atk", false);
         Destroy(_breath);

@@ -37,6 +37,7 @@ public class Bullet : MonoBehaviour
                 break;
             case "BreakObj":
                 collider.GetComponent<BreakAbleObject>().BulletHit();
+                FindObjectOfType<SoundManager>().PlaySound("Breaking");
                 DestroyBullet();
                 break;
             case "null":

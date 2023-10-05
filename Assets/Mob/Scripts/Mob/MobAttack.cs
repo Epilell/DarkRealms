@@ -54,7 +54,9 @@ public class MobAttack : MonoBehaviour
         //Debug.Log(player.transform.position);
         PlayerDirection = player.transform;
         animator = GetComponent<Animator>();
-        FindObjectOfType<SoundManager>().MobSound(gameObject.name.Replace("(Clone)", "")); // 몹 공격 사운드 재생 (테스트)
+        // 몹 공격 사운드 재생
+        if (gameObject.name != "Slime(Clone)" && gameObject.name != "Orc(Clone)") 
+            FindObjectOfType<SoundManager>().MobSound(gameObject.name.Replace("(Clone)", ""));
         if (mobStat.mobProperty == "melee")//근접몹 공격
         {
             //attack1 한번 attack2 한번 번갈아가면서 공격
@@ -196,6 +198,8 @@ public class MobAttack : MonoBehaviour
                         collider.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
                     }
                 }
+                yield return new WaitForSeconds(0.5f);
+                FindObjectOfType<SoundManager>().MobSound("Slime");
             }
             else//atk1
             {
@@ -255,6 +259,8 @@ public class MobAttack : MonoBehaviour
                 if (collider.tag == "Player")
                 {
                     collider.GetComponent<Player>().P_TakeDamage(damage);
+                    yield return new WaitForSeconds(0.5f);
+                    FindObjectOfType<SoundManager>().MobSound("Orc");
                 }
             }
             OrcAtkChanger = false;
@@ -269,6 +275,7 @@ public class MobAttack : MonoBehaviour
                 Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos2.position, boxSize, 0);
                 foreach (Collider2D collider in collider2Ds)
                 {
+                    FindObjectOfType<SoundManager>().MobSound("OrcSpin");
                     Debug.Log(collider.tag);
                     if (collider.tag == "Player")
                     {
