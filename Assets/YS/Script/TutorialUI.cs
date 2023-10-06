@@ -6,8 +6,6 @@ public class TutorialUI : MonoBehaviour
     public GameObject tutorialObj, mainMenuObj;
     public CanvasGroup main, option, inventory, map;
 
-    private void Start() { if (SceneManager.GetActiveScene().name == "MainMenu") tutorialObj.SetActive(false); }
-
     public void OnOpenClick()
     {
         tutorialObj.SetActive(true);
