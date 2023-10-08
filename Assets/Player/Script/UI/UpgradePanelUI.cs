@@ -9,6 +9,6 @@ public class UpgradePanelUI : MonoBehaviour
     [SerializeField]
     public Image _beforeImage;
     public Image _afterImage;
-    public TextMeshProUGUI _requirements;
+    public TextMeshProUGUI _materialText, _goldText;
     public Button _upgradeButton;
 }

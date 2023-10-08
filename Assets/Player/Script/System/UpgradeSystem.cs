@@ -113,11 +113,13 @@ namespace Rito.InventorySystem
                             UI._afterImage.sprite = data.NextArmorData.IconSprite;
                             if (data.Requirements.Count != 0)
                             {
-                                UI._requirements.text += data.Requirements[0].Num; //+ " X " + data.Requirements[0].Data.Name;
+                                UI._materialText.text += data.Requirements[0].Num;
+                                UI._goldText.text += data.Requirements[0].Cost;
                             }
                             else
                             {
-                                UI._requirements.text += " 0 ";
+                                UI._materialText.text += "0";
+                                UI._goldText.text += "0";
                             }
 
                             //해당 패널의 업그레이드 버튼에 기능 할당
@@ -137,11 +139,13 @@ namespace Rito.InventorySystem
                             UI._afterImage.sprite = data.NextWeaponData.IconSprite;
                             if (data.Requirements.Count != 0)
                             {
-                                UI._requirements.text += data.Requirements[0].Num;//+ " X " + data.Requirements[0].Data.Name;
+                                UI._materialText.text += data.Requirements[0].Num;
+                                UI._goldText.text += data.Requirements[0].Cost;
                             }
                             else
                             {
-                                UI._requirements.text += " 0 ";
+                                UI._materialText.text += "0";
+                                UI._goldText.text += "0";
                             }
 
                             //해당 패널의 업그레이드 버튼에 기능 할당
@@ -195,11 +199,13 @@ namespace Rito.InventorySystem
                             UI._afterImage.sprite = data.NextArmorData.IconSprite;
                             if (data.Requirements.Count != 0)
                             {
-                                UI._requirements.text += data.Requirements[0].Num; //+ " X " + data.Requirements[0].Data.Name;
+                                UI._materialText.text += data.Requirements[0].Num;
+                                UI._goldText.text += data.Requirements[0].Cost;
                             }
                             else
                             {
-                                UI._requirements.text += " 0 ";
+                                UI._materialText.text += "0";
+                                UI._goldText.text += "0";
                             }
 
                             //해당 패널의 업그레이드 버튼에 기능 할당
@@ -219,11 +225,13 @@ namespace Rito.InventorySystem
                             UI._afterImage.sprite = data.NextWeaponData.IconSprite;
                             if (data.Requirements.Count != 0)
                             {
-                                UI._requirements.text += data.Requirements[0].Num;//+ " X " + data.Requirements[0].Data.Name;
+                                UI._materialText.text += data.Requirements[0].Num;
+                                UI._goldText.text += data.Requirements[0].Cost;
                             }
                             else
                             {
-                                UI._requirements.text += " 0 ";
+                                UI._materialText.text += "0";
+                                UI._goldText.text += "0";
                             }
 
                             //해당 패널의 업그레이드 버튼에 기능 할당
@@ -261,8 +269,15 @@ namespace Rito.InventorySystem
             {
                 if (inventory.UseMaterial(_data.Requirements[0].Data, _data.Requirements[0].Num))
                 {
-                    _target.Remove(_index);
-                    _target.Add(_data.NextArmorData);
+                    if(inventory.UseMaterial(_data.Requirements[0].CostData, _data.Requirements[0].Cost))
+                    {
+                        _target.Remove(_index);
+                        _target.Add(_data.NextArmorData);
+                    }
+                    else
+                    {
+                        inventory.Add(_data.Requirements[0].Data, _data.Requirements[0].Num);
+                    }
                 }
             }
             else
@@ -272,14 +287,26 @@ namespace Rito.InventorySystem
             }
         }
 
+        /// <summary>
+        /// 장비한 방어구 아이템 강화
+        /// </summary>
+        /// <param name="_data"></param>
+        /// <param name="_index"></param>
         private void AttemptArmorUpgrade(EquipmentInventory _target, ArmorItemData _data, int _index)
         {
             if (_data.Requirements.Count != 0)
             {
                 if (inventory.UseMaterial(_data.Requirements[0].Data, _data.Requirements[0].Num))
                 {
-                    _target.RemoveItem(_index);
-                    _target.Add(_data.NextArmorData);
+                    if (inventory.UseMaterial(_data.Requirements[0].CostData, _data.Requirements[0].Cost))
+                    {
+                        _target.RemoveItem(_index);
+                        _target.Add(_data.NextArmorData);
+                    }
+                    else
+                    {
+                        inventory.Add(_data.Requirements[0].Data, _data.Requirements[0].Num);
+                    }
                 }
             }
             else
@@ -298,8 +325,15 @@ namespace Rito.InventorySystem
             {
                 if (inventory.UseMaterial(_data.Requirements[0].Data, _data.Requirements[0].Num))
                 {
-                    _target.Remove(_index);
-                    _target.Add(_data.NextWeaponData);
+                    if(inventory.UseMaterial(_data.Requirements[0].CostData, _data.Requirements[0].Cost))
+                    {
+                        _target.Remove(_index);
+                        _target.Add(_data.NextWeaponData);
+                    }
+                    else
+                    {
+                        inventory.Add(_data.Requirements[0].Data, _data.Requirements[0].Num);
+                    }
                 }
             }
             else
@@ -308,17 +342,24 @@ namespace Rito.InventorySystem
                 _target.Add(_data.NextWeaponData);
             }
         }
-        /// <summary> 인벤토리 무기 아이템 강화 </summary>
+
+        /// <summary>
+        /// 장비한 무기 아이템 강화
+        /// </summary>
         /// <param name="_data"></param>
         /// <param name="_index"></param>
         private void AttemptWeaponUpgrade(EquipmentInventory _target, WeaponItemData _data, int _index)
         {
             if (_data.Requirements.Count != 0)
             {
-                if (inventory.UseMaterial(_data.Requirements[0].Data, _data.Requirements[0].Num))
+                if (inventory.UseMaterial(_data.Requirements[0].CostData, _data.Requirements[0].Cost))
                 {
                     _target.RemoveItem(_index);
                     _target.Add(_data.NextWeaponData);
+                }
+                else
+                {
+                    inventory.Add(_data.Requirements[0].Data, _data.Requirements[0].Num);
                 }
             }
             else
@@ -328,7 +369,6 @@ namespace Rito.InventorySystem
             }
         }
         #endregion
-
         #endregion
 
         // Unity Event

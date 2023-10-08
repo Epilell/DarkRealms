@@ -14586,6 +14586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgm: {fileID: 0}
   portalBgm: {fileID: 0}
+  fireTrapSound: {fileID: 0}
   sfxSources:
   - {fileID: 1034809184}
   mobSources: []
@@ -14599,6 +14600,9 @@ MonoBehaviour:
   sfxIcon: {fileID: 0}
   player: {fileID: 0}
   portal: {fileID: 0}
+  fireTrapList: []
+  fireTrapParentObject: {fileID: 0}
+  isFire: 0
 --- !u!4 &1701451385
 Transform:
   m_ObjectHideFlags: 0
@@ -18331,6 +18335,71 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225212039666333653, guid: 800a53ad73bb03e459cda1bf91b81cea,
+        type: 3}
+      propertyPath: upgradeCostList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225212039666333653, guid: 800a53ad73bb03e459cda1bf91b81cea,
+        type: 3}
+      propertyPath: upgradeCostList.Array.data[0].StartCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225212039666333653, guid: 800a53ad73bb03e459cda1bf91b81cea,
+        type: 3}
+      propertyPath: upgradeCostList.Array.data[0].StatsName
+      value: "\uCCB4\uB825 \uC99D\uAC00"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225212039666333653, guid: 800a53ad73bb03e459cda1bf91b81cea,
+        type: 3}
+      propertyPath: upgradeCostList.Array.data[1].StartCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225212039666333653, guid: 800a53ad73bb03e459cda1bf91b81cea,
+        type: 3}
+      propertyPath: upgradeCostList.Array.data[1].StatsName
+      value: "\uC774\uB3D9\uC18D\uB3C4"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225212039666333653, guid: 800a53ad73bb03e459cda1bf91b81cea,
+        type: 3}
+      propertyPath: upgradeCostList.Array.data[2].StartCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225212039666333653, guid: 800a53ad73bb03e459cda1bf91b81cea,
+        type: 3}
+      propertyPath: upgradeCostList.Array.data[2].StatsName
+      value: "\uC2A4\uD0AC \uCFE8\uD0C0\uC784"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225212039666333653, guid: 800a53ad73bb03e459cda1bf91b81cea,
+        type: 3}
+      propertyPath: upgradeCostList.Array.data[3].StartCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225212039666333653, guid: 800a53ad73bb03e459cda1bf91b81cea,
+        type: 3}
+      propertyPath: upgradeCostList.Array.data[3].StatsName
+      value: "\uB370\uBBF8\uC9C0 \uAC10\uC18C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225212039666333653, guid: 800a53ad73bb03e459cda1bf91b81cea,
+        type: 3}
+      propertyPath: upgradeCostList.Array.data[0].IncreaseCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225212039666333653, guid: 800a53ad73bb03e459cda1bf91b81cea,
+        type: 3}
+      propertyPath: upgradeCostList.Array.data[1].IncreaseCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225212039666333653, guid: 800a53ad73bb03e459cda1bf91b81cea,
+        type: 3}
+      propertyPath: upgradeCostList.Array.data[2].IncreaseCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225212039666333653, guid: 800a53ad73bb03e459cda1bf91b81cea,
+        type: 3}
+      propertyPath: upgradeCostList.Array.data[3].IncreaseCost
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 800a53ad73bb03e459cda1bf91b81cea, type: 3}

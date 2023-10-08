@@ -22,4 +22,8 @@ MonoBehaviour:
   itemType: glove
   _defence: 35
   _nextArmorData: {fileID: 11400000, guid: 2fd5491f56fc1344b86d381ad9a77ec5, type: 2}
-  _requirements: []
+  _requirements:
+  - _data: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    _num: 6
+    _costData: {fileID: 11400000, guid: df43add3c35245a41bd52de03aa823d5, type: 2}
+    _cost: 600

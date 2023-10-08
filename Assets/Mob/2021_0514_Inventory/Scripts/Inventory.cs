@@ -587,7 +587,7 @@ namespace Rito.InventorySystem
         public bool UseMaterial(ItemData itemData, int amount)
         {
             int index = -1;
-            if (itemData is MaterialItemData miData)
+            if (itemData is MaterialItemData miData)    //재료 사용
             {
                 int currentAmount = 0;
                 while (currentAmount < amount)
@@ -636,6 +636,46 @@ namespace Rito.InventorySystem
                 else
                 {
                     Debug.Log("재료 부족! 2");
+                    return false;
+                }
+            }
+            else if (itemData is CoinItemData ciData)   //코인 사용
+            {
+                int currentAmount = 0;
+                while (currentAmount < amount)
+                {
+                    index = FindMaterialSlotIndex(ciData, index + 1);
+                    if (index == -1)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        CountableItem ci = _items[index] as CountableItem;
+                        currentAmount += ci.Amount;
+                    }
+                }
+                if (currentAmount >= amount)//사용될 재료가 충분하면 실행
+                {
+                    index = -1;
+                    while (amount > 0)
+                    {
+                        index = FindMaterialSlotIndex(ciData, index + 1);
+                        if (index >= 0 && index < _items.Length)
+                        {
+                            CoinItem ci = _items[index] as CoinItem;
+                            amount = ci.ReAmountAndGetExcess(amount);
+                            UpdateSlot(index);
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+                else
+                {
                     return false;
                 }
             }

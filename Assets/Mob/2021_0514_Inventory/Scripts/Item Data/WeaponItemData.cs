@@ -13,9 +13,13 @@ namespace Rito.InventorySystem
     {
         public ItemData Data => _data;
         public int Num => _num;
+        public CoinItemData CostData => _costData;
+        public int Cost => _cost;
 
         [SerializeField] private ItemData _data;
         [SerializeField] private int _num;
+        [SerializeField] private CoinItemData _costData;
+        [SerializeField] private int _cost;
     }
 
     /// <summary> 장비 - 무기 아이템 </summary>

@@ -24,4 +24,8 @@ MonoBehaviour:
   _rpm: 60
   _pelletNum: 1
   _nextWeaponData: {fileID: 11400000, guid: 3916d5cbc09fdb84499e6a64a43f81ce, type: 2}
-  _requirements: []
+  _requirements:
+  - _data: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
+    _num: 7
+    _costData: {fileID: 11400000, guid: df43add3c35245a41bd52de03aa823d5, type: 2}
+    _cost: 700

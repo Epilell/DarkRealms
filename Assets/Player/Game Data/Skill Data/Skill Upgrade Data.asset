@@ -55,9 +55,4 @@ MonoBehaviour:
       isUpgrade: 0
     - name: Range Up
       isUpgrade: 0
-  ApplyUpgradeList:
-  - skillName: Dodge
-    icon: {fileID: 2014446704, guid: 608e068bc06c94b4f83ce67a990566b3, type: 3}
-    upgradeList:
-    - name: Trap
-      isUpgrade: 1
+  ApplyUpgradeList: []
