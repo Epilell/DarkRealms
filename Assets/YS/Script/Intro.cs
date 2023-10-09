@@ -9,7 +9,7 @@ public class Intro : MonoBehaviour
     [SerializeField] private Image fadeImg;
 
     private float time = 0f;
-    private float fadeTime = 1.2f;
+    private float fadeTime = 1f;
 
     void Start() { StartCoroutine(IntroCoroutine()); }
 
@@ -26,7 +26,7 @@ public class Intro : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.25f);
 
         time = 0f;
 
@@ -37,6 +37,8 @@ public class Intro : MonoBehaviour
             fadeImg.color = alpha;
             yield return null;
         }
+
+        yield return new WaitForSeconds(0.75f);
 
         SceneManager.LoadScene(sceneName);
     }
