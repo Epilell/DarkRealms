@@ -94,7 +94,7 @@ public class StatsUpgradeSystem : MonoBehaviour
         for(int i = 0; i < 4; i++)
         {
             int cost = upgradeCostList[i].StartCost + (upgradeCostList[i].IncreaseCost * playerData.Stats[i].Level);
-            Descriptions[i].text = "업그레이드 비용 : " + cost + "\n" + playerData.Stats[i].Level * num[i] + "% \n" + text[i];
+            Descriptions[i].text = text[i]+ "\n" + playerData.Stats[i].Level * num[i] + "% \n"+"cost : " + cost  ;
         }
     }
 
