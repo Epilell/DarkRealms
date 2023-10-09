@@ -385,8 +385,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _beforeImage: {fileID: 6568286169712971283}
   _afterImage: {fileID: 9139746917148610904}
-  _materialText: {fileID: 0}
-  _goldText: {fileID: 0}
+  _materialText: {fileID: 4281389121896450972}
+  _goldText: {fileID: 8272856996146823579}
   _upgradeButton: {fileID: 4874490753388557361}
 --- !u!1 &3687123223067500354
 GameObject:
