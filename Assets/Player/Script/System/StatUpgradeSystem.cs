@@ -14,11 +14,11 @@ class UpgradeCost
     public int IncreaseCost = 30;
 }
 
-public class StatsUpgradeSystem : MonoBehaviour
+public class StatUpgradeSystem : MonoBehaviour
 {
     //Field
     #region .
-    public static StatsUpgradeSystem instance;
+    public static StatUpgradeSystem instance;
     public PlayerData playerData;
 
     [TextArea(1, 5), Space(5)]
@@ -31,7 +31,6 @@ public class StatsUpgradeSystem : MonoBehaviour
     [Header("나머지", order = 2), Space(5)]
     [SerializeField] private ItemData Coin;
     [SerializeField] private List<GameObject> upgradePanel = new();
-    [SerializeField] private List<TextMeshProUGUI> Descriptions = new();
     [SerializeField] private TextMeshProUGUI InfoPanel;
 
     private Inventory Inventory;
@@ -88,13 +87,17 @@ public class StatsUpgradeSystem : MonoBehaviour
 
     private void UpdateDescription()
     {
-        int[] num = { 10, 2, 2, 2 };
-        string[] text = { "체력 증가", "이동속도 증가", "스킬 쿨타임 감소", "데미지 감소" };
+        string[] num = { "10", "2", "-2", "2" };
+        string[] text = { "HP Increase", "Speed Increase", "Skill CoolTime", "Damage Reduction" };
         //텍스트 수정
         for(int i = 0; i < 4; i++)
         {
             int cost = upgradeCostList[i].StartCost + (upgradeCostList[i].IncreaseCost * playerData.Stats[i].Level);
-            Descriptions[i].text = text[i]+ "\n" + playerData.Stats[i].Level * num[i] + "% \n"+"cost : " + cost  ;
+            StatUpgradePanelUI Panel = upgradePanel[i].GetComponentInChildren<StatUpgradePanelUI>();
+            Panel.descriptionTxt.text = text[i];
+            Panel.percentageTxt.text = num[i] + " %";
+            Panel.costTxt.text = "Cost : " + cost.ToString();
+
         }
     }
 

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradePanelUI : MonoBehaviour
+public class SmithUpgradePanelUI : MonoBehaviour
 {
     [SerializeField]
     public Image _beforeImage;

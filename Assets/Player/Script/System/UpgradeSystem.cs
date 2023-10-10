@@ -108,7 +108,7 @@ namespace Rito.InventorySystem
                         {
                             //해당 업그레이드 패널의 이미지 할당
                             ArmorItemData data = _equipmentItems[i].Data as ArmorItemData;
-                            var UI = RT.GetComponent<UpgradePanelUI>();
+                            var UI = RT.GetComponent<SmithUpgradePanelUI>();
                             UI._beforeImage.sprite = data.IconSprite;
                             UI._afterImage.sprite = data.NextArmorData.IconSprite;
                             if (data.Requirements.Count != 0)
@@ -134,7 +134,7 @@ namespace Rito.InventorySystem
                         {
                             //해당 업그레이드 패널의 이미지 할당
                             WeaponItemData data = _equipmentItems[i].Data as WeaponItemData;
-                            UpgradePanelUI UI = RT.GetComponent<UpgradePanelUI>();
+                            SmithUpgradePanelUI UI = RT.GetComponent<SmithUpgradePanelUI>();
                             UI._beforeImage.sprite = data.IconSprite;
                             UI._afterImage.sprite = data.NextWeaponData.IconSprite;
                             if (data.Requirements.Count != 0)
@@ -194,7 +194,7 @@ namespace Rito.InventorySystem
                         {
                             //해당 업그레이드 패널의 이미지 할당
                             ArmorItemData data = _inventoryItems[j].Data as ArmorItemData;
-                            var UI = RT.GetComponent<UpgradePanelUI>();
+                            var UI = RT.GetComponent<SmithUpgradePanelUI>();
                             UI._beforeImage.sprite = data.IconSprite;
                             UI._afterImage.sprite = data.NextArmorData.IconSprite;
                             if (data.Requirements.Count != 0)
@@ -220,7 +220,7 @@ namespace Rito.InventorySystem
                         {
                             //해당 업그레이드 패널의 이미지 할당
                             WeaponItemData data = (WeaponItemData)_inventoryItems[j].Data;
-                            UpgradePanelUI UI = RT.GetComponent<UpgradePanelUI>();
+                            SmithUpgradePanelUI UI = RT.GetComponent<SmithUpgradePanelUI>();
                             UI._beforeImage.sprite = data.IconSprite;
                             UI._afterImage.sprite = data.NextWeaponData.IconSprite;
                             if (data.Requirements.Count != 0)
