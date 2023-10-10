@@ -21,7 +21,7 @@ public class Map : MonoBehaviour
     }
     private IEnumerator setup()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.001f);
         this.gameObject.SetActive(false);
     }
 }

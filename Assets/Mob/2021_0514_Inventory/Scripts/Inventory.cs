@@ -108,7 +108,8 @@ namespace Rito.InventorySystem
             { typeof(PortionItemData), 10000 },
             { typeof(WeaponItemData),  20000 },
             { typeof(ArmorItemData),   30000 },
-            { typeof(MaterialItemData), 40000 }
+            { typeof(MaterialItemData), 40000 },
+            { typeof(CoinItemData), 50000 }
         };
 
         private class ItemComparer : IComparer<Item>

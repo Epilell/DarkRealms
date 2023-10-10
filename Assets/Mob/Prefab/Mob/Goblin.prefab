@@ -257,7 +257,8 @@ MonoBehaviour:
   - {fileID: 4566393218948993019, guid: e6982d0c995507544a695c2a79520700, type: 3}
   freezEffect: {fileID: 2762695854079095804, guid: 4ad85ed94c2ae5246bdc74d5905a3438,
     type: 3}
-  stunEffect: {fileID: 0}
+  stunEffect: {fileID: 274116596786250855, guid: 979b5ce7012009447a8c7e020fda4ead,
+    type: 3}
   burnEffect: {fileID: 7901567622655120002, guid: ab0ed2218f81a8c4cb9f6794392fcefd,
     type: 3}
   reducedDefenseEffect: {fileID: 940634692748767880, guid: 8c0455151d87b21458838189f21e92c0,

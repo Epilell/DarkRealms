@@ -128,19 +128,19 @@ public class EquipmentInventoryUI : MonoBehaviour
         _itemTooltip.text = _equipmentInventory.EqItems[index].Data.Tooltip;
         if(_equipmentInventory.EqItems[index].Data is WeaponItemData wdata)
         {
-            _itemStat.text = " 데미지 = "+ wdata.Damage.ToString();
-            _itemStat.text += "\n 연사속도 = " + wdata.Rpm.ToString();
-            _itemStat.text += "\n 펠릿 수 = " + wdata.PelletNum.ToString();
+            _itemStat.text = " Damage = " + wdata.Damage.ToString();
+            _itemStat.text += "\n RPM = " + wdata.Rpm.ToString();
+            _itemStat.text += "\n Pellet = " + wdata.PelletNum.ToString();
         }
         else if (_equipmentInventory.EqItems[index].Data is ArmorItemData adata )
         {
-            _itemStat.text = "방어력 = "+ adata.Defence.ToString();
+            _itemStat.text = "Armor = " + adata.Defence.ToString();
             //_itemStat.text += adata.Defence.ToString();
         }
     }
     private void DeleteTooltips()
     {
-        _itemname.text = "아이템 없음";
+        _itemname.text = "Empty";
         _itemTooltip.text = "";
         _itemStat.text = "";
     }
