@@ -214,6 +214,9 @@ public class MobHP : MonoBehaviour
         animator.SetInteger("WalkSpeed", 0);
         // 몬스터가 죽을 때의 처리
         animator.SetTrigger("IsDead");
+        /*
+        Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
+        rb.AddForce(적절한 수치);*/
         yield return new WaitForSeconds(1.2f);
         Destroy(gameObject);
         Instantiate(DeadMob, transform.position, Quaternion.identity); // 시체 생성
