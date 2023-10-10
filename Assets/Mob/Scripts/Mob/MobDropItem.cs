@@ -18,6 +18,7 @@ public class MobDropItem : MonoBehaviour
     private GameObject DropItem;
     public ItemDrop[] itemDropList; // 몬스터가 드롭하는 아이템 정보
 
+
     public void ItemDrop()
     {
         // 드롭 아이템 처리
@@ -30,7 +31,7 @@ public class MobDropItem : MonoBehaviour
                 {
                     DropItem = itemDrop.item.DropItemPrefab;
                     //mobItemUI.SetActive(true);
-                    GameObject itemclon = Instantiate(DropItem, transform.position+new Vector3(Random.Range(-3,4), Random.Range(-3,4), 0), Quaternion.identity);//임시아이템드롭
+                    GameObject itemclon = Instantiate(DropItem, transform.position+new Vector3(Random.Range(-1,2), Random.Range(-1,2), 0), Quaternion.identity);//임시아이템드롭
                     ItemContactToInven itemComponent = itemclon.GetComponent<ItemContactToInven>();
                     if (itemComponent != null)
                     {
@@ -61,7 +62,7 @@ public class MobDropItem : MonoBehaviour
                     DropItem = itemDrop.item.DropItemPrefab;
                     //mobItemUI.SetActive(true);
                     //GameObject itemclon = Instantiate(DropItem, transform.position, Quaternion.identity);//임시아이템드롭
-                    GameObject itemclon = Instantiate(DropItem, transform.position + new Vector3(Random.Range(-1, 2), Random.Range(-1, 2), 0), Quaternion.identity);//임시아이템드롭
+                    GameObject itemclon = Instantiate(DropItem, transform.position + new Vector3(Random.Range(-0.5f, 0.6f), Random.Range(-0.5f, 0.6f), 0), Quaternion.identity);//임시아이템드롭
                     ItemContactToInven itemComponent = itemclon.GetComponent<ItemContactToInven>();
                     if (itemComponent != null)
                     {

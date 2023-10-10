@@ -6,6 +6,7 @@ using TMPro;
 
 public class ItemContactToInven : MonoBehaviour
 {
+    public GameObject ItemSpriteObj;
     SpriteRenderer sr;
     public Rito.InventorySystem.ItemData itemData;
     public int itemCount=1;
@@ -16,14 +17,19 @@ public class ItemContactToInven : MonoBehaviour
     private RectTransform rectTransform;
     private GameObject DropItemTooltips;
 
+
+    private ItemDropMove idm;
+
     private void Awake()
     {
         canvas = GameObject.Find("Canvas");
-        sr = this.GetComponent<SpriteRenderer>();
+        sr = ItemSpriteObj.GetComponent<SpriteRenderer>();
+        idm = GetComponent<ItemDropMove>();
     }
     private void Start()
     {
         DropItemTooltips = GameObject.Find("DropItemTooltips");//test
+        idm.DropMoveStart();
     }
     private void Update()
     {

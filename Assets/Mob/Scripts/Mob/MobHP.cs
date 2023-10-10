@@ -217,7 +217,7 @@ public class MobHP : MonoBehaviour
         /*
         Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
         rb.AddForce(적절한 수치);*/
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.7f);
         Destroy(gameObject);
         Instantiate(DeadMob, transform.position, Quaternion.identity); // 시체 생성
         //dropItem.ItemDrop();//아이템 드롭
