@@ -117,8 +117,11 @@ MonoBehaviour:
     dropChance: 0.1
     dropCount: 1
   - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
-    dropChance: 0.7
+    dropChance: 0.1
     dropCount: 3
   - item: {fileID: 11400000, guid: df43add3c35245a41bd52de03aa823d5, type: 2}
     dropChance: 0.3
     dropCount: 15
+  - item: {fileID: 11400000, guid: df43add3c35245a41bd52de03aa823d5, type: 2}
+    dropChance: 0.3
+    dropCount: 30

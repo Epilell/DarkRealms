@@ -178,7 +178,7 @@ public class MobHP : MonoBehaviour
     /// <returns></returns>
     private IEnumerator Burn(float burnDuration = 3f, float burnDamage = 30f)
     {
-        float dotTime = burnDuration * 2;
+        float dotTime = burnDuration * 8;
         float dotDamage = burnDamage / dotTime;
 
         GameObject CCEffect = Instantiate(burnEffect, this.transform.position, Quaternion.identity) as GameObject;
@@ -241,7 +241,7 @@ public class MobHP : MonoBehaviour
 
         isHit = true;
         animator.SetTrigger("Hit");
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.2f);
         isHit = false;
     }
 }

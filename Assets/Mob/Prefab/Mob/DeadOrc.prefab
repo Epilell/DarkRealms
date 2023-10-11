@@ -199,11 +199,11 @@ MonoBehaviour:
   IsObj: 0
   itemDropList:
   - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
-    dropChance: 0.5
+    dropChance: 0.1
     dropCount: 3
   - item: {fileID: 11400000, guid: 4644311dc496b06429200ca793fdf5c3, type: 2}
     dropChance: 0.1
     dropCount: 1
   - item: {fileID: 11400000, guid: df43add3c35245a41bd52de03aa823d5, type: 2}
     dropChance: 0.5
-    dropCount: 25
+    dropCount: 50

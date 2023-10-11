@@ -103,14 +103,14 @@ MonoBehaviour:
   IsObj: 0
   itemDropList:
   - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
-    dropChance: 0.5
-    dropCount: 2
+    dropChance: 0.1
+    dropCount: 1
   - item: {fileID: 11400000, guid: efa50d32e112059499245d9620067a71, type: 2}
     dropChance: 0.1
-    dropCount: 2
+    dropCount: 1
   - item: {fileID: 11400000, guid: df43add3c35245a41bd52de03aa823d5, type: 2}
     dropChance: 0.3
-    dropCount: 10
+    dropCount: 15
 --- !u!114 &965568549241441880
 MonoBehaviour:
   m_ObjectHideFlags: 0
