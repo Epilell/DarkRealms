@@ -767,16 +767,10 @@ namespace Rito.InventorySystem
                     FindObjectOfType<PotionEffect>().UseEffect(_items[index].Data.Name); // 포션 효과 적용
                 }
 
-                /*if (_items[index].Data.Name.Contains("portal"))
+                if (_items[index].Data.Name.Contains("portal"))
                 {
-                    GameObject player = GameObject.FindWithTag("Player");
-
-                    if (player != null)
-                    {
-                        Vector3 newPosition = new Vector3(player.transform.position.x - 20, player.transform.position.y, player.transform.position.z); // 위치 계산 후
-                        Instantiate(portalPrefab, newPosition, Quaternion.identity); // 생성
-                    }
-                }*/
+                    FindObjectOfType<PortalUse>().SpawnPortal(); // 포탈 생성
+                }
 
                 if (succeeded)
                 {
