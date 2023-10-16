@@ -176,9 +176,9 @@ public class MobAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
-        if (isSlime)//atk2
+        if (isSlime)
         {
-            if (attackChanger)
+            if (attackChanger)//atk2
             {
                 collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
                 foreach (Collider2D collider in collider2Ds)
