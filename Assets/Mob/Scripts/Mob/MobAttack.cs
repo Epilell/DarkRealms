@@ -333,16 +333,16 @@ public class MobAttack : MonoBehaviour
             ai.canMove = false;
             IsAttack = false;
             animator.SetBool("attack1", true);
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
-                GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position+new Vector3(i-2.5f,0,0), Quaternion.identity);
+                GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position+new Vector3(i-1f,0,0), Quaternion.identity);
                 MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, player, 9);
                 yield return new WaitForSeconds(1f);
             }
 
             ai.canMove = true;
             animator.SetBool("attack1", false);
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(10f);
             ai.canMove = true;
         }
     }

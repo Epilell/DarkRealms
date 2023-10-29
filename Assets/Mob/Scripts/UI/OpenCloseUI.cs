@@ -23,6 +23,8 @@ public class OpenCloseUI : MonoBehaviour
     public GameObject Upgrade;
     public GameObject StatUpgrade;
 
+
+    private bool OnOffMap = false;
     private bool firstOff=true;
     void Start()
     {
@@ -88,7 +90,17 @@ public class OpenCloseUI : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
-                map.SetActive(!map.activeSelf);
+                //map.SetActive(!map.activeSelf);
+                if (OnOffMap)
+                {
+                    map.GetComponent<RectTransform>().localScale = new Vector3(0.5f, 0.5f, 1f);
+                    OnOffMap = false;
+                }
+                else
+                {
+                    map.GetComponent<RectTransform>().localScale=new Vector3(1.5f, 1.5f, 1f);
+                    OnOffMap = true;
+                }
             }
         }
         if (Tester != null)

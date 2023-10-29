@@ -103,7 +103,7 @@ MonoBehaviour:
   itemDropList:
   - item: {fileID: 11400000, guid: fca6fa0fddacffe4ebd447d9125bb9a0, type: 2}
     dropChance: 1
-    dropCount: 20
+    dropCount: 5
   - item: {fileID: 11400000, guid: fb2fa0f64a2217f4d9b359bb1d4a69bd, type: 2}
     dropChance: 0.1
     dropCount: 1

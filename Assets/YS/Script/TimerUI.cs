@@ -56,8 +56,8 @@ public class TimerUI : MonoBehaviour
 
         if (currentTime < totalTime - 1 && map.activeSelf == true)
         {
-            Time.timeScale = 0.0025f;
-            FindObjectOfType<SkillManager>().isSkillCanUse = false;
+            //Time.timeScale = 0.0025f;
+            //FindObjectOfType<SkillManager>().isSkillCanUse = false;
         }
 
         currentTime -= Time.deltaTime;
