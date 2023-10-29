@@ -360,6 +360,7 @@ public class SkillManager : MonoBehaviour
 
         Player.Instance.ChangeSpeedReduction(100f);
         ani.SetTrigger("IsDualPrecision");
+        ani.SetBool("IsSiegeMode", true);
 
         yield return new WaitForSecondsRealtime(0.7f);
 
@@ -404,6 +405,7 @@ public class SkillManager : MonoBehaviour
 
         //초기화
         siegemodeTS.isActive = false;
+        ani.SetBool("IsSiegeMode", false);
 
         yield return null;
     }
@@ -426,7 +428,8 @@ public class SkillManager : MonoBehaviour
 
         //초기화
         siegemodeTS.isActive = false;
-        
+        ani.SetBool("IsSiegeMode", false);
+
         yield return null;
     }
 
