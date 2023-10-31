@@ -82,5 +82,6 @@ public class BossSpawner : MonoBehaviour
         sliderClone.transform.SetParent(canvasTransform);
         sliderClone.GetComponent<RectTransform>().anchoredPosition = new Vector2(480, -110);
         sliderClone.GetComponent<BossHPViewer>().Setup(Boss.GetComponent<BossHP>());
+        FindObjectOfType<ActiveMenu>().SetMenuLastSibling();
     }
 }

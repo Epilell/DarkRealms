@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class ActiveMenu : MonoBehaviour
 {
-    public GameObject optionMenu;
+    public GameObject manuObj, optionMenu;
     public CanvasGroup main, option, sound, display, warning;
 
     private void Start() { if (SceneManager.GetActiveScene().name == "InGame") optionMenu.SetActive(false); }
@@ -73,5 +73,10 @@ public class ActiveMenu : MonoBehaviour
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
+    }
+
+    public void SetMenuLastSibling()
+    {
+        manuObj.transform.SetAsLastSibling();
     }
 }

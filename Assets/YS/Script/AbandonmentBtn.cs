@@ -20,6 +20,7 @@ public class AbandonmentBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnYesClick() // 나가기 버튼을 누르면
     {
+        CanvasGroupOff(offGroup);
         for (int i = 0; i < Inventory._Items.Length; i++) { Inventory.Remove(i); } // 인벤토리 내 모든 아이템 소멸
         FindObjectOfType<TimerUI>().isAbandonment = true; // 시간 흐르고
         StartCoroutine(FindObjectOfType<FadeOut>().FadeFlow()); // 메인화면으로 나감
