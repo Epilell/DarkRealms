@@ -293,9 +293,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51cde3f62c622c40992a5b7f8c329cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footprint1: {fileID: 3408301423874688817, guid: 708c478b82465a0408bb97b730a5f917,
+  footprint1: {fileID: 6211900532035384512, guid: a64763abe3867f0438c1caa1deff7c5a,
     type: 3}
-  footprint2: {fileID: 8466329786955158466, guid: 808b71c0fdcaae24e89cbef921149462,
+  footprint2: {fileID: 5532562420070483106, guid: f856787cb64b75d459083200dac63cef,
+    type: 3}
+  footprint3: {fileID: 1239706675907101275, guid: 5fbae2865a9d494429b794630af96685,
     type: 3}
   footPrintSize: 1
   footPrintPos: {fileID: 7631627143318033317}

@@ -60,7 +60,7 @@ public class MobRangeBullet : MonoBehaviour
         this.transform.position = this.transform.position;
         //animator.SetBool("broken", true);
         GameObject _brokenBullet = Instantiate(brokenbullet, transform.position, Quaternion.identity);
-        Destroy(_brokenBullet, 1f);
+        Destroy(_brokenBullet, 0.16f);
         //사운드삽입
         yield return new WaitForSeconds(0.01f);
         

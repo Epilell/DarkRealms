@@ -8,6 +8,8 @@ public class MobFootPrint : MonoBehaviour
     private GameObject footprint1;
     [SerializeField]
     private GameObject footprint2;
+    [SerializeField]
+    private GameObject footprint3;
 
     private MobHP mobHP;
     private MobAI mobAI;
@@ -37,12 +39,19 @@ public class MobFootPrint : MonoBehaviour
                 GameObject print1 = Instantiate(footprint1, this.transform.position + footvec + footvecCV, Quaternion.identity);
                 print1.GetComponent<DecreaseAlpha>().SetUp(1f);
                 print1.transform.localScale = new Vector3(footPrintSize, footPrintSize,footPrintSize);
-                Destroy(print1, 0.8f);
+                Destroy(print1, 0.5f);
                 yield return new WaitForSeconds(footPrintDelay);
+
                 GameObject print2 = Instantiate(footprint2, this.transform.position + footvec + footvecCV, Quaternion.identity);
                 print2.GetComponent<DecreaseAlpha>().SetUp(1f);
                 print2.transform.localScale = new Vector3(footPrintSize, footPrintSize, footPrintSize);
-                Destroy(print2, 0.8f);
+                Destroy(print2, 0.5f);
+                yield return new WaitForSeconds(footPrintDelay);
+
+                GameObject print3 = Instantiate(footprint3, this.transform.position + footvec + footvecCV, Quaternion.identity);
+                print3.GetComponent<DecreaseAlpha>().SetUp(1f);
+                print3.transform.localScale = new Vector3(footPrintSize, footPrintSize, footPrintSize);
+                Destroy(print1, 0.5f);
                 yield return new WaitForSeconds(footPrintDelay);
             }
         }
