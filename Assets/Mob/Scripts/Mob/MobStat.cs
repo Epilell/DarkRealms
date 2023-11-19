@@ -14,6 +14,7 @@ public class MobStat : MonoBehaviour
     public GameObject firePoint;
     public float bulletSpeed;
     public float HPbar_correction=4.3f;
+    public GameObject spawnEffect;
     // Start is called before the first frame update
     public float MobDamage()
     {

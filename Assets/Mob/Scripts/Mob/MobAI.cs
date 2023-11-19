@@ -12,6 +12,7 @@ public class MobAI : MonoBehaviour
     private MobStat mobStat;
     private MobHP mobHP;
     private SoundManager sm;
+    private GameObject mobSpawnEffect;
 
     private float detectionRange = 10;
     private float mobAttackRange = 2;
@@ -45,6 +46,8 @@ public class MobAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         sm = GameObject.Find("SoundManager").GetComponent<SoundManager>();
 
+        //∏˜ º“»Ø ¿Ã∆Â∆Æ
+        StartCoroutine(MobSpawnEffect());
     }
 
     private void FixedUpdate()
@@ -95,6 +98,7 @@ public class MobAI : MonoBehaviour
         mobAttackRange = mobStat.MobAttackRange();
         moveSpeed = mobStat.MoveSpeed();
         mobAttackSpeed = mobStat.MobAttackSpeed();
+        mobSpawnEffect = mobStat.spawnEffect;
     }
     private void InitRigid()
     {
@@ -103,7 +107,21 @@ public class MobAI : MonoBehaviour
         rigid.gravityScale = 0;
 
     }
+    private IEnumerator MobSpawnEffect()
+    {
+        Color color = spriteRenderer.color;
+        color.a = 0f;
+        spriteRenderer.color = color;
 
+        GameObject _SpawnEffect = Instantiate(mobSpawnEffect, this.transform.position, Quaternion.identity);
+        _SpawnEffect.GetComponent<DecreaseAlpha>().SetUp(1f);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(_SpawnEffect);
+
+        color = spriteRenderer.color;
+        color.a = 1f;
+        spriteRenderer.color = color;
+    }
 
     private IEnumerator PerformAttack()
     {

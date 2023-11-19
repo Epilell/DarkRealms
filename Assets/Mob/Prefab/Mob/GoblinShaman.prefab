@@ -468,6 +468,8 @@ MonoBehaviour:
   firePoint: {fileID: 8475948001200166907}
   bulletSpeed: 1
   HPbar_correction: -3.5
+  spawnEffect: {fileID: 8100272653827977951, guid: 1dac3b11efe33bd4fb42e93ff0819980,
+    type: 3}
 --- !u!114 &8475948001146510820
 MonoBehaviour:
   m_ObjectHideFlags: 0
