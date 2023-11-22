@@ -51,7 +51,7 @@ public class MobFootPrint : MonoBehaviour
                 GameObject print3 = Instantiate(footprint3, this.transform.position + footvec + footvecCV, Quaternion.identity);
                 print3.GetComponent<DecreaseAlpha>().SetUp(1f);
                 print3.transform.localScale = new Vector3(footPrintSize, footPrintSize, footPrintSize);
-                Destroy(print1, 0.5f);
+                Destroy(print3, 0.5f);
                 yield return new WaitForSeconds(footPrintDelay);
             }
         }

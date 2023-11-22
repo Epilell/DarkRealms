@@ -15,6 +15,11 @@ public class MobStat : MonoBehaviour
     public float bulletSpeed;
     public float HPbar_correction=4.3f;
     public GameObject spawnEffect;
+    public GameObject AtkEffect1_front;
+    public GameObject AtkEffect1_back;
+    public GameObject AtkEffect2_front;
+    public GameObject AtkEffect2_back;
+
     // Start is called before the first frame update
     public float MobDamage()
     {

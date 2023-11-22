@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d899ec181372d40a726747ded0506c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manuObj: {fileID: 0}
   optionMenu: {fileID: 0}
   main: {fileID: 806074643}
   option: {fileID: 651003892}
@@ -1638,7 +1639,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 765effc7e3275f540a805979e204d721, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d8daff2d51c3d74e86f29dbd2fda865, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4921,7 +4922,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 59645f0beb72c2746910200e72bafa92, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c771cfdc27fce374394ea450b990f8ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4949,7 +4950,7 @@ Animator:
   m_GameObject: {fileID: 1255555866}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1e6d3218737655147a274bec6a74578a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 21f384a2a1968f246a17280437476f66, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

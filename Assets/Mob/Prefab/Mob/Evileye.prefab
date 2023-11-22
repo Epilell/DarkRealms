@@ -338,7 +338,7 @@ MonoBehaviour:
   firePoint: {fileID: 9155456390123417963}
   bulletSpeed: 1
   HPbar_correction: 4.3
-  spawnEffect: {fileID: 4509869797981929719, guid: ac6af71aa5413db4d97474ea48bbc140,
+  spawnEffect: {fileID: 3890185481685047644, guid: ac6af71aa5413db4d97474ea48bbc140,
     type: 3}
 --- !u!61 &9155456390019035055
 BoxCollider2D:

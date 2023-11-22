@@ -50,18 +50,22 @@ public class MobAttack : MonoBehaviour
     }
     public void Attacking(MobStat mobStat, GameObject _player)//공격
     {
+
+
         player = GameObject.FindWithTag("Player");
         //Debug.Log(player.transform.position);
         PlayerDirection = player.transform;
         animator = GetComponent<Animator>();
         // 몹 공격 사운드 재생
-        if (gameObject.name != "Slime(Clone)" && gameObject.name != "Orc(Clone)") 
+        if (gameObject.name != "Slime(Clone)" && gameObject.name != "Orc(Clone)")
             FindObjectOfType<SoundManager>().MobSound(gameObject.name.Replace("(Clone)", ""));
         if (mobStat.mobProperty == "melee")//근접몹 공격
         {
             //attack1 한번 attack2 한번 번갈아가면서 공격
             if (attackChanger)
             {
+                //몹 공격 이팩트 앞뒤로 소환, this의 자식으로 설정, z값도 설정
+                StartCoroutine(mobAtkEffect(mobStat, attackChanger));
                 IsAttack = false;
                 animator.SetTrigger("Attack2");
                 //
@@ -71,6 +75,8 @@ public class MobAttack : MonoBehaviour
             }
             else
             {
+                //몹 공격 이팩트 앞뒤로 소환, this의 자식으로 설정, z값도 설정
+                StartCoroutine(mobAtkEffect(mobStat, attackChanger));
                 IsAttack = false;
                 animator.SetTrigger("Attack1");
                 //
@@ -117,7 +123,7 @@ public class MobAttack : MonoBehaviour
         }
         else if (mobStat.mobProperty == "Orc")
         {
-            StartCoroutine(OrcAtk(mobStat.mobDamage));
+            StartCoroutine(OrcAtk(mobStat.mobDamage, mobStat));
         }
         else if (mobStat.mobProperty == "DoppleGanger")
         {
@@ -149,7 +155,7 @@ public class MobAttack : MonoBehaviour
         for (int i = 1; i < 5; i++)
         {
             GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position, Quaternion.identity);
-            MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed+5f, mobStat.mobDamage, player, i);
+            MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed + 5f, mobStat.mobDamage, player, i);
             Rigidbody2D rb = MobBullet.GetComponent<Rigidbody2D>();
             rb.angularVelocity = 180;
         }
@@ -247,10 +253,12 @@ public class MobAttack : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
     }
-    private IEnumerator OrcAtk(float damage)
+    private IEnumerator OrcAtk(float damage, MobStat mobStat)
     {
         if (OrcAtkChanger)
         {
+            //몹 공격 이팩트 앞뒤로 소환, this의 자식으로 설정, z값도 설정
+            StartCoroutine(mobAtkEffect(mobStat, false));
             animator.SetTrigger("Attack1");
             Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
             foreach (Collider2D collider in collider2Ds)
@@ -267,6 +275,8 @@ public class MobAttack : MonoBehaviour
         }
         else
         {
+            //몹 공격 이팩트 앞뒤로 소환, this의 자식으로 설정, z값도 설정
+            StartCoroutine(mobAtkEffect(mobStat, true));
             MobAI ai = GetComponent<MobAI>();
             ai.canMove = true;
             animator.SetBool("whirlwind", true);
@@ -321,21 +331,25 @@ public class MobAttack : MonoBehaviour
         float distanceToPlayer = Vector2.Distance(transform.position, PlayerDirection.position);
         float minimumDistance = 2f;
 
-        if(distanceToPlayer < minimumDistance)//플레이어가 최소 공격범위 안에있으면 패턴2 사용
+        if (distanceToPlayer < minimumDistance)//플레이어가 최소 공격범위 안에있으면 패턴2 사용
         {
+            //몹 공격 이팩트 앞뒤로 소환, this의 자식으로 설정, z값도 설정
+            StartCoroutine(mobAtkEffect(mobStat, true));
             animator.SetTrigger("Attack2");
             IsAttack = false;
             StartCoroutine(MeleeAttack(mobStat));
         }
         else //플레이어가 최소 공격범위 밖에 있으면 패턴1사용
         {
+            //몹 공격 이팩트 앞뒤로 소환, this의 자식으로 설정, z값도 설정
+            StartCoroutine(mobAtkEffect(mobStat, false));
             MobAI ai = GetComponent<MobAI>();
             ai.canMove = false;
             IsAttack = false;
             animator.SetBool("attack1", true);
             for (int i = 0; i < 3; i++)
             {
-                GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position+new Vector3(i-1f,0,0), Quaternion.identity);
+                GameObject MobBullet = Instantiate(mobStat.bullet, mobStat.firePoint.transform.position + new Vector3(i - 1f, 0, 0), Quaternion.identity);
                 MobBullet.GetComponent<MobRangeBullet>().SetStats(mobStat.bulletSpeed, mobStat.mobDamage, player, 9);
                 yield return new WaitForSeconds(1f);
             }
@@ -344,6 +358,54 @@ public class MobAttack : MonoBehaviour
             animator.SetBool("attack1", false);
             yield return new WaitForSeconds(10f);
             ai.canMove = true;
+        }
+    }
+    private IEnumerator mobAtkEffect(MobStat mobstat, bool atk2)
+    {
+        Vector3 vecFront = new Vector3(0, 0, -1);
+        Vector3 vecBack = new Vector3(0, 0, 1);
+        if (mobstat.AtkEffect1_back && mobstat.AtkEffect1_front&& mobstat.AtkEffect2_back && mobstat.AtkEffect2_front != null)
+        {
+            if (atk2 == false)
+            {
+                //몹 공격 이팩트 앞뒤로 소환, this의 자식으로 설정, z값도 설정
+                GameObject _AtkEffect1_front = mobstat.AtkEffect1_front;
+                GameObject _AtkEffect1_back = mobstat.AtkEffect1_back;
+
+
+                GameObject AtcEffect1_front = Instantiate(_AtkEffect1_front, this.transform.position + vecFront, Quaternion.identity);
+                AtcEffect1_front.GetComponent<DecreaseAlpha>().SetUp(1f);
+                AtcEffect1_front.transform.SetParent(this.transform);
+
+                GameObject AtkEffect1_back = Instantiate(_AtkEffect1_back, this.transform.position + vecBack, Quaternion.identity);
+                AtkEffect1_back.GetComponent<DecreaseAlpha>().SetUp(1f);
+                AtkEffect1_back.transform.SetParent(this.transform);
+
+                yield return new WaitForSeconds(0.5f);
+                Destroy(AtcEffect1_front);
+                Destroy(AtkEffect1_back);
+            }
+            else
+            {
+                GameObject _AtkEffect2_front = mobstat.AtkEffect2_front;
+                GameObject _AtkEffect2_back = mobstat.AtkEffect2_back;
+
+                GameObject AtcEffect2_front = Instantiate(_AtkEffect2_front, this.transform.position + vecFront, Quaternion.identity);
+                AtcEffect2_front.GetComponent<DecreaseAlpha>().SetUp(1f);
+                AtcEffect2_front.transform.SetParent(this.transform);
+
+                GameObject AtkEffect2_back = Instantiate(_AtkEffect2_back, this.transform.position + vecBack, Quaternion.identity);
+                AtkEffect2_back.GetComponent<DecreaseAlpha>().SetUp(1f);
+                AtkEffect2_back.transform.SetParent(this.transform);
+
+                yield return new WaitForSeconds(0.5f);
+                Destroy(AtcEffect2_front);
+                Destroy(AtkEffect2_back);
+            }
+        }
+        else
+        {
+            Debug.Log("mobstat1,2없음");
         }
     }
 }
