@@ -547,6 +547,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1642673120 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690228356673246147, guid: 16d34b33ef7ff8748afc79afc286c11d,
+    type: 3}
+  m_PrefabInstance: {fileID: 280320483363053951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1642673125
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642673120}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce3a96f526441404ab1df0276bb78bc0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2088375465
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,9 +605,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgm: {fileID: 0}
   portalBgm: {fileID: 0}
+  fireTrapSound: {fileID: 0}
   sfxSources: []
   mobSources: []
-  normalAudioClip: {fileID: 0}
+  bossSources: []
   bossAudioClip: {fileID: 0}
   bgm_on: {fileID: 0}
   bgm_off: {fileID: 0}
@@ -590,6 +618,9 @@ MonoBehaviour:
   sfxIcon: {fileID: 0}
   player: {fileID: 0}
   portal: {fileID: 0}
+  fireTrapList: []
+  fireTrapParentObject: {fileID: 0}
+  isFire: 0
 --- !u!4 &2088375467
 Transform:
   m_ObjectHideFlags: 0
