@@ -80,7 +80,7 @@ public class BossSpawner : MonoBehaviour
 
         //Slider UI 프로젝트를 parent("Canvas" 오브젝트)의 자식으로 설정 단, UI는 캔버스의 자식으로 설정되어 있어야 화면에 보임
         sliderClone.transform.SetParent(canvasTransform);
-        sliderClone.GetComponent<RectTransform>().anchoredPosition = new Vector2(480, -110);
+        sliderClone.GetComponent<RectTransform>().anchoredPosition = new Vector2(-490, -110);
         sliderClone.GetComponent<BossHPViewer>().Setup(Boss.GetComponent<BossHP>());
         FindObjectOfType<ActiveMenu>().SetMenuLastSibling();
     }

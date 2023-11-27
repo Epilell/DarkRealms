@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: 0
   _name: portal_item
   _tooltip: "\uBE44\uC0C1\uD0C8\uCD9C"
-  _iconSprite: {fileID: -251470607, guid: f2c942aeef6abdc41a9e7ac2c71d3e4a, type: 3}
+  _iconSprite: {fileID: 21300000, guid: 3e1cf259ecdc7b045b17f4271cad962f, type: 3}
   _dropItemPrefab: {fileID: 8534035101406128114, guid: 6139e86fdfc7dae40904d962fa7cfc34,
     type: 3}
   _maxAmount: 1

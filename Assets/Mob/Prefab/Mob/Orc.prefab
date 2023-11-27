@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330551721473290946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.9, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -231,9 +231,13 @@ MonoBehaviour:
   bullet: {fileID: 0}
   firePoint: {fileID: 0}
   bulletSpeed: 0
-  HPbar_correction: -2
+  HPbar_correction: 6.3
   spawnEffect: {fileID: 5044908871868915265, guid: de533a331c43f684ba775cf11678906b,
     type: 3}
+  AtkEffect1_front: {fileID: 0}
+  AtkEffect1_back: {fileID: 0}
+  AtkEffect2_front: {fileID: 0}
+  AtkEffect2_back: {fileID: 0}
 --- !u!61 &627486023847324006
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -247,10 +251,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.9}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.35}
     oldSize: {x: 6, y: 6}
     newSize: {x: 6, y: 6}
     adaptiveTilingThreshold: 0.5
@@ -475,7 +479,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8891012627163622609}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.76, z: 1}
+  m_LocalPosition: {x: -0, y: 0.15, z: 1}
   m_LocalScale: {x: 2.866933, y: 1.2898556, z: 1.6559}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -558,7 +562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9044605485798676100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.784, y: -0.9, z: 0}
+  m_LocalPosition: {x: 0.784, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

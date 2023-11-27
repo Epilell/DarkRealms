@@ -35,7 +35,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2655877666149952692}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 2.1, y: 2.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -246,6 +246,10 @@ MonoBehaviour:
   HPbar_correction: 4.3
   spawnEffect: {fileID: 8470828812802278634, guid: e276de8ca2a02d04a9a580fca07cc137,
     type: 3}
+  AtkEffect1_front: {fileID: 0}
+  AtkEffect1_back: {fileID: 0}
+  AtkEffect2_front: {fileID: 0}
+  AtkEffect2_back: {fileID: 0}
 --- !u!114 &5117305462692921335
 MonoBehaviour:
   m_ObjectHideFlags: 0

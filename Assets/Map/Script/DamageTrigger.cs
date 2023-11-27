@@ -6,7 +6,7 @@ public class DamageTrigger : MonoBehaviour
 {
     public PlayerData data;
     private int timer = 0;
-
+    /*
     private void OnTriggerStay2D(Collider2D other)
     {
 
@@ -27,5 +27,5 @@ public class DamageTrigger : MonoBehaviour
             }
 
         }
-    }
+    }*/
 }
