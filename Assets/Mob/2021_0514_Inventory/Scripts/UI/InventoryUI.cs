@@ -97,7 +97,7 @@ namespace Rito.InventorySystem
         private GraphicRaycaster _cgr; //캔버스 레이캐스터
 
         private List<ItemSlotUI> _slotUIList = new List<ItemSlotUI>();
-        private GraphicRaycaster _gr;
+        public GraphicRaycaster _gr;
         private PointerEventData _ped;
         private List<RaycastResult> _rrList;
 
@@ -297,7 +297,7 @@ namespace Rito.InventorySystem
 
             if (_rrList.Count == 0)
                 return null;
-
+            Debug.Log(_rrList[0]);
             return _rrList[0].gameObject.GetComponent<T>();
         }
         /*
@@ -540,6 +540,21 @@ namespace Rito.InventorySystem
                     _popup.OpenConfirmationPopup(() => TryRemoveItem(index), itemName);
                 else
                     TryRemoveItem(index);
+            }
+            else if (endDragSlot != null && endDragSlot.isQuickSlot)
+            {
+                Debug.Log("여기까지왔나1");
+                QuickSlotUI QUI= endDragSlot.GetComponentInParent<QuickSlotUI>();
+                Debug.Log("여기까지왔나12");
+                CountableItem addQuickSlotitem = _inventory._Items[_beginDragSlot.Index] as CountableItem;
+                int QuickSlotAddItemamount = addQuickSlotitem.Amount;
+                CountableItem Citem = QUI.QuickSlotAddItem(addQuickSlotitem.CountableData, endDragSlot.Index, QuickSlotAddItemamount);
+                Debug.Log("여기까지왔나13");
+                if (Citem != null)
+                {
+                    _inventory.Add(Citem.Data, Citem.Amount);
+                }
+                Debug.Log("여기까지왔나14");
             }
             // 슬롯이 아닌 다른 UI 위에 놓은 경우
             else

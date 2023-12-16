@@ -48,6 +48,7 @@ namespace Rito.InventorySystem
         /// <summary> 접근 가능한 슬롯인지 여부 </summary>
         public bool IsAccessible => _isAccessibleSlot && _isAccessibleItem;
 
+        public bool isQuickSlot = false;
         public RectTransform SlotRect => _slotRect;
         public RectTransform IconRect => _iconRect;
 
