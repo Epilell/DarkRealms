@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     #region .
     public void Load(Inventory inven)
     {
-        Debug.Log("인벤 로드");
+        //Debug.Log("인벤 로드");
         if (inven == null)
         {
             Debug.LogError("Inventory is null. Cannot load.");
@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("EQData.invenitems[i] ==null");
+                //Debug.Log("EQData.invenitems[i] ==null");
             }
         }
     }

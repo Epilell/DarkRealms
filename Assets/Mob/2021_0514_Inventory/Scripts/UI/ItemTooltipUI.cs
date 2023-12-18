@@ -96,7 +96,7 @@ namespace Rito.InventorySystem
             {
                 _titleText.text = "name";
                 _contentText.text = "content";
-                Debug.Log("아이템 데이터 없음!");
+                //Debug.Log("아이템 데이터 없음!");
             }
         }
 

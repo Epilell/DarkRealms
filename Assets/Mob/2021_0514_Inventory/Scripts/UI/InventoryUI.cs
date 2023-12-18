@@ -131,7 +131,6 @@ namespace Rito.InventorySystem
             InitSlots();
             InitButtonEvents();
             InitToggleEvents();
-            _cgr = canvas.GetComponent<GraphicRaycaster>();
             InitFindWarehouse();
         }
 
@@ -161,9 +160,9 @@ namespace Rito.InventorySystem
         #region .
         private void Init()
         {
-            TryGetComponent(out _gr);
-            if (_gr == null)
-                _gr = gameObject.AddComponent<GraphicRaycaster>();
+            //TryGetComponent(out _gr);
+            /*if (_gr == null)
+                _gr = gameObject.AddComponent<GraphicRaycaster>();*/
 
             // Graphic Raycaster
             _ped = new PointerEventData(EventSystem.current);
@@ -294,10 +293,17 @@ namespace Rito.InventorySystem
             _rrList.Clear();
 
             _gr.Raycast(_ped, _rrList);
-
+            /*
+            if (_rrList != null)
+            {
+                for(int i = 0; i < _rrList.Count; i++)
+                {
+                    Debug.Log(_rrList[i] + "내가 찾는 바로 그 로그");
+                }
+            }*/
             if (_rrList.Count == 0)
                 return null;
-            Debug.Log(_rrList[0]);
+            //Debug.Log(_rrList[0]);
             return _rrList[0].gameObject.GetComponent<T>();
         }
         /*
@@ -402,6 +408,14 @@ namespace Rito.InventorySystem
             if (Input.GetMouseButtonDown(_leftClick))
             {
                 _beginDragSlot = RaycastAndGetFirstComponent<ItemSlotUI>();
+                //퀵슬롯, 장비슬롯이면 리턴
+                if (_beginDragSlot != null)
+                {
+                    if (_beginDragSlot.isQuickSlot || _beginDragSlot.isEquipmentSlot)
+                    {
+                        return;
+                    }
+                }
 
                 // 아이템을 갖고 있는 슬롯만 해당
                 if (_beginDragSlot != null && _beginDragSlot.HasItem && _beginDragSlot.IsAccessible)
@@ -430,6 +444,15 @@ namespace Rito.InventorySystem
             else if (Input.GetMouseButtonDown(_rightClick))
             {
                 ItemSlotUI slot = RaycastAndGetFirstComponent<ItemSlotUI>();
+                //퀵슬롯, 장비슬롯이면 리턴
+                if (slot != null)
+                {
+                    if (slot.isQuickSlot || slot.isEquipmentSlot)
+                    {
+                        return;
+                    }
+                }
+
                 if (isActiveoOtherInven == false || _otherInven == null)//자기자신이 창고가 아니고 창고가 열려있지 않으면 아이템 사용
                 {
                     if (slot != null && slot.HasItem && slot.IsAccessible)
@@ -451,7 +474,7 @@ namespace Rito.InventorySystem
         private void OnPointerDrag()
         {
             if (_beginDragSlot == null) return;
-
+            if (_beginDragSlot.isQuickSlot || _beginDragSlot.isEquipmentSlot) return;
             if (Input.GetMouseButton(_leftClick))
             {
                 // 위치 이동
@@ -467,6 +490,7 @@ namespace Rito.InventorySystem
                 // End Drag
                 if (_beginDragSlot != null)
                 {
+                    if (_beginDragSlot.isQuickSlot || _beginDragSlot.isEquipmentSlot) return;
                     // 위치 복원
                     _beginDragIconTransform.position = _beginDragIconPoint;
 
@@ -489,7 +513,7 @@ namespace Rito.InventorySystem
         private void EndDrag()
         {
             ItemSlotUI endDragSlot = RaycastAndGetFirstComponent<ItemSlotUI>();
-            if (endDragSlot != null && endDragSlot.IsAccessible)
+            if (endDragSlot != null && endDragSlot.IsAccessible && !endDragSlot.isQuickSlot)
             {
                 // 수량 나누기 조건
                 // 1) 마우스 클릭 떼는 순간 좌측 Ctrl 또는 Shift 키 유지
@@ -541,20 +565,26 @@ namespace Rito.InventorySystem
                 else
                     TryRemoveItem(index);
             }
+            //퀵슬롯에 놓은 경우
             else if (endDragSlot != null && endDragSlot.isQuickSlot)
             {
-                Debug.Log("여기까지왔나1");
-                QuickSlotUI QUI= endDragSlot.GetComponentInParent<QuickSlotUI>();
-                Debug.Log("여기까지왔나12");
+                //Debug.Log("여기까지왔나1");
+                QuickSlotUI QUI = endDragSlot.GetComponentInParent<QuickSlotUI>();
+                //Debug.Log("여기까지왔나2");
                 CountableItem addQuickSlotitem = _inventory._Items[_beginDragSlot.Index] as CountableItem;
                 int QuickSlotAddItemamount = addQuickSlotitem.Amount;
                 CountableItem Citem = QUI.QuickSlotAddItem(addQuickSlotitem.CountableData, endDragSlot.Index, QuickSlotAddItemamount);
-                Debug.Log("여기까지왔나13");
+                //Debug.Log("여기까지왔나3");
                 if (Citem != null)
                 {
+                    _inventory.Remove(_beginDragSlot.Index);
                     _inventory.Add(Citem.Data, Citem.Amount);
                 }
-                Debug.Log("여기까지왔나14");
+                else if (Citem == null)
+                {
+                    _inventory.Remove(_beginDragSlot.Index);
+                }
+                //Debug.Log("여기까지왔나4");
             }
             // 슬롯이 아닌 다른 UI 위에 놓은 경우
             else

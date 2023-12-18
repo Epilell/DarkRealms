@@ -49,6 +49,8 @@ namespace Rito.InventorySystem
         public bool IsAccessible => _isAccessibleSlot && _isAccessibleItem;
 
         public bool isQuickSlot = false;
+
+        public bool isEquipmentSlot = false;
         public RectTransform SlotRect => _slotRect;
         public RectTransform IconRect => _iconRect;
 
