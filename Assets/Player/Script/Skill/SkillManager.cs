@@ -182,7 +182,7 @@ public class SkillManager : MonoBehaviour
         dodgeTS.curTime = 0; dodgeTS.canUse = false; dodgeTS.curStack--; dodgeTS.isActive = true;
         isDashing = true; WeaponCase.SetActive(false);
 
-        //회피 후 트랩설치
+        //회피 전 트랩설치
         if (CheckUpgrade("Dodge", "Trap"))
         {
             Instantiate(dodgeData.GetBearTrap(), DodgeTrapPosition.position, transform.rotation);
@@ -214,6 +214,12 @@ public class SkillManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1 / 6f);
+
+        //회피 후 트랩설치
+        if (CheckUpgrade("Dodge", "Trap"))
+        {
+            Instantiate(dodgeData.GetBearTrap(), DodgeTrapPosition.position, transform.rotation);
+        }
 
         WeaponCase.SetActive(true);
 
