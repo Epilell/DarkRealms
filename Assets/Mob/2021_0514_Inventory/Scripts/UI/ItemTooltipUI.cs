@@ -114,7 +114,7 @@ namespace Rito.InventorySystem
             float slotHeight = slotRect.rect.height * ratio;
 
             // 툴팁 초기 위치(슬롯 우하단) 설정
-            _rt.position = slotRect.position + new Vector3(slotWidth, -slotHeight);
+            _rt.position = slotRect.position + new Vector3(100, -100); //+ new Vector3(slotWidth, -slotHeight);
             Vector2 pos = _rt.position;
 
             // 툴팁의 크기
@@ -127,7 +127,7 @@ namespace Rito.InventorySystem
 
             ref bool R = ref rightTruncated;
             ref bool B = ref bottomTruncated;
-
+            /*
             // 오른쪽만 잘림 => 슬롯의 Left Bottom 방향으로 표시
             if (R && !B)
             {
@@ -142,7 +142,7 @@ namespace Rito.InventorySystem
             else if (R && B)
             {
                 _rt.position = new Vector2(pos.x - width - slotWidth, pos.y + height + slotHeight);
-            }
+            }*/
             // 잘리지 않음 => 슬롯의 Right Bottom 방향으로 표시
             // Do Nothing
         }

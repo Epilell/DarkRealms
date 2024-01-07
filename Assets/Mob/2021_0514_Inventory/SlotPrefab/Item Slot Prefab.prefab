@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: -4, y: -4, z: -4, w: -4}
+  m_RaycastPadding: {x: 1, y: 1, z: 1, w: 1}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -98,6 +98,8 @@ MonoBehaviour:
   _highlightImage: {fileID: 1699345936881205044}
   _highlightAlpha: 0.5
   _highlightFadeDuration: 0.2
+  isQuickSlot: 0
+  isEquipmentSlot: 0
 --- !u!1 &1699345936881205042
 GameObject:
   m_ObjectHideFlags: 0
