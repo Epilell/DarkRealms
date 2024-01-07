@@ -144,6 +144,7 @@ public class EquipmentInventory : MonoBehaviour
                     //Debug.Log(_eqitems[index].Data.Name + "EqInven에 추가됨");
                     //아이템 장비 효과
                     ItemEffect(_eqitems[index].Data as EquipmentItemData);
+                    Updateslot(index);
                     return null;
                 }
                 else
@@ -153,6 +154,7 @@ public class EquipmentInventory : MonoBehaviour
                     Updateslot(index);
                     //아이템 장비 효과
                     ItemEffect(_eqitems[index].Data as EquipmentItemData);
+                    Updateslot(index);
                     return forReturnItemData;
                 }
             }
@@ -229,6 +231,7 @@ public class EquipmentInventory : MonoBehaviour
     public void RemoveItem(int index)
     {
         slots[index].RemoveItem();
+        //Updateslot(index);
     }
     /// <summary>
     /// 장비 아이템 장착 효과

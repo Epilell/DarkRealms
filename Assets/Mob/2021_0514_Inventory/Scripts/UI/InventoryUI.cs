@@ -390,8 +390,15 @@ namespace Rito.InventorySystem
             {
                 if (_pointerOverSlot != null)
                 {
-                    UpdateTooltipUI(_pointerOverSlot);
-                    _itemTooltip.Show();
+                    if (!_pointerOverSlot.isQuickSlot && !_pointerOverSlot.isEquipmentSlot)
+                    {
+                        UpdateTooltipUI(_pointerOverSlot);
+                        _itemTooltip.Show();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
                 else
                 {
@@ -513,7 +520,7 @@ namespace Rito.InventorySystem
         private void EndDrag()
         {
             ItemSlotUI endDragSlot = RaycastAndGetFirstComponent<ItemSlotUI>();
-            if (endDragSlot != null && endDragSlot.IsAccessible && !endDragSlot.isQuickSlot)
+            if (endDragSlot != null && endDragSlot.IsAccessible && !endDragSlot.isQuickSlot&&!endDragSlot.isEquipmentSlot)
             {
                 // 수량 나누기 조건
                 // 1) 마우스 클릭 떼는 순간 좌측 Ctrl 또는 Shift 키 유지
@@ -584,6 +591,33 @@ namespace Rito.InventorySystem
                 {
                     _inventory.Remove(_beginDragSlot.Index);
                 }
+                //Debug.Log("여기까지왔나4");
+            }
+            //장비슬롯에 놓은경우
+            else if (endDragSlot != null && endDragSlot.isEquipmentSlot)
+            {
+                /*
+                //Debug.Log("여기까지왔나1");
+                EquipmentInventory eui = endDragSlot.GetComponentInParent<EquipmentInventory>();
+                //Debug.Log("여기까지왔나2");
+                Rito.InventorySystem.Item addQuickSlotitem = _inventory._Items[_beginDragSlot.Index];
+                ItemData itemData = eui.Add(addQuickSlotitem.Data);
+                //Debug.Log("여기까지왔나3");*/
+                //장비템인경우
+                if(_inventory._Items[_beginDragSlot.Index] is EquipmentItem eqitem)
+                {
+                    _inventory.Use(_beginDragSlot.Index);
+                }
+                /*
+                if (itemData != null)
+                {
+                    _inventory.Remove(_beginDragSlot.Index);
+                    _inventory.Add(itemData);
+                }
+                else if (itemData == null)
+                {
+                    _inventory.Remove(_beginDragSlot.Index);
+                }*/
                 //Debug.Log("여기까지왔나4");
             }
             // 슬롯이 아닌 다른 UI 위에 놓은 경우
