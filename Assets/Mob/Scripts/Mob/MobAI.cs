@@ -22,15 +22,21 @@ public class MobAI : MonoBehaviour
     private int xSpeed = 0;
     private int ySpeed = 0;
 
-    public bool canMove = false;
+    public bool canMove = true;
     public bool IsAttack = false;
     private float mobAttackSpeed;
     private float currentCoolDown = 0f;
+
+    [SerializeField]
+    private GameObject SlimeShadow;
+    private float jumpCoolDown = 0f;
 
     private Vector3 vec;
     private float vecX;
     float distanceToPlayer;
 
+    private Vector3 vectUP;
+    private Vector3 vectDown;
 
     private int spawndelay = 100;
 
@@ -62,6 +68,10 @@ public class MobAI : MonoBehaviour
         if (currentCoolDown > 0.0f)//공격속도 설정
         {
             currentCoolDown -= Time.deltaTime;
+        }
+        if (jumpCoolDown > 0.0f)//슬라임 점프 설정
+        {
+            jumpCoolDown -= Time.deltaTime;
         }
         if (!mobHP.IsHit && !mobHP.IsStun && mobHP.IsDie == false&&IsAttack==false)
         {
@@ -105,7 +115,6 @@ public class MobAI : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
         rigid.gravityScale = 0;
-
     }
     private IEnumerator MobSpawnEffect()
     {
@@ -141,6 +150,40 @@ public class MobAI : MonoBehaviour
             StartCoroutine(PerformAttack());
         }
     }
+    private IEnumerator PerformSlimeJump()
+    {
+        vectUP = new Vector3(0, 0.14f);
+        vectDown = new Vector3(0, -0.14f);
+
+        IsAttack = false;
+        animator.SetTrigger("SlimeJump");
+        moveSpeed = 0f;
+        yield return new WaitForSeconds(0.56f);
+        moveSpeed = 2f;
+        for (int i = 0; i < 19; i++)
+        {
+            transform.localPosition += vectUP;
+            SlimeShadow.transform.localPosition -= vectUP;
+            yield return new WaitForSeconds(0.05f);
+        }
+        for (int i = 0; i < 19; i++)
+        {
+            transform.localPosition += vectDown;
+            SlimeShadow.transform.localPosition -= vectDown;
+            yield return new WaitForSeconds(0.05f);
+        }
+        moveSpeed = 0f;
+        yield return new WaitForSeconds(0.84f);
+        moveSpeed = 0.7f;
+    }
+    private void SlimeJump()
+    {
+        if (!IsAttack && jumpCoolDown <= 0f)
+        {
+            jumpCoolDown = 8f;
+            StartCoroutine(PerformSlimeJump());
+        }
+    }
     private void ChasePlayer()
     {
         if (mobHP.IsDie == false && (IsAttack == false || canMove == true))
@@ -149,7 +192,11 @@ public class MobAI : MonoBehaviour
             IsAttack = false;
             // 플레이어를 따라가기 위해 이동
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
-
+            if (mobAttack.isSlime)
+            {
+                SlimeJump();
+            }
+            //뒤집기
             if (player.transform.position.x < rigid.position.x)
             {
                 spriteRenderer.flipX = true;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class MobAttack : MonoBehaviour
 {
     private Animator animator;
-    private bool attackChanger = false;
+    private bool _isAtk2 = false;
     private int pattrenChoicer;
     private bool IsAttack = true;
     private Transform PlayerDirection;
@@ -21,6 +21,8 @@ public class MobAttack : MonoBehaviour
     public bool isOrc = false;
     public float WhirlWindDuration = 5.0f;
     private bool OrcAtkChanger = false;
+
+    public float AtkEffectDelay = 1.08f;
 
 
     private void Start()
@@ -62,27 +64,27 @@ public class MobAttack : MonoBehaviour
         if (mobStat.mobProperty == "melee")//근접몹 공격
         {
             //attack1 한번 attack2 한번 번갈아가면서 공격
-            if (attackChanger)
+            if (_isAtk2)
             {
                 //몹 공격 이팩트 앞뒤로 소환, this의 자식으로 설정, z값도 설정
-                StartCoroutine(mobAtkEffect(mobStat, attackChanger));
+                StartCoroutine(mobAtkEffect(mobStat, _isAtk2));
                 IsAttack = false;
                 animator.SetTrigger("Attack2");
                 //
                 StartCoroutine(MeleeAttack(mobStat));
                 //
-                attackChanger = false;
+                _isAtk2 = false;
             }
             else
             {
                 //몹 공격 이팩트 앞뒤로 소환, this의 자식으로 설정, z값도 설정
-                StartCoroutine(mobAtkEffect(mobStat, attackChanger));
+                StartCoroutine(mobAtkEffect(mobStat, _isAtk2));
                 IsAttack = false;
                 animator.SetTrigger("Attack1");
                 //
                 StartCoroutine(MeleeAttack(mobStat));
                 //
-                attackChanger = true;
+                _isAtk2 = true;
             }
         }
         else if (mobStat.mobProperty == "range")//원거리몹 공격
@@ -182,9 +184,10 @@ public class MobAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
+        //
         if (isSlime)
         {
-            if (attackChanger)//atk2
+            if (_isAtk2)//atk2
             {
                 collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
                 foreach (Collider2D collider in collider2Ds)
@@ -366,6 +369,7 @@ public class MobAttack : MonoBehaviour
         Vector3 vecBack = new Vector3(0, 0, 1);
         if (mobstat.AtkEffect1_back && mobstat.AtkEffect1_front&& mobstat.AtkEffect2_back && mobstat.AtkEffect2_front != null)
         {
+            yield return new WaitForSeconds(AtkEffectDelay);
             if (atk2 == false)
             {
                 //몹 공격 이팩트 앞뒤로 소환, this의 자식으로 설정, z값도 설정

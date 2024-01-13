@@ -165,6 +165,7 @@ MonoBehaviour:
   idleSpeed: 1
   canMove: 0
   IsAttack: 0
+  SlimeShadow: {fileID: 0}
 --- !u!114 &627486023847323929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +184,7 @@ MonoBehaviour:
   boxSize2: {x: 6, y: 2}
   isOrc: 1
   WhirlWindDuration: 5
+  AtkEffectDelay: 1.08
 --- !u!114 &627486023847323928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,10 +236,14 @@ MonoBehaviour:
   HPbar_correction: 6.3
   spawnEffect: {fileID: 5044908871868915265, guid: de533a331c43f684ba775cf11678906b,
     type: 3}
-  AtkEffect1_front: {fileID: 0}
-  AtkEffect1_back: {fileID: 0}
-  AtkEffect2_front: {fileID: 0}
-  AtkEffect2_back: {fileID: 0}
+  AtkEffect1_front: {fileID: 6828214682997641064, guid: 4bfeebef17242474b98ca61d78ce5a8f,
+    type: 3}
+  AtkEffect1_back: {fileID: 6372725049297405112, guid: 612f4d0ba05197249babd9bfc0e0a702,
+    type: 3}
+  AtkEffect2_front: {fileID: 1555762727977893945, guid: ef8456c149762ac43afa0b8dd326b256,
+    type: 3}
+  AtkEffect2_back: {fileID: 1555762727977893945, guid: ef8456c149762ac43afa0b8dd326b256,
+    type: 3}
 --- !u!61 &627486023847324006
 BoxCollider2D:
   m_ObjectHideFlags: 0

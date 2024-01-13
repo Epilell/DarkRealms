@@ -23,7 +23,7 @@ public class SlimeAtk1 : MonoBehaviour
         {
             if (collision.tag == "Player")
             {
-                GetComponent<Collider>().GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
+                collision.GetComponent<Player>().P_TakeDamage(mobStat.mobDamage);
             }
         }
     }

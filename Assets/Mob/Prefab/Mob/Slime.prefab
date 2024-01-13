@@ -420,6 +420,7 @@ MonoBehaviour:
   idleSpeed: 1
   canMove: 0
   IsAttack: 0
+  SlimeShadow: {fileID: 5670247434505841770}
 --- !u!58 &3991686891629927187
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -606,7 +607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5670247434505841770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.09, y: 0, z: 1}
+  m_LocalPosition: {x: 0.09, y: 0.23, z: 1}
   m_LocalScale: {x: 1.6, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
