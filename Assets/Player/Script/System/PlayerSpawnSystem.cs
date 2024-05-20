@@ -38,7 +38,8 @@ public class PlayerSpawnSystem : MonoBehaviour
     /// <param name="_data"></param>
     private int SetSpawnPoint(PlayerSpawnData _data)
     {
-        return Random.Range(0, _data.SpawnPoints.Count);
+        //return Random.Range(0, _data.SpawnPoints.Count);
+        return 0;
     }
 
     /// <summary>

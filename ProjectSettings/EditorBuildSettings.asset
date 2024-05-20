@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Merge/LoadingInWarehouse.unity
     guid: 73eb7c0d2a6e7de47873b018b030c869
+  - enabled: 1
+    path: Assets/Map/MapScene/SampleMobSpawnScene.unity
+    guid: 797d3865f4e27e04c9d72784e82243d5
   m_configObjects: {}
